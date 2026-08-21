@@ -1,0 +1,115 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[margin=30mm]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\definecolor{linkblue}{RGB}{30,75,135}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=linkblue,
+  urlcolor=linkblue,
+  citecolor=linkblue,
+  pdftitle={MIGOS 2026/27: Derived manifolds}
+}
+
+\setlist[itemize]{leftmargin=*,topsep=3pt,itemsep=2pt}
+\setlist[enumerate]{leftmargin=*,topsep=3pt,itemsep=2pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+\newcommand{\Cinfty}{\ensuremath{C^\infty}}
+\newcommand{\Talk}[5]{%
+  \subsection*{Talk #1: #2}
+  \textbf{Aim.} #3
+
+  \textbf{Content.} #4
+
+  \textbf{Primary references.} #5
+}
+
+\title{MIGOS 2026/27: Derived manifolds\\\large Draft seminar program}
+\author{Organizers: Bastiaan Cnossen and Sil Linskens}
+\date{21 August 2026}
+
+\begin{document}
+
+\maketitle
+
+\section*{Scope and goal}
+
+The seminar develops derived manifolds from the elementary problem of non-transverse intersections to recent representability results for moduli spaces of solutions to nonlinear elliptic equations. It is intended to be accessible to first-year PhD students from several areas. We will therefore emphasize examples, universal properties, and the geometric role of the formalism.
+
+Our endpoint is an understanding of the statement and proof architecture of elliptic representability. We will not attempt complete proofs of the main theorems of Steffens or Pardon. By the end, participants should understand why a solution space carries a derived structure, how its tangent complex records deformation and obstruction spaces, and why compactification and virtual fundamental classes require further work.
+
+\section*{Program}
+
+\Talk{1}{Why derived manifolds?}
+{See the geometric problem before developing the language.}
+{Start with intersections of submanifolds and zero loci of sections. Compare transverse and non-transverse examples, including a self-intersection and a zero locus with excess tangent directions. Introduce local Kuranishi models as finite-dimensional reductions of elliptic problems. Formulate the two guiding questions: what structure should a singular zero locus retain, and how can local models be glued without arbitrary choices?}
+{Spivak, \emph{Derived smooth manifolds}, Section 1; Steffens, \emph{Derived differential geometry}, Chapter 1; Pardon, \emph{Logarithmic derived moduli theory}, Sections P.1--P.2.}
+
+\Talk{2}{Smooth geometry through \Cinfty-rings}
+{Learn the algebraic object that remembers all smooth operations.}
+{Define a \Cinfty-ring as a product-preserving functor from Euclidean spaces and smooth maps. Prove that $\Cinfty(\mathbb{R}^n)$ is free on $n$ generators. Discuss quotients and finitely generated \Cinfty-rings. Use Borel's theorem as a concrete indication that smooth algebra differs sharply from polynomial algebra. Explain the full faithfulness result for locally closed subsets.}
+{Moerdijk--Reyes, \emph{Models for smooth infinitesimal analysis}, Chapter I, Section 1, especially Proposition 1.1, Theorem 1.3, and Proposition 1.5.}
+
+\Talk{3}{Manifolds as \Cinfty-rings}
+{Recover the part of differential geometry needed for the universal property of derived manifolds.}
+{Show that $\Cinfty(M)$ is finitely presented for every manifold $M$. Compute products algebraically. Prove that a transverse inverse image becomes a pushout of \Cinfty-rings, and conclude that manifolds embed contravariantly and fully faithfully into finitely presented \Cinfty-rings while transverse pullbacks become pushouts.}
+{Moerdijk--Reyes, Chapter I, Section 2, especially Lemma 2.1, Theorem 2.3, Propositions 2.5--2.6, and Theorem 2.8.}
+
+\Talk{4}{\Cinfty-schemes and singular zero loci}
+{Pass from global function rings to spaces locally modelled by smooth equations.}
+{Introduce local \Cinfty-rings, localization, spectra, structure sheaves, and affine \Cinfty-schemes. Work through zero loci of smooth functions and sections. Explain what an ordinary \Cinfty-scheme remembers and what it still loses about a non-transverse intersection.}
+{Joyce, \emph{An introduction to \Cinfty-schemes and \Cinfty-algebraic geometry}, selected parts of Sections 2--4; Moerdijk--Reyes, Chapter I, Sections 3 and 5, as background.}
+
+\Talk{5}{Derived intersections and tangent complexes}
+{Replace a singular fiber product by an object that retains its equations and their homotopies.}
+{Introduce homotopy pullbacks through their mapping universal property. Compute basic derived zero loci and their two-term tangent complexes. Define quasi-smoothness and virtual dimension. Explain why transverse derived intersections reduce to ordinary manifolds. Infinity-categories should enter only through mapping animae, universal properties, and coherent homotopy.}
+{Spivak, Sections 1 and 7; Steffens, \emph{Derived \Cinfty-Geometry I}, introduction and selected parts of Section 4.1; Pardon, Sections P.1 and T.7.}
+
+\Talk{6}{The universal property of derived manifolds}
+{Understand the infinity-category of derived manifolds without committing to a particular model.}
+{State that derived manifolds are obtained from manifolds by freely adjoining finite limits and retracts while preserving transverse pullbacks and the terminal object. Explain why this property determines the theory uniquely, how $\mathbb{R}$ becomes a \Cinfty-ring object, and why homotopically finitely presented simplicial \Cinfty-rings provide an algebraic presentation. Concentrate on examples and consequences rather than the proof through algebraic theories.}
+{Carchedi--Steffens, \emph{On the universal property of derived manifolds}, Sections 1--2 and the main statements of Sections 4--5.}
+
+\Talk{7}{Kuranishi charts and the coherence problem}
+{See exactly why local finite-dimensional models demand higher compatibility data.}
+{Define affine Kuranishi models, weak equivalences, tangent complexes, and coordinate changes. Examine why naive cocycle conditions in a homotopy category do not produce homotopy-coherent descent. Compare the fully derived theory with Joyce's d-manifolds and Kuranishi spaces. State carefully that Borisov's truncation is full and essentially surjective but not faithful.}
+{Steffens, \emph{Derived differential geometry}, Chapter 1; Borisov, \emph{Derived manifolds and Kuranishi models}, introduction and main theorem; Joyce, \emph{Kuranishi spaces as a 2-category}, Sections 1 and 4.}
+
+\Talk{8}{Moduli functors, smooth stacks, and representability}
+{Replace an atlas with an intrinsic description by families.}
+{Introduce moduli functors and the Yoneda viewpoint, then sheaves and stacks only to the extent needed for families with descent and automorphisms. Define representability in smooth and derived settings. Explain how representing a moduli functor solves the coherence problem because a representing object is unique. Give examples of mapping stacks and section stacks.}
+{Pardon, Sections P.3--P.4 and T.5; Steffens, \emph{Representability of elliptic moduli problems}, Sections 1 and 2.2.}
+
+\Talk{9}{Elliptic equations and finite-dimensional reduction}
+{Isolate the analytic input behind Kuranishi models.}
+{Review nonlinear differential operators between spaces of sections, linearization, ellipticity, Fredholm complexes, and regular solutions. Explain Sobolev completion, the implicit function theorem, elliptic bootstrapping, and the finite-dimensional reduction near a non-regular solution. Work out one example, preferably pseudo-holomorphic maps, gauge theory, or a simpler elliptic equation familiar to the speaker.}
+{Steffens, \emph{Representability of elliptic moduli problems}, Sections 1 and 3.4; Pardon, \emph{Representability in non-linear elliptic Fredholm analysis}, Sections 1--2 and 5.}
+
+\Talk{10}{Steffens's elliptic representability theorem}
+{Understand a precise modern theorem and the division of labor in its proof.}
+{Define differential moduli problems by relative jet spaces and mapping stacks. State the absolute and relative elliptic representability theorems. Explain the proof architecture: local models for mapping stacks, comparison with convenient manifolds, finite-dimensional reduction after Sobolev completion, and higher-topos descent. Quote the technical inputs rather than proving them.}
+{Steffens, \emph{Representability of elliptic moduli problems in derived \Cinfty-geometry}, introduction and Section 3.4, with Sections 3.1--3.3 as reference.}
+
+\Talk{11}{Pardon's derived regularity theorem}
+{Compare an independent route from ordinary regularity to derived representability.}
+{State the regularity and derived regularity theorems. Explain the comparison among topological, smooth, and derived smooth moduli stacks. Emphasize the key structural input that stacks of sections are left Kan extended from smooth manifolds, so the derived theorem becomes a formal consequence of ordinary regularity plus differential-topological flexibility. Compare this proof architecture with Steffens's theorem and record the present status of the manuscript.}
+{Pardon, \emph{Representability in non-linear elliptic Fredholm analysis}; Pardon, \emph{Logarithmic derived moduli theory}, Sections P.3--P.5 and N.6.}
+
+\Talk{12}{Compactification, log geometry, and virtual classes}
+{Understand what derived representability solves and what remains.}
+{Explain why degenerating domains lead to manifolds with corners and logarithmic structures. State Pardon's logarithmic derived regularity theorem and indicate the additional exponential-decay input. Then separate representability from the construction of enumerative invariants. Compare, at survey level, derived bordism, Joyce's virtual classes, and Pardon's earlier implicit-atlas package. End with open questions and possible directions for a later MIGOS semester.}
+{Pardon, \emph{Logarithmic derived moduli theory}, Sections P.6--P.7; Spivak, Sections 3 and 9; Pardon, \emph{An algebraic approach to virtual fundamental cycles}, introduction.}
+
+\section*{Possible adjustments}
+
+For ten meetings, merge Talks 2 and 3, and merge Talks 6 and 7. For fourteen meetings, add one talk on Carchedi's equivalence between dg-manifolds and derived manifolds, and one full talk on derived bordism and virtual fundamental classes.
+
+Dates, speakers, and the final choice of examples will be added after the program has been discussed with the participants.
+
+\end{document}
