@@ -1,0 +1,749 @@
+% This chapter is the complete working manuscript for the ninth seminar talk.
+% The final section contains supplementary material outside the default live
+% route.
+
+\chapter{Stacks and local representability}
+\label[chapter]{chap:Coherence_Descent_Local_Representability}
+
+Talk 8 ended with local Kuranishi presentations of quasi-smooth derived
+objects. It also exposed their central limitation. A presentation
+$(U,E,s)$ contains auxiliary choices, and pairwise changes of presentation do
+not by themselves provide the homotopies and higher compatibilities required
+on multiple overlaps.
+
+This chapter changes the order of construction. We first define an intrinsic
+moduli problem through its families over every test object. These families
+form a stack, so their descent data already include all higher coherence. We
+then ask whether the stack is represented by a derived $\Cinfty$-scheme.
+
+The main result is open local representability. If a stack is represented on
+an effective open atlas, its local representatives glue to a global derived
+scheme. The charts are therefore witnesses of local representability, not the
+primary definition of the moduli object.
+
+\section{From the coherence problem to stacks}
+\label[section]{sec:Overlap_Data_To_Cech_Nerve}
+
+On a double overlap of two Kuranishi charts, one wants an equivalence of their
+restrictions. On a triple overlap, the two resulting composites need a
+homotopy. On a quadruple overlap, those homotopies must be compatible, and
+the pattern continues. Talk 8 ended at precisely this point.
+
+A Cech nerve packages this tower whenever a global object or stack is already
+present. For a cover $U\to X$, its terms are
+\[
+  U_n=\underbrace{U\times_X\cdots\times_XU}_{n+1\text{ factors}}.
+\]
+Degree zero records charts, degree one records double overlaps, and the higher
+degrees record all higher intersections and compatibilities.
+
+This observation does not strictify arbitrary Kuranishi data. It suggests a
+different strategy: define the intrinsic functor of families first, verify
+descent, and only then construct local representatives. Detailed Cech
+constructions and the source status of strict Kuranishi atlases are recorded
+in the supplements.
+
+\section{Stacks as coherent functors of families}
+\label[section]{sec:Stacks_Coherent_Functors_Families}
+
+The Cech nerve of an atlas explains how to reconstruct an object that is
+already present. We now reverse the order. We define families first and ask
+for a representing object only afterwards.
+
+\subsection{Prestacks}
+\label[subsection]{sec:Prestacks_Derived_Cinfty}
+
+Write $\mathrm{dAff}_{\Cinfty}$ for a chosen category of affine derived
+$\Cinfty$-schemes large enough to contain the test objects under discussion.
+Its precise size is irrelevant for the present chapter.
+
+\begin{definition}[Prestack]
+  \label[definition]{def:Prestack_Derived_Cinfty}
+  A \emph{derived $\Cinfty$-prestack} is a functor
+  \[
+    \mathcal F\colon
+    \mathrm{dAff}_{\Cinfty}\catop
+    \longrightarrow
+    \An.
+  \]
+\end{definition}
+
+We interpret $\mathcal F(T)$ as the anima of families parametrized by $T$.
+Its points are $T$-families, its paths are equivalences between families, and
+its higher homotopies record compatibilities among equivalences. For a map
+$a\colon T'\to T$, the induced map
+\[
+  a^*\colon\mathcal F(T)\longrightarrow\mathcal F(T')
+\]
+is pullback of families.
+
+It is important that $\mathcal F(T)$ is an anima rather than merely a set of
+equivalence classes. Passing immediately to equivalence classes discards
+automorphisms and the coherence needed for descent.
+
+\subsection{Descent on the parameter object}
+\label[subsection]{sec:Descent_On_Parameter_Object}
+
+Let $\{T_i\to T\}_{i\in I}$ be an open cover and put
+\[
+  T_0=\coprod_iT_i.
+\]
+Its Cech nerve is
+\[
+  T_n
+  =
+  \coprod_{i_0,\ldots,i_n}
+  T_{i_0}\cap\cdots\cap T_{i_n}.
+\]
+Applying a prestack contravariantly gives a cosimplicial anima
+$\mathcal F(T_\bullet)$.
+
+\begin{definition}[Stack]
+  \label[definition]{def:Stack_Derived_Cinfty}
+  A derived $\Cinfty$-prestack $\mathcal F$ is a \emph{stack for the open
+  topology} if, for every open cover as above, the restriction map
+  \begin{equation}
+    \label{eq:Stack_Descent_Parameter_Cech}
+    \mathcal F(T)
+    \longrightarrow
+    \lim_{[n]\in\Delta}\mathcal F(T_n)
+  \end{equation}
+  is an equivalence of animae.
+\end{definition}
+
+The limit on the right is the anima of coherent descent data. Its first
+levels have a familiar interpretation.
+
+\begin{enumerate}
+  \item Choose a family $\xi_i\in\mathcal F(T_i)$ on every open.
+  \item Choose an equivalence between $\xi_i|_{T_{ij}}$ and
+    $\xi_j|_{T_{ij}}$ on every double overlap.
+  \item Choose a homotopy comparing the two induced equivalences on every
+    triple overlap.
+  \item Choose all higher compatibilities on higher overlaps.
+\end{enumerate}
+
+The descent condition says more than existence of a glued family. It says
+that the anima of global families is equivalent to the anima of descent data.
+Consequently, morphisms, automorphisms, and all higher identifications glue as
+well.
+
+\begin{proposition}[Representable prestacks satisfy descent]
+  \label[proposition]{prop:Representable_Prestacks_Satisfy_Descent}
+  If $X$ is a derived $\Cinfty$-scheme, then
+  \[
+    h_X(T)=\Hom(T,X)
+  \]
+  is a stack for the open topology.
+\end{proposition}
+
+\begin{proof}
+  Maps from $T$ to $X$ are local on $T$. More precisely,
+  \Cref{prop:Cech_Reconstruction_Open_Cover} gives
+  $T\simeq|T_\bullet|$. Since $\Hom(-,X)$ carries colimits in its first
+  variable to limits of animae,
+  \[
+    \Hom(T,X)
+    \simeq
+    \lim_{[n]\in\Delta}\Hom(T_n,X).
+  \]
+\end{proof}
+
+The descent condition above concerns a cover of the parameter object $T$.
+Later, an atlas $U\to\mathcal F$ will cover the moduli stack itself. These are
+two uses of the same Cech construction, but they answer different questions.
+The precise distinction is recorded in
+\Cref{sec:Supplement_Two_Cech_Nerves_Talk_Nine}.
+
+\section{Representability and universal families}
+\label[section]{sec:Representability_Universal_Families}
+
+\subsection{From a moduli stack to a moduli object}
+\label[subsection]{sec:Moduli_Stack_To_Moduli_Object}
+
+A stack can be defined without knowing whether it comes from a derived
+scheme. This separation is the main methodological advantage of the
+functorial approach.
+
+\begin{definition}[Represented stack]
+  \label[definition]{def:Represented_Stack}
+  A derived $\Cinfty$-stack $\mathcal F$ is \emph{represented} by a derived
+  $\Cinfty$-scheme $X$ if there is a natural equivalence
+  \begin{equation}
+    \label{eq:Representability_Natural_Equivalence}
+    \mathcal F(T)
+    \simeq
+    \Hom(T,X)
+  \end{equation}
+  for all affine derived $\Cinfty$-schemes $T$.
+\end{definition}
+
+The left side of \Cref{eq:Representability_Natural_Equivalence} is defined in
+terms of families. The right side is the functor of points of a geometric
+object. A representability theorem proves that these two independently
+defined constructions agree.
+
+\begin{proposition}[Universal family]
+  \label[proposition]{prop:Universal_Family_Yoneda}
+  Suppose that $\mathcal F$ is represented by $X$. There is a family
+  \[
+    \xi_{\mathrm{univ}}\in\mathcal F(X)
+  \]
+  such that, for every test object $T$, pullback induces an equivalence
+  \[
+    \Hom(T,X)
+    \longrightarrow
+    \mathcal F(T),
+    \qquad
+    f\longmapsto f^*\xi_{\mathrm{univ}}.
+  \]
+  The pair $(X,\xi_{\mathrm{univ}})$ is unique.
+\end{proposition}
+
+\begin{proof}
+  Under the representing equivalence
+  \[
+    \mathcal F(X)\simeq\Hom(X,X),
+  \]
+  let $\xi_{\mathrm{univ}}$ correspond to $\operatorname{id}_X$. Naturality
+  identifies the map associated to $f\colon T\to X$ with pullback of this
+  family along $f$. The uniqueness statement is the Yoneda lemma.
+\end{proof}
+
+Thus every family is obtained by pulling back one universal family. This is
+the precise content of the phrase \emph{moduli object}.
+
+\subsection{The derived zero-locus functor}
+\label[subsection]{sec:Derived_Zero_Locus_Functor}
+
+We now work out one complete example. Let
+\[
+  f\colon U\longrightarrow\R^r
+\]
+be a smooth map and let $0\colon *\to\R^r$ be the origin. Define a prestack
+$\mathcal Z_f$ by
+\begin{equation}
+  \label{eq:Derived_Zero_Locus_Prestack}
+  \mathcal Z_f(T)
+  =
+  \Hom(T,U)
+  \times_{\Hom(T,\R^r)}
+  \Hom(T,*).
+\end{equation}
+
+Because this pullback is formed in animae, a point of $\mathcal Z_f(T)$
+consists of
+
+\begin{enumerate}
+  \item A map $x\colon T\to U$.
+  \item The unique map $T\to *$.
+  \item A path
+    \[
+      \eta\colon f\circ x\simeq0
+    \]
+    in $\Hom(T,\R^r)$.
+\end{enumerate}
+
+Thus $\mathcal Z_f(T)$ is the anima of $T$-families of solutions together
+with a chosen derived equality between the equation and zero.
+
+\begin{theorem}[The zero-locus functor is represented]
+  \label[theorem]{thm:Zero_Locus_Functor_Represented}
+  The stack $\mathcal Z_f$ is represented by the derived zero locus
+  \[
+    Z^{\mathrm{der}}(f)
+    =
+    U\times_{\R^r}*.
+  \]
+\end{theorem}
+
+\begin{proof}
+  The defining universal property of the pullback gives, naturally in $T$,
+  \[
+    \begin{aligned}
+      \Hom\bigl(T,Z^{\mathrm{der}}(f)\bigr)
+      &\simeq
+      \Hom(T,U)
+      \times_{\Hom(T,\R^r)}
+      \Hom(T,*)\\
+      &=\mathcal Z_f(T).
+    \end{aligned}
+  \]
+  This is exactly the representing equivalence of
+  \Cref{def:Represented_Stack}.
+\end{proof}
+
+The universal family on $Z^{\mathrm{der}}(f)$ consists of the projection
+\[
+  q\colon Z^{\mathrm{der}}(f)\longrightarrow U
+\]
+together with the canonical path
+\[
+  f\circ q\simeq0
+\]
+provided by the pullback square. Pulling this pair back along
+$T\to Z^{\mathrm{der}}(f)$ recovers $(x,\eta)$.
+
+If $T$ is an ordinary manifold, the mapping animae among the ordinary
+manifolds in \Cref{eq:Derived_Zero_Locus_Prestack} are discrete. The path
+$f\circ x\simeq0$ is then an ordinary equality, so one recovers classical
+smooth families of zeros. For a derived test object $T$, the same path can
+carry genuine derived information.
+
+\subsection{Sections of vector bundles}
+\label[subsection]{sec:Zero_Locus_Functor_Vector_Bundle_Section}
+
+Let $p\colon E\to U$ be a vector bundle and let
+$s,0\colon U\to E$ be a section and the zero section. The derived zero locus
+is
+\[
+  Z^{\mathrm{der}}(s)=U\times_EU.
+\]
+Its functor of points is
+\begin{equation}
+  \label{eq:Section_Zero_Locus_Functor_Of_Points}
+  \Hom\bigl(T,Z^{\mathrm{der}}(s)\bigr)
+  \simeq
+  \Hom(T,U)
+  \times_{\Hom(T,E)}
+  \Hom(T,U),
+\end{equation}
+where the two maps to $\Hom(T,E)$ are induced by $s$ and $0$.
+
+A point of the right side is initially a pair of maps $x,y\colon T\to U$
+and a path $s\circ x\simeq0\circ y$. Applying $p$ to this path gives a path
+$x\simeq y$. Consequently, the data can equivalently be described as one map
+$x\colon T\to U$ together with a path from the pulled-back section $x^*s$ to
+the zero section of $x^*E$.
+
+Locally trivializing $E$ turns this into the preceding construction for a
+map to $\R^r$. The global expression
+\Cref{eq:Section_Zero_Locus_Functor_Of_Points} shows that the local
+descriptions are restrictions of one intrinsic stack. Their changes of frame
+are therefore not additional gluing choices.
+
+\section{The local representability theorem}
+\label[section]{sec:Local_Representability_Theorem}
+
+The derived zero-locus example was represented globally from the start. In
+elliptic moduli problems, one instead constructs finite-dimensional
+representatives only after restricting to neighborhoods in the moduli stack
+or in its base. We now formulate the theorem that glues them.
+
+\subsection{Representable morphisms}
+\label[subsection]{sec:Representable_Morphisms_Stacks}
+
+\begin{definition}[Representable morphism]
+  \label[definition]{def:Representable_Morphism_Stacks}
+  A morphism
+  \[
+    p\colon\mathcal X\longrightarrow\mathcal Y
+  \]
+  of derived $\Cinfty$-stacks is \emph{representable by derived
+  $\Cinfty$-schemes} if, for every derived $\Cinfty$-scheme $T$ and every map
+  $T\to\mathcal Y$, the pullback
+  \[
+    T\times_{\mathcal Y}\mathcal X
+  \]
+  is represented by a derived $\Cinfty$-scheme.
+\end{definition}
+
+This is a relative condition. The stack $\mathcal Y$ need not itself be
+represented. Every representable family of parameters mapping to
+$\mathcal Y$ must nevertheless see an honest derived scheme after base
+change.
+
+\begin{definition}[Open substack]
+  \label[definition]{def:Open_Substack}
+  A morphism $\mathcal U\to\mathcal X$ is an \emph{open substack inclusion}
+  if it is representable and every base change along a map
+  $T\to\mathcal X$ from an affine derived $\Cinfty$-scheme is represented by
+  an open embedding of derived $\Cinfty$-schemes.
+\end{definition}
+
+An open substack is the functorial form of an open subset. In particular, it
+is stable under arbitrary base change.
+
+\begin{definition}[Effective epimorphism and atlas]
+  \label[definition]{def:Effective_Epimorphism_Atlas}
+  A morphism $q\colon\mathcal U\to\mathcal X$ of stacks is an
+  \emph{effective epimorphism} if the canonical map
+  \[
+    |\check C(q)_\bullet|\longrightarrow\mathcal X
+  \]
+  from the geometric realization of its Cech nerve is an equivalence. If
+  $\mathcal U=\coprod_i\mathcal U_i$ and every
+  $\mathcal U_i\to\mathcal X$ is an open substack inclusion, we call the
+  family an \emph{open atlas}.
+\end{definition}
+
+For the open topology, one may read effective epimorphism as follows: every
+family in $\mathcal X(T)$ is locally on $T$ pulled back from some
+$\mathcal U_i$, and these local lifts satisfy descent.
+
+\begin{definition}[Locally representable morphism]
+  \label[definition]{def:Locally_Representable_Morphism_Stacks}
+  A morphism $p\colon\mathcal X\to\mathcal Y$ is \emph{locally
+  representable} if there is an effective epimorphism
+  \[
+    \coprod_i\mathcal U_i\longrightarrow\mathcal Y
+  \]
+  such that every base change
+  \[
+    \mathcal U_i\times_{\mathcal Y}\mathcal X
+    \longrightarrow
+    \mathcal U_i
+  \]
+  is representable.
+\end{definition}
+
+\subsection{Open atlases glue}
+\label[subsection]{sec:Open_Atlases_Glue}
+
+We can now state the engine of the chapter. Let $\mathcal L$ denote a class
+of affine derived $\Cinfty$-schemes stable under open restriction. The main
+examples later will be affine quasi-smooth derived $\Cinfty$-schemes of finite
+presentation.
+
+\begin{theorem}[Open local representability]
+  \label[theorem]{thm:Open_Local_Representability}
+  Let $\mathcal X$ be a derived $\Cinfty$-stack locally having the property
+  $\mathcal L$ in the following sense: it is obtained from a sheaf on the
+  affine objects in $\mathcal L$ by extension to all affine derived
+  $\Cinfty$-schemes. The following conditions are equivalent.
+  \begin{enumerate}
+    \item The stack $\mathcal X$ is represented by a derived
+      $\Cinfty$-scheme locally modeled on objects of $\mathcal L$.
+    \item The stack $\mathcal X$ admits an effective open atlas by derived
+      $\Cinfty$-schemes locally modeled on $\mathcal L$.
+    \item The stack $\mathcal X$ admits an effective open atlas by affine
+      derived $\Cinfty$-schemes in $\mathcal L$.
+  \end{enumerate}
+\end{theorem}
+
+This is Steffens, Proposition~2.1.48
+\cite[Proposition~2.1.48]{Steffens_Representability_Elliptic_Moduli}.
+
+\begin{proof}
+  The implication from the first condition to the second follows by choosing
+  an open cover of the representing derived scheme. Refining every chart by
+  affine opens gives the third condition.
+
+  Conversely, suppose that
+  \[
+    U=\coprod_iU_i\longrightarrow\mathcal X
+  \]
+  is an effective open atlas as in the third condition. Form its Cech nerve
+  $U_\bullet$. In degree one,
+  \[
+    U_1
+    =
+    U\times_{\mathcal X}U
+    \simeq
+    \coprod_{i,j}U_i\times_{\mathcal X}U_j.
+  \]
+  Since each $U_i\to\mathcal X$ is an open substack inclusion, every
+  $U_i\times_{\mathcal X}U_j$ is represented by an open derived subscheme of
+  both $U_i$ and $U_j$. The same argument shows that every $U_n$ is a
+  coproduct of representable iterated open intersections and that every face
+  map is open.
+
+  Thus $U_\bullet$ is an open groupoid object in derived
+  $\Cinfty$-schemes. We now quote the effectivity of open groupoid objects:
+  its geometric realization exists as a derived $\Cinfty$-scheme $X$, and
+  each $U_i\to X$ is an open embedding. The resulting scheme is locally
+  modeled on $\mathcal L$, because the charts are.
+
+  Finally, effective epimorphy gives
+  \[
+    \mathcal X
+    \simeq
+    |U_\bullet|
+    \simeq
+    h_X.
+  \]
+  Hence $X$ represents $\mathcal X$.
+\end{proof}
+
+The only quoted step in this proof is the effectivity theorem for open
+groupoid objects. It is the derived version of the familiar fact that open
+subschemes can be glued along open overlaps. The rest of the proof explains
+why the Cech nerve of the atlas has precisely the form to which that theorem
+applies.
+
+\subsection{The relative consequence}
+\label[subsection]{sec:Relative_Local_Representability_Consequence}
+
+The form needed for elliptic moduli problems is relative.
+
+\begin{corollary}[Local representability is relatively representable]
+  \label[corollary]{cor:Local_Representability_Relative}
+  Let $\mathcal X\to\mathcal Y$ be a locally representable morphism of
+  derived $\Cinfty$-stacks in the setting of
+  \Cref{thm:Open_Local_Representability}. For every representable map
+  $T\to\mathcal Y$, the pullback
+  \[
+    T\times_{\mathcal Y}\mathcal X
+  \]
+  is represented by a derived $\Cinfty$-scheme.
+\end{corollary}
+
+\begin{proof}
+  Choose an effective epimorphism
+  $\coprod_i\mathcal U_i\to\mathcal Y$ witnessing local representability.
+  After pulling it back to $T$, choose an open cover $\{V_j\to T\}$ such that
+  every $V_j\to T\to\mathcal Y$ factors through some $\mathcal U_i$.
+  Then
+  \[
+    V_j\times_{\mathcal Y}\mathcal X
+  \]
+  is represented, since it is a base change of the representable morphism
+  $\mathcal U_i\times_{\mathcal Y}\mathcal X\to\mathcal U_i$.
+
+  These representatives form an effective open atlas of
+  $T\times_{\mathcal Y}\mathcal X$. Apply
+  \Cref{thm:Open_Local_Representability}.
+\end{proof}
+
+This is Steffens, Corollary~2.1.49
+\cite[Corollary~2.1.49]{Steffens_Representability_Elliptic_Moduli}.
+
+There is a small finiteness point to retain. Finite presentation is stable
+under open restriction, but Steffens notes that it is not a local property of
+affine objects in the stronger sense used for some other geometric
+properties. Accordingly, the natural conclusion is that the representing
+scheme is \emph{locally} of finite presentation
+\cite[Remark~2.1.51]{Steffens_Representability_Elliptic_Moduli}.
+
+\subsection{Automatic coherence from one stack}
+\label[subsection]{sec:Functorial_Method_Supplies_Coherence}
+
+Suppose that $p\colon\mathcal F\to S$ is a stack over a derived
+$\Cinfty$-scheme and that $\{S_i\to S\}$ is an open cover. Assume that
+$S_i\times_S\mathcal F$ is represented by $X_i$.
+
+On a double overlap $S_{ij}$, both $X_i|_{S_{ij}}$ and
+$X_j|_{S_{ij}}$ represent the same restricted stack. The Yoneda lemma gives a
+unique equivalence between them compatible with their universal families. On
+a triple overlap, the composite and direct equivalences are two comparisons
+between the same representing pairs, so the homotopy between them is unique.
+The same argument supplies every higher compatibility.
+
+\begin{proposition}[Representing objects carry coherent descent data]
+  \label[proposition]{prop:Representing_Objects_Canonical_Descent_Data}
+  Local representatives of one stack assemble uniquely into a coherent
+  descent diagram. If they form an effective open atlas, that diagram is
+  represented by the derived $\Cinfty$-scheme supplied by
+  \Cref{thm:Open_Local_Representability}.
+\end{proposition}
+
+The functorial method does not turn arbitrary charts into a global object. One
+must still define the stack intrinsically, prove that the proposed charts
+represent its open restrictions, and verify the hypotheses of the
+representability theorem. What it removes is the separate construction of
+comparison maps once local representability is known.
+
+\subsection{Handoff to section and solution stacks}
+\label[subsection]{sec:Handoff_Section_Solution_Stacks}
+
+Talk 10 will define the intrinsic stack associated to a differential equation.
+A family of fields will be a point of a section stack, a finite-order
+differential operator will induce a morphism between section stacks, and the
+solution stack will be their derived pullback. Its representability will
+remain a theorem for later talks.
+
+\section{Summary and supplementary materials}
+\label[section]{sec:Coherence_Descent_Summary_Supplementary_Materials}
+
+\subsection{Takeaways}
+\label[subsection]{sec:Coherence_Descent_Takeaways}
+
+The live route can be compressed into nine statements.
+
+\begin{enumerate}
+  \item Pairwise transition equivalences are only the first layer of descent
+    data.
+  \item The Cech nerve packages double overlaps, triple overlaps, and all
+    higher compatibilities in one simplicial object.
+  \item A stack is a functor of families satisfying coherent descent on the
+    parameter object.
+  \item A stack need not be represented by a derived scheme.
+  \item Representability means that all families are pullbacks of one
+    universal family.
+  \item The derived zero-locus functor is represented by the derived
+    pullback.
+  \item An effective open atlas by representable derived schemes glues to a
+    representing derived scheme.
+  \item Local representatives of one intrinsic stack acquire all transition
+    data from the uniqueness of representing objects.
+  \item Representability is separate from compactness, orientation data, and
+    virtual fundamental classes.
+\end{enumerate}
+
+
+\subsection{Supplement: Cech nerves and reconstruction}
+\label[subsection]{sec:Supplement_Cech_Reconstruction_Talk_Nine}
+
+Let $p\colon U\to X$ be a morphism in an $\infty$-category with pullbacks.
+Its Cech nerve is the simplicial object with
+\[
+  U_n=\underbrace{U\times_X\cdots\times_XU}_{n+1\text{ factors}}.
+\]
+The face maps forget factors and the degeneracy maps repeat them. If
+$U=\coprod_iU_i$ is an open cover of an existing derived scheme, then
+\[
+  U_n\simeq
+  \coprod_{i_0,\ldots,i_n}
+  U_{i_0}\cap\cdots\cap U_{i_n}.
+\]
+
+\begin{proposition}[Cech reconstruction]
+  \label[proposition]{prop:Cech_Reconstruction_Open_Cover}
+  Let $X$ be a derived $\Cinfty$-scheme and let $U\to X$ be an open cover.
+  Then the canonical morphism
+  \[
+    |U_\bullet|\longrightarrow X
+  \]
+  is an equivalence of derived $\Cinfty$-stacks.
+\end{proposition}
+
+The statement begins with an existing $X$. It does not assert that arbitrary
+local Kuranishi presentations and proposed higher comparison data arise from
+a global derived object.
+
+\subsection{Supplement: two uses of Cech nerves}
+\label[subsection]{sec:Supplement_Two_Cech_Nerves_Talk_Nine}
+
+There are two Cech nerves in the chapter.
+
+\begin{enumerate}
+  \item A cover $T_0\to T$ of a test object is used in the stack condition
+    \[
+      \mathcal F(T)\simeq\lim_{[n]\in\Delta}\mathcal F(T_n).
+    \]
+    It asks whether a family over $T$ can be reconstructed from local
+    families.
+  \item An atlas $U\to\mathcal F$ of the moduli stack is used in the
+    representability theorem. It asks whether the stack itself can be
+    reconstructed from representable local charts.
+\end{enumerate}
+
+Confusing them obscures the logical order. Stack descent is part of defining
+the moduli functor. An effective representable atlas is extra geometric input
+used to prove representability.
+
+\subsection{Supplement: gluing two open derived schemes}
+\label[subsection]{sec:Supplement_Gluing_Two_Open_Derived_Schemes}
+
+The simplest instance of
+\Cref{thm:Open_Local_Representability} is a cover by two opens. Let $U$ and
+$V$ be derived $\Cinfty$-schemes, let $W_U\subseteq U$ and $W_V\subseteq V$
+be open derived subschemes, and let
+\[
+  \varphi\colon W_U\longrightarrow W_V
+\]
+be an isomorphism of derived $\Cinfty$-schemes. The ordinary topological
+spaces glue to
+\[
+  |X|=|U|\coprod_{|W_U|\cong|W_V|}|V|.
+\]
+The structure sheaves glue because, on an open subset assembled from
+$A\subseteq|U|$ and $B\subseteq|V|$, sections are the pullback
+\[
+  \mathcal O_U(A)
+  \times_{\mathcal O_W(A\cap|W_U|)}
+  \mathcal O_V(B),
+\]
+with the evident interpretation of the restrictions. Descent for animated
+$\Cinfty$-rings supplies the higher compatibility.
+
+The resulting locally animated $\Cinfty$-ringed space is a derived
+$\Cinfty$-scheme because it is covered by the open derived subschemes $U$ and
+$V$. The Cech nerve of $U\coprod V\to X$ repeats $U$, $V$, and $W$ in higher
+degrees and records the associativity of this gluing.
+
+This construction still begins with an isomorphism of the overlaps. In the
+functorial approach, that isomorphism comes from the fact that the two
+restrictions represent the same stack.
+
+\subsection{Supplement: effective epimorphisms and open atlases}
+\label[subsection]{sec:Supplement_Effective_Epimorphisms_Open_Atlases}
+
+An effective epimorphism need not be an open atlas. It is a morphism whose
+Cech nerve reconstructs the target stack. In many geometric contexts, atlases
+may be smooth, etale, or submersive rather than open.
+
+The proof of \Cref{thm:Open_Local_Representability} uses more than effective
+epimorphy. It uses that every chart map is an open substack inclusion. This
+ensures that all iterated overlaps are represented by open derived
+subschemes, so the Cech nerve can be realized inside the category of derived
+$\Cinfty$-schemes.
+
+Steffens's Definition~2.1.42 defines local representability using an effective
+epimorphism of the base. Remark~2.1.44 explains that the cover can be chosen
+with representable sources
+\cite[Definition~2.1.42 and Remark~2.1.44]{Steffens_Representability_Elliptic_Moduli}.
+In the proof of the relative corollary, one then refines the pullback of this
+cover by genuine open covers of each representable test object.
+
+\subsection{Supplement: the finite-presentation qualification}
+\label[subsection]{sec:Supplement_Finite_Presentation_Local_Representability}
+
+Let $\mathcal L$ be the class of affine quasi-smooth derived
+$\Cinfty$-schemes of finite presentation. This class is stable under principal
+open restriction and under the affine overlap operations used in the Cech
+nerve. Therefore an open atlas by objects of $\mathcal L$ produces a derived
+$\Cinfty$-scheme which is locally quasi-smooth and locally of finite
+presentation.
+
+One should not strengthen this conclusion to affineness or global finite
+presentation. Open gluing of affine objects usually produces a nonaffine
+scheme. Likewise, a scheme covered by finitely presented affine opens is
+locally of finite presentation, but additional quasi-compactness data would
+be needed for a global finiteness statement.
+
+This is why the relative elliptic representability theorem is naturally
+formulated using quasi-smooth derived $\Cinfty$-schemes \emph{locally} of
+finite presentation.
+
+\subsection{Supplement: source status of strict Kuranishi atlases}
+\label[subsection]{sec:Supplement_Source_Status_Strict_Kuranishi_Atlases}
+
+Section~1.0.2 of Steffens's paper contrasts a strict Kuranishi atlas with a
+coherent atlas and explains why derived $\Cinfty$-schemes provide the
+intrinsic target. It then lists three further assertions: strict atlases should
+determine coherent ones, commensurate atlases should determine equivalent
+derived schemes, and suitable quasi-smooth derived schemes should admit
+strict atlases. The paper immediately states that these assertions will not be
+proved there
+\cite[Section~1.0.2]{Steffens_Representability_Elliptic_Moduli}.
+
+The established direction used in the seminar is different. Once a derived
+$\Cinfty$-stack with an open representable atlas has been constructed,
+\Cref{thm:Open_Local_Representability} proves that it is represented by a
+derived $\Cinfty$-scheme. No strictification of arbitrary chart data is
+required.
+
+\subsection{Related literature}
+\label[subsection]{sec:Coherence_Descent_Related_Literature}
+
+The primary source for local representability is Steffens,
+\emph{Representability of Elliptic Moduli Problems in Derived
+$C^\infty$-Geometry}. Definition~2.1.42 introduces representable and locally
+representable morphisms, Proposition~2.1.48 proves the open-atlas criterion,
+and Corollary~2.1.49 gives the relative consequence
+\cite[Definition~2.1.42, Proposition~2.1.48, and Corollary~2.1.49]{Steffens_Representability_Elliptic_Moduli}.
+Section~1.0.2 supplies the Kuranishi-atlas motivation, with the source-status
+qualification explained above.
+
+Pardon's \emph{Representability in non-linear elliptic Fredholm analysis}
+gives a short conceptual introduction to the functorial strategy. It contrasts
+the delicate construction of compatible Kuranishi charts with the definition
+of a moduli functor and emphasizes that representability is a local property
+\cite[Introduction]{Pardon_Representability_Elliptic_Fredholm}. The article is
+a research summary, and its pseudo-holomorphic representability theorem is
+presented with a proof sketch rather than a complete proof.
+
+The general language of effective epimorphisms, Cech nerves, and descent
+belongs to higher topos theory. The live route has used only their behavior
+for open covers and has quoted the effectivity theorem needed for open gluing.

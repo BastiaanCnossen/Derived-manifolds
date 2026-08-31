@@ -1,0 +1,1069 @@
+% This chapter is the complete working manuscript for the fourteenth seminar
+% talk. The final section contains supplementary material outside the default
+% live route.
+
+\chapter{Pseudo-holomorphic curves as a derived moduli problem}
+\label[chapter]{chap:Pseudo_Holomorphic_Curves_Derived_Moduli}
+
+The preceding two chapters established the representability theorem toward
+which the analytic part of the seminar has been working. A finite-order
+differential moduli problem on a proper family of compact manifolds has a
+relatively representable derived solution stack, provided its vertical
+linearization is elliptic. The resulting local models are finite-dimensional
+and quasi-smooth.
+
+We now test every part of that statement on one geometric equation. Let
+$(\Sigma,j)$ be a compact Riemann surface, let $(Z,J)$ be an almost complex
+manifold, and let
+\[
+  u\colon\Sigma\longrightarrow Z
+\]
+be a smooth map. The pseudo-holomorphic-curve equation says that $du$ is
+complex linear. It is a nonlinear first-order equation, its linearization is
+elliptic, and its solutions carry a finite-dimensional
+deformation-obstruction theory. When the domain varies, families and
+reparametrizations are naturally retained by working over the smooth stack of
+compact Riemann surfaces.
+
+This example assembles the seminar's main ideas in one chain:
+\[
+\begin{aligned}
+  \text{first-order equation}
+  &\longrightarrow
+  \text{elliptic linearization}
+  \longrightarrow
+  \text{Fredholm tangent complex}\\
+  &\longrightarrow
+  \text{quasi-smooth derived moduli stack}.
+\end{aligned}
+\]
+The principal new calculation is the invertibility of the symbol of the
+linearized Cauchy--Riemann operator. The general representability mechanism
+will then be applied, not reproved.
+
+Only smooth compact domains occur in the theorem. Bubbling, nodal domains,
+compactification, orientations, and virtual fundamental classes are separate
+problems. The end of the chapter records this boundary carefully and explains
+what the derived-bordism result of
+\Cref{chap:Derived_Bordism_And_Fundamental_Classes} would contribute
+if the additional hypotheses were supplied.
+
+\section{The Cauchy--Riemann equation}
+\label[section]{sec:Cauchy_Riemann_Equation_Fourteen}
+
+\subsection{Complex-linear and complex-antilinear parts}
+\label[subsection]{sec:Complex_Antilinear_Parts_Fourteen}
+
+An almost complex structure on a smooth manifold $Z$ is a vector-bundle
+endomorphism
+\[
+  J\colon TZ\longrightarrow TZ
+\]
+satisfying $J^2=-\operatorname{id}_{TZ}$. Each tangent space $T_xZ$ thereby
+becomes a complex vector space, with multiplication by $i$ given by $J_x$.
+The adjective ``almost'' records that these pointwise complex structures need
+not arise from complex coordinates on $Z$.
+
+A Riemann surface can be described similarly as a smooth real surface
+$\Sigma$ equipped with an endomorphism $j\colon T\Sigma\to T\Sigma$ satisfying
+$j^2=-1$. In real dimension two every almost complex structure is integrable,
+but this fact will not be needed. The tangent-bundle formulation puts the
+differential equation directly in view.
+
+We begin with the relevant linear algebra. Let $(V,j)$ and $(W,J)$ be complex
+vector spaces regarded as real vector spaces with chosen complex structures.
+For a real-linear map $L\colon V\to W$, define
+\begin{equation}
+  \label{eq:Linear_Antilinear_Decomposition_Fourteen}
+  L^{1,0}=\frac12(L-JLj),
+  \qquad
+  L^{0,1}=\frac12(L+JLj).
+\end{equation}
+
+\begin{lemma}[Complex-linear decomposition]
+  \label[lemma]{lem:Complex_Linear_Decomposition_Fourteen}
+  The map $L^{1,0}$ is complex linear, the map $L^{0,1}$ is complex
+  antilinear, and
+  \[
+    L=L^{1,0}+L^{0,1}.
+  \]
+  Consequently, $L$ is complex linear if and only if $L^{0,1}=0$.
+\end{lemma}
+
+\begin{proof}
+  Using $j^2=-1$ and $J^2=-1$, we calculate
+  \begin{align*}
+    L^{1,0}j
+    &=\frac12(Lj+JL)
+      =JL^{1,0},\\
+    L^{0,1}j
+    &=\frac12(Lj-JL)
+      =-JL^{0,1}.
+  \end{align*}
+  Thus the first summand is complex linear and the second is complex
+  antilinear. Their sum is $L$. If $L^{0,1}=0$, then $L=L^{1,0}$ is complex
+  linear. Conversely, if $Lj=JL$, then $JLj=-L$, so $L^{0,1}=0$.
+\end{proof}
+
+For $p\in\Sigma$ and $x\in Z$, write
+\[
+  \Hom^{0,1}_{j,J}(T_p\Sigma,T_xZ)
+\]
+for the real-linear maps $A\colon T_p\Sigma\to T_xZ$ satisfying
+$A\circ j=-J\circ A$. These vector spaces form a vector bundle over
+$\Sigma\times Z$. Restriction along the graph of a map $u$ gives the bundle
+of complex-antilinear one-forms with values in $u^*TZ$, whose sections are
+denoted
+\[
+  \Omega^{0,1}(\Sigma,u^*TZ)
+  =
+  \Gamma\bigl(
+    \Hom^{0,1}_{j,J}(T\Sigma,u^*TZ)
+  \bigr).
+\]
+
+\subsection{Pseudo-holomorphic maps}
+\label[subsection]{sec:Pseudo_Holomorphic_Maps_Fourteen}
+
+\begin{definition}[Nonlinear Cauchy--Riemann operator]
+  \label[definition]{def:Nonlinear_Cauchy_Riemann_Operator_Fourteen}
+  For a smooth map $u\colon\Sigma\to Z$, define
+  \begin{equation}
+    \label{eq:Nonlinear_Cauchy_Riemann_Operator_Fourteen}
+    \bar\partial_Ju
+    =
+    \frac12\bigl(du+J\circ du\circ j\bigr)
+    \in\Omega^{0,1}(\Sigma,u^*TZ).
+  \end{equation}
+  The map $u$ is \emph{$J$-pseudo-holomorphic}, or
+  \emph{$J$-holomorphic}, if $\bar\partial_Ju=0$.
+\end{definition}
+
+By \Cref{lem:Complex_Linear_Decomposition_Fourteen}, the equation is
+equivalent to
+\[
+  du\circ j=J\circ du.
+\]
+When $Z=\mathbb C^n$ with its standard complex structure, this is the ordinary
+Cauchy--Riemann equation in local coordinates.
+
+The operator is nonlinear even though
+\Cref{eq:Nonlinear_Cauchy_Riemann_Operator_Fourteen} is linear in the displayed
+derivative. The endomorphism $J$ is evaluated at $u(p)$, so changing $u$ also
+changes the complex structure acting on its derivative.
+
+The equation is invariant under reparametrization. If
+$\varphi\colon(\Sigma',j')\to(\Sigma,j)$ is biholomorphic, then
+\[
+  \bar\partial_J(u\circ\varphi)=0
+\]
+whenever $\bar\partial_Ju=0$. Indeed,
+$d\varphi\circ j'=j\circ d\varphi$, and substitution in
+\Cref{eq:Nonlinear_Cauchy_Riemann_Operator_Fourteen} proves the claim. This
+elementary invariance is the first indication that a moduli object for varying
+domains must retain automorphisms.
+
+Steffens formulates the application for a symplectic manifold $(Z,\omega)$
+equipped with an $\omega$-tame almost complex structure, meaning
+\[
+  \omega(v,Jv)>0
+\]
+for every nonzero tangent vector $v$. The symplectic form is fundamental for
+energy estimates and compactness, but the equation, the symbol calculation,
+and the local representability argument below use only $J$. We will state the
+representability theorem first for an almost complex target and return to the
+role of $\omega$ at the end.
+
+\subsection{First jets and the zero-section formulation}
+\label[subsection]{sec:Cauchy_Riemann_First_Jets_Fourteen}
+
+The equation depends only on the value and first derivative of $u$. A first
+jet at $p\in\Sigma$ can be represented by a pair
+\[
+  (x,L),
+  \qquad
+  x\in Z,
+  \quad
+  L\colon T_p\Sigma\longrightarrow T_xZ.
+\]
+The complex-antilinear projection defines a smooth map on first jets,
+\begin{equation}
+  \label{eq:Cauchy_Riemann_Jet_Map_Fourteen}
+  (x,L)
+  \longmapsto
+  \left(x,\frac12(L+J_xLj_p)\right).
+\end{equation}
+Thus pseudo-holomorphicity is a first-order differential equation in the sense
+of \Cref{chap:Section_Stacks_Jets_Solution_Stacks}.
+
+For the moment keep the domain fixed. The smooth mapping object
+\[
+  \mathcal B=C^\infty(\Sigma,Z)
+\]
+has tangent space
+\[
+  T_u\mathcal B=\Gamma(\Sigma,u^*TZ)
+\]
+at $u$. Over $\mathcal B$ there is a bundle $\mathcal F\to\mathcal B$ whose
+fiber is
+\[
+  \mathcal F_u=\Omega^{0,1}(\Sigma,u^*TZ).
+\]
+The nonlinear Cauchy--Riemann operator is a section
+\[
+  \bar\partial_J\colon\mathcal B\longrightarrow\mathcal F.
+\]
+Its solution object is the derived intersection of this section with the zero
+section. This is the same geometric shape as the finite-dimensional derived
+zero loci of \Cref{chap:Derived_Zero_Loci_And_Tangent_Complexes}, but both the
+base and the fibers are now infinite-dimensional. Elliptic analysis will show
+that the resulting derived zero locus is nevertheless locally
+finite-dimensional.
+
+\section{Linearization and ellipticity}
+\label[section]{sec:Cauchy_Riemann_Linearization_Fourteen}
+
+\subsection{The vertical derivative}
+\label[subsection]{sec:Cauchy_Riemann_Vertical_Derivative_Fourteen}
+
+Let $u$ be pseudo-holomorphic. Because $\bar\partial_Ju=0$, the vertical
+derivative of the section at $u$ is intrinsically defined:
+\[
+  D_u\colon
+  \Gamma(\Sigma,u^*TZ)
+  \longrightarrow
+  \Omega^{0,1}(\Sigma,u^*TZ).
+\]
+Choose a torsion-free connection $\nabla$ on $TZ$ in order to write it.
+
+\begin{proposition}[Linearized Cauchy--Riemann operator]
+  \label[proposition]{prop:Linearized_Cauchy_Riemann_Operator_Fourteen}
+  For $\xi\in\Gamma(\Sigma,u^*TZ)$, the linearization is
+  \begin{equation}
+    \label{eq:Linearized_Cauchy_Riemann_Operator_Fourteen}
+    D_u\xi
+    =
+    \frac12\bigl(
+      \nabla\xi+J\circ\nabla\xi\circ j
+    \bigr)
+    +
+    \frac12(\nabla_\xi J)\circ du\circ j.
+  \end{equation}
+  In particular, $D_u$ is a real Cauchy--Riemann type operator: its
+  first-order part is a Cauchy--Riemann operator, while the second summand is
+  zeroth order.
+\end{proposition}
+
+\begin{proof}
+  Choose a smooth family $u_t$ with $u_0=u$ and
+  $\frac{d}{dt}|_{t=0}u_t=\xi$. Covariant differentiation gives
+  \[
+    \left.\frac{D}{dt}\right|_{t=0}du_t=\nabla\xi.
+  \]
+  Differentiating the target almost complex structure gives
+  \[
+    \left.\frac{D}{dt}\right|_{t=0}J(u_t)=\nabla_\xi J.
+  \]
+  The complex structure $j$ on the fixed domain does not vary. Applying the
+  product rule to
+  \Cref{eq:Nonlinear_Cauchy_Riemann_Operator_Fourteen} proves
+  \Cref{eq:Linearized_Cauchy_Riemann_Operator_Fourteen}.
+
+  The connection is used only to compare the bundles $u_t^*TZ$ for varying
+  $t$. The vertical derivative of a bundle section at a zero is independent
+  of this choice, so $D_u$ is intrinsic.
+\end{proof}
+
+The first summand differentiates $\xi$. The term involving $\nabla_\xi J$
+contains no derivative of $\xi$, and hence contributes nothing to the
+principal symbol. This separation is the entire reason that the nonintegrable
+part of $J$ does not spoil ellipticity.
+
+\subsection{The principal symbol}
+\label[subsection]{sec:Cauchy_Riemann_Principal_Symbol_Fourteen}
+
+For a first-order differential operator, the principal symbol is obtained by
+retaining only the coefficient of the first derivative. Fix $p\in\Sigma$,
+$0\neq\zeta\in T_p^*\Sigma$, and $v\in T_{u(p)}Z$.
+
+\begin{theorem}[Ellipticity of the Cauchy--Riemann operator]
+  \label[theorem]{thm:Cauchy_Riemann_Ellipticity_Fourteen}
+  The principal symbol of $D_u$ is
+  \begin{equation}
+    \label{eq:Cauchy_Riemann_Principal_Symbol_Fourteen}
+    \sigma_\zeta(D_u)(v)(Y)
+    =
+    \frac12\bigl(
+      \zeta(Y)v+\zeta(jY)Jv
+    \bigr).
+  \end{equation}
+  For every nonzero $\zeta$, this is an isomorphism
+  \[
+    T_{u(p)}Z
+    \iso
+    \Hom^{0,1}_{j,J}(T_p\Sigma,T_{u(p)}Z)
+  \]
+  of real vector spaces. Consequently, $D_u$ is elliptic.
+\end{theorem}
+
+\begin{proof}
+  The first-order part of $D_u$ is
+  \[
+    \xi\longmapsto
+    \frac12(\nabla\xi+J\circ\nabla\xi\circ j).
+  \]
+  Replacing $\nabla_Y\xi$ by $\zeta(Y)v$ gives
+  \Cref{eq:Cauchy_Riemann_Principal_Symbol_Fourteen}.
+
+  First observe that the resulting map is complex antilinear in $Y$. Indeed,
+  \begin{align*}
+    \sigma_\zeta(D_u)(v)(jY)
+    &=\frac12\bigl(
+       \zeta(jY)v-\zeta(Y)Jv
+      \bigr)\\
+    &=-J\sigma_\zeta(D_u)(v)(Y).
+  \end{align*}
+
+  Choose a $j$-compatible inner product on $T_p\Sigma$ and let $Y$ be the
+  metric dual of $\zeta$. Then
+  \[
+    \zeta(Y)>0,
+    \qquad
+    \zeta(jY)=0.
+  \]
+  If $\sigma_\zeta(D_u)(v)=0$, evaluation at $Y$ gives
+  \[
+    0=\frac12\zeta(Y)v,
+  \]
+  and therefore $v=0$. The symbol is injective. Since $T_p\Sigma$ has complex
+  dimension one, a complex-antilinear map out of $T_p\Sigma$ is determined by
+  its value on one nonzero real direction. Hence the source and target of the
+  symbol have the same real dimension, so the symbol is an isomorphism.
+\end{proof}
+
+This proof is pointwise. It uses neither a symplectic form on $Z$ nor
+integrability of $J$. It also works uniformly when the domain and the map vary
+in smooth families.
+
+\subsection{Fredholmness and the index}
+\label[subsection]{sec:Cauchy_Riemann_Fredholmness_Fourteen}
+
+Assume from now on that $\Sigma$ is closed. After completing in Sobolev norms,
+the elliptic Fredholm theorem applies.
+
+\begin{corollary}[Fredholm deformation operator]
+  \label[corollary]{cor:Cauchy_Riemann_Fredholm_Fourteen}
+  For sufficiently large $k$, the extension
+  \[
+    D_u\colon
+    H^{k+1}(\Sigma,u^*TZ)
+    \longrightarrow
+    H^k\Omega^{0,1}(\Sigma,u^*TZ)
+  \]
+  is Fredholm. Its kernel and cokernel are finite-dimensional and are
+  represented by smooth sections.
+\end{corollary}
+
+\begin{proof}
+  Fredholmness follows from
+  \Cref{thm:Cauchy_Riemann_Ellipticity_Fourteen} and the elliptic Fredholm
+  theorem used in
+  \Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge}.
+  Elliptic regularity identifies the Sobolev kernel and cokernel with their
+  smooth counterparts.
+\end{proof}
+
+If $Z$ has complex dimension $n$, Riemann--Roch gives the real index
+\begin{equation}
+  \label{eq:Cauchy_Riemann_Index_Fourteen}
+  \operatorname{ind}_{\mathbb R}(D_u)
+  =
+  n\chi(\Sigma)
+  +2\left\langle c_1(u^*TZ),[\Sigma]\right\rangle.
+\end{equation}
+We quote this formula. It is the virtual dimension of the moduli problem
+relative to the fixed domain. For an unparametrized problem with varying
+domains, the deformation theory of the domain must also be included.
+
+\section{The derived deformation theory}
+\label[section]{sec:Pseudo_Holomorphic_Deformation_Theory_Fourteen}
+
+\subsection{The fixed-domain tangent complex}
+\label[subsection]{sec:Fixed_Domain_Tangent_Complex_Fourteen}
+
+Let
+\[
+  \mathcal M_{(\Sigma,j)}(Z,J)
+\]
+denote the derived solution stack for the fixed domain $(\Sigma,j)$. On
+ordinary test manifolds, a $T$-point is a smooth map
+\[
+  u\colon T\times\Sigma\longrightarrow Z
+\]
+whose restriction to every slice is pseudo-holomorphic. On a derived test
+object, the equation is imposed by a derived zero locus and hence retains its
+infinitesimal intersection data.
+
+The calculation of the tangent complex is now formal. The tangent complex of
+a derived zero locus is the derivative of its defining section. Here the
+tangent space to the mapping object is $\Gamma(\Sigma,u^*TZ)$, the fiber of
+the equation bundle is $\Omega^{0,1}(\Sigma,u^*TZ)$, and the derivative is
+$D_u$.
+
+\begin{theorem}[Fixed-domain tangent complex]
+  \label[theorem]{thm:Fixed_Domain_Tangent_Complex_Fourteen}
+  At a pseudo-holomorphic map $u\colon(\Sigma,j)\to(Z,J)$, the tangent complex
+  of the fixed-domain derived solution stack is
+  \begin{equation}
+    \label{eq:Fixed_Domain_Tangent_Complex_Fourteen}
+    \mathbb T_u\mathcal M_{(\Sigma,j)}(Z,J)
+    \simeq
+    \left[
+      \Gamma(\Sigma,u^*TZ)
+      \xrightarrow{D_u}
+      \Omega^{0,1}(\Sigma,u^*TZ)
+    \right]
+  \end{equation}
+  in cohomological degrees $0$ and $1$.
+\end{theorem}
+
+\begin{proof}
+  Apply the tangent-complex formula for a derived zero locus to the section
+  $\bar\partial_J\colon\mathcal B\to\mathcal F$. Its derivative at $u$ is
+  $D_u$ by
+  \Cref{prop:Linearized_Cauchy_Riemann_Operator_Fourteen}.
+\end{proof}
+
+Consequently,
+\begin{align*}
+  H^0\mathbb T_u
+  &\cong\ker D_u,\\
+  H^1\mathbb T_u
+  &\cong\operatorname{coker}D_u.
+\end{align*}
+The first group is the space of infinitesimal deformations of the map with the
+domain fixed. The second is its obstruction space. Both are finite-dimensional
+by \Cref{cor:Cauchy_Riemann_Fredholm_Fourteen}.
+
+This is the promised meeting of analysis and derived geometry. Before
+representability, the two-term complex is the analytic
+deformation-obstruction complex of the equation. After representability, it
+is the intrinsic tangent complex of an actual quasi-smooth derived smooth
+object.
+
+\subsection{Regular and obstructed maps}
+\label[subsection]{sec:Regular_Obstructed_Maps_Fourteen}
+
+\begin{definition}[Regular pseudo-holomorphic map]
+  \label[definition]{def:Regular_Pseudo_Holomorphic_Map_Fourteen}
+  A pseudo-holomorphic map $u$ is \emph{regular} if $D_u$ is surjective.
+\end{definition}
+
+At a regular map the obstruction group vanishes. The Banach implicit function
+theorem then identifies the nearby ordinary solution space with a smooth
+manifold of dimension $\operatorname{ind}_{\mathbb R}(D_u)$. Derivedly, the
+tangent complex is concentrated in degree $0$.
+
+At an obstructed map the ordinary zero locus need not be a manifold. The
+derived solution stack does not force transversality. Instead, it records the
+failure of transversality as the degree-$1$ cohomology of its tangent complex.
+Generic perturbation methods and derived enhancement therefore solve
+different problems: the former try to remove the cokernel by changing the
+equation, while the latter retain the cokernel for the original equation.
+
+The virtual dimension at $u$ is
+\[
+  \dim H^0\mathbb T_u-\dim H^1\mathbb T_u
+  =\operatorname{ind}_{\mathbb R}(D_u),
+\]
+which is given by \Cref{eq:Cauchy_Riemann_Index_Fourteen}.
+
+\subsection{A checkpoint: constant maps}
+\label[subsection]{sec:Constant_Map_Checkpoint_Fourteen}
+
+Fix $x\in Z$ and let $u_x\colon\Sigma\to Z$ be the constant map with value
+$x$. Since $du_x=0$, it is pseudo-holomorphic, and the zeroth-order term in
+\Cref{eq:Linearized_Cauchy_Riemann_Operator_Fourteen} vanishes. Thus
+$D_{u_x}$ is the Dolbeault operator on the trivial complex vector bundle with
+fiber $T_xZ$:
+\[
+  \bar\partial\colon
+  \Omega^0(\Sigma)\otimes_{\mathbb C}T_xZ
+  \longrightarrow
+  \Omega^{0,1}(\Sigma)\otimes_{\mathbb C}T_xZ.
+\]
+For connected $\Sigma$ this gives
+\begin{equation}
+  \label{eq:Constant_Map_Deformation_Obstruction_Fourteen}
+  \ker D_{u_x}\cong T_xZ,
+  \qquad
+  \operatorname{coker}D_{u_x}
+  \cong
+  H^{0,1}(\Sigma)\otimes_{\mathbb C}T_xZ.
+\end{equation}
+
+The visible family of constant maps is simply $Z$. Nevertheless, if $\Sigma$
+has positive genus, its derived enhancement has nonzero obstruction degree.
+This is a particularly transparent instance of a recurring theme: the
+underlying set of solutions does not determine the derived moduli problem.
+The full Dolbeault-cohomology calculation is recorded in
+\Cref{sec:Supplement_Constant_Maps_Fourteen}.
+
+\section{Families and representability}
+\label[section]{sec:Pseudo_Holomorphic_Families_Representability_Fourteen}
+
+\subsection{The stack of smooth compact domains}
+\label[subsection]{sec:Stack_Compact_Riemann_Surfaces_Fourteen}
+
+The fixed-domain problem ignores reparametrizations and variations of the
+complex structure. To retain both, let
+\[
+  S=\operatorname{Surf}_{\mathbb C}
+\]
+denote the smooth stack of compact Riemann surfaces. For a test manifold $T$,
+an object of $S(T)$ is a proper submersion
+\[
+  \pi\colon C\longrightarrow T
+\]
+with compact surface fibers, together with a smooth complex structure on the
+vertical tangent bundle $T(C/T)$. Morphisms are Cartesian diagrams whose maps
+on fibers are biholomorphic.
+
+There are two reasons not to replace this stack by a set of isomorphism
+classes. First, a family of surfaces is not determined merely by its
+fiberwise isomorphism classes. Second, an individual surface may have
+automorphisms. For example, the Riemann sphere has automorphism group
+$\operatorname{PSL}_2(\mathbb C)$, which appears as isotropy at the
+corresponding point of $S$.
+
+The stack carries a universal family
+\begin{equation}
+  \label{eq:Universal_Riemann_Surface_Family_Fourteen}
+  M=\widetilde{\operatorname{Surf}}_{\mathbb C}
+  \longrightarrow
+  S=\operatorname{Surf}_{\mathbb C}.
+\end{equation}
+Its fiber over $(\Sigma,j)$ is the surface $\Sigma$ itself. In particular,
+$M\to S$ is a proper family of smooth compact manifolds, which is exactly the
+domain hypothesis in the elliptic representability theorem.
+
+Kodaira--Spencer theory implies that $S$ is a smooth Artin
+$\Cinfty$-stack. We quote this result, as Steffens does in
+\cite[Remark~4.0.3]{Steffens_Representability_Elliptic_Moduli}. Its role will
+be to turn relative representability over $S$ into an absolute derived Artin
+statement.
+
+\subsection{The Cauchy--Riemann section in families}
+\label[subsection]{sec:Family_Cauchy_Riemann_Section_Fourteen}
+
+Put $Y=Z\times M$ over $M$. A section of $Y$ over a family $C\to T$ is a
+smooth family of maps $C\to Z$. The corresponding section stack
+\[
+  \mathcal B
+  =\operatorname{Sect}_{M/S}(Y)
+\]
+is the stack of fields for the moduli problem.
+
+Over $Y$ there is a finite-rank vector bundle $H^{0,1}\to Y$ whose fiber at
+$(c,x)$ is
+\[
+  \Hom^{0,1}_{j_c,J_x}
+  \bigl(T_c(M/S),T_xZ\bigr).
+\]
+Pulling this bundle back along a map-section and taking relative sections
+produces a bundle $\mathcal F\to\mathcal B$. Its fiber at a family $u$ is the
+family of spaces
+\[
+  \Omega^{0,1}(C_t,u_t^*TZ).
+\]
+
+The complex-antilinear projection of the relative first jet defines a section
+\[
+  \operatorname{CR}\colon\mathcal B\longrightarrow\mathcal F,
+  \qquad
+  u\longmapsto\bar\partial_Ju.
+\]
+The construction uses only the vertical tangent bundle, the fiberwise complex
+structure, and $J$. It is therefore natural under Cartesian base change of
+families of surfaces.
+
+\begin{definition}[Derived moduli stack of pseudo-holomorphic maps]
+  \label[definition]{def:Derived_Moduli_Pseudoholomorphic_Maps_Fourteen}
+  The \emph{derived moduli stack of pseudo-holomorphic maps}, denoted
+  $\mathcal M(Z,J)$, is the derived zero locus of the Cauchy--Riemann section
+  over $\mathcal B$.
+\end{definition}
+
+It comes with a natural morphism
+\[
+  \mathcal M(Z,J)
+  \longrightarrow
+  \operatorname{Surf}_{\mathbb C}.
+\]
+Over an ordinary test manifold $T\to S$ classifying $C\to T$, its ordinary
+points are precisely smooth maps $u\colon C\to Z$ whose restrictions to the
+fibers are pseudo-holomorphic. The derived zero locus retains the higher
+intersection data of this equation.
+
+\subsection{A source correction and the local presentation}
+\label[subsection]{sec:Cauchy_Riemann_Source_Correction_Fourteen}
+
+The local formulation used in the proof requires a short comment about the
+primary source.
+
+\begin{warning}[The printed five-tuple]
+  \label[warning]{warn:Steffens_Five_Tuple_Fourteen}
+  In Steffens's Construction~4.0.1, the common output of the displayed
+  Cauchy--Riemann and zero maps is the full relative first-jet bundle. Taken
+  literally, the corresponding derived pullback retains the complementary
+  complex-linear jet directions in obstruction degree, so its tangent complex
+  is larger than the Cauchy--Riemann Fredholm complex.
+
+  Replacing the common output by the complex-antilinear jet bundle recovers the
+  correct tangent complex. The resulting symmetric matching operator still
+  has a zeroth-order component, equating the underlying map values, and a
+  first-order Cauchy--Riemann component. It is therefore not elliptic in the
+  fixed-order sense of \cite[Definition~3.4.2]{Steffens_Representability_Elliptic_Moduli}.
+  The general theorem cannot be invoked verbatim from that five-tuple.
+\end{warning}
+
+This does not invalidate the application. It changes the presentation to
+which the proof is applied. Near a fixed map $u$, choose a local addition on
+$Z$ and a connection on the equation bundle. A neighborhood of $u$ in the
+section stack is then identified with an open subset $Q$ of the smooth
+sections of a vector bundle $F\to\Sigma$, while the nearby fibers of
+$\mathcal F$ are identified with the fixed section space $\Gamma(E;\Sigma)$.
+In these coordinates the equation is a nonlinear operator
+\begin{equation}
+  \label{eq:Local_Cauchy_Riemann_Operator_Fourteen}
+  P\colon Q\longrightarrow\Gamma(E;\Sigma)
+\end{equation}
+and the solution object is its derived zero fiber. The derivative of $P$ at
+$u$ is exactly $D_u$. This is the local zero-section form of the problem to
+which the proof architecture of Chapters 12 and 13 applies.
+
+The symmetric presentation and the cancellation which gives its correct
+tangent complex are useful algebraically. They are included in
+\Cref{sec:Supplement_Symmetric_Presentation_Fourteen}. The cancellation does
+not turn the mixed-order operator into a fixed-order elliptic one, which is why
+the distinction between the two presentations matters.
+
+\subsection{The representability theorem}
+\label[subsection]{sec:Pseudoholomorphic_Representability_Fourteen}
+
+We can now state the payoff.
+
+\begin{theorem}[Pseudo-holomorphic representability]
+  \label[theorem]{thm:Pseudoholomorphic_Representability_Fourteen}
+  Let $(Z,J)$ be an almost complex manifold. The morphism
+  \begin{equation}
+    \label{eq:Pseudoholomorphic_Representability_Morphism_Fourteen}
+    \mathcal M(Z,J)
+    \longrightarrow
+    \operatorname{Surf}_{\mathbb C}
+  \end{equation}
+  is representable by quasi-smooth derived $\Cinfty$-schemes locally of finite
+  presentation. Consequently, $\mathcal M(Z,J)$ is a quasi-smooth derived
+  Artin $\Cinfty$-stack.
+\end{theorem}
+
+\begin{proof}
+  Representability is local on the target. Pull back along a map
+  $T\to\operatorname{Surf}_{\mathbb C}$ from a manifold. It classifies a
+  smooth proper family of Riemann surfaces $C\to T$. Locally on $T$, Ehresmann
+  triviality identifies the underlying family with
+  $T'\times\Sigma\to T'$, although the fiberwise complex structure may still
+  vary with the parameter.
+
+  Fix a solution $u$ in this family. The local section-stack construction from
+  \Cref{sec:Section_Stack_Charts_Twelve} identifies a neighborhood of $u$ with
+  $T'\times Q$, where $Q$ is an open subset of a smooth section space. After
+  trivializing the nearby equation bundles, the family Cauchy--Riemann section
+  becomes a smooth family of nonlinear first-order operators
+  \begin{equation}
+    \label{eq:Family_Local_Cauchy_Riemann_Operator_Fourteen}
+    P\colon
+    T'\times Q
+    \longrightarrow
+    T'\times\Gamma(E;\Sigma).
+  \end{equation}
+  Its vertical linearization at $u$ is $D_u$, which is elliptic by
+  \Cref{thm:Cauchy_Riemann_Ellipticity_Fourteen}.
+
+  The representability theorem proved in Chapters 12 and 13 now applies to
+  this local zero-section problem. It produces a quasi-smooth derived
+  $\Cinfty$-scheme locally of finite presentation representing a neighborhood
+  of $u$ in the solution stack. These neighborhoods cover the pullback over
+  $T$, and the open-atlas criterion glues them. This proves relative
+  representability.
+
+  Finally, $\operatorname{Surf}_{\mathbb C}$ is a smooth Artin
+  $\Cinfty$-stack. Relative quasi-smooth representability over this base makes
+  the total solution stack a quasi-smooth derived Artin $\Cinfty$-stack.
+\end{proof}
+
+Steffens states this conclusion in the symplectic tame setting in
+\cite[Construction~4.0.1 and Remark~4.0.3]{Steffens_Representability_Elliptic_Moduli}.
+The proof above uses the local zero-section form of the representability
+argument, for the reason explained in
+\Cref{warn:Steffens_Five_Tuple_Fourteen}. It also shows that the local
+representability statement depends only on $J$.
+
+The theorem is relative in an important sense. Given a manifold $T$ and a
+specified family $C\to T$ of Riemann surfaces, the pullback
+\[
+  T\times_{\operatorname{Surf}_{\mathbb C}}\mathcal M(Z,J)
+\]
+is represented by a quasi-smooth derived $\Cinfty$-scheme locally of finite
+presentation over $T$. Its relative tangent complex at a map $u$ is
+\begin{equation}
+  \label{eq:Relative_Tangent_Complex_Final_Fourteen}
+  \mathbb T_u\bigl(
+    \mathcal M(Z,J)/\operatorname{Surf}_{\mathbb C}
+  \bigr)
+  \simeq
+  \left[
+    \Gamma(\Sigma,u^*TZ)
+    \xrightarrow{D_u}
+    \Omega^{0,1}(\Sigma,u^*TZ)
+  \right].
+\end{equation}
+The absolute tangent complex also contains deformations and infinitesimal
+automorphisms of the domain. The corresponding fiber sequence is recorded in
+\Cref{sec:Supplement_Absolute_Tangent_Fourteen}.
+
+\section{Summary and supplementary materials}
+\label[section]{sec:Pseudoholomorphic_Summary_Supplements_Fourteen}
+
+\subsection{The boundary of the theorem}
+\label[subsection]{sec:Pseudoholomorphic_Boundary_Fourteen}
+
+The word ``proper'' has appeared in the proof, but only in the hypothesis that
+the universal domain family
+\[
+  \widetilde{\operatorname{Surf}}_{\mathbb C}
+  \longrightarrow
+  \operatorname{Surf}_{\mathbb C}
+\]
+has compact fibers. This is not a statement that the solution stack
+$\mathcal M(Z,J)$ is proper or compact.
+
+Even when $Z$ is compact, a sequence of pseudo-holomorphic maps can develop
+bubbles. A family of smooth domains can also degenerate to a nodal curve.
+Neither phenomenon is represented inside
+$\operatorname{Surf}_{\mathbb C}$, whose objects have smooth fibers. A
+compactification therefore requires an enlarged moduli problem, such as one
+based on stable nodal maps, together with a topology and analytic gluing
+theory which see its limiting objects.
+
+Quasi-smooth representability also does not by itself produce an enumerative
+invariant. Four logically separate tasks remain:
+\begin{enumerate}
+  \item Enlarge the moduli problem to include the required limiting domains
+    and maps.
+  \item Prove a compactness or properness theorem for the enlarged problem.
+  \item Supply the relevant orientation data.
+  \item Turn the resulting derived geometric object into a virtual
+    fundamental, homology, or bordism class.
+\end{enumerate}
+
+The derived-bordism theorem from
+\Cref{chap:Derived_Bordism_And_Fundamental_Classes} addresses part of the
+fourth step. A compact oriented derived manifold determines a fundamental
+bordism class. The present theorem supplies neither compactness nor
+orientation, and its total moduli object is generally an Artin stack rather
+than a derived manifold. Thus Talk 6 is a genuine later payoff when its
+hypotheses hold, but it cannot replace the missing compactification and
+orientation arguments.
+
+The precise conclusion of the application is therefore the following.
+\begin{enumerate}
+  \item The smooth-domain moduli functor exists intrinsically as a derived
+    stack.
+  \item It is relatively represented by locally finitely presented
+    quasi-smooth derived $\Cinfty$-schemes.
+  \item Its relative tangent complex is the Cauchy--Riemann
+    deformation-obstruction complex.
+  \item Its varying domains and their automorphisms are retained by the smooth
+    Artin base.
+  \item No nodal compactification, compactness theorem, orientation, or virtual
+    class has been constructed.
+\end{enumerate}
+
+\subsection{The seminar arc}
+\label[subsection]{sec:Seminar_Arc_Fourteen}
+
+The fourteen talks can now be read as one argument:
+\[
+\begin{aligned}
+  \Cinfty\text{-rings}
+  &\longrightarrow
+    \text{animated }\Cinfty\text{-rings}
+  \longrightarrow
+    \text{derived zero loci}\\
+  &\longrightarrow
+    \text{tangent complexes and local derived geometry}\\
+  &\longrightarrow
+    \text{stacks of fields and equations}\\
+  &\longrightarrow
+    \text{elliptic finite-dimensional reduction}\\
+  &\longrightarrow
+    \text{derived moduli of pseudo-holomorphic curves}.
+\end{aligned}
+\]
+
+Three conclusions organize this route.
+\begin{enumerate}
+  \item Derived smooth geometry remembers excess intersection and obstruction
+    theory as intrinsic geometric structure.
+  \item Ellipticity is the bridge from an infinite-dimensional nonlinear
+    equation to locally finite-dimensional derived geometry.
+  \item Representability is a decisive geometric input, but compactification
+    and virtual classes remain additional problems.
+\end{enumerate}
+
+\subsection{The live route}
+\label[subsection]{sec:Pseudoholomorphic_Live_Route_Fourteen}
+
+The default live route consists of the following fifteen steps.
+\begin{enumerate}
+  \item Recall the elliptic representability theorem from Chapters 12 and 13.
+  \item Decompose a real-linear map into complex-linear and
+    complex-antilinear parts.
+  \item Define $\bar\partial_Ju$ and formulate pseudo-holomorphicity as a
+    first-order equation.
+  \item Present the equation as a section over the mapping object.
+  \item Derive the linearization formula for $D_u$.
+  \item Calculate its principal symbol and prove ellipticity.
+  \item Quote Fredholmness and the relative index formula.
+  \item Identify the fixed-domain tangent complex with
+    $[\Gamma(u^*TZ)\to\Omega^{0,1}(u^*TZ)]$.
+  \item Interpret its cohomology as deformations and obstructions.
+  \item If time permits, use constant maps as a three-minute obstruction
+    example.
+  \item Introduce the stack of smooth compact domains and its universal
+    family.
+  \item Assemble the Cauchy--Riemann section naturally in families.
+  \item Explain the printed-five-tuple issue and pass to local zero-section
+    charts.
+  \item Apply elliptic representability by checking its hypotheses.
+  \item Separate representability from compactification and virtual classes,
+    then close with the three seminar-wide conclusions above.
+\end{enumerate}
+
+The live material ends here. The remaining subsections preserve useful
+calculations and variants for readers who want more detail.
+
+\subsection{Supplement: constant maps}
+\label[subsection]{sec:Supplement_Constant_Maps_Fourteen}
+
+Let $\Sigma$ be connected of genus $g$, let $Z$ have complex dimension $n$,
+and let $u_x$ be the constant map with value $x\in Z$. Its pullback tangent
+bundle is the trivial complex vector bundle
+\[
+  u_x^*TZ\cong\Sigma\times T_xZ.
+\]
+
+\begin{proposition}[Deformations and obstructions of a constant map]
+  \label[proposition]{prop:Constant_Map_Deformations_Fourteen}
+  There are isomorphisms
+  \begin{align}
+    \label{eq:Constant_Map_Kernel_Fourteen}
+    \ker D_{u_x}
+    &\cong T_xZ,\\
+    \label{eq:Constant_Map_Cokernel_Fourteen}
+    \operatorname{coker}D_{u_x}
+    &\cong
+      H^{0,1}(\Sigma)\otimes_{\mathbb C}T_xZ.
+  \end{align}
+  In particular, the real virtual dimension is $2n(1-g)$.
+\end{proposition}
+
+\begin{proof}
+  Since $du_x=0$, the zeroth-order term in
+  \Cref{eq:Linearized_Cauchy_Riemann_Operator_Fourteen} vanishes. The operator
+  is the standard Dolbeault operator on the trivial bundle:
+  \[
+    \bar\partial\colon
+    \Omega^0(\Sigma)\otimes_{\mathbb C}T_xZ
+    \longrightarrow
+    \Omega^{0,1}(\Sigma)\otimes_{\mathbb C}T_xZ.
+  \]
+  A holomorphic function from a connected compact Riemann surface to a complex
+  vector space is constant, giving
+  \Cref{eq:Constant_Map_Kernel_Fourteen}. Dolbeault theory identifies the
+  cokernel with
+  $H^{0,1}(\Sigma)\otimes_{\mathbb C}T_xZ$, proving
+  \Cref{eq:Constant_Map_Cokernel_Fourteen}. Since
+  $\dim_{\mathbb C}H^{0,1}(\Sigma)=g$, the real index is
+  $2n-2ng=2n(1-g)$.
+\end{proof}
+
+For $g=0$, the cokernel vanishes, so constant maps are regular. For $g=1$,
+the kernel and cokernel have equal dimension. For $g>1$, the obstruction space
+is larger than the deformation space. In all cases the ordinary locus of
+constant maps is still $Z$. The difference is entirely in the derived
+thickness.
+
+\subsection{Supplement: the symmetric presentation}
+\label[subsection]{sec:Supplement_Symmetric_Presentation_Fourteen}
+
+The derived intersection of the Cauchy--Riemann section with the zero section
+can be displayed as
+\begin{equation}
+  \label{eq:Symmetric_Cauchy_Riemann_Pullback_Fourteen}
+  \begin{tikzcd}[column sep=large]
+    \mathcal M(Z,J)
+      \rar \dar \drar[pullback]
+      & \mathcal B \dar["\operatorname{CR}"] \\
+    \mathcal B
+      \rar["0"']
+      & \mathcal F.
+  \end{tikzcd}
+\end{equation}
+At a solution $u$, put
+\[
+  A=\Gamma(\Sigma,u^*TZ),
+  \qquad
+  B=\Omega^{0,1}(\Sigma,u^*TZ).
+\]
+The tangent complex of the pullback presentation is
+\begin{equation}
+  \label{eq:Symmetric_Tangent_Complex_Fourteen}
+  \left[
+    A\oplus A
+    \xrightarrow{\delta}
+    A\oplus B
+  \right],
+  \qquad
+  \delta(\xi_1,\xi_2)
+  =
+  (\xi_1-\xi_2,D_u\xi_1).
+\end{equation}
+The first component differentiates equality of the underlying maps, and the
+second differentiates the Cauchy--Riemann equation.
+
+\begin{lemma}[Cancellation of the repeated field]
+  \label[lemma]{lem:Repeated_Field_Cancellation_Fourteen}
+  There is a chain isomorphism
+  \[
+    [A\oplus A\xrightarrow{\delta}A\oplus B]
+    \iso
+    [A\xrightarrow{D_u}B]
+    \oplus
+    [A\xrightarrow{\operatorname{id}}A].
+  \]
+  Consequently,
+  \Cref{eq:Symmetric_Tangent_Complex_Fourteen} is quasi-isomorphic to the
+  Cauchy--Riemann deformation complex.
+\end{lemma}
+
+\begin{proof}
+  On the source use the coordinates
+  \[
+    (\xi_1,\xi_2)
+    \longmapsto
+    (\xi_1,\xi_1-\xi_2).
+  \]
+  Reorder the target $A\oplus B$ as $B\oplus A$. In these coordinates the
+  differential is
+  \[
+    (\xi,r)\longmapsto(D_u\xi,r),
+  \]
+  which is the displayed direct sum. The identity complex is contractible.
+\end{proof}
+
+This cancellation proves that the symmetric derived pullback has the desired
+tangent complex once the common output has been restricted to the
+complex-antilinear bundle. It does not change the order of the matching
+operator. The value-matching component remains zeroth order while the
+Cauchy--Riemann component is first order. Thus the calculation does not remove
+the fixed-order issue in \Cref{warn:Steffens_Five_Tuple_Fourteen}.
+
+\subsection{Supplement: relative and absolute tangent complexes}
+\label[subsection]{sec:Supplement_Absolute_Tangent_Fourteen}
+
+The complex in \Cref{eq:Relative_Tangent_Complex_Final_Fourteen} holds the
+domain and its complex structure fixed. The absolute tangent complex also
+contains the deformation theory of $(\Sigma,j)$. It fits into the relative
+tangent fiber sequence
+\begin{equation}
+  \label{eq:Absolute_Tangent_Fiber_Sequence_Fourteen}
+  \mathbb T_u\bigl(
+    \mathcal M(Z,J)/\operatorname{Surf}_{\mathbb C}
+  \bigr)
+  \longrightarrow
+  \mathbb T_u\mathcal M(Z,J)
+  \longrightarrow
+  \mathbb T_{(\Sigma,j)}\operatorname{Surf}_{\mathbb C}.
+\end{equation}
+The last term records deformations and infinitesimal automorphisms of the
+domain. We do not need an explicit model for it. The fiber sequence already
+expresses the division of labor: $D_u$ controls the map relative to its
+domain, while the smooth Artin base controls variations and
+reparametrizations of the domain.
+
+This distinction prevents an ambiguity in expected-dimension formulas. The
+index in \Cref{eq:Cauchy_Riemann_Index_Fourteen} is the relative virtual
+dimension for a fixed domain. An unparametrized moduli problem with varying
+domains must also account for
+$\mathbb T_{(\Sigma,j)}\operatorname{Surf}_{\mathbb C}$.
+
+\subsection{Supplement: variations and the symplectic form}
+\label[subsection]{sec:Supplement_Variations_Symplectic_Fourteen}
+
+Several variations fit the same representability argument.
+\begin{enumerate}
+  \item One may let $J$ vary in a smooth family by enlarging the base stack.
+  \item One may allow a smooth family of almost complex target manifolds.
+  \item One may add marked points by adding sections of the universal curve to
+    the objects classified by the domain stack.
+  \item One may formulate equivariant problems over quotient stacks, thereby
+    retaining isotropy rather than passing to a naive orbit set.
+\end{enumerate}
+The first three variants are noted in
+\cite[Remark~4.0.2]{Steffens_Representability_Elliptic_Moduli}. All still
+concern smooth compact domains.
+
+Suppose now that $J$ is tamed by a symplectic form $\omega$. A
+pseudo-holomorphic map satisfies an energy identity relating its analytic
+energy to the symplectic area
+\[
+  \int_\Sigma u^*\omega.
+\]
+In a fixed homology class this integral is topological. Such bounds are a
+starting point for Gromov compactness, but they do not prevent bubbling. The
+symbol calculation and local representability theorem use none of this
+global information. Ellipticity is local in the source and target, while
+compactness concerns sequences of global solutions.
+
+\subsection{Related literature}
+\label[subsection]{sec:Pseudoholomorphic_Related_Literature_Fourteen}
+
+The primary derived-geometric source is Steffens,
+\emph{Representability of Elliptic Moduli Problems in Derived
+$C^\infty$-Geometry}. Construction~4.0.1 defines the stack of smooth compact
+Riemann surfaces, its universal family, the jet-level Cauchy--Riemann map, and
+the solution stack. Remarks~4.0.2--4.0.3 discuss varying data, marked points,
+and the derived Artin conclusion
+\cite[Construction~4.0.1 and Remarks~4.0.2--4.0.3]{Steffens_Representability_Elliptic_Moduli}.
+The source correction needed for the printed five-tuple is recorded in
+\Cref{warn:Steffens_Five_Tuple_Fourteen}.
+
+For the analytic background, Wendl's
+\emph{Lectures on Holomorphic Curves in Symplectic and Contact Geometry}
+develops almost complex structures and pseudo-holomorphic maps in Section~2.1,
+real Cauchy--Riemann type operators and their linearization in
+Sections~2.3--2.4, regularity in Section~2.5, and Fredholm and index theory in
+Sections~3.3--3.4
+\cite{Wendl_Lectures_Holomorphic_Curves}. These sections support the
+linearization, symbol, Fredholm, and Riemann--Roch statements used here.
+
+Steffens's representability argument is the engine applied in
+\Cref{thm:Pseudoholomorphic_Representability_Fourteen}. Pardon's
+\emph{Representability in non-linear elliptic Fredholm analysis} gives a
+different organization of the Fredholm-to-representability passage, as
+explained in Chapter 13
+\cite{Pardon_Representability_Elliptic_Fredholm}. Neither source treats the
+smooth-domain theorem as a substitute for Gromov compactification or for the
+construction of virtual classes.

@@ -1,0 +1,1025 @@
+% This chapter is the complete working manuscript for the eleventh seminar talk.
+% The final section contains supplementary material outside the default live
+% route.
+
+\chapter{Fredholm equations and finite-dimensional reduction}
+\label[chapter]{chap:Elliptic_Equations_Kuranishi_Models}
+
+Talk 10 constructed the intrinsic solution stack of a differential equation
+and calculated its tangent complex. For
+\[
+  P(u)=\Delta u+u^2
+\]
+at its unique solution, that complex is
+\[
+  [\Cinfty(M)\xrightarrow{\Delta}\Cinfty(M)].
+\]
+Its terms are infinite-dimensional, but its deformation and obstruction
+spaces are both one-dimensional.
+
+This chapter asks how finite-dimensional cohomology becomes an actual
+finite-dimensional nonlinear model. Sobolev completion makes Banach calculus
+available. Ellipticity makes the linearization Fredholm. Adding a
+finite-dimensional obstruction space makes the augmented equation
+submersive, and the Banach implicit function theorem then produces a
+finite-dimensional manifold carrying an obstruction section.
+
+The obstruction-space construction is the only general reduction in the live
+route. Lyapunov--Schmidt coordinates are used only to calculate the running
+example and are developed in full in the supplement. The chapter ends with a
+precise boundary: the resulting Kuranishi model describes the ordinary smooth
+solution germ and its tangent complex, but has not yet been identified with an
+open restriction of the intrinsic derived solution stack.
+
+\section{From smooth sections to a Fredholm problem}
+\label[section]{sec:Smooth_Sections_To_Fredholm_Problem}
+
+\subsection{Why an analytic completion is needed}
+\label[subsection]{sec:Why_Analytic_Completion_Needed}
+
+Let \(E\to M\) and \(F\to M\) be smooth vector bundles over a closed
+manifold, and let
+\[
+  P\colon\mathcal U\subseteq\Gamma(E)\longrightarrow\Gamma(F)
+\]
+be a nonlinear differential operator of order \(k\). Here \(\mathcal U\) is
+an open subset of the smooth section space. Near a solution \(u_0\), its
+linearization is a linear differential operator
+\[
+  D_{u_0}P\colon\Gamma(E)\longrightarrow\Gamma(F)
+\]
+of order at most \(k\).
+
+The space \(\Gamma(E)\) is naturally a Fr\'echet space. One may measure a
+smooth section and all of its derivatives, but no single norm defines this
+topology. The ordinary inverse and implicit function theorems for Banach
+spaces therefore do not apply directly. There are inverse function theorems
+for suitable Fr\'echet spaces, most notably the Nash--Moser theorem, but they
+would introduce much more analysis than is needed here.
+
+The standard alternative for an elliptic equation is to work temporarily at
+a fixed Sobolev regularity. Choose bundle metrics, a Riemannian metric, and a
+connection. For a nonnegative integer \(r\), the Sobolev norm is schematically
+\[
+  \lVert u\rVert_{H^r}^2
+  =\sum_{j=0}^r\lVert\nabla^ju\rVert_{L^2}^2.
+\]
+The completion of \(\Gamma(E)\) in this norm is a Hilbert space
+\(H^r(E)\). Different choices of metrics and connections give equivalent
+norms. Moreover,
+\[
+  \Gamma(E)=\bigcap_{r\geq0}H^r(E).
+\]
+Thus smooth sections can be recovered by retaining all Sobolev levels.
+
+An operator of order \(k\) loses \(k\) derivatives. Its natural completion
+therefore has the form
+\begin{equation}
+  \label{eq:Sobolev_Extension_Nonlinear_Operator}
+  P_l\colon\mathcal U_{l+k}\subseteq H^{l+k}(E)
+  \longrightarrow H^l(F),
+\end{equation}
+not \(H^l(E)\to H^l(F)\). For sufficiently large \(l\), Sobolev embedding
+and multiplication theorems imply that \(P_l\) is smooth. In the geometric
+setting of jet-defined nonlinear operators, this is part of the functorial
+Sobolev-scale construction in Steffens's Lemma~3.4.5
+\cite[Lemma~3.4.5]{Steffens_Representability_Elliptic_Moduli}.
+
+\begin{warning}[Completion changes the ambient space]
+  \label[warning]{warn:Sobolev_Completion_Changes_Ambient_Space}
+  A Sobolev completion introduces nonsmooth sections. It is a device for
+  applying Banach calculus, not a claim that the moduli problem should be
+  redefined using sections of one arbitrarily chosen regularity. Elliptic
+  regularity will be needed to return to smooth solutions.
+\end{warning}
+
+\subsection{The linear elliptic theorem}
+\label[subsection]{sec:Linear_Elliptic_Fredholm_Theorem}
+
+We recall the functional-analytic property supplied by ellipticity.
+
+\begin{definition}[Fredholm operator]
+  \label[definition]{def:Fredholm_Operator}
+  A bounded linear operator \(L\colon X\to Y\) between Banach spaces is
+  \emph{Fredholm} if
+  \[
+    \dim\ker L<\infty,
+    \qquad
+    \operatorname{im}L\subseteq Y\text{ is closed},
+    \qquad
+    \dim\operatorname{coker}L<\infty.
+  \]
+  Its \emph{index} is
+  \[
+    \operatorname{ind}L
+    =\dim\ker L-\dim\operatorname{coker}L.
+  \]
+\end{definition}
+
+\begin{theorem}[Elliptic operators are Fredholm]
+  \label[theorem]{thm:Elliptic_Operators_Are_Fredholm}
+  Let \(M\) be closed and let
+  \[
+    L\colon\Gamma(E)\longrightarrow\Gamma(F)
+  \]
+  be an elliptic linear differential operator of order \(k\). Its Sobolev
+  extension
+  \[
+    L_l\colon H^{l+k}(E)\longrightarrow H^l(F)
+  \]
+  is Fredholm. Its kernel consists of smooth sections, and its cokernel can be
+  represented by a finite-dimensional space of smooth sections of \(F\).
+\end{theorem}
+
+This is the principal input from linear elliptic theory. The symbol condition
+called ellipticity in the preceding chapter becomes a finite-dimensionality
+statement after Sobolev completion. In particular,
+\[
+  H^0[H^{l+k}(E)\xrightarrow{L_l}H^l(F)]
+  =\ker L_l
+\]
+and
+\[
+  H^1[H^{l+k}(E)\xrightarrow{L_l}H^l(F)]
+  =\operatorname{coker}L_l
+\]
+are finite-dimensional.
+
+The theorem does not yet give a finite-dimensional nonlinear model. It says
+only that the failure of the linearized equation to be invertible is
+finite-dimensional. The implicit function theorem will solve all remaining
+directions.
+
+\subsection{The nonlinear return to smoothness}
+\label[subsection]{sec:Nonlinear_Return_To_Smoothness}
+
+The second quoted input is nonlinear elliptic regularity.
+
+\begin{theorem}[Nonlinear elliptic regularity]
+  \label[theorem]{thm:Nonlinear_Elliptic_Regularity}
+  Let \(P\) be a nonlinear elliptic differential operator of order \(k\).
+  Suppose that \(l\) is sufficiently large, that
+  \(u\in H^{l+k}(E)\), and that
+  \[
+    P_l(u)=f
+  \]
+  for a smooth section \(f\in\Gamma(F)\). Then \(u\) is smooth.
+\end{theorem}
+
+The required lower bound on \(l\) depends on the operator and the dimension
+of \(M\). Since we are free to begin at an arbitrarily high Sobolev level, the
+precise optimal bound is irrelevant to the reduction. What matters is that a
+sufficiently regular weak solution with smooth right-hand side is smooth.
+Steffens records exactly this form in Lemma~3.4.6
+\cite[Lemma~3.4.6]{Steffens_Representability_Elliptic_Moduli}.
+
+This theorem will be applied not only to \(P_l(u)=0\), but also to an
+augmented equation
+\[
+  P_l(u)+\iota(c)=0,
+\]
+where \(c\) belongs to a finite-dimensional space and \(\iota(c)\) is a
+smooth section. Thus every point of the finite-dimensional manifold produced
+below is represented by a smooth section \(u\).
+
+The analytic division of labor is now clear.
+\[
+  \begin{gathered}
+    \text{Sobolev completion}
+    \quad\Longrightarrow\quad
+    \text{Banach calculus},\\
+    \text{ellipticity}
+    \quad\Longrightarrow\quad
+    \text{Fredholm linearization},\\
+    \text{elliptic regularity}
+    \quad\Longrightarrow\quad
+    \text{smooth solutions}.
+  \end{gathered}
+\]
+
+\section{The Fredholm--Kuranishi reduction}
+\label[section]{sec:Fredholm_Kuranishi_Reduction}
+
+We now isolate the nonlinear construction from its elliptic origin. Let
+\(X\) and \(Y\) be Banach spaces, let \(U\subseteq X\) be open, and let
+\[
+  P\colon U\longrightarrow Y
+\]
+be smooth. Fix \(x_0\in U\) with \(P(x_0)=0\), and suppose that
+\[
+  L=D_{x_0}P\colon X\longrightarrow Y
+\]
+is Fredholm.
+
+\subsection{Splitting the linearized equation}
+\label[subsection]{sec:Splitting_Linearized_Equation}
+
+Put \(K=\ker L\). Since \(K\) is finite-dimensional, it admits a closed
+complement \(X'\subseteq X\). Since \(\operatorname{im}L\) is closed and has
+finite codimension, choose a finite-dimensional subspace \(C\subseteq Y\)
+which maps isomorphically to \(\operatorname{coker}L\). We then have
+splittings
+\begin{equation}
+  \label{eq:Fredholm_Splittings}
+  X=K\oplus X',
+  \qquad
+  Y=\operatorname{im}L\oplus C.
+\end{equation}
+Write
+\[
+  \iota\colon C\hookrightarrow Y
+\]
+for the chosen inclusion. The restriction
+\begin{equation}
+  \label{eq:Fredholm_Complement_Isomorphism}
+  L|_{X'}\colon X'\iso\operatorname{im}L
+\end{equation}
+is an isomorphism of Banach spaces.
+
+The kernel \(K\) consists of infinitesimal solutions. The space \(C\)
+records the failure of the linearized equation to be surjective. Neither
+splitting in \Cref{eq:Fredholm_Splittings} is canonical. The resulting chart
+will accordingly be a presentation rather than an intrinsic object.
+
+\subsection{Adding an obstruction space}
+\label[subsection]{sec:Adding_Obstruction_Space}
+
+Consider the augmented map
+\begin{equation}
+  \label{eq:Augmented_Fredholm_Map}
+  \widetilde P\colon U\times C\longrightarrow Y,
+  \qquad
+  \widetilde P(x,c)=P(x)+\iota(c).
+\end{equation}
+Its derivative at \((x_0,0)\) is
+\[
+  D_{(x_0,0)}\widetilde P(v,e)=L(v)+\iota(e).
+\]
+This map is surjective by the second splitting in
+\Cref{eq:Fredholm_Splittings}. Its kernel is
+\[
+  \ker D_{(x_0,0)}\widetilde P
+  =K\times\{0\}.
+\]
+
+We use the following form of the Banach implicit function theorem.
+
+\begin{theorem}[Banach submersion theorem]
+  \label[theorem]{thm:Banach_Submersion_Theorem}
+  Let \(f\colon U\to Y\) be a smooth map between Banach spaces. If
+  \(D_xf\) is surjective and has complemented kernel, then, near \(x\), the
+  level set \(f^{-1}(f(x))\) is a smooth Banach submanifold with tangent space
+  \(\ker D_xf\).
+\end{theorem}
+
+In the present application, the kernel is finite-dimensional and hence
+complemented. Surjectivity is open for the family of Fredholm operators, so
+after shrinking \(U\times C\), we may assume that
+\(D\widetilde P\) remains surjective throughout the neighborhood under
+consideration.
+
+\begin{theorem}[Fredholm--Kuranishi reduction]
+  \label[theorem]{thm:Fredholm_Kuranishi_Reduction}
+  Let \(P\colon U\to Y\) and \(x_0\) be as above. After choosing the
+  splittings in \Cref{eq:Fredholm_Splittings}, there are a neighborhood
+  \(W\subseteq U\times C\) of \((x_0,0)\), a finite-dimensional manifold
+  \[
+    V=W\cap\widetilde P^{-1}(0),
+  \]
+  and a smooth map
+  \[
+    s\colon V\longrightarrow C,
+    \qquad
+    s(x,c)=c,
+  \]
+  with the following properties.
+  \begin{enumerate}
+    \item One has \(\dim V=\dim K\).
+    \item The zero locus \(s^{-1}(0)\) is naturally identified with the germ
+      of \(P^{-1}(0)\) at \(x_0\).
+    \item At every \(v=(x,0)\in s^{-1}(0)\), there is a natural
+      quasi-isomorphism
+      \begin{equation}
+        \label{eq:Kuranishi_Fredholm_Tangent_Comparison}
+        [T_vV\xrightarrow{D_vs}C]
+        \longrightarrow
+        [X\xrightarrow{D_xP}Y].
+      \end{equation}
+    \item At the base point, the left side of
+      \Cref{eq:Kuranishi_Fredholm_Tangent_Comparison} is
+      \[
+        K\xrightarrow{0}C
+      \]
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  The derivative of \(\widetilde P\) at \((x_0,0)\) is a split surjection
+  with kernel \(K\times\{0\}\). By
+  \Cref{thm:Banach_Submersion_Theorem}, its zero set is therefore a smooth
+  finite-dimensional manifold near \((x_0,0)\), with dimension \(\dim K\).
+  This gives \(V\).
+
+  The equation \(s(x,c)=0\) says that \(c=0\). On \(V\), the augmented
+  equation also says
+  \[
+    P(x)+\iota(c)=0.
+  \]
+  Consequently,
+  \[
+    s^{-1}(0)
+    =\{(x,0)\in W\mid P(x)=0\},
+  \]
+  which proves the second assertion.
+
+  It remains to compare tangent complexes. At a zero \(v=(x,0)\) of \(s\),
+  the tangent space of \(V\) is
+  \[
+    T_vV
+    =\{(\xi,e)\in X\oplus C
+      \mid D_xP(\xi)+\iota(e)=0\}.
+  \]
+  Projection to the two coordinates gives maps
+  \[
+    \operatorname{pr}_X\colon T_vV\longrightarrow X,
+    \qquad
+    D_vs=\operatorname{pr}_C\colon T_vV\longrightarrow C.
+  \]
+  The pair \((\operatorname{pr}_X,-\iota)\) defines the map of complexes in
+  \Cref{eq:Kuranishi_Fredholm_Tangent_Comparison}, since
+  \[
+    D_xP(\operatorname{pr}_X(\xi,e))
+    =-\iota(e)
+    =-\iota(D_vs(\xi,e)).
+  \]
+
+  On degree-zero cohomology, projection to \(X\) gives an isomorphism
+  \[
+    \ker(D_vs)
+    =\{(\xi,0)\mid D_xP(\xi)=0\}
+    \iso
+    \ker(D_xP).
+  \]
+  On degree-one cohomology, the induced map is
+  \[
+    C/\operatorname{im}(D_vs)
+    \longrightarrow
+    Y/\operatorname{im}(D_xP),
+    \qquad
+    [e]\longmapsto[-\iota(e)].
+  \]
+  Surjectivity of
+  \[
+    D_xP+\iota\colon X\oplus C\longrightarrow Y
+  \]
+  shows that this map is surjective. If \(\iota(e)=D_xP(\xi)\), then
+  \((\xi,-e)\in T_vV\), so \(e\) belongs to
+  \(\operatorname{im}(D_vs)\). It is therefore injective as well. The map of
+  complexes is a quasi-isomorphism.
+
+  At \((x_0,0)\), one has \(T_{(x_0,0)}V=K\times\{0\}\). Hence
+  \(D_{(x_0,0)}s=0\), giving the final assertion.
+\end{proof}
+
+The trivial vector bundle \(V\times C\to V\), together with the section
+\(s\), is a Kuranishi model in the sense of Chapter~8. Its virtual dimension
+is
+\begin{equation}
+  \label{eq:Fredholm_Index_Virtual_Dimension}
+  \dim V-\dim C
+  =\dim\ker L-\dim\operatorname{coker}L
+  =\operatorname{ind}L.
+\end{equation}
+
+\subsection{Returning to smooth elliptic equations}
+\label[subsection]{sec:Returning_To_Smooth_Elliptic_Equations}
+
+Apply \Cref{thm:Fredholm_Kuranishi_Reduction} to the Sobolev extension
+\(P_l\) in \Cref{eq:Sobolev_Extension_Nonlinear_Operator}. By
+\Cref{thm:Elliptic_Operators_Are_Fredholm}, the derivative at a smooth
+solution is Fredholm. Choose \(C\) to be represented by smooth sections of
+\(F\). Every point \((u,c)\in V\) satisfies
+\[
+  P_l(u)=-\iota(c),
+\]
+whose right-hand side is smooth. By
+\Cref{thm:Nonlinear_Elliptic_Regularity}, the section \(u\) is smooth.
+Consequently, the finite-dimensional manifold \(V\) and its zero locus do not
+contain spurious nonsmooth solutions.
+
+We have proved the promised analytic statement.
+
+\begin{corollary}[Local Kuranishi model for an elliptic equation]
+  \label[corollary]{cor:Local_Kuranishi_Model_Elliptic_Equation}
+  Let \(P\) be a nonlinear elliptic differential operator on a closed
+  manifold, and let \(u_0\) be a smooth solution. After choosing a sufficiently
+  high Sobolev completion and a finite-dimensional obstruction space, there is
+  a finite-dimensional Kuranishi model \((V,V\times C,s)\) such that
+  \(s^{-1}(0)\) is the germ of smooth solutions near \(u_0\). At every nearby
+  solution, its tangent complex is quasi-isomorphic to the Sobolev completion
+  of the linearized differential operator.
+\end{corollary}
+
+Linear elliptic regularity identifies the kernel and cokernel of the Sobolev
+linearization with those of the operator on smooth sections. Thus the
+finite-dimensional tangent complex also recovers the smooth
+deformation-obstruction complex from the solution stack in Chapter~10.
+
+\section{The running equation}
+\label[section]{sec:Laplacian_Square_Fredholm_Reduction}
+
+We now carry out the reduction completely for the running example. Let \(M\)
+be a closed connected Riemannian manifold and let
+\[
+  P(u)=\Delta u+u^2.
+\]
+Choose an integer \(l>\dim(M)/2\). Sobolev multiplication makes
+\[
+  P_l\colon H^{l+2}(M)\longrightarrow H^l(M)
+\]
+a smooth map. Its derivative at zero is
+\[
+  D_0P_l=\Delta\colon H^{l+2}(M)\longrightarrow H^l(M).
+\]
+
+\subsection{Constants and mean-zero functions}
+\label[subsection]{sec:Constants_Mean_Zero_Functions}
+
+Normalize the projection onto constant functions by
+\begin{equation}
+  \label{eq:Mean_Projection}
+  \Pi(f)
+  =\frac{1}{\operatorname{vol}(M)}\int_Mf.
+\end{equation}
+For every Sobolev index \(r\), put
+\[
+  H^r_0(M)=\ker\Pi.
+\]
+Then
+\begin{equation}
+  \label{eq:Constant_Mean_Zero_Splitting}
+  H^r(M)=\R\oplus H^r_0(M).
+\end{equation}
+The kernel of \(\Delta\) is the space of constants, and its image is the
+space of mean-zero functions. The restriction
+\begin{equation}
+  \label{eq:Laplacian_Mean_Zero_Isomorphism}
+  \Delta\colon H^{l+2}_0(M)\iso H^l_0(M)
+\end{equation}
+is an isomorphism. Hence the Fredholm splittings are
+\[
+  K=\R,
+  \qquad
+  X'=H^{l+2}_0(M),
+  \qquad
+  \operatorname{im}\Delta=H^l_0(M),
+  \qquad
+  C=\R.
+\]
+
+Write
+\[
+  u=a+v,
+  \qquad
+  a\in\R,
+  \quad
+  v\in H^{l+2}_0(M).
+\]
+The mean-zero component of the equation is
+\begin{equation}
+  \label{eq:Laplacian_Square_Mean_Zero_Equation}
+  (1-\Pi)\bigl(\Delta v+(a+v)^2\bigr)=0.
+\end{equation}
+The derivative of its left side with respect to \(v\) at \((a,v)=(0,0)\) is
+the isomorphism in \Cref{eq:Laplacian_Mean_Zero_Isomorphism}. The implicit
+function theorem therefore gives a unique local solution
+\[
+  v=\varphi(a)
+\]
+of \Cref{eq:Laplacian_Square_Mean_Zero_Equation}.
+
+At this point the example simplifies more than a general
+Lyapunov--Schmidt reduction. For every constant \(a\), the choice \(v=0\)
+solves the mean-zero equation because
+\[
+  (1-\Pi)(a^2)=0.
+\]
+By local uniqueness,
+\begin{equation}
+  \label{eq:Laplacian_Square_Mean_Zero_Correction_Vanishes}
+  \varphi(a)=0
+\end{equation}
+for all sufficiently small \(a\).
+
+\subsection{The exact obstruction map}
+\label[subsection]{sec:Obstruction_Map_Exactly_A_Squared}
+
+The remaining constant component of the equation is
+\[
+  \kappa(a)
+  =\Pi(P_l(a+\varphi(a))).
+\]
+Using \Cref{eq:Laplacian_Square_Mean_Zero_Correction_Vanishes}, we obtain
+\begin{equation}
+  \label{eq:Laplacian_Square_Exact_Obstruction_Map}
+  \kappa(a)
+  =\Pi(a^2)
+  =a^2.
+\end{equation}
+Thus no further coordinate change is needed. The local finite-dimensional
+reduction is literally
+\[
+  \R\longrightarrow\R,
+  \qquad
+  a\longmapsto a^2.
+\]
+
+The same calculation can be displayed using the augmented equation. Include
+the constants into \(H^l(M)\) and set
+\[
+  \widetilde P_l(u,c)=\Delta u+u^2+c.
+\]
+The mean-zero component again gives \(v=0\). The constant component gives
+\[
+  a^2+c=0.
+\]
+Hence the finite-dimensional manifold cut out by the augmented equation is
+\[
+  V=\{(a,0,-a^2)\mid |a|\text{ is small}\}\cong\R.
+\]
+Projection to the obstruction coordinate is the section
+\[
+  s(a)=-a^2.
+\]
+This is exactly the obstruction-space chart from
+\Cref{thm:Fredholm_Kuranishi_Reduction}.
+
+\subsection{The local derived singularity}
+\label[subsection]{sec:Laplacian_Square_Local_Derived_Singularity}
+
+The ordinary zero locus of \(a^2\) is one point. Its derived zero locus is
+\begin{equation}
+  \label{eq:Laplacian_Square_Candidate_Derived_Model}
+  \R\times_{\R}^{\mathbf R}\{0\},
+  \qquad
+  a\longmapsto a^2.
+\end{equation}
+Its animated \(\Cinfty\)-ring is represented by the Koszul algebra
+\[
+  \bigl(\Cinfty(\R)\otimes\Lambda(e),\partial e=a^2\bigr),
+\]
+which was calculated in Chapter~5. Its tangent complex at zero is
+\begin{equation}
+  \label{eq:Laplacian_Square_Finite_Tangent_Complex}
+  [\R\xrightarrow{0}\R].
+\end{equation}
+
+The inclusions of constant functions give a map from
+\Cref{eq:Laplacian_Square_Finite_Tangent_Complex} to the Sobolev Fredholm
+complex
+\begin{equation}
+  \label{eq:Laplacian_Square_Sobolev_Fredholm_Complex}
+  [H^{l+2}(M)\xrightarrow{\Delta}H^l(M)].
+\end{equation}
+It induces an isomorphism on the kernels and cokernels, hence is a
+quasi-isomorphism. Linear elliptic regularity gives a second quasi-isomorphism
+to the smooth complex
+\[
+  [C^\infty(M)\xrightarrow{\Delta}C^\infty(M)]
+\]
+calculated in Chapter~10.
+
+We have therefore reached the exact finite-dimensional model anticipated at
+the beginning of the seminar:
+\[
+  \begin{gathered}
+    \Delta u+u^2=0
+    \quad\rightsquigarrow\quad
+    a^2=0,\\
+    [C^\infty(M)\xrightarrow{\Delta}C^\infty(M)]
+    \quad\simeq\quad
+    [\R\xrightarrow{0}\R].
+  \end{gathered}
+\]
+The arrow \(\rightsquigarrow\) denotes the classical finite-dimensional
+reduction proved in this chapter. Replacing it by an identification of derived
+solution stacks is the next task.
+
+\subsection{What the reduction proves, and what remains}
+\label[subsection]{sec:Fredholm_Reduction_What_Remains}
+
+The construction in this chapter solves the local analytic problem. It turns
+one nonlinear elliptic equation near one solution into a finite-dimensional
+section and preserves the entire two-term deformation-obstruction complex.
+It also explains the local origin of quasi-smoothness: the candidate derived
+model is the zero locus of a section of a finite-rank vector bundle.
+
+Several choices entered the construction:
+\begin{enumerate}
+  \item A Sobolev index \(l\).
+  \item A complement to the kernel of the linearization.
+  \item A finite-dimensional subspace representing its cokernel.
+  \item A neighborhood on which the augmented operator remains submersive.
+\end{enumerate}
+Different choices need not give identical Kuranishi charts. This is expected
+and was the central lesson of Chapter~8. The intrinsic object should not be
+defined to be any one of these presentations.
+
+Steffens instead begins with the solution stack from Chapter~10. The analytic
+construction is used to prove that an open restriction of this stack is
+represented by the derived zero locus of the obstruction section. Once that
+comparison is established, the uniqueness of representing objects supplies
+the compatibility among the different local reductions, and the local
+representability theorem from Chapter~9 glues them.
+
+The remaining questions are therefore precise.
+
+\begin{enumerate}
+  \item Why does the Sobolev reduction compute a pullback in derived smooth
+    stacks, rather than only the ordinary solution set?
+  \item Why is the result independent of fixing one Sobolev regularity?
+  \item How does the construction behave in smooth families of equations?
+  \item How do the resulting local representatives glue over an arbitrary
+    smooth-stack base?
+\end{enumerate}
+
+These questions are the proof architecture of the elliptic representability
+theorem.
+
+\section{Summary and supplementary materials}
+\label[section]{sec:Elliptic_Kuranishi_Summary_Supplementary_Materials}
+
+\subsection{Takeaways}
+\label[subsection]{sec:Fredholm_Reduction_Takeaways}
+
+The live route can be compressed into ten statements.
+
+\begin{enumerate}
+  \item Smooth section spaces are Fr\'echet, so the ordinary Banach implicit
+    function theorem does not apply directly.
+  \item An order-\(k\) differential operator extends at high regularity as
+    \(H^{l+k}\to H^l\).
+  \item The Sobolev extension of an elliptic linear operator on a closed
+    manifold is Fredholm.
+  \item Fredholmness says that the failure of invertibility is
+    finite-dimensional.
+  \item Adding a finite-dimensional representative of the cokernel makes the
+    augmented nonlinear equation submersive.
+  \item Its zero set is a finite-dimensional manifold carrying an obstruction
+    section.
+  \item The zero locus of that section is the original solution germ.
+  \item The tangent complex of the Kuranishi chart is quasi-isomorphic to the
+    Fredholm deformation-obstruction complex.
+  \item Elliptic regularity shows that the solutions found after Sobolev
+    completion are smooth.
+  \item For \(P(u)=\Delta u+u^2\), the obstruction map is exactly
+    \(a\mapsto a^2\).
+\end{enumerate}
+
+\subsection{Supplement: Lyapunov--Schmidt coordinates}
+\label[subsection]{sec:Lyapunov_Schmidt_Derived_Model}
+
+The obstruction-space construction is the form which appears in Steffens's
+proof. A second description makes the finite-dimensional obstruction map more
+explicit. It also gives the most efficient route through the running example.
+
+\subsubsection{Solving the image equation}
+\label[subsubsection]{sec:Solving_Image_Equation}
+
+Retain the splittings
+\[
+  X=K\oplus X',
+  \qquad
+  Y=\operatorname{im}L\oplus C
+\]
+from \Cref{eq:Fredholm_Splittings}. Let
+\[
+  q\colon Y\longrightarrow\operatorname{im}L,
+  \qquad
+  \pi_C\colon Y\longrightarrow C
+\]
+be the two projections. Write a point near \(x_0\) uniquely as
+\[
+  x=x_0+k+w,
+  \qquad
+  k\in K,
+  \quad
+  w\in X'.
+\]
+The equation \(P(x)=0\) has two components:
+\begin{align}
+  qP(x_0+k+w)&=0,
+    \label{eq:Lyapunov_Schmidt_Image_Equation}\\
+  \pi_CP(x_0+k+w)&=0.
+    \label{eq:Lyapunov_Schmidt_Obstruction_Equation}
+\end{align}
+
+The derivative with respect to \(w\) of the left side of
+\Cref{eq:Lyapunov_Schmidt_Image_Equation} at \((k,w)=(0,0)\) is
+\[
+  qL|_{X'}=L|_{X'}
+  \colon X'\iso\operatorname{im}L.
+\]
+The Banach implicit function theorem therefore gives a unique smooth map
+\[
+  \varphi\colon K_0\longrightarrow X'
+\]
+on a neighborhood \(K_0\subseteq K\) of zero such that
+\[
+  qP(x_0+k+\varphi(k))=0.
+\]
+The values of \(\varphi\) are the infinite-dimensional directions which have
+been solved away.
+
+The remaining equation is finite-dimensional.
+
+\begin{definition}[Lyapunov--Schmidt obstruction map]
+  \label[definition]{def:Lyapunov_Schmidt_Obstruction_Map}
+  The \emph{Lyapunov--Schmidt obstruction map} is
+  \begin{equation}
+    \label{eq:Lyapunov_Schmidt_Obstruction_Map}
+    \kappa\colon K_0\longrightarrow C,
+    \qquad
+    \kappa(k)=\pi_CP(x_0+k+\varphi(k)).
+  \end{equation}
+\end{definition}
+
+By construction, there is an isomorphism of germs of ordinary zero loci
+\begin{equation}
+  \label{eq:Lyapunov_Schmidt_Zero_Locus_Identification}
+  P^{-1}(0)_{x_0}
+  \cong
+  \kappa^{-1}(0)_0,
+  \qquad
+  x_0+k+\varphi(k)\longleftrightarrow k.
+\end{equation}
+
+The linear term of \(\kappa\) vanishes. Indeed, differentiating the image
+equation at zero gives
+\[
+  L(D_0\varphi(k))=0.
+\]
+The left side belongs to \(\operatorname{im}L\), while
+\(D_0\varphi(k)\in X'\), so
+\[
+  D_0\varphi=0.
+\]
+It follows that
+\[
+  D_0\kappa(k)
+  =\pi_CL(k+D_0\varphi(k))
+  =0.
+\]
+Thus all kernel directions are infinitesimal solutions at the base point. The
+nonlinear terms of \(\kappa\) determine which of them extend to actual nearby
+solutions.
+
+\subsubsection{The two constructions agree}
+\label[subsubsection]{sec:Two_Fredholm_Reductions_Agree}
+
+The augmented equation
+\[
+  P(x)+\iota(c)=0
+\]
+first implies \(qP(x)=0\). Hence every point of the manifold \(V\) from
+\Cref{thm:Fredholm_Kuranishi_Reduction} has the form
+\[
+  x=x_0+k+\varphi(k).
+\]
+Its \(C\)-component then says
+\[
+  \kappa(k)+c=0.
+\]
+Consequently, the map
+\[
+  k\longmapsto
+  \bigl(x_0+k+\varphi(k),-\kappa(k)\bigr)
+\]
+is a local parametrization of \(V\), and the obstruction section becomes
+\[
+  s(k)=-\kappa(k).
+\]
+
+Thus the obstruction-space construction and Lyapunov--Schmidt reduction are
+not competing methods. They are two descriptions of the same local chart.
+The first is coordinate-free once the obstruction space has been chosen. The
+second uses kernel and image splittings to write the chart as a map between
+finite-dimensional vector spaces.
+
+The sign is harmless. Multiplication by \(-1\) is an automorphism of the
+obstruction space, so the derived zero loci of \(\kappa\) and \(-\kappa\) are
+isomorphic.
+
+\subsubsection{The tangent complex and virtual dimension}
+\label[subsubsection]{sec:Lyapunov_Schmidt_Tangent_Complex}
+
+The Kuranishi chart in Lyapunov--Schmidt coordinates is the section
+\[
+  \kappa\colon K_0\longrightarrow K_0\times C
+\]
+of the trivial vector bundle. Its candidate derived zero locus is
+\begin{equation}
+  \label{eq:Candidate_Derived_Lyapunov_Schmidt_Zero_Locus}
+  Z^{\mathrm{der}}(\kappa)
+  =K_0\times_C^{\mathbf R}\{0\}.
+\end{equation}
+At a zero \(k\), its tangent complex is
+\[
+  [K\xrightarrow{D_k\kappa}C].
+\]
+By \Cref{thm:Fredholm_Kuranishi_Reduction}, this complex is
+quasi-isomorphic to
+\[
+  [X\xrightarrow{D_{x_k}P}Y],
+  \qquad
+  x_k=x_0+k+\varphi(k).
+\]
+At the base point, \(D_0\kappa=0\), so the complex is
+\begin{equation}
+  \label{eq:Kernel_Cokernel_Tangent_Complex}
+  [K\xrightarrow{0}C].
+\end{equation}
+
+The quasi-isomorphism is more important than an equality of dimensions. It
+identifies the deformation and obstruction spaces and behaves correctly at
+nearby solutions where \(D_k\kappa\) need not vanish. Its Euler
+characteristic is the Fredholm index by
+\Cref{eq:Fredholm_Index_Virtual_Dimension}.
+
+\begin{warning}[What has and has not been proved]
+  \label[warning]{warn:Candidate_Derived_Local_Model}
+  We have proved that the ordinary solution germ is the zero locus of
+  \(\kappa\), and that the tangent complex of its derived zero locus agrees
+  with the Fredholm deformation-obstruction complex. These facts strongly
+  identify \Cref{eq:Candidate_Derived_Lyapunov_Schmidt_Zero_Locus} as the
+  correct local derived model. They do not by themselves prove that this
+  derived zero locus represents an open substack of the solution stack from
+  Chapter~10.
+\end{warning}
+
+The missing assertion concerns the full functor of derived families, not only
+its ordinary points and tangent complex. Steffens proves it by showing that
+the augmented map is submersive in the derived stack setting. The Sobolev
+scale enters that proof as a whole rather than through one fixed completion.
+
+
+\subsection{Supplement: reduction with parameters}
+\label[subsection]{sec:Supplement_Fredholm_Reduction_With_Parameters}
+
+The relative theorem will use a parameterized version of the construction.
+Let \(B\) be a finite-dimensional manifold and let
+\[
+  P\colon B\times U\longrightarrow Y
+\]
+be smooth. Suppose that \(P(b_0,x_0)=0\) and that the vertical derivative
+\[
+  L=D_xP(b_0,x_0)\colon X\longrightarrow Y
+\]
+is Fredholm. Choose \(C\subseteq Y\) representing its cokernel and consider
+\[
+  \widetilde P(b,x,c)=P(b,x)+\iota(c).
+\]
+Its derivative in the \((x,c)\)-directions is surjective at
+\((b_0,x_0,0)\). Hence the full derivative is surjective, and the zero set
+\[
+  V=\widetilde P^{-1}(0)
+\]
+is a finite-dimensional manifold near that point.
+
+The projection \(V\to B\) is a submersion. Indeed, given
+\(\dot b\in T_bB\), surjectivity of
+\[
+  D_xP+\iota\colon X\oplus C\longrightarrow Y
+\]
+allows us to choose \((\dot x,\dot c)\) satisfying
+\[
+  D_bP(\dot b)+D_xP(\dot x)+\iota(\dot c)=0.
+\]
+Then \((\dot b,\dot x,\dot c)\in T_vV\) lifts \(\dot b\).
+
+Projection to \(C\) again gives an obstruction section
+\[
+  s\colon V\longrightarrow C,
+\]
+and \(s^{-1}(0)\) is the family of original solutions. At a zero, the
+relative tangent complex over \(B\) is quasi-isomorphic to the vertical
+Fredholm complex \([X\xrightarrow{D_xP}Y]\).
+
+This finite-dimensional parameterized statement is the local analytic model
+behind Steffens's relative theorem. The actual proof must first reduce a
+family of section stacks to this form and must then compare the resulting
+pullback with the one in derived stacks.
+
+\subsection{Supplement: the Sobolev tower}
+\label[subsection]{sec:Supplement_Sobolev_Tower}
+
+A fixed Sobolev completion is enough for the classical reduction, but it is
+not an intrinsic replacement for the smooth section stack. Steffens therefore
+uses the full tower
+\[
+  \Gamma(E)\longrightarrow\cdots\longrightarrow
+  H^{l+1}(E)\longrightarrow H^l(E)\longrightarrow\cdots.
+\]
+The transition maps are compact and have dense image, and the smooth section
+space is their inverse limit in convenient manifolds. An order-\(k\)
+differential operator gives compatible maps
+\[
+  P_l\colon H^{l+k}(E)\longrightarrow H^l(F).
+\]
+
+After adding the same smooth obstruction space at every level, the Banach
+implicit function theorem produces finite-dimensional augmented solution
+manifolds \(V_l\). Nonlinear elliptic regularity implies that their points are
+smooth at sufficiently high regularity. Linear elliptic regularity identifies
+their tangent spaces across successive levels. The tower of manifolds
+\(V_l\) is therefore eventually locally constant.
+
+This statement contains the analytic heart of Steffens's argument, but it is
+not yet the derived conclusion. The Sobolev tower is a limit diagram of smooth
+stacks, not a limit diagram of derived \(\Cinfty\)-stacks. The next chapter
+will explain how the stacky-submersion criterion bypasses this obstruction.
+
+\subsection{Supplement: a parametrix explanation of Fredholmness}
+\label[subsection]{sec:Supplement_Parametrix_Fredholmness}
+
+The proof of \Cref{thm:Elliptic_Operators_Are_Fredholm} belongs to elliptic
+analysis, but its mechanism can be summarized. Ellipticity permits the
+construction of a pseudodifferential parametrix \(Q\) satisfying
+\[
+  QL=1-R_1,
+  \qquad
+  LQ=1-R_2,
+\]
+where \(R_1\) and \(R_2\) are smoothing operators. On Sobolev spaces over a
+closed manifold, smoothing operators are compact. Thus \(L\) is invertible
+modulo compact operators, which implies that it is Fredholm.
+
+The same identities improve regularity. If \(Lu=f\) is smooth, then
+\[
+  u=Qf+R_1u.
+\]
+Both terms on the right are more regular than the original Sobolev estimate
+alone suggests. Iteration gives smoothness. Nonlinear regularity applies this
+idea to the linearization along a solution, with estimates controlling the
+nonlinear remainder.
+
+This sketch explains why Fredholmness and regularity arise from the same
+elliptic mechanism. It is not a proof of the pseudodifferential parametrix
+theorem.
+
+\subsection{Supplement: dependence on choices}
+\label[subsection]{sec:Supplement_Fredholm_Reduction_Choices}
+
+The finite-dimensional vector spaces \(K\) and \(C\) are determined up to
+isomorphism at the base point, but their embeddings and complements are
+chosen. Changing a complement changes the solved map \(\varphi\). Enlarging
+the obstruction space changes both the dimension of \(V\) and the section
+\(s\). Shrinking the neighborhood changes the domain of the chart.
+
+The operations from Chapter~8 already predict the appropriate comparisons.
+Shrinking does not change the germ. Adding a redundant obstruction direction
+is accompanied by a stabilization of the chart. Changes of complements give
+local coordinate changes. These observations explain why different
+reductions should present the same derived germ.
+
+They do not replace the representability proof. Constructing comparisons
+between every pair of choices, and then constructing all higher
+compatibilities, would reproduce the Kuranishi-atlas problem. The intrinsic
+solution stack avoids this task: once each reduction is shown to represent an
+open restriction of the same stack, their comparisons and higher coherence
+follow from uniqueness.
+
+\subsection{Related literature}
+\label[subsection]{sec:Fredholm_Reduction_Related_Literature}
+
+The primary source for the chapter is Steffens,
+\emph{Representability of Elliptic Moduli Problems in Derived
+\(C^\infty\)-Geometry}. Section~1.0.1 explains the passage from Fr\'echet
+section spaces to Sobolev completions and separates the analytic problem from
+the derived-pullback problem. Lemma~3.4.5 constructs the functorial Sobolev
+scale, and Lemma~3.4.6 records the nonlinear regularity theorem
+\cite[Section~1.0.1 and Lemmas~3.4.5--3.4.6]{Steffens_Representability_Elliptic_Moduli}.
+The proof of Theorem~3.4.3 adds a cokernel representative, applies the Banach
+implicit function theorem at every Sobolev level, and then performs the
+stack-theoretic comparison which we have postponed
+\cite[Proof of Theorem~3.4.3 and
+Remark~3.4.7]{Steffens_Representability_Elliptic_Moduli}.
+
+The Banach implicit function theorem may be found in Lang's
+\emph{Differential Manifolds}
+\cite[Chapter~I]{Lang_Differential_Manifolds}. For the nonlinear elliptic
+regularity input, Steffens points to Taylor's
+\emph{Pseudodifferential Operators and Nonlinear PDE}, specifically
+Theorem~1.2.D
+\cite[Theorem~1.2.D]{Taylor_Pseudodifferential_Nonlinear_PDE}.
+
+Pardon begins from the same linear principle: an elliptic complex on a compact
+manifold is quasi-isomorphic to a finite-dimensional complex. Section~2 also
+explains why this formulation behaves better in families than taking kernels
+and cokernels separately
+\cite[Section~2]{Pardon_Representability_Elliptic_Fredholm}. In the first step
+of the proof sketch of Theorem~5.1, Newton--Picard iteration represents the
+regular locus, where the linearization is surjective. The later
+finite-dimensional parameter thickening plays the role of adding obstruction
+directions
+\cite[Proof sketch of Theorem~5.1]{Pardon_Representability_Elliptic_Fredholm}.

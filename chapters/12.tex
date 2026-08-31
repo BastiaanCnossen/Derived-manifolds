@@ -1,0 +1,627 @@
+% This chapter is the complete working manuscript for the twelfth seminar
+% talk. The final section contains supplementary material outside the default
+% live route.
+
+\chapter{Elliptic representability I: the smooth-to-derived bridge}
+\label[chapter]{chap:Elliptic_Representability_Smooth_Derived_Bridge}
+
+Talk 10 defined the solution stack of a differential moduli problem before
+making any analytic choices. Talk 11 began with one elliptic equation near one
+solution, chose a Sobolev completion and a finite-dimensional obstruction
+space, and produced a Kuranishi model
+\[
+  \kappa\colon V\longrightarrow C.
+\]
+Its ordinary zero locus is the local solution set, and its tangent complex is
+quasi-isomorphic to the elliptic deformation-obstruction complex.
+
+These two constructions do not yet coincide. The intrinsic solution stack
+classifies smooth families over arbitrary test objects. The Kuranishi model
+was obtained by applying the Banach implicit function theorem at a chosen
+Sobolev regularity. Agreement on ordinary solutions and tangent complexes
+does not prove that the model represents the same derived moduli functor.
+
+The purpose of this chapter is to bridge that gap. We localize the intrinsic
+stack until it is the derived zero locus of one nonlinear operator on smooth
+section spaces. We then use a functorial tower of Sobolev completions to prove
+one geometric assertion: the augmented smooth operator is submersive as a
+morphism of derived $\Cinfty$-stacks. The Sobolev tower is used inside the
+proof, but it is not used to define the moduli object.
+
+This is the technical midpoint of Steffens's representability argument. The
+next chapter will take two finite-dimensional pullbacks, construct the local
+derived chart, and globalize it.
+
+\section{The theorem and the missing bridge}
+\label[section]{sec:Elliptic_Representability_Theorem_Gap}
+
+\subsection{The intrinsic solution stack}
+\label[subsection]{sec:Intrinsic_Solution_Stack_Recalled_Twelve}
+
+Let $S$ be a smooth stack and let $M\to S$ be an $S$-family of manifolds. An
+elliptic differential moduli problem
+\[
+  \mathcal E=(X\to M,Y_1\to M,Y_2\to M,P_1,P_2)
+\]
+is as in \Cref{def:Elliptic_Differential_Moduli_Problem}. The differential
+operators induce maps of section stacks
+\[
+  P_i\colon
+  \operatorname{Sect}_{M/S}(Y_i)
+  \longrightarrow
+  \operatorname{Sect}_{M/S}(X).
+\]
+Its solution stack is the pullback
+\begin{equation}
+  \label{eq:Elliptic_Solution_Stack_Twelve}
+  \begin{tikzcd}
+    \Sol(\mathcal E) \rar \dar \drar[pullback]
+      & \operatorname{Sect}_{M/S}(Y_1) \dar["P_1"] \\
+    \operatorname{Sect}_{M/S}(Y_2) \rar["P_2"']
+      & \operatorname{Sect}_{M/S}(X).
+  \end{tikzcd}
+\end{equation}
+This definition requires neither properness nor ellipticity. It is an
+intrinsic construction in the $\infty$-category of derived
+$\Cinfty$-stacks.
+
+At a solution $t=(\sigma_1,\sigma_2,\eta)$ over $s\in S$, the relative
+tangent complex is
+\begin{equation}
+  \label{eq:Elliptic_Relative_Tangent_Complex_Twelve}
+  \left[
+    \begin{matrix}
+      \Gamma(M_s,\sigma_1^*T_{Y_{1,s}/M_s})\\
+      {}\oplus
+      \Gamma(M_s,\sigma_2^*T_{Y_{2,s}/M_s})
+    \end{matrix}
+    \xrightarrow{D_{\sigma_1}P_1-D_{\sigma_2}P_2}
+    \Gamma(M_s,\sigma_X^*T_{X_s/M_s})
+  \right]
+\end{equation}
+in cohomological degrees $0$ and $1$, by
+\Cref{thm:Tangent_Complex_Solution_Stack}. Ellipticity says that the displayed
+differential is elliptic. If $M_s$ is compact, its kernel and cokernel are
+finite-dimensional, although the two chain groups are not.
+
+\subsection{The destination}
+\label[subsection]{sec:Relative_Elliptic_Representability_Destination}
+
+We isolate the geometric hypothesis on the domains.
+
+\begin{definition}[Proper family of manifolds]
+  \label[definition]{def:Proper_Family_Manifolds_Twelve}
+  Let $S$ be a smooth stack. A morphism $M\to S$ is an
+  \emph{$S$-family of manifolds} if it is submersive as a morphism of smooth
+  stacks. It is a \emph{proper $S$-family of manifolds} if it is also proper.
+\end{definition}
+
+For manifolds this is a proper submersion. Ehresmann's theorem then makes it
+locally a smooth fiber bundle with compact fiber. Steffens proves the
+corresponding local statement over a smooth-stack base
+\cite[Proposition~2.1.61]{Steffens_Representability_Elliptic_Moduli}.
+
+\begin{theorem}[Relative elliptic representability]
+  \label[theorem]{thm:Relative_Elliptic_Representability}
+  Let $S$ be a smooth stack, let $M\to S$ be a proper $S$-family of
+  manifolds, and let $\mathcal E$ be an elliptic differential moduli problem
+  over $M$. Then
+  \[
+    \Sol(\mathcal E)\longrightarrow S
+  \]
+  is representable by quasi-smooth derived $\Cinfty$-schemes locally of
+  finite presentation.
+\end{theorem}
+
+This is Steffens's Theorem~3.4.3
+\cite[Theorem~3.4.3]{Steffens_Representability_Elliptic_Moduli}. We state the
+theorem now so that every local construction has a visible destination. Its
+proof will be completed in the next chapter.
+
+The conclusion is relative. For every representable map $T\to S$, the base
+change
+\[
+  T\times_S\Sol(\mathcal E)
+\]
+is represented by a quasi-smooth derived $\Cinfty$-scheme locally of finite
+presentation over $T$.
+
+The theorem does not assert compactness, add broken or nodal domains, orient
+the determinant complex, or construct a virtual fundamental class. It proves
+that the solution functor already defined in
+\Cref{eq:Elliptic_Solution_Stack_Twelve} is geometric.
+
+\subsection{Why the Fredholm reduction is not enough}
+\label[subsection]{sec:Fredholm_Reduction_Not_Enough_Twelve}
+
+Suppose temporarily that $S$ is a manifold, that $M=S\times N$ with $N$
+compact, and that the problem has been placed in vector-bundle coordinates.
+It is then governed by a family
+\[
+  P\colon S\times Q\longrightarrow S\times\Gamma(E;N),
+\]
+where $Q\subseteq\Gamma(F;N)$ is open. At a solution $(s,\sigma)$, choose a
+finite-dimensional space $C$ representing the cokernel of the vertical
+linearization and a map
+\[
+  \iota\colon C\longrightarrow\Gamma(E;N)
+\]
+with smooth image. The augmented operator is
+\begin{equation}
+  \label{eq:Augmented_Operator_Informal_Twelve}
+  \widetilde P(s',\tau,c)
+  =\bigl(s',P_{s'}(\tau)+\iota(c)\bigr).
+\end{equation}
+
+Talk 11 applied the implicit function theorem to a Sobolev extension of this
+map. That produces an ordinary finite-dimensional augmented solution
+manifold, but it leaves three gaps:
+\begin{enumerate}
+  \item The intrinsic stack uses smooth sections, while the analytic
+    construction uses Sobolev sections.
+  \item A construction near ordinary points need not classify families over
+    derived test objects.
+  \item The Kuranishi model depends on auxiliary choices until it is
+    identified with an open part of the intrinsic stack.
+\end{enumerate}
+
+Smooth sections are the inverse limit of their Sobolev completions in smooth
+geometry. The inclusion of smooth stacks into derived $\Cinfty$-stacks need
+not preserve such countable limits. Consequently, it would be invalid simply
+to take a tower of Sobolev-level derived zero loci and declare its inverse
+limit to be the intrinsic solution stack.
+
+Steffens avoids this inverse limit. The tower is used to prove that
+\Cref{eq:Augmented_Operator_Informal_Twelve} is a submersion in smooth stacks.
+Submersiveness can then be transported into derived geometry, where only
+finite pullbacks remain.
+
+\section{Localizing the intrinsic problem}
+\label[section]{sec:Localizing_Intrinsic_Elliptic_Problem_Twelve}
+
+\subsection{A fixed compact domain}
+\label[subsection]{sec:Fixed_Compact_Domain_Twelve}
+
+Relative representability is local on $S$. Pull back along a smooth atlas,
+then shrink around the image of the chosen solution. We may suppose that $S$
+is a manifold. By properness and local triviality, we may further identify
+\begin{equation}
+  \label{eq:Proper_Family_Local_Product_Twelve}
+  M\iso S\times N,
+\end{equation}
+where $N$ is compact.
+
+The two parts of this reduction have different roles. The product description
+gives one fixed space of sections and one functorial Sobolev scale throughout
+the local family. Compactness makes the Sobolev extensions of elliptic
+operators Fredholm.
+
+Fix a solution
+\[
+  t=(s,\sigma_1,\sigma_2,\eta)
+  \in\Sol(\mathcal E).
+\]
+The path $\eta$ identifies the two output sections and their tangent data. We
+write the common output as $\sigma_X$.
+
+\subsection{Section-stack charts}
+\label[subsection]{sec:Section_Stack_Charts_Twelve}
+
+A local addition on a submersion $Y\to S\times N$ identifies a neighborhood
+of a section $\sigma$ with a neighborhood of the zero section in the vertical
+tangent bundle $\sigma^*T_{Y/(S\times N)}$. Since $N$ is compact, this
+pointwise construction induces an open chart on the stack of sections.
+
+\begin{proposition}[Local chart on a section stack]
+  \label[proposition]{prop:Local_Section_Stack_Chart_Twelve}
+  Let $S$ be a manifold, let $N$ be compact, and let
+  $Y\to S\times N$ be an $S$-family of submersions. Near a section over
+  $s\in S$, there are an open neighborhood $S'\subseteq S$, a vector bundle
+  $F\to N$, and an open substack inclusion
+  \[
+    S'\times Q\longrightarrow
+    \operatorname{Sect}_{S'\times N/S'}(Y|_{S'\times N}),
+  \]
+  where $Q\subseteq\Gamma(F;N)$ is open and contains the zero section.
+\end{proposition}
+
+We quote this from Steffens
+\cite[Proposition~3.2.22]{Steffens_Representability_Elliptic_Moduli}. The
+geometric slogan is that nearby sections are vertical vector fields along the
+chosen section. The stack-level assertion says that this description is
+compatible with arbitrary parameters and defines an open substack.
+
+Apply the proposition to $Y_1$, $Y_2$, and $X$. Relative jets commute with
+the required base changes, by Steffens's Proposition~3.3.9
+\cite[Proposition~3.3.9]{Steffens_Representability_Elliptic_Moduli}. The
+finite-order operators therefore restrict to maps between the local section
+charts.
+
+We will also use the following finite-limit observation.
+
+\begin{lemma}[Open charts pass to pullbacks]
+  \label[lemma]{lem:Open_Charts_Pass_To_Pullbacks_Twelve}
+  Consider a morphism between two cospans in an $\infty$-category of stacks
+  with finite limits:
+  \[
+    \begin{tikzcd}[column sep=large]
+      A \rar \dar[hook] & C \dar[hook] & B \lar \dar[hook] \\
+      A' \rar & C' & B' \lar.
+    \end{tikzcd}
+  \]
+  If the three vertical maps are open substack inclusions, then
+  \[
+    A\times_C B\longrightarrow A'\times_{C'}B'
+  \]
+  is an open substack inclusion.
+\end{lemma}
+
+\begin{proof}
+  Open substack inclusions are monomorphisms and are stable under products and
+  base change. The induced square
+  \[
+    \begin{tikzcd}
+      A\times_C B \rar \dar \drar[pullback]
+        & A\times B \dar \\
+      A'\times_{C'}B' \rar
+        & A'\times B'
+    \end{tikzcd}
+  \]
+  is a pullback because two points of $A$ and $B$ with equal images in $C'$
+  already have equal images in $C$. The result is therefore a base change of
+  an open inclusion.
+\end{proof}
+
+This is the open-inclusion case of Steffens's Lemma~3.4.4
+\cite[Lemma~3.4.4]{Steffens_Representability_Elliptic_Moduli}. Applying it to
+the three section charts gives an open substack
+\begin{equation}
+  \label{eq:Local_Solution_Open_Substack_Twelve}
+  \Sol(\mathcal E)_t\longrightarrow\Sol(\mathcal E)
+\end{equation}
+containing $t$.
+
+\subsection{One nonlinear PDE}
+\label[subsection]{sec:One_Nonlinear_PDE_Twelve}
+
+In vector-bundle coordinates, the equality $P_1=P_2$ becomes the zero
+equation for their difference. Put
+\[
+  F=F_1\times_NF_2,
+  \qquad
+  E=\sigma_X^*T_{X/M}.
+\]
+The finite-order condition gives an open vector-bundle neighborhood
+$W\subseteq J_N^k(F)$ on which the local operator is defined. Let
+\[
+  Q=\{\tau\in\Gamma(F;N):j^k\tau(N)\subseteq W\}.
+\]
+Compactness of $N$ makes $Q$ open in the smooth section space. We obtain one
+smooth map over $S$,
+\begin{equation}
+  \label{eq:Local_Nonlinear_PDE_Twelve}
+  P\colon S\times Q\longrightarrow S\times\Gamma(E;N),
+  \qquad
+  (s',\tau)\longmapsto(s',P_{s'}(\tau)).
+\end{equation}
+
+The derived zero locus of \Cref{eq:Local_Nonlinear_PDE_Twelve} is precisely
+the open stack in \Cref{eq:Local_Solution_Open_Substack_Twelve}. Ellipticity
+says that at each solution in this chart the vertical derivative
+\begin{equation}
+  \label{eq:Vertical_Elliptic_Linearization_Twelve}
+  D_\tau P_{s'}\colon
+  \Gamma(F;N)\longrightarrow\Gamma(E;N)
+\end{equation}
+is elliptic.
+
+The local equation has not replaced the intrinsic stack by an analytic
+model. It describes an open restriction of that stack before any Sobolev
+completion has been chosen.
+
+\section{The Sobolev tower and obstruction augmentation}
+\label[section]{sec:Sobolev_Tower_Obstruction_Augmentation_Twelve}
+
+\subsection{The functorial tower}
+\label[subsection]{sec:Functorial_Sobolev_Tower_Twelve}
+
+For sufficiently large $l$, the order-$k$ operator in
+\Cref{eq:Local_Nonlinear_PDE_Twelve} extends to a smooth map of Banach
+manifolds
+\begin{equation}
+  \label{eq:Sobolev_Level_Operator_Twelve}
+  P_l\colon S\times Q_{k+l}
+  \longrightarrow S\times H^l(E;N),
+\end{equation}
+where $Q_{k+l}\subseteq H^{k+l}(F;N)$ is the open subset satisfying the
+corresponding jet condition. The shift by $k$ records the loss of derivatives
+of an order-$k$ operator.
+
+Steffens's functorial Sobolev-scale lemma supplies four properties which are
+used in the proof:
+\begin{enumerate}
+  \item Smooth sections are the inverse limit of the Sobolev spaces.
+  \item The transition maps are compact and have dense image.
+  \item Open jet conditions determine compatible open subsets $Q_{k+l}$.
+  \item Jet prolongation and the nonlinear operator extend compatibly through
+    the tower.
+\end{enumerate}
+The precise statement is Lemma~3.4.5
+\cite[Lemma~3.4.5]{Steffens_Representability_Elliptic_Moduli}. In particular,
+we have a commuting tower
+\[
+  \begin{tikzcd}[column sep=small]
+    S\times Q \rar \dar["P"']
+      & \cdots \rar
+      & S\times Q_{k+l+1} \rar \dar["P_{l+1}"']
+      & S\times Q_{k+l} \rar \dar["P_l"']
+      & \cdots \\
+    S\times\Gamma(E;N) \rar
+      & \cdots \rar
+      & S\times H^{l+1}(E;N) \rar
+      & S\times H^l(E;N) \rar
+      & \cdots.
+  \end{tikzcd}
+\]
+Both rows are limit diagrams in convenient manifolds and hence in smooth
+stacks.
+
+We use convenient manifolds only as a setting in which smooth section spaces
+and the displayed limits exist. No general convenient inverse function
+theorem enters the proof.
+
+\begin{warning}[Do not take the derived inverse limit]
+  \label[warning]{warn:No_Derived_Sobolev_Inverse_Limit_Twelve}
+  The two rows above need not remain limit diagrams after passage from smooth
+  stacks to derived $\Cinfty$-stacks. In particular, one may not identify the
+  intrinsic solution stack with the inverse limit of the Sobolev-level
+  derived zero loci.
+\end{warning}
+
+The warning also has a geometric explanation. At one fixed Sobolev level,
+reparametrization groups generally fail to act smoothly. A fixed completion
+is therefore poorly suited to the global family structure of a moduli
+problem. The intrinsic stack remains a stack of smooth sections.
+
+\subsection{A compatible obstruction augmentation}
+\label[subsection]{sec:Compatible_Obstruction_Augmentation_Twelve}
+
+Fix the solution $(s,\sigma)$. The Sobolev extension of
+$D_\sigma P_s$ is Fredholm. Choose a finite-dimensional space
+\[
+  C\cong\operatorname{coker}(D_\sigma P_s)
+\]
+and represent it by smooth sections through a map
+\[
+  \iota\colon C\longrightarrow\Gamma(E;N).
+\]
+Define
+\[
+  \widetilde P_l(s',\tau,c)
+  =\bigl(s',P_{l,s'}(\tau)+\iota(c)\bigr).
+\]
+
+At $(s,\sigma,0)$, the vertical derivative of $\widetilde P_l$ is
+surjective. Openness of the Fredholm locus and upper semicontinuity of
+cokernel dimension give compatible neighborhoods
+\[
+  \widetilde U_l\subseteq S\times Q_{k+l}\times C
+\]
+on which every $\widetilde P_l$ is a Fredholm submersion. Their smooth cone
+point is an open neighborhood
+\[
+  \widetilde U\subseteq S\times Q\times C.
+\]
+It carries the smooth augmented operator
+\begin{equation}
+  \label{eq:Augmented_Smooth_Operator_Twelve}
+  \widetilde P\colon
+  \widetilde U\longrightarrow S\times\Gamma(E;N),
+  \qquad
+  (s',\tau,c)\longmapsto
+  \bigl(s',P_{s'}(\tau)+\iota(c)\bigr).
+\end{equation}
+
+The Banach implicit function theorem applies at each Sobolev level. The
+remaining question is whether the smooth map
+\Cref{eq:Augmented_Smooth_Operator_Twelve} is submersive in the sense needed
+for derived pullbacks.
+
+\section{Testing submersiveness on smooth families}
+\label[section]{sec:Testing_Submersiveness_Smooth_Families_Twelve}
+
+\subsection{The categorical criterion}
+\label[subsection]{sec:Smooth_Derived_Submersion_Criterion_Twelve}
+
+The comparison we need is a consequence of Steffens's
+Proposition~2.2.18(3) and Corollary~2.2.19.
+
+\begin{proposition}[Smooth-to-derived submersion criterion]
+  \label[proposition]{prop:Smooth_To_Derived_Submersion_Criterion_Twelve}
+  Let $f\colon\mathcal X\to\mathcal Y$ be a morphism of smooth stacks. Suppose
+  that for every manifold $Z$ and every map $Z\to\mathcal Y$, the pullback
+  formed in smooth stacks
+  \[
+    Z\times_{\mathcal Y}\mathcal X\longrightarrow Z
+  \]
+  is represented locally by a submersion of ordinary manifolds. Then the map
+  obtained from $f$ in derived $\Cinfty$-stacks is submersive.
+\end{proposition}
+
+The result is not merely the assertion that ordinary submersions remain
+submersions. Proposition~2.2.18 supplies the representable testing criterion,
+and Corollary~2.2.19 transports the resulting notion from smooth to derived
+stacks
+\cite[Proposition~2.2.18 and Corollary~2.2.19]{Steffens_Representability_Elliptic_Moduli}.
+
+Geometrically, the criterion retains exactly the property needed for finite
+pullbacks. A pullback along a submersion is transverse, so its ordinary smooth
+pullback already computes the corresponding derived pullback.
+
+\subsection{Sobolev test pullbacks}
+\label[subsection]{sec:Sobolev_Test_Pullbacks_Twelve}
+
+\begin{proposition}[Derived submersiveness of the augmented operator]
+  \label[proposition]{prop:Augmented_Operator_Derived_Submersive_Twelve}
+  After shrinking $\widetilde U$ around $(s,\sigma,0)$, the map
+  \Cref{eq:Augmented_Smooth_Operator_Twelve} is submersive as a morphism of
+  derived $\Cinfty$-stacks.
+\end{proposition}
+
+\begin{proof}
+  Let $Z$ be a manifold and let
+  \[
+    g\colon Z\longrightarrow S\times\Gamma(E;N)
+  \]
+  be a map of smooth stacks. Compose $g$ with the map to each Sobolev level
+  and form
+  \begin{equation}
+    \label{eq:Sobolev_Test_Pullback_Twelve}
+    Z_l
+    =Z\times_{S\times H^l(E;N)}\widetilde U_l.
+  \end{equation}
+  Since $\widetilde P_l$ is a Fredholm submersion, the Banach implicit
+  function theorem shows that $Z_l$ is a finite-dimensional manifold and
+  $Z_l\to Z$ is a submersion. The spaces $Z_l$ form an inverse tower.
+
+  We show that this tower is eventually locally constant. First consider
+  points. A point of $Z_l$ is represented by $(z,\tau,c)$ satisfying
+  \[
+    P_l(\tau)+\iota(c)=g(z).
+  \]
+  The right-hand side and $\iota(c)$ are smooth sections. Nonlinear elliptic
+  regularity therefore makes $\tau$ smooth. Thus the tower eventually stops
+  acquiring new points locally.
+
+  Next consider tangent spaces relative to $Z$. At a smooth point, the
+  vertical tangent space of $Z_l\to Z$ is the kernel of the linearized
+  augmented operator
+  \[
+    D\widetilde P_l\colon
+    H^{k+l}(F;N)\oplus C\longrightarrow H^l(E;N).
+  \]
+  Linear elliptic regularity makes every element of this kernel smooth. Hence
+  the transition maps eventually induce isomorphisms on vertical tangent
+  spaces. Since both stages are submersive over $Z$, their total tangent
+  spaces are then isomorphic as well, so the transition map is a local
+  diffeomorphism.
+
+  Point stabilization and tangent stabilization together make the inverse
+  tower eventually locally constant. Its limit in smooth stacks is therefore
+  represented locally by one of the finite-dimensional manifolds $Z_l$, and
+  its map to $Z$ is a submersion. Functoriality of the Sobolev tower identifies
+  that limit with
+  \[
+    Z\times_{S\times\Gamma(E;N)}\widetilde U.
+  \]
+  The criterion in
+  \Cref{prop:Smooth_To_Derived_Submersion_Criterion_Twelve} proves the claim.
+\end{proof}
+
+The source compresses one analytic point in this proof. Pointwise elliptic
+regularity alone does not give a neighborhood on which one Sobolev stage
+works uniformly. Steffens's compatible choice of the neighborhoods
+$\widetilde U_l$, together with the regularizing property of Lemma~3.4.6,
+supplies the required local uniformity
+\cite[Proof of Theorem~3.4.3, pp.~69--70]{Steffens_Representability_Elliptic_Moduli}.
+
+The argument has not taken a limit in derived stacks. It took a limit in
+smooth stacks, extracted the finite-limit property of submersiveness, and
+transported only that property into derived geometry. This is the
+smooth-to-derived bridge.
+
+\subsection{The exact handoff}
+\label[subsection]{sec:Exact_Handoff_Derived_Chart_Thirteen}
+
+We now know that
+\[
+  \widetilde P\colon
+  \widetilde U\longrightarrow S\times\Gamma(E;N)
+\]
+is derived-submersive. Consequently, its derived pullback along the zero
+section is represented by the corresponding transverse smooth pullback. That
+pullback is an ordinary finite-dimensional manifold $V$.
+
+The original equation is not yet obtained by this first pullback, because
+$V$ still carries the obstruction coordinate $c$. The next chapter will
+project $V$ to $S\times C$ and impose $c=0$ by a second, finite-dimensional
+derived pullback. The first pullback removes the infinite-dimensional
+analysis. The second retains the finite-dimensional obstruction theory.
+
+\section{Summary and supplementary materials}
+\label[section]{sec:Smooth_Derived_Bridge_Summary_Supplementary}
+
+\subsection{Takeaways}
+\label[subsection]{sec:Smooth_Derived_Bridge_Takeaways}
+
+The live route can be compressed into eight statements.
+\begin{enumerate}
+  \item The solution stack is defined intrinsically before choosing a
+    completion or obstruction space.
+  \item Properness reduces the domain family locally to $S\times N$ with
+    $N$ compact.
+  \item Local additions and relative jets reduce an open part of the
+    intrinsic stack to the derived zero locus of one smooth family $P$.
+  \item A functorial Sobolev tower supplies Banach manifolds without
+    redefining the moduli problem at finite regularity.
+  \item A finite-dimensional obstruction space makes every Sobolev-level
+    augmented operator a Fredholm submersion after shrinking.
+  \item Smooth test pullbacks are finite-dimensional submersions at every
+    level.
+  \item Nonlinear and linear elliptic regularity make their towers eventually
+    locally constant.
+  \item The testing criterion turns this smooth statement into derived
+    submersiveness of the augmented operator.
+\end{enumerate}
+
+\subsection{Supplement: the general open-pullback lemma}
+\label[subsection]{sec:Supplement_General_Open_Pullback_Twelve}
+
+Steffens's Lemma~3.4.4 is more general than
+\Cref{lem:Open_Charts_Pass_To_Pullbacks_Twelve}. It considers a morphism of
+cospans
+\[
+  \begin{tikzcd}[column sep=large]
+    X_0 \rar \dar["f_0"'] & X_1 \dar["f_1"] & X_2 \lar \dar["f_2"] \\
+    Y_0 \rar & Y_1 & Y_2 \lar
+  \end{tikzcd}
+\]
+and a geometric class of morphisms stable under products and base change. If
+the $f_i$ lie in that class and the natural comparison conditions hold, then
+the induced map
+\[
+  X_0\times_{X_1}X_2
+  \longrightarrow
+  Y_0\times_{Y_1}Y_2
+\]
+lies in the same class. Open inclusions are the case used in the live proof.
+
+\subsection{Supplement: why finite regularity is not the moduli object}
+\label[subsection]{sec:Supplement_Finite_Regularity_Not_Moduli_Twelve}
+
+One might try to avoid the Sobolev tower by defining the moduli problem at one
+large Sobolev index. This would make the implicit function theorem immediate,
+but it would make the global object depend on an arbitrary analytic choice.
+It also behaves badly under reparametrization: diffeomorphism groups of the
+domain generally do not act smoothly on a fixed Sobolev completion.
+
+Steffens's Remark~3.4.7 emphasizes the alternative. Define the moduli functor
+using smooth families, use Sobolev spaces only to prove local
+submersiveness, and return to the intrinsic smooth stack before taking the
+derived pullback
+\cite[Remark~3.4.7]{Steffens_Representability_Elliptic_Moduli}.
+
+\subsection{Related literature}
+\label[subsection]{sec:Smooth_Derived_Bridge_Related_Literature}
+
+The primary source is Steffens's proof of Theorem~3.4.3. Proposition~3.2.22
+provides section-stack charts, Proposition~3.3.9 controls relative jets,
+Lemmas~3.4.4--3.4.6 provide the open-pullback and Sobolev inputs, and
+Proposition~2.2.18 together with Corollary~2.2.19 supplies the categorical
+bridge
+\cite[Proposition~2.2.18, Corollary~2.2.19, Proposition~3.2.22,
+Proposition~3.3.9, and Lemmas~3.4.4--3.4.6]{Steffens_Representability_Elliptic_Moduli}.
+Pardon's published survey separates the ordinary regularity calculation from
+the categorical extension to derived tests by a different method. That
+comparison belongs to the end of the next chapter
+\cite[Section~5]{Pardon_Representability_Elliptic_Fredholm}.

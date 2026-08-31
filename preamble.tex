@@ -1,0 +1,150 @@
+% Document setup and language
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{subfiles}
+\setcounter{secnumdepth}{2}
+
+% Mathematics
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{dsfont}
+\usepackage{mathtools}
+
+% Typography
+\usepackage{newtxtext,newtxmath}
+\usepackage{csquotes}
+\usepackage{microtype}
+\setlength{\parskip}{\smallskipamount}
+\setlength{\parindent}{0pt}
+
+% Diagrams and tables
+\usepackage{tikz-cd,tikz}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+% Lists
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=(\arabic*),leftmargin=*}
+\setlist[itemize]{leftmargin=*}
+
+% Links and references
+\usepackage[hyphens]{url}
+\urlstyle{same}
+\usepackage{bookmark}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  filecolor=black,
+  urlcolor=black,
+  citecolor=black,
+  bookmarksdepth=subsubsection,
+  pdftitle={Derived manifolds: MIGOS seminar notes}
+}
+
+% Bibliography
+\usepackage[
+  backend=biber,
+  natbib,
+  style=alphabetic,
+  maxcitenames=4,
+  maxalphanames=5,
+  maxbibnames=99
+]{biblatex}
+\renewbibmacro{in:}{}
+\addbibresource{C:/Users/LocalAdmin/OneDrive/Documenten OneDrive/A - Regensburg/Research and notes/Main_Bibliography.bib}
+
+% Basic notation. Add project-specific notation only when it is first used.
+\newcommand{\Cinfty}{C^\infty}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\An}{\mathcal{S}}
+\newcommand{\Cat}{\mathrm{Cat}}
+\newcommand{\catop}{^{\mathrm{op}}}
+\newcommand{\unit}{\mathds{1}}
+\newcommand{\iso}{\xrightarrow{\;\smash{\raisebox{-0.5ex}{\ensuremath{\scriptstyle\sim}}}\;}}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Sec}{Sec}
+\DeclareMathOperator{\Sol}{Sol}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{discussion}[theorem]{Discussion}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{terminology}[theorem]{Terminology}
+\newtheorem{warning}[theorem]{Warning}
+
+\newtheorem*{claim*}{Claim}
+\newtheorem*{convention*}{Convention}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{example*}{Example}
+\newtheorem*{fact*}{Fact}
+\newtheorem*{question*}{Question}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{warning*}{Warning}
+
+% Pullback and pushout markers for tikz-cd.
+\tikzcdset{pullback/.style={phantom,"\lrcorner"{very near start}}}
+\tikzcdset{pushout/.style={phantom,"{\rotatebox{180}{$\lrcorner$}}"{very near end}}}
+
+\usepackage[capitalise]{cleveref}
+\crefname{claim}{claim}{claims}
+\crefname{conjecture}{conjecture}{conjectures}
+\crefname{construction}{construction}{constructions}
+\crefname{convention}{convention}{conventions}
+\crefname{corollary}{corollary}{corollaries}
+\crefname{definition}{definition}{definitions}
+\crefname{discussion}{discussion}{discussions}
+\crefname{example}{example}{examples}
+\crefname{exercise}{exercise}{exercises}
+\crefname{fact}{fact}{facts}
+\crefname{lemma}{lemma}{lemmas}
+\crefname{notation}{notation}{notations}
+\crefname{observation}{observation}{observations}
+\crefname{proposition}{proposition}{propositions}
+\crefname{question}{question}{questions}
+\crefname{remark}{remark}{remarks}
+\crefname{terminology}{terminology}{terminologies}
+\crefname{theorem}{theorem}{theorems}
+\crefname{warning}{warning}{warnings}
+
+\Crefname{claim}{Claim}{Claims}
+\Crefname{conjecture}{Conjecture}{Conjectures}
+\Crefname{construction}{Construction}{Constructions}
+\Crefname{convention}{Convention}{Conventions}
+\Crefname{corollary}{Corollary}{Corollaries}
+\Crefname{definition}{Definition}{Definitions}
+\Crefname{discussion}{Discussion}{Discussions}
+\Crefname{example}{Example}{Examples}
+\Crefname{exercise}{Exercise}{Exercises}
+\Crefname{fact}{Fact}{Facts}
+\Crefname{lemma}{Lemma}{Lemmas}
+\Crefname{notation}{Notation}{Notations}
+\Crefname{observation}{Observation}{Observations}
+\Crefname{proposition}{Proposition}{Propositions}
+\Crefname{question}{Question}{Questions}
+\Crefname{remark}{Remark}{Remarks}
+\Crefname{terminology}{Terminology}{Terminologies}
+\Crefname{theorem}{Theorem}{Theorems}
+\Crefname{warning}{Warning}{Warnings}

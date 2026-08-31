@@ -14,14 +14,27 @@ The proposed endpoint is an informed understanding of modern representability re
 4. What Steffens's elliptic representability theorem and Pardon's derived regularity theorem actually assert.
 5. Why compactification, logarithmic geometry, and virtual fundamental classes remain additional steps.
 
-The core program has twelve talks. It is designed so that talks 1--9 form a useful seminar even if the final research-level material has to be shortened.
+The current public draft has fourteen talks of 90 minutes. Its principal
+representability endpoint is Steffens's relative elliptic representability
+theorem. Pardon's argument is treated as a comparison. The final talk turns to
+the pseudo-holomorphic curve application. Derived bordism and fundamental
+classes form an interlude immediately after the first nonlinear derived
+intersection calculations, while logarithmic degeneration is retained as
+supplementary outlook material.
 
 ## Files
 
-1. [`program.tex`](program.tex) is the public-facing seminar program.
-2. [`NARRATIVE.md`](NARRATIVE.md) explains the proposed arc, the audience contract, and shorter or longer variants.
-3. [`LITERATURE.md`](LITERATURE.md) is an annotated and status-sensitive guide to the literature.
-4. [`AGENTS.draft.md`](AGENTS.draft.md) is a proposed project instruction file awaiting approval before it becomes `AGENTS.md`.
+1. [`program.tex`](program.tex) is the provisional public-facing seminar program.
+2. [`main.tex`](main.tex), [`preamble.tex`](preamble.tex), and [`book.cls`](book.cls) form the modular manuscript setup.
+3. [`chapters/`](chapters/) contains the fourteen manuscript chapters.
+4. [`planning/`](planning/) contains the current deliberation dossiers, timed
+   outlines, and selected review notes.
+5. [`supplements/`](supplements/) contains substantial material outside the
+   live fourteen-talk route.
+6. [`NOTATION.md`](NOTATION.md) records notation and terminology that must remain stable across chapters.
+7. [`NARRATIVE.md`](NARRATIVE.md) explains the seminar arc and audience contract.
+8. [`LITERATURE.md`](LITERATURE.md) is an annotated and status-sensitive guide to the literature.
+9. [`AGENTS.md`](AGENTS.md) records the project instructions.
 
 ## Building the program
 
@@ -31,7 +44,15 @@ Run
 latexmk -pdf program.tex
 ```
 
-The document is self-contained and does not currently depend on the shared bibliography file. Precise bibliographic work should nevertheless reuse entries from the shared file whenever they exist:
+To build the manuscript shell into `output/pdf/`, run
+
+```text
+latexmk -pdf -outdir=output/pdf main.tex
+```
+
+The program is self-contained. The manuscript uses the shared bibliography
+file, and all precise bibliographic work should reuse entries from that file
+whenever they exist:
 
 ```text
 C:/Users/LocalAdmin/OneDrive/Documenten OneDrive/A - Regensburg/Research and notes/Main_Bibliography.bib
@@ -39,4 +60,7 @@ C:/Users/LocalAdmin/OneDrive/Documenten OneDrive/A - Regensburg/Research and not
 
 ## Status
 
-This is an initial working proposal. Dates, speakers, the number of available meetings, and the final balance between derived geometry, analysis, and virtual fundamental classes remain to be decided.
+The fourteen dates and 90-minute duration are fixed, and all fourteen
+manuscript chapters have been written. Speaker assignments remain to be
+decided. The program and manuscript are ready for a program-wide revision
+pass.

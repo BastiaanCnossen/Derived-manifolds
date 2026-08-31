@@ -2,7 +2,9 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[margin=30mm]{geometry}
+\usepackage{amsmath,amssymb}
 \usepackage{enumitem}
+\usepackage{needspace}
 \usepackage{xcolor}
 \usepackage{hyperref}
 
@@ -19,97 +21,313 @@
 \setlist[enumerate]{leftmargin=*,topsep=3pt,itemsep=2pt}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{1em}
 
 \newcommand{\Cinfty}{\ensuremath{C^\infty}}
-\newcommand{\Talk}[5]{%
-  \subsection*{Talk #1: #2}
-  \textbf{Aim.} #3
+\newcommand{\Talk}[6]{%
+  \Needspace{8\baselineskip}%
+  \subsection*{Talk #1, #2: #3}
+  \textbf{Aim.} #4
 
-  \textbf{Content.} #4
+  \textbf{Content.} #5
 
-  \textbf{Primary references.} #5
+  \textbf{Primary references.} #6
 }
 
 \title{MIGOS 2026/27: Derived manifolds\\\large Draft seminar program}
 \author{Organizers: Bastiaan Cnossen and Sil Linskens}
-\date{21 August 2026}
+\date{30 August 2026}
 
 \begin{document}
 
 \maketitle
 
-\section*{Scope and goal}
+\section*{Scope and endpoint}
 
-The seminar develops derived manifolds from the elementary problem of non-transverse intersections to recent representability results for moduli spaces of solutions to nonlinear elliptic equations. It is intended to be accessible to first-year PhD students from several areas. We will therefore emphasize examples, universal properties, and the geometric role of the formalism.
+The seminar develops derived manifolds from the elementary problem of
+nontransverse intersections to modern representability results for moduli
+spaces of solutions to nonlinear elliptic equations. It is intended to be
+accessible to first-year PhD students from several areas. We will therefore
+organize the material around recurring examples, universal properties, and a
+small number of explicit takeaways.
 
-Our endpoint is an understanding of the statement and proof architecture of elliptic representability. We will not attempt complete proofs of the main theorems of Steffens or Pardon. By the end, participants should understand why a solution space carries a derived structure, how its tangent complex records deformation and obstruction spaces, and why compactification and virtual fundamental classes require further work.
+Each talk lasts 90 minutes. Substantial working manuscript material exists for
+all fourteen dates, but the chapter boundaries remain revisable during the
+program-wide consolidation pass. The newly assigned bordism interlude has now
+been written as Chapter~6 of the working manuscript.
+
+The principal endpoint is Steffens's relative elliptic representability
+theorem. In a condensed form, it says that if $S$ is a smooth stack,
+$M\to S$ is a proper $S$-family of manifolds, and $\mathcal E$ is an
+$S$-family of elliptic differential moduli problems over $M$, then
+\[
+  \operatorname{Sol}(\mathcal E)\longrightarrow S
+\]
+is represented by quasi-smooth derived \Cinfty-schemes locally of finite
+presentation.
+
+Our goal is to understand why this statement has exactly this form and how its
+proof combines three engines:
+\begin{enumerate}
+  \item Derived geometry supplies pullbacks, tangent complexes, and local
+    derived zero loci.
+  \item Fredholm analysis supplies finite-dimensional reductions and
+    obstruction spaces.
+  \item Descent and locality of representability turn the local reductions
+    into an intrinsic global moduli object.
+\end{enumerate}
+We will not attempt complete proofs of every technical ingredient. By the end,
+participants should be able to trace the proof architecture, identify the
+deformation and obstruction spaces at a solution, and explain why
+representability remains logically separate from compactification,
+orientations, and virtual fundamental classes.
 
 \section*{Program}
 
-\Talk{1}{Why derived manifolds?}
-{See the geometric problem before developing the language.}
-{Start with intersections of submanifolds and zero loci of sections. Compare transverse and non-transverse examples, including a self-intersection and a zero locus with excess tangent directions. Introduce local Kuranishi models as finite-dimensional reductions of elliptic problems. Formulate the two guiding questions: what structure should a singular zero locus retain, and how can local models be glued without arbitrary choices?}
-{Spivak, \emph{Derived smooth manifolds}, Section 1; Steffens, \emph{Derived differential geometry}, Chapter 1; Pardon, \emph{Logarithmic derived moduli theory}, Sections P.1--P.2.}
+\Talk{1}{13 October}{Why derived manifolds?}
+{See the geometric and analytic problems before developing the formalism.}
+{Prove the transverse fiber product theorem and compare a transverse
+intersection of plane curves with the tangent line--parabola intersection.
+Explain what the underlying zero set forgets about its defining equation. Use
+a family of two-term complexes to show why kernels alone do not form a stable
+geometric object. End with the local finite-dimensional reduction of an
+elliptic equation as a quoted preview and formulate the nonuniqueness and
+coherence problem for the resulting zero-locus charts.}
+{Spivak, \emph{Derived smooth manifolds}, Section~1; Steffens,
+\emph{Derived differential geometry}, Chapter~1, especially
+Section~1.0.1; Pardon, \emph{Representability in non-linear elliptic Fredholm
+analysis}, Sections~1--2.}
 
-\Talk{2}{Smooth geometry through \Cinfty-rings}
-{Learn the algebraic object that remembers all smooth operations.}
-{Define a \Cinfty-ring as a product-preserving functor from Euclidean spaces and smooth maps. Prove that $\Cinfty(\mathbb{R}^n)$ is free on $n$ generators. Discuss quotients and finitely generated \Cinfty-rings. Use Borel's theorem as a concrete indication that smooth algebra differs sharply from polynomial algebra. Explain the full faithfulness result for locally closed subsets.}
-{Moerdijk--Reyes, \emph{Models for smooth infinitesimal analysis}, Chapter I, Section 1, especially Proposition 1.1, Theorem 1.3, and Proposition 1.5.}
+\Talk{2}{20 October}{Smooth geometry through \Cinfty-rings}
+{Learn the algebraic structure which remembers every smooth operation.}
+{Define a \Cinfty-ring as a finite-product-preserving functor from Euclidean
+spaces and smooth maps to sets. Prove that $\Cinfty(\mathbb R^n)$ is free on
+$n$ generators. Study quotients and the different equations which can define
+the same underlying point. Use Borel's theorem to illustrate the difference
+between smooth and polynomial algebra. Prove the closed-subset case of the
+full-faithfulness theorem needed for manifolds.}
+{Moerdijk--Reyes, \emph{Models for smooth infinitesimal analysis},
+Chapter~I, Section~1, especially Proposition~1.1, Theorem~1.3, and
+Proposition~1.5.}
 
-\Talk{3}{Manifolds as \Cinfty-rings}
-{Recover the part of differential geometry needed for the universal property of derived manifolds.}
-{Show that $\Cinfty(M)$ is finitely presented for every manifold $M$. Compute products algebraically. Prove that a transverse inverse image becomes a pushout of \Cinfty-rings, and conclude that manifolds embed contravariantly and fully faithfully into finitely presented \Cinfty-rings while transverse pullbacks become pushouts.}
-{Moerdijk--Reyes, Chapter I, Section 2, especially Lemma 2.1, Theorem 2.3, Propositions 2.5--2.6, and Theorem 2.8.}
+\Talk{3}{27 October}{Manifolds as \Cinfty-rings}
+{Recover the part of differential geometry needed for the universal
+construction of derived manifolds.}
+{Prove the regular-equation lemma and use it to show that $\Cinfty(M)$ is
+finitely presented for every manifold $M$. Compute products algebraically.
+Prove locally that transverse inverse images become pushouts of
+\Cinfty-rings, explain the descent step, and conclude that transverse fiber
+products become pushouts. Return to the line--parabola example to mark the
+boundary of this theorem.}
+{Moerdijk--Reyes, Chapter~I, Section~2, especially Lemma~2.1,
+Theorem~2.3, Propositions~2.5--2.6, and Theorem~2.8.}
 
-\Talk{4}{\Cinfty-schemes and singular zero loci}
-{Pass from global function rings to spaces locally modelled by smooth equations.}
-{Introduce local \Cinfty-rings, localization, spectra, structure sheaves, and affine \Cinfty-schemes. Work through zero loci of smooth functions and sections. Explain what an ordinary \Cinfty-scheme remembers and what it still loses about a non-transverse intersection.}
-{Joyce, \emph{An introduction to \Cinfty-schemes and \Cinfty-algebraic geometry}, selected parts of Sections 2--4; Moerdijk--Reyes, Chapter I, Sections 3 and 5, as background.}
+\Talk{4}{3 November}{From ordinary to derived smooth objects}
+{Understand why the universal enlargement of manifolds by arbitrary
+pullbacks is an $\infty$-category.}
+{First identify the opposite category of finitely presented ordinary
+\Cinfty-rings as the finite-limit envelope appropriate to ordinary
+categories. Show that it contains ordinary singular zero loci but collapses a
+repeated relation in a self-intersection. Use a self-pullback of a point in
+animae to show how pullbacks retain equality data. Introduce animated
+\Cinfty-rings and state the animated finite-limit-envelope theorem. Apply the
+Carchedi--Steffens comparison theorem to obtain the universal property and
+algebraic presentation of derived manifolds.}
+{Carchedi--Steffens, \emph{On the universal property of derived manifolds},
+Definition~2.1, Theorem~3.22, Remark~3.26, Lemma~5.1,
+Corollary~5.2, Theorem~5.3, and Corollary~5.4.}
 
-\Talk{5}{Derived intersections and tangent complexes}
-{Replace a singular fiber product by an object that retains its equations and their homotopies.}
-{Introduce homotopy pullbacks through their mapping universal property. Compute basic derived zero loci and their two-term tangent complexes. Define quasi-smoothness and virtual dimension. Explain why transverse derived intersections reduce to ordinary manifolds. Infinity-categories should enter only through mapping animae, universal properties, and coherent homotopy.}
-{Spivak, Sections 1 and 7; Steffens, \emph{Derived \Cinfty-Geometry I}, introduction and selected parts of Section 4.1; Pardon, Sections P.1 and T.7.}
+\Talk{5}{10 November}{Calculating derived intersections}
+{Calculate the pullbacks constructed in Talk~4 and see exactly what their
+derived structure remembers.}
+{Define a derived zero locus as a pullback and calculate its animated
+\Cinfty-ring using a Koszul presentation. Introduce the smooth Dold--Kan
+bridge only as a computational tool. Compare the equations $x$, $x^2$, and the
+zero map, carefully distinguishing the underlying set, classical truncation,
+and positive homotopy groups. Extend the calculation to the zero locus of a
+vector-bundle section and ask how its class compares with the ordinary
+manifold obtained from a transverse perturbation.}
+{Steffens, \emph{Derived differential geometry},
+Examples~4.1.5.10--4.1.5.11 and Construction~5.1.0.1; Spivak,
+\emph{Derived smooth manifolds}, Sections~1 and~7.}
 
-\Talk{6}{The universal property of derived manifolds}
-{Understand the infinity-category of derived manifolds without committing to a particular model.}
-{State that derived manifolds are obtained from manifolds by freely adjoining finite limits and retracts while preserving transverse pullbacks and the terminal object. Explain why this property determines the theory uniquely, how $\mathbb{R}$ becomes a \Cinfty-ring object, and why homotopically finitely presented simplicial \Cinfty-rings provide an algebraic presentation. Concentrate on examples and consequences rather than the proof through algebraic theories.}
-{Carchedi--Steffens, \emph{On the universal property of derived manifolds}, Sections 1--2 and the main statements of Sections 4--5.}
+\Talk{6}{17 November}{Derived bordism and fundamental classes}
+{Turn compact quasi-smooth derived intersections into cobordism classes, and identify precisely
+what this does and does not provide for moduli problems.}
+{Begin with a compact derived zero locus $X=Z^{\mathrm{der}}(s)$ of a
+vector-bundle section. Perturb $s$ transversely and explain why a homotopy from
+$s$ to the perturbation defines a derived cobordism from $X$ to an ordinary
+manifold. Define derived cobordism using proper collared families over
+$\mathbb R$. Quote the embedding and global zero-locus theorems for compact
+quasi-smooth derived manifolds, and use them to extend the perturbation argument to the
+comparison isomorphism
+\[
+  \Omega(T) \xrightarrow{\ \cong\ } \Omega^{\mathrm{der}}(T).
+\]
+Deduce the intersection formula
+\[
+  [A]\smile[B]=[A\mathbin{\times^{\mathrm{der}}_M}B]
+\]
+without a transversality hypothesis, and use the derived self-intersection of
+the zero section of a vector bundle as the main example, recovering its Euler
+class. Briefly explain the stable normal-bundle formulation of orientations
+and how a map from~$MO$ extends compatible manifold fundamental classes to
+compact quasi-smooth derived manifolds. End by observing that bordism retains less than the
+full derived object and motivate the stable linearization studied next.}
+{Spivak, \emph{Derived smooth manifolds}, Definition~2.1(7),
+Proposition~3.3, Definitions~3.5--3.6, Theorem~3.12, and
+Corollary~3.13, together with the discussion of fundamental classes in
+Section~1; Carchedi--Steffens, Theorem~5.10, for comparison with the modern
+framework; Joyce,
+\emph{D-manifolds and d-orbifolds}, Section~15, for comparison with the
+orbifold and virtual-class setting.}
 
-\Talk{7}{Kuranishi charts and the coherence problem}
-{See exactly why local finite-dimensional models demand higher compatibility data.}
-{Define affine Kuranishi models, weak equivalences, tangent complexes, and coordinate changes. Examine why naive cocycle conditions in a homotopy category do not produce homotopy-coherent descent. Compare the fully derived theory with Joyce's d-manifolds and Kuranishi spaces. State carefully that Borisov's truncation is full and essentially surjective but not faithful.}
-{Steffens, \emph{Derived differential geometry}, Chapter 1; Borisov, \emph{Derived manifolds and Kuranishi models}, introduction and main theorem; Joyce, \emph{Kuranishi spaces as a 2-category}, Sections 1 and 4.}
+\Talk{7}{24 November}{Stable linearization and tangent complexes}
+{Extract the deformation and obstruction information which derived bordism
+does not see.}
+{Motivate stable modules by explaining why kernels and cokernels belong to one
+linear object. Give a brief heuristic comparison between $\mathbb S$-modules
+and $\mathbb Z$-modules, then define stable modules over an animated
+\Cinfty-ring through its underlying commutative ring spectrum. Introduce
+square-zero extensions and characterize the cotangent complex by derivations.
+Use base change and transitivity to prove the tangent-complex formula
+\[
+  [T_xU\longrightarrow E_x]
+\]
+for the derived zero locus of a section $s\colon U\to E$. Interpret its
+cohomology as deformation and obstruction spaces, compute the virtual
+dimension, and introduce affine quasi-smoothness.}
+{Steffens, \emph{Derived differential geometry}, Remark~5.1.0.4,
+Proposition~5.1.1.11, and Corollary~5.1.1.13; Spivak,
+\emph{Derived smooth manifolds}, Section~7, especially
+Corollaries~7.3--7.6.}
 
-\Talk{8}{Moduli functors, smooth stacks, and representability}
-{Replace an atlas with an intrinsic description by families.}
-{Introduce moduli functors and the Yoneda viewpoint, then sheaves and stacks only to the extent needed for families with descent and automorphisms. Define representability in smooth and derived settings. Explain how representing a moduli functor solves the coherence problem because a representing object is unique. Give examples of mapping stacks and section stacks.}
-{Pardon, Sections P.3--P.4 and T.5; Steffens, \emph{Representability of elliptic moduli problems}, Sections 1 and 2.2.}
+\Talk{8}{1 December}{Local derived geometry and Kuranishi charts}
+{Pass from affine calculations to local geometric objects and understand why
+their finite-dimensional presentations are nonunique.}
+{Introduce only the localization and spectrum language needed to define
+derived \Cinfty-schemes locally of finite presentation. Discuss open
+restriction, gluing, truncation, and quasi-smoothness as local notions. Then
+interpret a Kuranishi chart $(U,E,s)$ as a local presentation of a
+quasi-smooth derived object. Study shrinking and stabilization, using
+\[
+  x\longmapsto x^2,
+  \qquad
+  (x,y)\longmapsto(x^2,y)
+\]
+as the principal comparison. Explain what changes of presentation must
+preserve and end with the resulting coherence problem.}
+{Steffens, \emph{Derived differential geometry}, Chapter~1 and
+Section~4.1.3; Borisov, \emph{Derived manifolds and Kuranishi models},
+Introduction and Section~3.3; Joyce, \emph{Kuranishi spaces as a 2-category},
+Sections~1 and~4.}
 
-\Talk{9}{Elliptic equations and finite-dimensional reduction}
-{Isolate the analytic input behind Kuranishi models.}
-{Review nonlinear differential operators between spaces of sections, linearization, ellipticity, Fredholm complexes, and regular solutions. Explain Sobolev completion, the implicit function theorem, elliptic bootstrapping, and the finite-dimensional reduction near a non-regular solution. Work out one example, preferably pseudo-holomorphic maps, gauge theory, or a simpler elliptic equation familiar to the speaker.}
-{Steffens, \emph{Representability of elliptic moduli problems}, Sections 1 and 3.4; Pardon, \emph{Representability in non-linear elliptic Fredholm analysis}, Sections 1--2 and 5.}
+\Talk{9}{8 December}{Stacks and local representability}
+{See how intrinsic moduli functors replace a manually chosen coherent
+Kuranishi atlas.}
+{Write down coordinate changes on double overlaps, homotopies on triple
+overlaps, and the next compatibility on quadruple overlaps. Explain what the
+\v{C}ech nerve of an already given derived object records, without asserting a
+general strictification theorem for arbitrary Kuranishi data. Then introduce a
+moduli functor of families, a representing object with its universal family,
+and the locality of representability. Use the derived zero locus of a section
+as the main example: maps into it are maps into the ambient manifold together
+with a chosen equality between the section and zero.}
+{Steffens, \emph{Representability of elliptic moduli problems},
+Section~1.0.2, Proposition~2.1.48, and Corollary~2.1.49; Pardon,
+\emph{Representability in non-linear elliptic Fredholm analysis},
+Introduction; Steffens, \emph{Derived differential geometry}, Chapter~1, for
+the coherence problem.}
 
-\Talk{10}{Steffens's elliptic representability theorem}
-{Understand a precise modern theorem and the division of labor in its proof.}
-{Define differential moduli problems by relative jet spaces and mapping stacks. State the absolute and relative elliptic representability theorems. Explain the proof architecture: local models for mapping stacks, comparison with convenient manifolds, finite-dimensional reduction after Sobolev completion, and higher-topos descent. Quote the technical inputs rather than proving them.}
-{Steffens, \emph{Representability of elliptic moduli problems in derived \Cinfty-geometry}, introduction and Section 3.4, with Sections 3.1--3.3 as reference.}
+\Talk{10}{15 December}{Section stacks and derived solution stacks}
+{Construct the intrinsic moduli functor whose representability will later be
+proved.}
+{For a family $W\to M\to S$, define the stack of sections after arbitrary
+base change. Explain why a finite-order differential operator is naturally a
+map involving relative jets, while treating the technical jet and
+Weil-restriction constructions as quoted machinery. Define an elliptic
+differential moduli problem and its solution stack as a pullback of section
+stacks. Identify the tangent complex at a solution with the complex induced by
+the linearized differential operator. Use
+\[
+  P(u)=\Delta u+u^2
+\]
+on a closed connected Riemannian manifold as the running example, and isolate
+the analytic input still missing.}
+{Steffens, \emph{Representability of elliptic moduli problems},
+Definition~3.2.1, Proposition~3.2.22, Definition~3.3.7,
+Proposition~3.3.9, and Definition~3.4.2; Pardon,
+\emph{Representability in non-linear elliptic Fredholm analysis}, Section~4.}
 
-\Talk{11}{Pardon's derived regularity theorem}
-{Compare an independent route from ordinary regularity to derived representability.}
-{State the regularity and derived regularity theorems. Explain the comparison among topological, smooth, and derived smooth moduli stacks. Emphasize the key structural input that stacks of sections are left Kan extended from smooth manifolds, so the derived theorem becomes a formal consequence of ordinary regularity plus differential-topological flexibility. Compare this proof architecture with Steffens's theorem and record the present status of the manuscript.}
-{Pardon, \emph{Representability in non-linear elliptic Fredholm analysis}; Pardon, \emph{Logarithmic derived moduli theory}, Sections P.3--P.5 and N.6.}
+\Talk{11}{12 January}{Fredholm equations and finite-dimensional reduction}
+{Turn one infinite-dimensional elliptic equation into a finite-dimensional
+derived zero-locus model.}
+{Explain why Sobolev completion turns the elliptic linearization into a
+Fredholm operator. Choose a finite-dimensional obstruction space mapping
+isomorphically to its cokernel, apply the Banach implicit function theorem to
+the augmented problem, and use elliptic regularity to recover smooth
+solutions. Carry out the reduction for $\Delta u+u^2=0$ near $u=0$: split into
+constant and mean-zero functions, obtain the obstruction map $a\mapsto a^2$
+exactly, and compare its tangent complex with
+$[\mathbb R\xrightarrow{0}\mathbb R]$. End by identifying the gap between a
+chosen Kuranishi model and representability of the intrinsic solution stack.}
+{Steffens, \emph{Representability of elliptic moduli problems},
+Section~1.0.1, Lemmas~3.4.5--3.4.6, and the analytic part of the proof of
+Theorem~3.4.3; Pardon, \emph{Representability in non-linear elliptic Fredholm
+analysis}, Section~2 and the first step of the proof sketch of Theorem~5.1.}
 
-\Talk{12}{Compactification, log geometry, and virtual classes}
-{Understand what derived representability solves and what remains.}
-{Explain why degenerating domains lead to manifolds with corners and logarithmic structures. State Pardon's logarithmic derived regularity theorem and indicate the additional exponential-decay input. Then separate representability from the construction of enumerative invariants. Compare, at survey level, derived bordism, Joyce's virtual classes, and Pardon's earlier implicit-atlas package. End with open questions and possible directions for a later MIGOS semester.}
-{Pardon, \emph{Logarithmic derived moduli theory}, Sections P.6--P.7; Spivak, Sections 3 and 9; Pardon, \emph{An algebraic approach to virtual fundamental cycles}, introduction.}
+\Talk{12}{19 January}{Elliptic representability I: the smooth-to-derived bridge}
+{Explain why Sobolev analysis proves an intrinsic submersiveness statement in
+derived smooth geometry.}
+{State Steffens's relative elliptic representability theorem as the
+destination. Localize on the smooth-stack base, pass to vector-bundle charts
+for the relevant section stacks, and reduce to one nonlinear PDE over a fixed
+compact manifold. Construct a functorial Sobolev tower and compatible
+obstruction augmentation. Test the augmented smooth operator after pullback
+from an ordinary manifold, then use nonlinear and linear elliptic regularity
+to prove that the resulting tower is eventually locally constant. Conclude
+that the augmented operator is submersive after passage to derived geometry.
+Stop before forming its finite-dimensional derived zero locus.}
+{Steffens, \emph{Representability of elliptic moduli problems in derived
+\Cinfty-geometry}, Proposition~2.2.18, Proposition~3.2.22,
+Lemma~3.4.4, Theorem~3.4.3, and Lemmas~3.4.5--3.4.6.}
 
-\section*{Possible adjustments}
+\Talk{13}{26 January}{Elliptic representability II: derived charts and globalization}
+{Turn the derived-submersive augmented equation into local
+finite-dimensional charts and complete the representability theorem.}
+{Form the ordinary finite-dimensional zero fiber of the augmented operator,
+project it to the obstruction space, and recover the original problem as a
+finite-dimensional derived zero locus. Identify this object with an open
+restriction of the intrinsic solution stack by pasting pullback squares,
+compare its tangent complex with the elliptic deformation-obstruction complex,
+and prove quasi-smoothness. Vary the solution and apply the effective
+open-atlas criterion to complete Steffens's theorem. End with a concise
+comparison with Pardon's alternate route through ordinary regularity, proper
+section stacks on derived tests, and finite-dimensional parameter thickening.
+Treat the published argument as a proof sketch rather than as a second full
+proof.}
+{Steffens, \emph{Representability of elliptic moduli problems in derived
+\Cinfty-geometry}, Proposition~2.1.48, Corollary~2.1.49,
+Theorem~3.4.3, and Remark~3.4.7; Pardon, \emph{Representability in non-linear
+elliptic Fredholm analysis}, Sections~4--5, especially Theorem~5.1,
+Proposition~5.2, and Lemma~5.3.}
 
-For ten meetings, merge Talks 2 and 3, and merge Talks 6 and 7. For fourteen meetings, add one talk on Carchedi's equivalence between dg-manifolds and derived manifolds, and one full talk on derived bordism and virtual fundamental classes.
-
-Dates, speakers, and the final choice of examples will be added after the program has been discussed with the participants.
+\Talk{14}{2 February}{Pseudo-holomorphic curves as a derived moduli problem}
+{See the complete representability architecture operate on its principal
+geometric application.}
+{Describe families of maps from smooth compact Riemann surfaces to an almost
+complex manifold and formulate the Cauchy--Riemann equation as a finite-order
+differential moduli problem. Identify its linearization as a Cauchy--Riemann
+type operator and prove ellipticity by calculating the principal symbol. Write
+the relative deformation-obstruction complex and interpret its cohomology.
+Retain families and automorphisms through the smooth-stack base, then apply
+Talks~12--13 to obtain relative representability. End the seminar by separating
+this smooth-domain result from compactification by nodal curves, orientations,
+and the construction of virtual classes, recalling the precise contribution
+of the bordism interlude.}
+{Wendl, \emph{Lectures on holomorphic curves in symplectic and contact
+geometry}, Sections~2.1, 2.3--2.4, and 3.3--3.4; Steffens,
+\emph{Representability of elliptic moduli problems}, Section~4; Pardon,
+\emph{Representability in non-linear elliptic Fredholm analysis}, Section~4.}
 
 \end{document}

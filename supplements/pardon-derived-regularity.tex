@@ -1,0 +1,989 @@
+% This supplementary chapter preserves the full account of Pardon's derived
+% regularity argument. It is not part of the default fourteen-talk route.
+
+\chapter{Pardon's derived regularity argument}
+\label[chapter]{chap:Pardon_Derived_Regularity}
+
+Chapters 12--14 establish representability for elliptic moduli problems and
+apply it to pseudo-holomorphic maps. Their route is local and analytic. Near a
+chosen solution, one passes to Sobolev completions, adds a finite-dimensional
+obstruction space, constructs a Kuranishi chart, and proves that this chart
+represents an open restriction of the intrinsic derived solution stack.
+
+Pardon's argument reorganizes the same ingredients. It begins with ordinary
+Fredholm theory only on the locus where the linearized equation is
+surjective. On this regular locus, classical analysis produces an ordinary
+smooth moduli manifold. The new question is then:
+
+\begin{quote}
+  Why does the same smooth manifold classify regular families over derived
+  test objects?
+\end{quote}
+
+The answer is a theorem about smooth sections over compact sources. Their
+stack on derived manifolds is the sheaf left Kan extension of the
+corresponding stack on ordinary manifolds. Since sheaf left Kan extension
+preserves pullbacks along submersive maps, the ordinary regular moduli
+manifold also represents the regular derived moduli stack. Finally, every
+nonregular solution becomes regular after enlarging the parameter space by
+finitely many obstruction directions. The original moduli problem is
+recovered as the derived zero-parameter fiber of this enlarged regular
+problem.
+
+Thus the analytic and categorical parts of the proof are sharply separated.
+All elliptic estimates concern ordinary smooth parameter spaces. The passage
+to derived parameters is formal once the section-stack theorem is available.
+
+There are two sources, with different status. Pardon's published 2024
+proceedings paper states the pseudo-holomorphic Derived Regularity Theorem and
+gives a proof sketch
+\cite[Sections~4--5]{Pardon_Representability_Elliptic_Fredholm}. His July
+2026 manuscript gives a much fuller general elliptic treatment, but explicitly
+labels itself unfinished work in progress and retains unresolved internal
+references
+\cite[P.5 and N.6]{Pardon_Logarithmic_Derived_Moduli}. We will use the
+published statement as the endpoint, explain the proof architecture in
+detail, and mark precisely where the longer manuscript remains provisional.
+
+\section{From a singular zero to the regularity theorem}
+\label[section]{sec:Pardon_Singular_Zero_Regularity_Theorem}
+
+\subsection{A regular enlargement of \texorpdfstring{$x^2=0$}{x squared equals zero}}
+\label[subsection]{sec:Pardon_X_Squared_Enlargement}
+
+The whole argument is already visible in a one-dimensional example. Consider
+the smooth function
+\[
+  f\colon\R\longrightarrow\R,
+  \qquad
+  f(x)=x^2.
+\]
+Its ordinary zero locus is the point $\{0\}$, but the derivative at the zero
+vanishes. The derived zero locus remembers this failure of transversality. Its
+tangent complex at the origin is
+\[
+  [\R\xrightarrow{0}\R],
+\]
+with the first copy in deformation degree and the second in obstruction
+degree.
+
+Add a parameter $t$ and define
+\begin{equation}
+  \label{eq:Pardon_X_Squared_Thickening}
+  \widetilde f\colon\R^2\longrightarrow\R,
+  \qquad
+  \widetilde f(x,t)=x^2+t.
+\end{equation}
+The derivative of $\widetilde f$ at $(0,0)$ is projection onto the second
+coordinate, hence is surjective. Its zero locus
+\[
+  V=\widetilde f^{-1}(0)
+  =\{(x,t):t=-x^2\}
+\]
+is therefore a smooth one-dimensional manifold. Restrict the parameter
+coordinate to obtain
+\[
+  \kappa\colon V\longrightarrow\R,
+  \qquad
+  \kappa(x,-x^2)=-x^2.
+\]
+The original derived zero locus is recovered as
+\begin{equation}
+  \label{eq:Pardon_X_Squared_Derived_Fiber}
+  \R\mathbin{\times^R}_{\R}\{0\}
+  \iso
+  V\mathbin{\times^R}_{\R}\{0\},
+\end{equation}
+where the map on the left is $f$ and the map on the right is $\kappa$. The
+left side presents the singular equation directly. The right side presents it
+as the derived zero-parameter fiber of the regular enlarged equation
+\Cref{eq:Pardon_X_Squared_Thickening}.
+
+The general finite-dimensional pattern is identical. Suppose
+$f\colon\R^n\to\R^m$ satisfies $f(x)=0$. Choose a linear map
+\[
+  \alpha\colon\R^k\longrightarrow\R^m
+\]
+whose composite onto $\operatorname{coker}(D_xf)$ is surjective, and put
+\[
+  \widetilde f(y,t)=f(y)+\alpha(t).
+\]
+Then $D_{(x,0)}\widetilde f$ is surjective. After shrinking,
+$\widetilde f^{-1}(0)$ is a manifold, and the derived zero locus of $f$ is
+its derived fiber over the zero value of the added parameter.
+
+This construction performs two tasks. The enlarged zero locus is accessible
+to the ordinary implicit function theorem, while the final derived fiber
+retains the obstruction data of the original equation. Pardon's elliptic
+argument is the family version of this picture.
+
+\subsection{The intrinsic elliptic solution stack}
+\label[subsection]{sec:Pardon_Intrinsic_Elliptic_Solution_Stack}
+
+Let
+\[
+  W\longrightarrow C\longrightarrow B
+\]
+be a family of section problems. We first take $B$ to be a smooth manifold,
+$C\to B$ to be a proper submersion, and the differential equation to be
+elliptic. The pseudo-holomorphic case from
+\Cref{chap:Pseudo_Holomorphic_Curves_Derived_Moduli} is the running example.
+
+Pardon defines the solution stack diagrammatically. For a test object $T$, a
+$T$-point is a map $T\to B$ together with a section
+\[
+  u\colon C\times_BT\longrightarrow W
+\]
+which solves the equation in the vertical $C/B$-direction. This definition
+makes sense for smooth, derived smooth, and suitable topological test objects.
+In the derived case, solving the equation is additional equality data in a
+mapping anima, not a property that can be checked only at ordinary points.
+
+Locally near a chosen section, the section-stack charts of Chapter~9 and a
+trivialization of the output bundle put the equation into the form
+\begin{equation}
+  \label{eq:Pardon_Equation_Morphism}
+  \Phi\colon
+  \operatorname{Sect}_{C/B}(W)
+  \longrightarrow
+  \operatorname{Sect}(C_0,H_0),
+\end{equation}
+where $C\cong B\times C_0$ by Ehresmann's theorem and $C_0$ is compact. The
+right-hand side is the stack of sections of a fixed vector bundle
+$H_0\to C_0$. The solution stack is the fiber over the zero section:
+\begin{equation}
+  \label{eq:Pardon_Solution_Stack_Pullback}
+  \begin{tikzcd}[column sep=large]
+    \operatorname{Hol}_B(C,W)
+      \rar \dar \drar[pullback]
+      & \operatorname{Sect}_{C/B}(W) \dar["\Phi"] \\
+    * \rar["0"']
+      & \operatorname{Sect}(C_0,H_0).
+  \end{tikzcd}
+\end{equation}
+The point of the local form is not to replace the intrinsic definition. It
+exhibits that definition as a pullback of two section stacks to which the
+categorical extension theorem will apply.
+
+For pseudo-holomorphic sections, $H_0$ is locally the bundle of vertical
+complex-antilinear one-forms and $\Phi(u)=\bar\partial_Ju$. The diagrammatic
+definition does not use the problematic full first-jet target discussed in
+\Cref{warn:Steffens_Five_Tuple_Fourteen}.
+
+\subsection{Regularity in a family}
+\label[subsection]{sec:Pardon_Regularity_In_Family}
+
+At a solution $(b,u)$, the total linearization of
+\Cref{eq:Pardon_Equation_Morphism} has the form
+\begin{equation}
+  \label{eq:Pardon_Total_Linearization}
+  D_{(b,u)}\Phi\colon
+  \Gamma(C_b,u^*T_{W/C})\oplus T_bB
+  \longrightarrow
+  \Gamma(C_b,u^*H).
+\end{equation}
+The first summand varies the section and the second varies the parameter in
+the family. In the fixed-domain pseudo-holomorphic case, the first summand is
+the Cauchy--Riemann operator $D_u$ from
+\Cref{prop:Linearized_Cauchy_Riemann_Operator_Fourteen}.
+
+\begin{definition}[Regular locus]
+  \label[definition]{def:Pardon_Regular_Locus}
+  The \emph{regular locus}
+  $\operatorname{Hol}_B(C,W)^{\mathrm{reg}}$ consists of the solutions
+  $(b,u)$ at which \Cref{eq:Pardon_Total_Linearization} is surjective.
+\end{definition}
+
+Surjectivity is open for Fredholm operators, so this is an open substack of
+the solution stack. The basic analytic input is ordinary parametric
+regularity.
+
+\begin{theorem}[Ordinary regularity]
+  \label[theorem]{thm:Pardon_Ordinary_Regularity}
+  Let $B$ be a smooth manifold and let $W\to C\to B$ be a smooth family of
+  elliptic section problems with $C\to B$ proper. Then the regular locus
+  $\operatorname{Hol}_B(C,W)^{\mathrm{reg}}$ on smooth test manifolds is
+  represented by a smooth manifold, locally over $B$. Its comparison with
+  the corresponding topological regular locus is an isomorphism.
+\end{theorem}
+
+This is the first step of the proof of Pardon's published Theorem~5.1. It is
+stated as P.5.1 and proved in N.5.2.1 of the longer manuscript
+\cite[Theorem~5.1]{Pardon_Representability_Elliptic_Fredholm}
+\cite[P.5.1 and N.5.2.1]{Pardon_Logarithmic_Derived_Moduli}. Its analytic
+ingredients are Newton--Picard iteration, elliptic regularity, and smooth
+dependence on ordinary parameters. They are the regular version of the
+Fredholm reduction developed in Chapter~10.
+
+The theorem is stronger than a pointwise implicit-function statement. It is
+compatible with smooth base change in the target section stack. This
+parametric form will show that $\Phi$ is a submersive map of smooth stacks on
+the regular locus.
+
+\subsection{The published theorem}
+\label[subsection]{sec:Pardon_Published_Derived_Regularity}
+
+We can now state the endpoint of the argument.
+
+\begin{theorem}[Derived Regularity Theorem, published form]
+  \label[theorem]{thm:Pardon_Published_Derived_Regularity}
+  Let $W\to C\to B$ be a pseudo-holomorphic section problem over a derived
+  smooth stack $B$. Suppose that these maps are submersions, that $C\to B$ is
+  proper of relative dimension two, and that the relevant vertical tangent
+  bundles carry the prescribed complex structures. Then
+  \[
+    \operatorname{Hol}_B(C,W)\longrightarrow B
+  \]
+  is representable. Moreover, the tautological comparison
+  \[
+    (\mathrm{Der}\to\mathrm{Top})_!
+      \operatorname{Hol}_B(C,W)_{\mathrm{Der}}
+    \longrightarrow
+      \operatorname{Hol}_B(C,W)_{\mathrm{Top}}
+  \]
+  is an isomorphism.
+\end{theorem}
+
+This is Pardon's Theorem~5.1
+\cite[Theorem~5.1]{Pardon_Representability_Elliptic_Fredholm}. The printed
+statement says that $B\to C$ is proper of relative dimension two. Since the
+composable maps are $W\to C\to B$, the intended proper morphism is
+$C\to B$.
+
+The theorem concerns smooth compact domains. It does not add nodal curves or
+compactify the moduli stack. Its conclusion does not explicitly include
+quasi-smoothness. In the two-term pseudo-holomorphic problem, the tangent
+complex calculated in
+\Cref{eq:Relative_Tangent_Complex_Final_Fourteen} gives quasi-smoothness
+once the represented object's geometric tangent complex is identified with
+that analytic complex.
+
+The published article calls its argument a brief proof sketch. We will now
+prove the smooth-base deduction from two named inputs: ordinary regularity and
+the proper section-stack theorem. This is the conceptual core of Pardon's
+proof and avoids doing analysis on derived parameter objects.
+
+\section{Proper section stacks and smooth tests}
+\label[section]{sec:Pardon_Proper_Section_Stacks}
+
+\subsection{The universal extension problem}
+\label[subsection]{sec:Pardon_Universal_Extension_Problem}
+
+Let
+\[
+  i\colon\mathrm{Sm}\longrightarrow\mathrm{Der}
+\]
+be the inclusion of smooth manifolds into derived smooth manifolds. Restriction
+along $i$ gives a functor
+\[
+  i^*\colon
+  \operatorname{Shv}(\mathrm{Der})
+  \longrightarrow
+  \operatorname{Shv}(\mathrm{Sm}).
+\]
+It has a left adjoint
+\[
+  i_!\colon
+  \operatorname{Shv}(\mathrm{Sm})
+  \longrightarrow
+  \operatorname{Shv}(\mathrm{Der}),
+\]
+called \emph{sheaf left Kan extension}. Thus, for a smooth stack $F$ and a
+derived smooth stack $X$, there is a natural isomorphism of mapping animae
+\[
+  \Hom_{\operatorname{Shv}(\mathrm{Der})}(i_!F,X)
+  \iso
+  \Hom_{\operatorname{Shv}(\mathrm{Sm})}(F,i^*X).
+\]
+
+This adjunction characterizes $i_!F$ as the universal derived smooth stack
+built from $F$ while respecting colimits and descent. It does not merely assign
+the set of ordinary families to a derived test object. Its values are animae,
+and the colimit construction retains all coherence forced by derived
+presentations.
+
+For any derived smooth stack $X$, the adjunction gives a comparison morphism
+\begin{equation}
+  \label{eq:Pardon_Left_Kan_Comparison_General}
+  i_!i^*X\longrightarrow X.
+\end{equation}
+There is no reason for
+\Cref{eq:Pardon_Left_Kan_Comparison_General} to be an isomorphism for an
+arbitrary stack. The theorem below says that section stacks over proper
+families have this special property.
+
+\subsection{The section-stack extension theorem}
+\label[subsection]{sec:Pardon_Section_Stack_Extension_Theorem}
+
+\begin{proposition}[Proper section stacks]
+  \label[proposition]{prop:Pardon_Proper_Section_Stack_Extension}
+  Let $W\to C\to B$ be submersions of smooth manifolds and suppose that
+  $C\to B$ is proper. Then the canonical comparison
+  \begin{equation}
+    \label{eq:Pardon_Proper_Section_Stack_Comparison}
+    i_!\operatorname{Sect}_{C/B}(W)_{\mathrm{Sm}}
+    \longrightarrow
+    \operatorname{Sect}_{C/B}(W)_{\mathrm{Der}}
+  \end{equation}
+  is an isomorphism, in the relative sense over $B$.
+\end{proposition}
+
+For $B=*$, this says that the derived stack of sections over a compact
+manifold is determined by its restriction to ordinary smooth test manifolds.
+For general $B$, the precise formulation uses the site of smooth manifolds
+submersive over $B$. This relative version is exactly what is needed in
+\Cref{eq:Pardon_Solution_Stack_Pullback}.
+
+This is Proposition~5.2 of the published paper
+\cite[Proposition~5.2]{Pardon_Representability_Elliptic_Fredholm}. The longer
+manuscript separates the fixed-source and relative forms as T.7.7.2 and
+T.7.7.4
+\cite[T.7.7.2 and T.7.7.4]{Pardon_Logarithmic_Derived_Moduli}.
+
+Several qualifications are essential.
+
+\begin{enumerate}
+  \item The proposition is about the full stack of smooth sections. No
+    differential equation has yet been imposed.
+  \item It does not say that derived families are ordinary families. It says
+    that their functor on derived tests is the universal coherent extension
+    of the smooth functor.
+  \item It is not a formal consequence of the construction of derived
+    manifolds. A general derived smooth stack need not satisfy
+    \Cref{eq:Pardon_Left_Kan_Comparison_General}.
+  \item Properness and partitions of unity are the geometric reasons the
+    statement holds.
+\end{enumerate}
+
+\subsection{Why properness and softness enter}
+\label[subsection]{sec:Pardon_Properness_Softness}
+
+We give the proof architecture for $B=*$. Let $C$ be compact. A derived
+manifold is locally a finite limit of ordinary manifolds. More precisely, the
+essential-image criterion used by Pardon says that a derived smooth stack is
+left Kan extended from manifolds if it carries finite cosifted presentations
+of derived manifolds to the corresponding relative limit diagrams.
+
+Suppose that
+\[
+  Q\iso\lim_{\alpha}Q_\alpha
+\]
+is such a finite presentation by derived manifolds, locally refined by smooth
+pieces. Pulling back the bundle $W\to C$ gives a diagram over
+\[
+  Q\times C\iso\lim_{\alpha}(Q_\alpha\times C).
+\]
+Before taking global sections, the universal property of derived manifolds
+shows that the resulting sheaves of local sections form the required relative
+limit diagram.
+
+Global sections are obtained by pushing those local sheaves forward along
+the projection
+\[
+  Q\times C\longrightarrow Q.
+\]
+This is the step at which compactness matters. Proper base change controls the
+pushforward because $C$ is compact Hausdorff. After passing to an open
+section-stack chart, one may suppose that $W\to C$ is a vector bundle. Its
+sheaf of smooth sections is soft: partitions of unity extend and glue local
+sections. Softness implies that the proper pushforward preserves the finite
+colimit diagrams occurring in the essential-image criterion. Consequently,
+the global section stack satisfies that criterion and is left Kan extended
+from smooth manifolds.
+
+The relative proof works in the same way over the site of manifolds
+submersive over $B$. This discussion is a proof sketch, not a replacement for
+the higher-topos details in Pardon's sources. Its purpose is to identify the
+mathematical jobs of the hypotheses:
+
+\begin{enumerate}
+  \item The finite-limit description of derived manifolds provides the
+    presentations on which the extension criterion is tested.
+  \item Properness controls pushforward from the source family.
+  \item Partitions of unity make the relevant sheaves soft.
+  \item Softness makes the necessary colimit diagrams survive pushforward.
+\end{enumerate}
+
+The smooth setting is crucial. Pardon points out that the analogous statement
+fails in analytic geometry under the same compactness hypothesis, precisely
+because the required softness is absent
+\cite[proof of Proposition~5.2]{Pardon_Representability_Elliptic_Fredholm}.
+
+\subsection{Which pullbacks survive left Kan extension?}
+\label[subsection]{sec:Pardon_Pullbacks_Left_Kan_Extension}
+
+The solution stack is a pullback of section stacks, but
+\Cref{prop:Pardon_Proper_Section_Stack_Extension} does not yet determine it.
+A left adjoint preserves colimits, not arbitrary limits. In particular, sheaf
+left Kan extension need not preserve the pullback
+\Cref{eq:Pardon_Solution_Stack_Pullback}.
+
+The missing input is the following categorical principle.
+
+\begin{lemma}[Left Kan extension and submersive pullbacks]
+  \label[lemma]{lem:Pardon_Left_Kan_Submersive_Pullbacks}
+  Suppose a functor between smooth geometric sites preserves pullbacks along
+  submersions. Then its sheaf left Kan extension preserves pullback squares in
+  which the distinguished morphism is submersive.
+\end{lemma}
+
+This is the specialization of Pardon's Lemma~5.3 used in the proof
+\cite[Lemma~5.3]{Pardon_Representability_Elliptic_Fredholm}. At the
+representable level, the assertion is the assumed preservation of submersive
+pullbacks. General sheaves are assembled from representables by colimits, and
+colimits in an $\infty$-topos are stable under base change. The representable
+base-change isomorphisms therefore extend to the relevant pullback squares of
+presheaves. The topological-site hypotheses and sheafification give the sheaf
+version.
+
+For the inclusion $i\colon\mathrm{Sm}\to\mathrm{Der}$, the representable
+input is familiar from Chapters~3--4: a pullback along a submersion is
+transverse, so its ordinary smooth pullback already computes the derived
+pullback. The lemma promotes this fact from representable objects to sheaves.
+
+The direction of the condition matters. In the regular-locus square below,
+the zero section need not be submersive. It is the equation morphism on the
+other side of the square which will be submersive.
+
+\section{The regular-locus pullback}
+\label[section]{sec:Pardon_Regular_Locus_Pullback}
+
+\subsection{The equation morphism is submersive on the regular locus}
+\label[subsection]{sec:Pardon_Equation_Submersive_Regular_Locus}
+
+Restrict the source of \Cref{eq:Pardon_Equation_Morphism} to the open locus
+where its linearization is surjective:
+\[
+  \Phi^{\mathrm{reg}}\colon
+  \operatorname{Sect}_{C/B}(W)^{\mathrm{reg}}
+  \longrightarrow
+  \operatorname{Sect}(C_0,H_0).
+\]
+To show that this is submersive as a morphism of smooth stacks, use the
+testing criterion recalled in
+\Cref{prop:Smooth_To_Derived_Submersion_Criterion_Twelve}. Let $Z$ be a manifold and
+let
+\[
+  \psi\colon Z\longrightarrow\operatorname{Sect}(C_0,H_0)
+\]
+be a smooth family of inhomogeneous terms. Form the smooth pullback
+\begin{equation}
+  \label{eq:Pardon_Test_Pullback}
+  \mathcal P_Z
+  =
+  \operatorname{Sect}_{C/B}(W)^{\mathrm{reg}}
+  \times_{\operatorname{Sect}(C_0,H_0)}Z.
+\end{equation}
+A point of this pullback is a triple $(b,u,z)$ satisfying
+\[
+  \Phi(b,u)=\psi(z).
+\]
+This is another family of elliptic equations on the compact source $C_0$.
+Ordinary parametric regularity represents its regular locus by a smooth
+manifold.
+
+The derivative of the equation at a solution is
+\begin{equation}
+  \label{eq:Pardon_Base_Changed_Linearization}
+  (\xi,\beta,v)
+  \longmapsto
+  D_{(b,u)}\Phi(\xi,\beta)-D_z\psi(v).
+\end{equation}
+Here $\xi$ varies the section, $\beta\in T_bB$ varies the original parameter,
+and $v\in T_zZ$ varies the new parameter. The tangent space to the represented
+solution manifold is the kernel of
+\Cref{eq:Pardon_Base_Changed_Linearization}.
+
+\begin{lemma}[Kernel projection]
+  \label[lemma]{lem:Pardon_Kernel_Projection}
+  If $D_{(b,u)}\Phi$ is surjective, then the projection
+  \[
+    \ker\bigl(D_{(b,u)}\Phi-D_z\psi\bigr)
+    \longrightarrow T_zZ
+  \]
+  is surjective.
+\end{lemma}
+
+\begin{proof}
+  Let $v\in T_zZ$. By surjectivity of $D_{(b,u)}\Phi$, choose
+  $(\xi,\beta)$ such that
+  \[
+    D_{(b,u)}\Phi(\xi,\beta)=D_z\psi(v).
+  \]
+  Then $(\xi,\beta,v)$ lies in the displayed kernel and projects to $v$.
+\end{proof}
+
+The ordinary submersion theorem now shows that the represented pullback
+\Cref{eq:Pardon_Test_Pullback} is submersive over $Z$. Since this holds after
+every base change from a manifold, $\Phi^{\mathrm{reg}}$ is a submersive map of
+smooth stacks.
+
+This elementary calculation deserves emphasis. N.6.4.1 of the 2026
+manuscript identifies the same submersive locus by invoking the comparison
+between analytic and geometric tangent complexes, whose proof is still marked
+by an unresolved reference. Here we use only the tangent-space conclusion of
+the ordinary parametric implicit function theorem. Thus the calculation
+reconstructs the required smooth submersiveness without assuming that missing
+derived tangent comparison.
+
+\subsection{The regular-locus square}
+\label[subsection]{sec:Pardon_Regular_Locus_Square}
+
+Restricting \Cref{eq:Pardon_Solution_Stack_Pullback} gives
+\begin{equation}
+  \label{eq:Pardon_Regular_Locus_Pullback_Square}
+  \begin{tikzcd}[column sep=large]
+    \operatorname{Hol}_B(C,W)^{\mathrm{reg}}
+      \rar \dar \drar[pullback]
+      & \operatorname{Sect}_{C/B}(W)^{\mathrm{reg}}
+        \dar["\Phi^{\mathrm{reg}}"] \\
+    * \rar["0"']
+      & \operatorname{Sect}(C_0,H_0).
+  \end{tikzcd}
+\end{equation}
+We know three facts about this square.
+
+\begin{enumerate}
+  \item The two section stacks are left Kan extended from smooth manifolds by
+    \Cref{prop:Pardon_Proper_Section_Stack_Extension}. The same remains true
+    after restriction to the open regular locus.
+  \item The point $*$ is represented by a smooth manifold and is therefore
+    left Kan extended from smooth manifolds.
+  \item The right vertical morphism is submersive by the preceding
+    subsection.
+\end{enumerate}
+
+Apply \Cref{lem:Pardon_Left_Kan_Submersive_Pullbacks} to
+\Cref{eq:Pardon_Regular_Locus_Pullback_Square}. We obtain the central
+comparison.
+
+\begin{proposition}[Regular families over derived tests]
+  \label[proposition]{prop:Pardon_Regular_Locus_Extension}
+  The canonical morphism
+  \begin{equation}
+    \label{eq:Pardon_Regular_Locus_Comparison}
+    i_!\operatorname{Hol}_B(C,W)^{\mathrm{reg}}_{\mathrm{Sm}}
+    \longrightarrow
+    \operatorname{Hol}_B(C,W)^{\mathrm{reg}}_{\mathrm{Der}}
+  \end{equation}
+  is an isomorphism.
+\end{proposition}
+
+\begin{proof}
+  Apply $i_!$ to the smooth version of
+  \Cref{eq:Pardon_Regular_Locus_Pullback_Square}. The section-stack theorem
+  identifies the images of the upper-right and lower-right corners with the
+  corresponding derived section stacks. The lower-left corner remains $*$.
+  Since the right vertical morphism is submersive, the pullback lemma says that
+  the image square is still a pullback. Its upper-left corner is therefore the
+  derived regular solution stack, which proves
+  \Cref{eq:Pardon_Regular_Locus_Comparison}.
+\end{proof}
+
+By \Cref{thm:Pardon_Ordinary_Regularity}, the smooth stack on the left of
+\Cref{eq:Pardon_Regular_Locus_Comparison} is represented by an ordinary smooth
+manifold $M^{\mathrm{reg}}$. Its sheaf left Kan extension is represented by the
+same manifold, now regarded as a derived manifold. We have proved:
+
+\begin{corollary}[Derived representability on the regular locus]
+  \label[corollary]{cor:Pardon_Derived_Regular_Locus_Represented}
+  The derived regular locus
+  $\operatorname{Hol}_B(C,W)^{\mathrm{reg}}_{\mathrm{Der}}$ is represented by
+  the ordinary smooth manifold which represents its restriction to smooth test
+  manifolds.
+\end{corollary}
+
+This is the conceptual climax of Pardon's argument. The proof never asks what
+a Sobolev completion parameterized by a derived manifold should mean. All
+analysis was performed after base change by ordinary manifolds. Properness,
+softness, and the preservation of submersive pullbacks then transported the
+answer to derived test objects.
+
+\subsection{What the regularity hypothesis did}
+\label[subsection]{sec:Pardon_What_Regularity_Did}
+
+It is useful to locate regularity precisely. The section-stack theorem holds
+on the entire stack of sections. The obstruction appears when we impose the
+equation by a pullback. Sheaf left Kan extension need not preserve this
+pullback in general. Surjectivity of the linearization makes the equation
+morphism submersive, and that is exactly the class of pullbacks which the
+extension functor preserves.
+
+Thus regularity is not used to define the derived solution stack. Nor is it
+needed to give that stack a tangent complex. It is used to prove that a
+particular ordinary smooth representative continues to represent the same
+functor on derived tests.
+
+This also explains why the regular locus alone is insufficient. A singular
+solution is a perfectly valid ordinary point of the moduli functor, but it is
+not contained in the locus where the equation morphism is submersive. The
+next step changes the family, not the solution, so that the same point becomes
+regular in an enlarged problem.
+
+\section{Removing regularity by parameter thickening}
+\label[section]{sec:Pardon_Parameter_Thickening}
+
+\subsection{Choosing obstruction directions}
+\label[subsection]{sec:Pardon_Choosing_Obstruction_Directions}
+
+Fix an arbitrary solution $(b,u)$. The vertical linearization of the elliptic
+equation is Fredholm, so its cokernel is finite-dimensional. Choose a
+finite-dimensional vector space $E$ and a linear map
+\begin{equation}
+  \label{eq:Pardon_Obstruction_Directions}
+  \alpha\colon
+  E\longrightarrow\Gamma(C_b,u^*H)
+\end{equation}
+whose composite to the cokernel is surjective. One may take $E$ to be the
+cokernel itself and choose representatives of a basis.
+
+Using local trivializations and partitions of unity, extend these
+representatives to smooth inhomogeneous terms for nearby sections and nearby
+base points. In the pseudo-holomorphic case, these are finitely many smooth
+complex-antilinear one-forms along the chosen map, extended to a neighborhood
+of its graph.
+
+Enlarge the base to
+\[
+  B^+=B\times E
+\]
+and define a new family of equations schematically by
+\begin{equation}
+  \label{eq:Pardon_Enlarged_Equation}
+  \Phi^+(b',u',e)=\Phi(b',u')+\alpha_{(b',u')}(e).
+\end{equation}
+The construction is arranged so that $\alpha_{(b',u')}(0)=0$. Hence the
+restriction of the enlarged family along
+\[
+  B=B\times\{0\}\longrightarrow B^+
+\]
+is the original family of equations.
+
+At $(b,u,0)$ the new linearization is
+\begin{equation}
+  \label{eq:Pardon_Augmented_Linearization}
+  D\Phi^+(\xi,\beta,e)
+  =D_{(b,u)}\Phi(\xi,\beta)+\alpha(e).
+\end{equation}
+
+\begin{lemma}[Finite-dimensional regularization]
+  \label[lemma]{lem:Pardon_Finite_Dimensional_Regularization}
+  The map in \Cref{eq:Pardon_Augmented_Linearization} is surjective.
+\end{lemma}
+
+\begin{proof}
+  Let $y$ lie in the target. By the choice of $\alpha$, choose $e\in E$ such
+  that $y-\alpha(e)$ has trivial image in
+  $\operatorname{coker}(D_{(b,u)}\Phi)$. Thus
+  $y-\alpha(e)=D_{(b,u)}\Phi(\xi,\beta)$ for some $(\xi,\beta)$, and
+  \Cref{eq:Pardon_Augmented_Linearization} sends $(\xi,\beta,e)$ to $y$.
+\end{proof}
+
+The chosen solution is therefore regular in the enlarged family. This is the
+same Fredholm linear algebra as the obstruction-space construction of
+Chapter~10. The difference is organizational: the obstruction coefficients
+are now coordinates on the enlarged base.
+
+\subsection{The original problem as a derived fiber}
+\label[subsection]{sec:Pardon_Original_Problem_Derived_Fiber}
+
+Let
+\[
+  \operatorname{Hol}_{B^+}(C^+,W^+)^{\mathrm{reg}}
+\]
+denote the regular locus of the enlarged problem. It contains the point
+$(b,u,0)$ and, by
+\Cref{cor:Pardon_Derived_Regular_Locus_Represented}, is represented near that
+point by an ordinary smooth manifold $M^+_{\mathrm{reg}}$.
+
+Pull back along the zero-parameter inclusion $B\to B^+$. Formation of the
+intrinsic moduli stack is compatible with base change, so
+\begin{equation}
+  \label{eq:Pardon_Local_Derived_Chart}
+  M^+_{\mathrm{reg}}
+  \mathbin{\times^R}_{B^+}B
+  \longrightarrow
+  \operatorname{Hol}_B(C,W)
+\end{equation}
+represents an open neighborhood of $(b,u)$. The pullback must be formed in
+derived manifolds. Although $M^+_{\mathrm{reg}}$ is smooth, its map to
+$B^+$ need not be transverse to the zero-parameter inclusion.
+
+The parallel with \Cref{eq:Pardon_X_Squared_Derived_Fiber} is exact:
+\[
+  \begin{array}{c@{\qquad}c}
+    V\mathbin{\times^R}_{E}\{0\}
+    &
+    M^+_{\mathrm{reg}}
+      \mathbin{\times^R}_{B^+}B.\\[4pt]
+    \text{finite-dimensional model}
+    &
+    \text{elliptic moduli problem}
+  \end{array}
+\]
+In both cases, a regular smooth manifold is first constructed in an enlarged
+family. Its derived zero-parameter fiber is the singular object we wanted.
+
+In the two-term situation, the local chart in
+\Cref{eq:Pardon_Local_Derived_Chart} is quasi-smooth. Locally the inclusion
+$B\to B\times E$ is the zero section of a finite-rank vector bundle, so the
+relative tangent complex of the pullback is represented by a two-term complex
+with obstruction term $E$.
+
+\subsection{Covering the full moduli stack}
+\label[subsection]{sec:Pardon_Covering_Full_Moduli_Stack}
+
+The construction applies at every solution. For each $(b,u)$, choose finitely
+many obstruction directions and an enlarged family in which that point is
+regular. Regularity is open, so pulling the enlarged regular locus back to
+$B$ gives an open substack of the original moduli stack containing $(b,u)$.
+These open substacks cover the underlying topological solution stack.
+
+Representability is local. Since every member of the cover is represented by
+a finite derived pullback of manifolds, the full derived solution stack is
+represented locally by derived manifolds. There is no separate compatibility
+problem among the choices of obstruction directions. Each chart represents
+an open restriction of the same intrinsic moduli functor, and uniqueness of
+representing objects supplies the transition data.
+
+The comparison with the topological moduli stack is proved in parallel.
+Ordinary regularity identifies the topology on each enlarged regular locus,
+and the zero-parameter fibers cover the original moduli stack. Since being an
+isomorphism is local, the comparison is an isomorphism globally.
+
+We can package the argument in a form which separates the completed deduction
+from the status of its inputs.
+
+\begin{theorem}[Derived representability from regularity]
+  \label[theorem]{thm:Pardon_Representability_From_Regularity}
+  Let $B$ be a smooth manifold and let $W\to C\to B$ be a family of two-term
+  elliptic section problems with $C\to B$ proper. Assume the following.
+  \begin{enumerate}
+    \item Ordinary parametric regularity represents every regular locus and
+      its smooth-to-topological comparison.
+    \item The relevant section stacks satisfy the comparison in
+      \Cref{prop:Pardon_Proper_Section_Stack_Extension}.
+  \end{enumerate}
+  Then the intrinsic derived solution stack is locally represented by
+  quasi-smooth derived manifolds, and its derived-to-topological comparison is
+  an isomorphism.
+\end{theorem}
+
+\begin{proof}
+  By \Cref{prop:Pardon_Regular_Locus_Extension}, the regular locus of every
+  enlarged problem is represented on derived test objects by the same smooth
+  manifold that represents it on smooth tests. The construction of
+  \Cref{sec:Pardon_Choosing_Obstruction_Directions} makes every chosen solution
+  regular after a finite-dimensional enlargement of the base.
+  \Cref{eq:Pardon_Local_Derived_Chart} then represents an open neighborhood of
+  that solution by a quasi-smooth derived manifold. These neighborhoods cover,
+  so locality proves representability. The same cover and ordinary
+  smooth-to-topological comparison prove the last assertion.
+\end{proof}
+
+For the pseudo-holomorphic problem, this is the three-step architecture of
+\Cref{thm:Pardon_Published_Derived_Regularity}: ordinary regularity, extension
+of the regular locus to derived tests, and parameter thickening.
+
+\section{Comparison, scope, and source status}
+\label[section]{sec:Pardon_Comparison_Scope_Status}
+
+\subsection{Comparison with Steffens}
+\label[subsection]{sec:Pardon_Comparison_With_Steffens}
+
+Pardon and Steffens begin with the same intrinsic goal and the same Fredholm
+linear algebra. Their proofs differ in where they place the smooth-to-derived
+bridge.
+
+\begin{enumerate}
+  \item \emph{Intrinsic object.} Steffens forms the solution stack from a
+    differential moduli problem. Pardon defines the pseudo-holomorphic
+    solution stack diagrammatically and then expresses it locally as a fiber
+    of section stacks.
+  \item \emph{Analytic input.} Steffens constructs a finite-dimensional
+    reduction near each solution by a Sobolev argument. Pardon first applies
+    ordinary parametric regularity only on the surjective locus.
+  \item \emph{Obstruction directions.} Steffens adds a finite-dimensional
+    obstruction space to the operator. Pardon regards its coefficients as new
+    coordinates on an enlarged parameter space. The augmented linearizations
+    are the same.
+  \item \emph{Smooth-to-derived bridge.} Steffens proves that one augmented
+    operator is submersive in smooth stacks and transports that fact to
+    derived stacks. Pardon proves the structural
+    \Cref{prop:Pardon_Proper_Section_Stack_Extension} for all proper section
+    stacks, then applies it to a submersive pullback on the regular locus.
+  \item \emph{Local chart.} Steffens obtains the derived zero locus of a
+    finite-dimensional obstruction section. Pardon obtains the derived
+    zero-parameter fiber of an ordinary regular moduli manifold. These are two
+    descriptions of the same local Kuranishi pattern.
+  \item \emph{Globalization.} Both arguments cover the intrinsic moduli stack
+    by represented open substacks and invoke locality. Neither needs an
+    explicit cocycle of independently chosen Kuranishi charts.
+\end{enumerate}
+
+The main conceptual contribution of Pardon's organization is now visible:
+
+\begin{quote}
+  Flexible mapping objects over compact smooth sources are already controlled
+  by their values on ordinary smooth parameter spaces.
+\end{quote}
+
+This principle is more general than the pseudo-holomorphic application, but
+it is also special to smooth geometry. Properness without partitions of unity
+does not give the same conclusion in analytic geometry.
+
+\subsection{Representability is not compactification}
+\label[subsection]{sec:Pardon_Representability_Not_Compactification}
+
+The properness used throughout the proof belongs to the family of domains
+$C\to B$. It ensures compact fibers and makes section-stack pushforward
+behave well. It does not imply that the solution stack is compact or proper.
+
+For pseudo-holomorphic curves, sequences of solutions can bubble and their
+domains can degenerate to nodal curves. Such limiting domains are not objects
+of the stack of smooth compact Riemann surfaces used here. The theorem therefore
+does not supply the compactification needed for Gromov--Witten theory.
+
+Representability also does not construct a virtual fundamental class. Even
+for a compact quasi-smooth derived moduli stack, one still needs orientation
+data and a theory which converts the derived structure into a homology or
+bordism class. Pardon's implicit-atlas theory addresses such enumerative
+questions by a different construction. The derived regularity argument should
+not be described as a reformulation of implicit atlases.
+
+The logical ledger is:
+
+\begin{enumerate}
+  \item Elliptic regularity and proper domains give finite-dimensional local
+    deformation theory.
+  \item Derived representability packages that theory coherently.
+  \item Compactification adds missing limiting objects.
+  \item Orientations and a virtual-class formalism produce enumerative data.
+\end{enumerate}
+
+Only the first two items have been addressed in this chapter.
+
+\section{Summary and supplementary materials}
+\label[section]{sec:Pardon_Derived_Regularity_Summary_Supplementary_Materials}
+
+\subsection{The live route}
+\label[subsection]{sec:Pardon_Live_Route}
+
+The 90-minute talk can be compressed into the following statements.
+
+\begin{enumerate}
+  \item The singular zero locus of $x^2$ is the derived zero-parameter fiber
+    of the regular equation $x^2+t=0$.
+  \item An elliptic solution stack is intrinsically a fiber of section
+    stacks.
+  \item Ordinary Fredholm analysis represents the locus on which the total
+    linearization is surjective.
+  \item Sheaf left Kan extension is the universal passage from smooth stacks
+    to derived smooth stacks.
+  \item Proper section stacks are left Kan extended from smooth manifolds.
+  \item Properness, softness, and partitions of unity are the geometric inputs
+    to this extension theorem.
+  \item Left Kan extension does not preserve arbitrary pullbacks.
+  \item It does preserve pullbacks along submersive morphisms.
+  \item On the regular locus, the equation morphism is submersive.
+  \item Consequently, the same ordinary manifold represents regular families
+    on smooth and derived test objects.
+  \item Every nonregular solution becomes regular after adding finitely many
+    obstruction parameters.
+  \item The original moduli stack is the derived zero-parameter fiber of the
+    enlarged regular problem.
+  \item This yields local derived representability without analysis on derived
+    parameter spaces.
+  \item The result concerns smooth compact domains, not nodal compactification
+    or virtual fundamental classes.
+\end{enumerate}
+
+The next chapter crosses precisely this boundary. It asks what happens when
+the domain itself degenerates and why logarithmic smooth geometry is proposed
+as a setting for the corresponding gluing problem.
+
+\subsection{Supplement: the general pullback lemma}
+\label[subsection]{sec:Pardon_Supplement_General_Pullback_Lemma}
+
+Pardon's Lemma~5.3 is more general than
+\Cref{lem:Pardon_Left_Kan_Submersive_Pullbacks}. Let
+$f\colon C\to D$ be a functor, and let $P$ and $Q$ be pullback-stable classes
+of morphisms in $C$ and $D$. Suppose $f$ takes pullback squares along
+$P$-morphisms to pullback squares along $Q$-morphisms. Then
+\[
+  f_!\colon\operatorname{PSh}(C)\longrightarrow\operatorname{PSh}(D)
+\]
+has the same property. If $C$ and $D$ are perfect topological
+$\infty$-sites and $f$ is topological, the corresponding statement holds for
+sheaf left Kan extension
+\[
+  f_!\colon\operatorname{Shv}(C)\longrightarrow\operatorname{Shv}(D).
+\]
+
+The proof uses the expression of presheaves as colimits of representables and
+the universality of colimits in presheaf and sheaf $\infty$-topoi. The
+application takes $C=\mathrm{Sm}$, $D=\mathrm{Der}$, and both $P$ and $Q$ to
+be submersions. The inclusion preserves the corresponding pullbacks because
+ordinary pullbacks along submersions are transverse.
+
+\subsection{Supplement: the 2026 proof and its unresolved inputs}
+\label[subsection]{sec:Pardon_Supplement_Source_Audit}
+
+The July 2026 manuscript materially expands the published proof sketch.
+P.5.1 states ordinary regularity, P.5.2 states derived regularity, and N.6.4.1
+gives the detailed passage from one to the other. The proper section-stack
+theorems are T.7.7.2 and T.7.7.4, while N.6.2.1 gives the parameter-thickening
+cover
+\cite[P.5.1--P.5.4, T.7.7.1--T.7.7.4, and N.6.2--N.6.4]
+  {Pardon_Logarithmic_Derived_Moduli}.
+
+The manuscript nevertheless remains unfinished. Three unresolved points are
+relevant here.
+
+\begin{enumerate}
+  \item In P.5.3, the comparison between the geometric tangent complex of the
+    represented moduli object and the analytic complex of linearized elliptic
+    operators is followed by ``(??)'' rather than a completed reference.
+  \item N.6.4.1 invokes this comparison to recognize a base-changed regular
+    locus as the submersive locus over a smooth parameter manifold. The
+    kernel-projection argument in
+    \Cref{lem:Pardon_Kernel_Projection} supplies the smooth parametric
+    conclusion needed for the core proof, but it does not establish the full
+    derived tangent comparison claimed in P.5.3.
+  \item N.6.3.1 reduces elliptic problems over derived bases to problems over
+    smooth bases by invoking a derived Ehresmann theorem marked ``(??)''.
+    Consequently, our detailed proved route works over a smooth manifold or,
+    by descent, a smooth stack base. The further derived-base reduction is
+    reported as part of Pardon's work-in-progress generalization.
+\end{enumerate}
+
+There are further placeholders inside the flexibility results used to prove
+T.7.7.2 and T.7.7.4. This does not erase the conceptual value of the argument,
+but it does determine how its status should be described. The 2024 article is
+a published proof sketch of the pseudo-holomorphic theorem. The 2026 manuscript
+is a substantially fuller, explicitly unfinished general treatment, not yet a
+source in which every dependency has been closed.
+
+\subsection{Related literature}
+\label[subsection]{sec:Pardon_Derived_Regularity_Related_Literature}
+
+The primary source for the live route is Pardon's
+\emph{Representability in non-linear elliptic Fredholm analysis}. Section~4
+defines pseudo-holomorphic moduli stacks diagrammatically. Section~5 states the
+Derived Regularity Theorem, describes its three proof steps, proves the
+section-stack theorem in sketch form, and states the categorical pullback lemma
+\cite[Sections~4--5]{Pardon_Representability_Elliptic_Fredholm}.
+
+The July 2026 manuscript
+\emph{Logarithmic derived moduli theory of non-linear elliptic equations}
+places the same argument in a much larger treatment. The relevant ordinary
+smooth-domain material is in P.4--P.5, T.7.7, and N.5--N.6.4. Its logarithmic
+extensions begin afterwards and belong to the next chapter
+\cite[P.4--P.5, T.7.7, and N.5--N.6.4]
+  {Pardon_Logarithmic_Derived_Moduli}.
+
+For comparison, Steffens's Remark~3.4.7 isolates the smooth-to-derived problem
+inside the Kuranishi-chart proof. Chapter~11 followed that route in detail
+\cite[Remark~3.4.7]{Steffens_Representability_Elliptic_Moduli}. The two
+arguments use the same Fredholm obstruction spaces but package the categorical
+comparison differently.

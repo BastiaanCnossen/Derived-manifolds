@@ -1,0 +1,785 @@
+% The title and chapter boundary remain provisional. This chapter is the
+% complete working manuscript for the second seminar talk. Sections marked as
+% supplements are intended for the written notes, not for the default live
+% route through the talk.
+
+\chapter{Smooth geometry through \texorpdfstring{$\Cinfty$}{C-infinity}-rings}
+\label[chapter]{chap:Smooth_Geometry_Through_Cinfty_Rings}
+
+\section{Smooth functional calculus}
+\label[section]{sec:Smooth_Functional_Calculus}
+
+The preceding chapter ended with a basic loss of information. The equations
+\[
+  t=0
+  \qquad\text{and}\qquad
+  t^2=0
+\]
+have the same set of solutions in $\R$, but their linearizations at the origin
+are different. Passing immediately to the zero set forgets the equation which
+cut it out.
+
+Ordinary algebraic geometry suggests retaining a quotient of a function ring.
+In the smooth setting, the two candidates are
+\[
+  \Cinfty(\R)/(t)
+  \qquad\text{and}\qquad
+  \Cinfty(\R)/(t^2).
+\]
+These expressions lead to two questions.
+
+\begin{enumerate}
+  \item What structure on $\Cinfty(\R)$ remembers substitution by arbitrary
+    smooth functions, rather than only addition and multiplication?
+  \item Why does that structure descend to a quotient by an ordinary ideal?
+\end{enumerate}
+
+The answer to the first question is the notion of a $\Cinfty$-ring. The answer
+to the second is Hadamard's lemma. Once both are in place, we will compute the
+two displayed quotients and see exactly what the second remembers beyond its
+single real point.
+
+There is also a more global test for the language. If a manifold is replaced
+by its ring of smooth functions, can we still recover its smooth maps? The
+principal geometric result of the chapter says that we can. In fact, the same
+argument works for arbitrary closed subsets of Euclidean spaces equipped with
+their smooth functions.
+
+Let us begin with the motivating example. If $M$ is a manifold, a smooth map
+$f\colon\R^n\to\R$ can be applied pointwise to an $n$-tuple of smooth
+functions on $M$:
+\[
+  (a_1,\ldots,a_n)
+  \longmapsto
+  f(a_1,\ldots,a_n),
+  \qquad
+  f(a_1,\ldots,a_n)(x)
+  =f(a_1(x),\ldots,a_n(x)).
+\]
+A $\Cinfty$-ring is a set on which all these smooth operations make sense,
+subject to the relations imposed by composition of smooth maps.
+The operations formulation below follows Moerdijk--Reyes
+\cite[Chapter~I, Section~1]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}; a
+modern account, including the functor formulation, is given by Joyce
+\cite[Sections~2.1--2.2]{Joyce_Introduction_Cinfty_Schemes}.
+
+\begin{definition}[$\Cinfty$-ring]
+  \label[definition]{def:Cinfty_Ring_Operations}
+  A \emph{$\Cinfty$-ring} is a set $A$ equipped, for every $n\geq 0$ and every
+  smooth map $f\colon\R^n\to\R$, with an operation
+  \[
+    \Phi_f\colon A^n\longrightarrow A.
+  \]
+  These operations satisfy the following two conditions.
+
+  \begin{enumerate}
+    \item If $\pi_i\colon\R^n\to\R$ is the $i$th projection, then
+      $\Phi_{\pi_i}(a_1,\ldots,a_n)=a_i$.
+    \item If $f_1,\ldots,f_m\colon\R^n\to\R$ and
+      $g\colon\R^m\to\R$ are smooth, then
+      \[
+        \Phi_{g\circ(f_1,\ldots,f_m)}
+        =\Phi_g\circ(\Phi_{f_1},\ldots,\Phi_{f_m}).
+      \]
+  \end{enumerate}
+\end{definition}
+
+The case $n=0$ supplies an element of $A$ for every constant in $\R$. The
+second axiom says that evaluating a composite smooth function gives the same
+answer as evaluating its pieces successively.
+
+\begin{example}[Smooth functions]
+  \label[example]{ex:Smooth_Functions_Cinfty_Ring}
+  For every manifold $M$, the set $\Cinfty(M)$ is a $\Cinfty$-ring under
+  pointwise smooth functional calculus. More generally, the same construction
+  works whenever a notion of smooth real-valued function has been specified
+  and is closed under smooth substitution.
+\end{example}
+
+\begin{definition}[$\Cinfty$-homomorphism]
+  \label[definition]{def:Cinfty_Homomorphism}
+  A homomorphism of $\Cinfty$-rings is a map $\varphi\colon A\to B$ satisfying
+  \[
+    \varphi\bigl(\Phi_f(a_1,\ldots,a_n)\bigr)
+    =\Phi_f\bigl(\varphi(a_1),\ldots,\varphi(a_n)\bigr)
+  \]
+  for every smooth $f\colon\R^n\to\R$ and every
+  $(a_1,\ldots,a_n)\in A^n$.
+\end{definition}
+
+If $u\colon M\to N$ is smooth, then pullback gives a homomorphism
+\[
+  u^*\colon\Cinfty(N)\longrightarrow\Cinfty(M),
+  \qquad
+  h\longmapsto h\circ u.
+\]
+Thus smooth geometry enters the algebra contravariantly. This reversal of
+arrows will remain in force throughout the next several chapters.
+
+\begin{observation}[The underlying commutative algebra]
+  \label[observation]{obs:Underlying_Commutative_Algebra}
+  Every $\Cinfty$-ring has an underlying commutative $\R$-algebra. Addition,
+  multiplication, scalar multiplication, zero, and one are obtained from the
+  corresponding smooth maps between Euclidean spaces. Every
+  $\Cinfty$-homomorphism is consequently a homomorphism of commutative
+  $\R$-algebras.
+\end{observation}
+
+The converse is false. The extra smooth operations impose genuine algebraic
+conditions. For example, in every $\Cinfty$-ring and for every $a\in A$, the
+element $1+a^2$ is invertible. Its inverse is
+\[
+  \Phi_g(a),
+  \qquad
+  g(x)=\frac{1}{1+x^2},
+\]
+because the identity $(1+x^2)g(x)=1$ is an identity of smooth functions.
+Therefore the usual commutative algebra $\R[t]$ cannot be the underlying
+algebra of a $\Cinfty$-ring whose distinguished element $t$ is its polynomial
+generator: the polynomial $1+t^2$ has no inverse in $\R[t]$.
+
+There is a compact categorical formulation of the same definition. Let
+$\mathrm{Euc}$ be the category whose objects are the Euclidean spaces
+$\R^n$, for $n\geq 0$, and whose morphisms are smooth maps. Its finite
+products are the usual products of Euclidean spaces.
+
+\begin{proposition}[Functor formulation]
+  \label[proposition]{prop:Cinfty_Ring_Functor_Formulation}
+  To give a $\Cinfty$-ring is equivalently to give a finite-product-preserving
+  functor
+  \[
+    A\colon\mathrm{Euc}\longrightarrow\mathrm{Set}.
+  \]
+  Under this correspondence, the underlying set of the ring is $A(\R)$.
+\end{proposition}
+
+\begin{proof}
+  Suppose first that the operations of
+  \Cref{def:Cinfty_Ring_Operations} are given. Set
+  $A(\R^n)=A^n$. If
+  $f=(f_1,\ldots,f_m)\colon\R^n\to\R^m$, define
+  \[
+    A(f)=(\Phi_{f_1},\ldots,\Phi_{f_m})\colon A^n\longrightarrow A^m.
+  \]
+  The projection and composition axioms say precisely that this is a functor,
+  and the construction visibly preserves finite products.
+
+  Conversely, let $A\colon\mathrm{Euc}\to\mathrm{Set}$ preserve finite
+  products and put $A=A(\R)$. The product comparison identifies
+  $A(\R^n)$ with $A^n$. For a smooth map $f\colon\R^n\to\R$, the map $A(f)$
+  then defines $\Phi_f\colon A^n\to A$. Functoriality gives the two axioms in
+  \Cref{def:Cinfty_Ring_Operations}.
+\end{proof}
+
+This is an instance of a Lawvere theory, but no general theory of Lawvere
+theories is needed here. The useful point is simply that all smooth maps
+between Euclidean spaces act functorially.
+
+\section{Free smooth algebras and singular equations}
+\label[section]{sec:Free_Smooth_Algebras_And_Singular_Equations}
+
+\subsection{Free smooth algebras}
+\label[subsection]{sec:Free_Smooth_Algebras}
+
+Let $x_1,\ldots,x_n\in\Cinfty(\R^n)$ be the coordinate functions. Every
+smooth function $f\in\Cinfty(\R^n)$ is obtained by applying the operation
+$\Phi_f$ to these coordinates:
+\[
+  f=\Phi_f(x_1,\ldots,x_n).
+\]
+This tautological identity is the key to the universal property.
+
+\begin{theorem}[Free $\Cinfty$-rings]
+  \label[theorem]{thm:Free_Cinfty_Rings}
+  For every $\Cinfty$-ring $A$, evaluation on the coordinate functions induces
+  a bijection
+  \[
+    \Hom_{\Cinfty\text{-}\mathrm{Ring}}
+    \bigl(\Cinfty(\R^n),A\bigr)
+    \longrightarrow A^n,
+    \qquad
+    \varphi\longmapsto
+    \bigl(\varphi(x_1),\ldots,\varphi(x_n)\bigr).
+  \]
+  Thus $\Cinfty(\R^n)$ is the free $\Cinfty$-ring on
+  $x_1,\ldots,x_n$.
+\end{theorem}
+
+This is Moerdijk--Reyes, Proposition~1.1
+\cite[Chapter~I, Proposition~1.1]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+
+\begin{proof}
+  Given $(a_1,\ldots,a_n)\in A^n$, define
+  \[
+    \operatorname{ev}_{a_1,\ldots,a_n}
+    \colon\Cinfty(\R^n)\longrightarrow A,
+    \qquad
+    f\longmapsto\Phi_f(a_1,\ldots,a_n).
+  \]
+  The composition axiom for smooth functional calculus says exactly that this
+  map preserves every smooth operation, so it is a $\Cinfty$-homomorphism. It
+  sends $x_i$ to $a_i$.
+
+  Conversely, if $\varphi\colon\Cinfty(\R^n)\to A$ is a
+  $\Cinfty$-homomorphism, then
+  \[
+    \varphi(f)
+    =\varphi\bigl(\Phi_f(x_1,\ldots,x_n)\bigr)
+    =\Phi_f\bigl(\varphi(x_1),\ldots,\varphi(x_n)\bigr).
+  \]
+  Hence $\varphi$ is uniquely determined by the images of the coordinate
+  functions, and the two constructions are inverse.
+\end{proof}
+
+Smooth functions on $\R^n$ therefore play the role that polynomials in $n$
+variables play in ordinary commutative algebra. The analogy is useful, but it
+should not be taken to say that a smooth function is determined by a finite
+algebraic expression. The allowed operations already include every smooth map
+$\R^n\to\R$.
+
+\subsection{Quotients and smooth equations}
+\label[subsection]{sec:Quotients_And_Smooth_Equations}
+
+To use quotient rings, we must show that an ordinary ideal is respected by all
+smooth operations. The required fact is a multivariable form of the
+fundamental theorem of calculus.
+
+\begin{lemma}[Hadamard's lemma]
+  \label[lemma]{lem:Hadamard}
+  For every smooth map $f\colon\R^n\to\R$, there are smooth maps
+  $g_1,\ldots,g_n\colon\R^n\times\R^n\to\R$ such that
+  \[
+    f(y)-f(x)=\sum_{i=1}^n(y_i-x_i)g_i(x,y).
+  \]
+\end{lemma}
+
+\begin{proof}
+  Put
+  \[
+    g_i(x,y)
+    =\int_0^1
+      \frac{\partial f}{\partial x_i}\bigl(x+s(y-x)\bigr)\,ds.
+  \]
+  Differentiation under the integral sign shows that $g_i$ is smooth. The
+  fundamental theorem of calculus applied to
+  $s\mapsto f(x+s(y-x))$ gives
+  \[
+    f(y)-f(x)
+    =\int_0^1\frac{d}{ds}f(x+s(y-x))\,ds
+    =\sum_{i=1}^n(y_i-x_i)g_i(x,y).
+  \]
+\end{proof}
+
+\begin{proposition}[Quotient $\Cinfty$-rings]
+  \label[proposition]{prop:Quotient_Cinfty_Rings}
+  Let $A$ be a $\Cinfty$-ring, and let $I\subseteq A$ be an ideal in its
+  underlying commutative algebra. There is a unique $\Cinfty$-ring structure
+  on $A/I$ for which the quotient map $A\to A/I$ is a
+  $\Cinfty$-homomorphism.
+\end{proposition}
+
+This is Moerdijk--Reyes, Proposition~1.2
+\cite[Chapter~I, Proposition~1.2]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+
+\begin{proof}
+  The only possible definition is
+  \[
+    \Phi_f(\overline{a}_1,\ldots,\overline{a}_n)
+    =\overline{\Phi_f(a_1,\ldots,a_n)}.
+  \]
+  We check that it is independent of the representatives. Suppose that
+  $b_i-a_i\in I$ for every $i$. Apply \Cref{lem:Hadamard} inside $A$ to obtain
+  \[
+    \Phi_f(b_1,\ldots,b_n)-\Phi_f(a_1,\ldots,a_n)
+    =\sum_{i=1}^n(b_i-a_i)
+      \Phi_{g_i}(a_1,\ldots,a_n,b_1,\ldots,b_n).
+  \]
+  The right-hand side lies in $I$. Thus the operations are well defined. Their
+  projection and composition axioms descend from those in $A$. Uniqueness is
+  forced by the requirement that the quotient map preserve every operation.
+\end{proof}
+
+This result is special to smooth functional calculus. It says that every
+ordinary ideal in the underlying algebra is already compatible with all the
+smooth operations.
+
+\begin{definition}[Finite generation and finite presentation]
+  \label[definition]{def:Cinfty_Finiteness}
+  A $\Cinfty$-ring $A$ is \emph{finitely generated} if there are
+  $a_1,\ldots,a_n\in A$ such that no proper $\Cinfty$-subring contains all the
+  $a_i$. It is \emph{finitely presented} if it is isomorphic to
+  \[
+    \Cinfty(\R^n)/(f_1,\ldots,f_k)
+  \]
+  for some finite collections of generators and relations.
+\end{definition}
+
+\begin{proposition}
+  \label[proposition]{prop:Finitely_Generated_Cinfty_Quotient}
+  A $\Cinfty$-ring is finitely generated if and only if it is isomorphic to
+  $\Cinfty(\R^n)/I$ for some $n$ and some ideal
+  $I\subseteq\Cinfty(\R^n)$.
+\end{proposition}
+
+\begin{proof}
+  If $a_1,\ldots,a_n$ generate $A$, the universal property in
+  \Cref{thm:Free_Cinfty_Rings} gives a homomorphism
+  $\Cinfty(\R^n)\to A$ sending $x_i$ to $a_i$. Its image is a
+  $\Cinfty$-subring containing the generators, so it is surjective. By
+  \Cref{prop:Quotient_Cinfty_Rings}, the induced isomorphism of commutative
+  algebras $\Cinfty(\R^n)/I\to A$ is an isomorphism of $\Cinfty$-rings. The
+  converse follows because the images of the coordinate functions generate
+  every such quotient.
+\end{proof}
+
+Finite generation here means generation under every smooth operation. It does
+not imply that the underlying commutative $\R$-algebra is finitely generated.
+Likewise, finite presentation is a genuine additional condition: smooth
+function rings are not Noetherian. The next chapter will return to finite
+presentation for manifolds.
+
+\subsection{One point, two equations}
+\label[subsection]{sec:One_Point_Two_Equations}
+
+We can now compute the two quotients from the opening. In one variable,
+\Cref{lem:Hadamard} gives
+\[
+  f(t)=f(0)+t g(t)
+\]
+for some smooth $g$. Evaluation at the origin therefore induces an
+isomorphism
+\[
+  \Cinfty(\R)/(t)\cong\R.
+\]
+
+For the second quotient, Taylor's formula with smooth remainder gives
+\[
+  f(t)=f(0)+f'(0)t+t^2h(t).
+\]
+Consequently, the map
+\[
+  \Cinfty(\R)\longrightarrow\R[\varepsilon]/(\varepsilon^2),
+  \qquad
+  f\longmapsto f(0)+f'(0)\varepsilon
+\]
+is a surjective homomorphism of commutative $\R$-algebras with kernel $(t^2)$.
+It identifies
+\[
+  \Cinfty(\R)/(t^2)
+  \cong
+  \R[\varepsilon]/(\varepsilon^2).
+\]
+The ring on the right is called the ring of \emph{dual numbers}. Its
+$\Cinfty$-structure is not additional arbitrary data. It is the quotient
+structure from \Cref{prop:Quotient_Cinfty_Rings}, and its operations are given
+by the first-order Taylor formula
+\[
+  f(a+b\varepsilon)=f(a)+b f'(a)\varepsilon.
+\]
+
+To compare these quotients with their ordinary solution sets, we isolate the
+appropriate notion of point.
+
+\begin{definition}[Real point]
+  \label[definition]{def:Real_Point}
+  A \emph{real point} of a $\Cinfty$-ring $A$ is a
+  $\Cinfty$-homomorphism $A\to\R$, where $\R$ carries its evident smooth
+  functional calculus.
+\end{definition}
+
+\begin{proposition}[Real points of a quotient]
+  \label[proposition]{prop:Real_Points_Of_Quotient}
+  For every ideal $I\subseteq\Cinfty(\R^n)$, evaluation induces a bijection
+  \[
+    \Hom_{\Cinfty\text{-}\mathrm{Ring}}
+    \bigl(\Cinfty(\R^n)/I,\R\bigr)
+    \cong
+    \{p\in\R^n\mid f(p)=0\text{ for every }f\in I\}.
+  \]
+\end{proposition}
+
+\begin{proof}
+  By \Cref{thm:Free_Cinfty_Rings}, every homomorphism
+  $\Cinfty(\R^n)\to\R$ is evaluation at a unique point
+  $p=(p_1,\ldots,p_n)$. It factors through the quotient precisely when every
+  element of $I$ vanishes at $p$.
+\end{proof}
+
+Both $\Cinfty(\R)/(t)$ and $\Cinfty(\R)/(t^2)$ therefore have exactly one real
+point. They are nevertheless not isomorphic: the class of $t$ is zero in the
+first and is a nonzero square-zero element in the second. The quotient by
+$(t^2)$ remembers first-order information which the zero set forgets.
+
+\begin{warning}
+  \label[warning]{warn:Ordinary_Cinfty_Not_Derived}
+  This example does not yet construct a derived zero locus. An ordinary
+  quotient $\Cinfty$-ring can retain nilpotents and dependence on the chosen
+  ideal, but it does not by itself encode homotopy-coherent equations or
+  derived pullbacks. It is the classical algebraic input from which the later
+  derived theory will be built.
+\end{warning}
+
+\section{Recovering smooth spaces from functions}
+\label[section]{sec:Recovering_Smooth_Spaces_From_Functions}
+
+\subsection{Recovering closed smooth subsets}
+\label[subsection]{sec:Recovering_Closed_Smooth_Subsets}
+
+We now turn from equations to geometry. Let $X\subseteq\R^n$ be an arbitrary
+closed subset. It need not be a manifold.
+
+\begin{definition}[Smooth functions and maps on subsets]
+  \label[definition]{def:Smooth_Functions_On_Subsets}
+  A function $a\colon X\to\R$ is \emph{smooth} if it extends to a smooth
+  function on an open neighborhood of $X$ in $\R^n$. We write $\Cinfty(X)$
+  for the resulting $\Cinfty$-ring.
+
+  A map $u\colon X\to Y\subseteq\R^m$ is \emph{smooth} if its component
+  functions are smooth on $X$. Equivalently, it extends to a smooth map into
+  $\R^m$ on an open neighborhood of $X$.
+\end{definition}
+
+The equivalence in the second paragraph uses only that there are finitely many
+component functions: intersect their extension neighborhoods and combine the
+extensions.
+
+\begin{lemma}[Smooth extension from a closed subset]
+  \label[lemma]{lem:Smooth_Extension_Closed_Subset}
+  If $X\subseteq\R^n$ is closed, every element of $\Cinfty(X)$ is the
+  restriction of a globally defined smooth function on $\R^n$.
+\end{lemma}
+
+\begin{proof}
+  Let $a\in\Cinfty(X)$, and choose a smooth extension $\widetilde a$ on an open
+  neighborhood $U$ of $X$. A smooth partition of unity subordinate to the
+  cover
+  \[
+    \{U,\R^n\setminus X\}
+  \]
+  supplies a smooth function $\chi\colon\R^n\to[0,1]$ whose support is
+  contained in $U$ and whose restriction to $X$ is one. Define
+  \[
+    \overline a(x)=
+    \begin{cases}
+      \chi(x)\widetilde a(x),&x\in U,\\
+      0,&x\notin U.
+    \end{cases}
+  \]
+  Since the support of $\chi$ is contained in $U$, this formula defines a
+  smooth function on all of $\R^n$. Its restriction to $X$ is $a$.
+\end{proof}
+
+Let
+\[
+  \mathfrak m_X
+  =\{h\in\Cinfty(\R^n)\mid h|_X=0\}.
+\]
+The restriction homomorphism is surjective by
+\Cref{lem:Smooth_Extension_Closed_Subset}, with kernel $\mathfrak m_X$.
+Hence
+\[
+  \Cinfty(X)\cong\Cinfty(\R^n)/\mathfrak m_X.
+\]
+In particular, $\Cinfty(X)$ is a finitely generated $\Cinfty$-ring, even when
+$X$ is singular or has complicated topology.
+
+The following theorem is the main geometric payoff of the chapter.
+
+\begin{theorem}[Full faithfulness for closed subsets]
+  \label[theorem]{thm:Full_Faithfulness_Closed_Subsets}
+  Let $X\subseteq\R^n$ and $Y\subseteq\R^m$ be closed subsets. Pullback induces
+  a bijection
+  \[
+    \{\text{smooth maps }Y\to X\}
+    \longrightarrow
+    \Hom_{\Cinfty\text{-}\mathrm{Ring}}
+    \bigl(\Cinfty(X),\Cinfty(Y)\bigr).
+  \]
+  Consequently, the functor
+  \[
+    \Cinfty(-)\colon
+    (\text{closed subsets of Euclidean spaces})\catop
+    \longrightarrow
+    \Cinfty\text{-}\mathrm{Ring}
+  \]
+  is fully faithful.
+\end{theorem}
+
+\begin{proof}
+  Let
+  \[
+    \Psi\colon\Cinfty(X)\longrightarrow\Cinfty(Y)
+  \]
+  be a homomorphism. Write $x_1,\ldots,x_n$ for the coordinate functions on
+  $\R^n$, and define
+  \[
+    g_i=\Psi(x_i|_X)\in\Cinfty(Y),
+    \qquad
+    g=(g_1,\ldots,g_n)\colon Y\longrightarrow\R^n.
+  \]
+  The map $g$ is smooth by \Cref{def:Smooth_Functions_On_Subsets}. For every
+  $h\in\Cinfty(\R^n)$, preservation of smooth functional calculus gives
+  \[
+    \Psi(h|_X)
+    =\Psi\bigl(\Phi_h(x_1|_X,\ldots,x_n|_X)\bigr)
+    =\Phi_h(g_1,\ldots,g_n)
+    =h\circ g.
+  \]
+
+  We claim that $g$ lands in $X$. If $g(y)=p\notin X$ for some $y\in Y$,
+  choose a smooth bump function $h\colon\R^n\to\R$ supported in
+  $\R^n\setminus X$ and satisfying $h(p)=1$. Then $h|_X=0$, whereas the
+  displayed identity gives
+  \[
+    0=\Psi(h|_X)(y)=h(g(y))=1,
+  \]
+  a contradiction.
+
+  It remains to identify $\Psi$. Given $a\in\Cinfty(X)$, choose a global
+  smooth extension $h\in\Cinfty(\R^n)$ using
+  \Cref{lem:Smooth_Extension_Closed_Subset}. Then
+  \[
+    \Psi(a)=\Psi(h|_X)=h\circ g=a\circ g.
+  \]
+  Thus $\Psi=g^*$. The map $g$ is unique because its component functions are
+  the images of the restricted coordinates.
+
+  Conversely, pullback along a smooth map $g\colon Y\to X$ preserves every
+  smooth operation pointwise, and hence defines a $\Cinfty$-homomorphism. The
+  two constructions are inverse.
+\end{proof}
+
+The corresponding result for all locally closed subsets is
+Moerdijk--Reyes, Proposition~1.5
+\cite[Chapter~I, Proposition~1.5]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+
+For the usual class of finite-dimensional, second-countable smooth manifolds,
+Whitney's embedding theorem may be strengthened to give a proper Euclidean
+embedding \cite{lee2000smooth}. Its image is closed. The intrinsic smooth
+functions and smooth maps agree with those in
+\Cref{def:Smooth_Functions_On_Subsets}. We therefore obtain the case which
+will be used later.
+
+\begin{corollary}[Recovering manifolds]
+  \label[corollary]{cor:Recovering_Manifolds}
+  The contravariant functor
+  \[
+    \Cinfty(-)\colon
+    (\text{smooth manifolds})\catop
+    \longrightarrow
+    \Cinfty\text{-}\mathrm{Ring}
+  \]
+  is fully faithful.
+\end{corollary}
+
+The conclusion is stronger than a reconstruction of points. The entire smooth
+map $Y\to X$ is recovered from the homomorphism on function rings by looking
+at the images of finitely many ambient coordinate functions.
+
+\section{Summary and supplementary materials}
+\label[section]{sec:Cinfty_Summary_And_Further_Reading}
+
+\subsection{The live route}
+\label[subsection]{sec:Cinfty_Live_Route}
+
+The default live route occupies 70 minutes. Its engine is the free
+$\Cinfty$-ring theorem together with Hadamard's lemma and the quotient
+construction. The dual numbers are the principal calculation. Full
+faithfulness for closed subsets is the geometric payoff and the handoff to
+Talk 3. The locally closed extension and Borel's theorem remain available as
+supplementary reading, but no later talk depends on their proofs.
+
+\subsection{Takeaways and next step}
+\label[subsection]{sec:Cinfty_Takeaways_And_Next_Step}
+
+The main route through the chapter can be compressed into four statements.
+
+\begin{enumerate}
+  \item A $\Cinfty$-ring is an algebraic object in which every smooth map
+    $\R^n\to\R$ acts as an operation.
+  \item The ring $\Cinfty(\R^n)$ is free on its coordinate functions, and
+    Hadamard's lemma implies that every ordinary ideal defines a quotient
+    $\Cinfty$-ring.
+  \item The quotients by $(t)$ and $(t^2)$ have the same real point but
+    different algebraic structures. The latter retains a first-order
+    thickening which the zero set forgets.
+  \item Passing contravariantly from a manifold to its $\Cinfty$-ring of
+    smooth functions loses neither the manifold nor its smooth maps.
+\end{enumerate}
+
+We have therefore found a classical algebraic language for smooth equations.
+Two important tasks remain before deriving it. First, we need to understand
+which $\Cinfty$-rings actually arise from manifolds and how geometric products
+and transverse pullbacks appear algebraically. Second, ordinary quotients do
+not yet have the homotopy-invariant universal property required for
+nontransverse intersections. The next chapter addresses the first task and
+prepares the second.
+
+\subsection{Supplement: infinite jets and Borel's theorem}
+\label[subsection]{sec:How_Large_Smooth_Algebra_Can_Be}
+
+Borel's theorem is a useful calibration of the size of smooth algebra, but no
+later chapter depends on it. The preceding examples were finite-dimensional
+as ordinary $\R$-algebras. The next theorem shows how misleading that special
+feature can be. Let
+$\mathfrak m_0^\infty\subseteq\Cinfty(\R^n)$ be the ideal of functions
+\emph{flat at the origin}, meaning that every partial derivative of every
+order vanishes at the origin. The Taylor homomorphism is
+\[
+  T_0\colon\Cinfty(\R^n)\longrightarrow\R[[x_1,\ldots,x_n]],
+  \qquad
+  f\longmapsto
+  \sum_{\alpha\in\N^n}\frac{D^\alpha f(0)}{\alpha!}x^\alpha.
+\]
+
+\begin{theorem}[Borel's theorem]
+  \label[theorem]{thm:Borel}
+  The Taylor homomorphism $T_0$ is surjective and has kernel
+  $\mathfrak m_0^\infty$. It therefore induces an isomorphism of commutative
+  $\R$-algebras
+  \[
+    \Cinfty(\R^n)/\mathfrak m_0^\infty
+    \cong
+    \R[[x_1,\ldots,x_n]].
+  \]
+  In particular, the formal power series ring inherits a $\Cinfty$-ring
+  structure from the quotient on the left.
+\end{theorem}
+
+This is the form of Borel's theorem recorded as Moerdijk--Reyes,
+Theorem~1.3
+\cite[Chapter~I, Theorem~1.3]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+
+The assertion about the kernel is immediate from the definition. Surjectivity
+is the content of the theorem: every formal Taylor series is the Taylor series
+of some smooth function. We record the standard construction in one variable
+as a sketch, both to indicate why the result is plausible and to keep the
+logical status of the argument clear.
+
+\begin{discussion}[Proof sketch in one variable]
+  \label[discussion]{disc:Borel_Proof_Sketch}
+  Choose a compactly supported smooth function $\chi$ which is identically one
+  near the origin. Given prescribed derivatives $(a_k)_{k\geq0}$, consider
+  \[
+    \sum_{k\geq0}\frac{a_k}{k!}t^k\chi(\lambda_k t).
+  \]
+  The numbers $\lambda_k$ are chosen recursively and sufficiently large. For
+  every $j<k$, the $C^j$-norm of the $k$th summand can then be made at most
+  $2^{-k}$. It follows that the series and each of its derivatives converge
+  uniformly on $\R$. Near the origin the cutoff in the $k$th summand is
+  constant, so this summand contributes $a_k$ to the $k$th derivative at zero
+  and contributes nothing to the other Taylor coefficients. The resulting
+  smooth function has the prescribed Taylor series. The multivariable proof
+  uses the same rapidly shrinking cutoff construction, organized by total
+  degree.
+\end{discussion}
+
+The quotient in \Cref{thm:Borel} is generated as a $\Cinfty$-ring by the
+images of $x_1,\ldots,x_n$, but its underlying commutative algebra contains
+arbitrary formal power series. This is the promised warning about finiteness:
+generation under all smooth operations is a much weaker condition than
+generation of the underlying commutative algebra.
+
+\subsection{Supplement: locally closed subsets}
+\label[subsection]{sec:Supplement_Locally_Closed_Subsets}
+
+The live route through the talk can stop after
+\Cref{cor:Recovering_Manifolds}. For completeness, this subsection proves the
+extension used by Moerdijk and Reyes: the same full-faithfulness statement
+holds for locally closed subsets. The only additional task is to replace an
+open subset by a closed hypersurface in one higher-dimensional Euclidean
+space. The construction follows their Lemma~1.4 and Proposition~1.5
+\cite[Chapter~I, Lemma~1.4 and Proposition~1.5]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+
+\begin{lemma}[Open subsets are smooth cozero loci]
+  \label[lemma]{lem:Open_Subset_Cozero_Locus}
+  For every open subset $U\subseteq\R^n$, there is a smooth function
+  $f\colon\R^n\to[0,\infty)$ such that
+  \[
+    U=\{x\in\R^n\mid f(x)\neq0\}.
+  \]
+\end{lemma}
+
+\begin{proof}
+  Choose a countable collection of open balls $B_k$ which covers $U$ and whose
+  closures lie in $U$. For each $k$, choose a nonnegative smooth function
+  $\rho_k$ supported in $U$ and strictly positive on $B_k$. Choose constants
+  $\varepsilon_k>0$ so small that
+  \[
+    \varepsilon_k
+    \sup_{x\in\R^n}|D^\alpha\rho_k(x)|
+    \leq 2^{-k}
+  \]
+  for every multi-index $\alpha$ with $|\alpha|\leq k$. Then
+  \[
+    f=\sum_{k\geq1}\varepsilon_k\rho_k
+  \]
+  converges together with all its derivatives and hence defines a smooth
+  function. It vanishes outside $U$. At every point of $U$, at least one
+  $\rho_k$ is positive, so $f$ is positive there.
+\end{proof}
+
+\begin{proposition}[Closed realization]
+  \label[proposition]{prop:Locally_Closed_Closed_Realization}
+  Every locally closed subset $X\subseteq\R^n$ is diffeomorphic, in the sense
+  of \Cref{def:Smooth_Functions_On_Subsets}, to a closed subset of
+  $\R^{n+1}$.
+\end{proposition}
+
+\begin{proof}
+  First let $U\subseteq\R^n$ be open, and choose $f$ as in
+  \Cref{lem:Open_Subset_Cozero_Locus}. The graph
+  \[
+    H_f
+    =\{(x,y)\in\R^n\times\R\mid y f(x)=1\}
+  \]
+  is closed, since it is the zero locus of the continuous function
+  $(x,y)\mapsto y f(x)-1$. The map
+  \[
+    U\longrightarrow H_f,
+    \qquad
+    x\longmapsto\bigl(x,1/f(x)\bigr)
+  \]
+  is a diffeomorphism with inverse the first projection.
+
+  Now write the locally closed subset as $X=F\cap U$, with $F$ closed in
+  $\R^n$ and $U$ open. Under the displayed diffeomorphism, $X$ corresponds to
+  \[
+    H_f\cap(F\times\R),
+  \]
+  which is closed in $\R^{n+1}$.
+\end{proof}
+
+\begin{corollary}[Moerdijk--Reyes]
+  \label[corollary]{cor:Full_Faithfulness_Locally_Closed}
+  The contravariant functor from locally closed subsets of Euclidean spaces and
+  smooth maps to finitely generated $\Cinfty$-rings is fully faithful.
+\end{corollary}
+
+\begin{proof}
+  Replace the source and target by the closed realizations from
+  \Cref{prop:Locally_Closed_Closed_Realization}, and apply
+  \Cref{thm:Full_Faithfulness_Closed_Subsets}. Their function rings are
+  finitely generated because each closed realization is a quotient of a free
+  $\Cinfty$-ring.
+\end{proof}
+
+\subsection{Related literature}
+\label[subsection]{sec:Cinfty_Related_Literature}
+
+The primary source for this chapter is Moerdijk--Reyes, Chapter~I, Section~1
+\cite[Chapter~I, Section~1]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+It contains the free-ring theorem, quotient construction, Borel's theorem, the
+cozero-locus lemma, and full faithfulness for locally closed subsets. Our proof
+of the closed-subset case makes the ambient-coordinate and bump-function
+argument more explicit than the source.
+
+Joyce gives a concise modern treatment of $C^\infty$-rings, finite generation
+and presentation, Weil algebras, and the passage to $C^\infty$-schemes
+\cite[Sections~2--3]{Joyce_Introduction_Cinfty_Schemes}. The latter passage is
+deliberately postponed to Talk 7, after the universal construction, the first
+affine derived calculations, and their stable linearization. Spivak's
+construction shows how ordinary
+$C^\infty$-rings are replaced by their homotopical counterparts in one model
+of derived smooth manifolds
+\cite[Sections~5--7]{Spivak_Derived_Smooth_Manifolds}.

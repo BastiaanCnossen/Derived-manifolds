@@ -1,0 +1,1248 @@
+% !TEX root = ../main.tex
+
+% This chapter is the complete working manuscript for the eighth seminar
+% talk. The final section contains supplementary material outside the default
+% live route.
+
+\chapter{Local derived geometry and Kuranishi charts}
+\label[chapter]{chap:Local_Derived_Geometry_Kuranishi_Charts}
+
+Talk 7 ended with the local normal-form slogan
+\[
+  \text{quasi-smooth}
+  \quad\Longleftrightarrow\quad
+  \text{locally a derived zero locus}.
+\]
+The right-hand side is geometric, but the word ``locally'' has not yet been
+explained. Our affine description by animated $\Cinfty$-rings provides
+pullbacks, Koszul presentations, and cotangent complexes. It does not visibly
+display an underlying topological space, open subsets, or restriction of
+functions.
+
+The first task of this chapter is therefore to make affine derived objects
+local. The basic operation is smooth localization. For a manifold $M$ and a
+function $a\in\Cinfty(M)$, inverting $a$ restricts $M$ to the open set where
+$a$ does not vanish. For an animated $\Cinfty$-ring $A$, the spectrum
+construction organizes all such localizations into a topological space with
+a sheaf of animated functions. Its guiding slogan is
+\begin{quote}
+  The topology of $\Spec A$ is controlled by $\pi_0A$, while its structure
+  sheaf retains the full animated algebra $A$.
+\end{quote}
+
+The second task is to understand the nonuniqueness of the local zero-locus
+presentations produced in this way. A triple
+\[
+  (U,E,s),
+\]
+consisting of a manifold, a vector bundle, and a section, is a presentation
+of a derived zero locus. It is not the intrinsic derived object itself. We
+will see this concretely by comparing
+\[
+  x\longmapsto x^2
+  \qquad\text{and}\qquad
+  (x,y)\longmapsto(x^2,y).
+\]
+The second presentation has one additional variable and one additional
+equation, but presents the same derived object. This operation is called
+stabilization.
+
+Here $\Spec A$ is a geometric spectrum. It is unrelated to the stable
+homotopy-theoretic coefficient objects mentioned in Talk 7. Stable modules
+linearize an animated algebra; the geometric spectrum equips that algebra
+with points, open restrictions, and a structure sheaf.
+
+\section{From localization to derived spectra}
+\label[section]{sec:Localization_To_Derived_Spectra}
+
+\subsection{Open restriction in smooth algebra}
+\label[subsection]{sec:Open_Restriction_Smooth_Algebra_Talk_Eight}
+
+Let $M$ be a manifold, let $a\in\Cinfty(M)$, and write
+\[
+  D(a)=\{x\in M\mid a(x)\neq0\}.
+\]
+Talk 3 proved that restriction to $D(a)$ is the smooth localization at $a$.
+
+\begin{proposition}[Smooth localization]
+  \label[proposition]{prop:Smooth_Localization_Recall_Talk_Eight}
+  Restriction induces an isomorphism of $\Cinfty$-rings
+  \[
+    \Cinfty(M)[a^{-1}]
+    \iso
+    \Cinfty(D(a)).
+  \]
+\end{proposition}
+
+The graph
+\[
+  D(a)\longrightarrow M\times\R,
+  \qquad
+  x\longmapsto(x,a(x)^{-1})
+\]
+identifies $D(a)$ with the regular zero locus of
+\[
+  (x,y)\longmapsto ya(x)-1.
+\]
+This is the geometric reason that adjoining an inverse to $a$ produces
+precisely the functions on $D(a)$.
+
+It matters that this is localization in $\Cinfty$-rings. Algebraically
+inverting the coordinate $x$ in the underlying commutative ring of
+$\Cinfty(\R)$ produces only fractions $f(x)/x^n$. The smooth localization is
+$\Cinfty(\R\setminus\{0\})$ and contains arbitrary smooth functions on the
+punctured line, including functions whose growth near zero is not bounded by
+any power of $x^{-1}$. The full smooth functional calculus is part of the
+localization.
+
+Every open subset of a manifold is a nonvanishing locus. If $V\subseteq M$
+is open, there is a smooth function $a\colon M\to[0,\infty)$ such that
+$V=D(a)$. Thus ordinary open restriction is completely visible in smooth
+algebra.
+
+\subsection{Derived localization}
+\label[subsection]{sec:Derived_Localization_Talk_Eight}
+
+Let $A$ be an animated $\Cinfty$-ring and let $a\in\pi_0A$. A morphism
+$A\to B$ carries $a$ to a well-defined element of $\pi_0B$, so it makes
+sense to require that image to be invertible.
+
+\begin{definition}[Derived localization]
+  \label[definition]{def:Derived_Localization_Talk_Eight}
+  The \emph{localization of $A$ at $a$} is a morphism
+  \[
+    A\longrightarrow A[a^{-1}]
+  \]
+  which is initial among morphisms from $A$ carrying $a$ to an invertible
+  element of $\pi_0$.
+\end{definition}
+
+This initial object is unique in the homotopical sense: its universal
+property includes the homotopies and all their higher compatibilities. It is
+computed by the pushout
+\[
+\begin{tikzcd}
+  \Cinfty(\R) \rar \dar \drar[pushout]
+    & A \dar \\
+  \Cinfty(\R\setminus\{0\}) \rar
+    & A[a^{-1}],
+\end{tikzcd}
+\]
+where the upper morphism classifies $a$.
+
+The decisive calculation says that this construction only restricts the
+derived information already present.
+
+\begin{theorem}[Homotopy groups of a smooth localization]
+  \label[theorem]{thm:Homotopy_Groups_Smooth_Localization_Talk_Eight}
+  Let $A$ be an animated $\Cinfty$-ring and let $a\in\pi_0A$. Then
+  \[
+    \pi_0(A[a^{-1}])
+    \cong
+    (\pi_0A)[a^{-1}],
+  \]
+  and for every $n\geq0$ the canonical morphism
+  \[
+    \pi_n(A)\otimes_{\pi_0A}(\pi_0A)[a^{-1}]
+    \longrightarrow
+    \pi_n(A[a^{-1}])
+  \]
+  is an isomorphism.
+\end{theorem}
+
+The theorem is Steffens, Proposition~4.1.3.13
+\cite[Proposition~4.1.3.13]{Steffens_Derived_Differential_Geometry}. We quote
+its proof, which uses flatness of smooth open restriction. The formula says
+that localization is \emph{strong}: it creates no new higher homotopy groups.
+Each existing homotopy group is simply restricted to the chosen open set.
+
+There is also a linear version of the same assertion. Smooth localization is
+formally etale, so
+\[
+  \mathbb L_{A[a^{-1}]/A}\simeq0.
+\]
+Transitivity therefore gives
+\begin{equation}
+  \label{eq:Cotangent_Complex_Localizes_Talk_Eight}
+  \mathbb L_{A[a^{-1}]}
+  \simeq
+  \mathbb L_A\otimes_AA[a^{-1}].
+\end{equation}
+This is the bridge back to Talk 7: the stable linearization of an open
+restriction is the restriction of the stable linearization.
+
+If $A$ is homotopically finitely presented, then so is $A[a^{-1}]$. This
+follows either from the displayed pushout or from Steffens,
+Remark~4.1.3.14
+\cite[Remark~4.1.3.14]{Steffens_Derived_Differential_Geometry}.
+
+\subsection{Points, basic opens, and animated functions}
+\label[subsection]{sec:Derived_Spectrum_Slogan_Talk_Eight}
+
+We now organize the localizations of $A$ into a geometric object. Assume for
+the moment that $A$ is homotopically finitely presented. Its set of real
+points is
+\[
+  |\Spec A|
+  =
+  \Hom_{\Cinfty\text{-rings}}(\pi_0A,\R).
+\]
+For $a\in\pi_0A$, define the basic open
+\[
+  D(a)
+  =
+  \{x\colon\pi_0A\to\R\mid x(a)\neq0\}.
+\]
+These opens generate a topology. On $D(a)$, place the full animated
+localization $A[a^{-1}]$ rather than only its discrete truncation.
+
+\begin{construction}[Derived spectrum]
+  \label[construction]{con:Derived_Spectrum_Talk_Eight}
+  The \emph{derived spectrum} of $A$ is the locally animated
+  $\Cinfty$-ringed space
+  \[
+    \Spec A
+    =
+    \bigl(|\Spec A|,\mathcal O_{\Spec A}\bigr),
+  \]
+  whose structure sheaf is obtained from the assignments
+  \[
+    \mathcal O_{\Spec A}(D(a))
+    \simeq
+    A[a^{-1}].
+  \]
+\end{construction}
+
+For the finite-presentation objects used in the live argument, these
+assignments already have the expected locality properties. The ordinary
+structured-space construction and its extension to animated rings are
+discussed in \Cref{sec:Supplement_Real_Spectrum_Talk_Eight}.
+
+Truncation has an especially simple description:
+\[
+  t_0(\Spec A)
+  =
+  \bigl(|\Spec A|,\pi_0\mathcal O_{\Spec A}\bigr)
+  \cong
+  \Spec(\pi_0A).
+\]
+The topological space does not change. Truncation only discards the higher
+homotopy sheaves of functions.
+
+A one-point example makes the distinction visible. Let
+\[
+  K(0)=\bigl(\R\otimes\Lambda(e),\partial e=0\bigr)
+\]
+be the animated function algebra of the derived self-intersection
+$*\times_{\R}*$. Then
+\[
+  \pi_0K(0)=\R,
+  \qquad
+  \pi_1K(0)=\R.
+\]
+The following three objects have the same one-point underlying space:
+\[
+\begin{array}{@{}lll@{}}
+  \text{object} & \pi_0\text{ of the stalk} & \pi_1\text{ of the stalk}\\
+  \hline
+  \text{ordinary point} & \R & 0\\
+  \text{dual-number point} & \R[\varepsilon]/(\varepsilon^2) & 0\\
+  \text{derived self-intersection} & \R & \R.
+\end{array}
+\]
+Topology distinguishes none of them. The ordinary and higher parts of the
+structure sheaf distinguish all three.
+
+\subsection{The affine comparison theorem}
+\label[subsection]{sec:Affine_Comparison_Talk_Eight}
+
+There is always a natural morphism
+\[
+  A\longrightarrow\Gamma(\Spec A,\mathcal O_{\Spec A}).
+\]
+For arbitrary animated $\Cinfty$-rings it need not be an equivalence. In the
+finite-presentation range of derived manifolds, it is.
+
+\begin{definition}[Affine derived $\Cinfty$-scheme]
+  \label[definition]{def:Affine_Derived_Cinfty_Scheme_Talk_Eight}
+  An \emph{affine derived $\Cinfty$-scheme of finite presentation} is a
+  locally animated $\Cinfty$-ringed space equivalent to $\Spec A$ for a
+  homotopically finitely presented animated $\Cinfty$-ring $A$.
+\end{definition}
+
+\begin{theorem}[Affine comparison in finite presentation]
+  \label[theorem]{thm:Affine_Comparison_Finite_Presentation_Talk_Eight}
+  Spectrum and global sections induce an equivalence of $\infty$-categories
+  \[
+    \operatorname{Alg}_{\Cinfty}(\An)_{\mathrm{fp}}\catop
+    \simeq
+    \mathrm{d}\Cinfty\mathrm{Aff}_{\mathrm{fp}}.
+  \]
+  In particular, for every homotopically finitely presented animated
+  $\Cinfty$-ring $A$, the unit induces an isomorphism
+  \[
+    A
+    \iso
+    \Gamma(\Spec A,\mathcal O_{\Spec A}).
+  \]
+\end{theorem}
+
+The proof passes through the class of fair animated $\Cinfty$-rings. Steffens
+first proves spectrum and global sections to be inverse on fair objects and
+then proves that almost finitely presented animated $\Cinfty$-rings are fair.
+We use only the resulting finite-presentation statement. The relevant results
+are Theorem~4.1.3.22, Proposition~4.1.3.33, and Corollary~4.1.3.34
+\cite[Theorem~4.1.3.22, Proposition~4.1.3.33, and
+Corollary~4.1.3.34]{Steffens_Derived_Differential_Geometry}.
+
+The theorem does not introduce a second affine theory. It equips the affine
+objects of Talks 4 to 7 with an explicit topology, open restrictions, and a
+structure sheaf. Combining it with the algebraic presentation from Talk 4
+gives
+\[
+  \mathrm{DMfd}
+  \simeq
+  \mathrm{d}\Cinfty\mathrm{Aff}_{\mathrm{fp}}.
+\]
+
+\section{Local derived smooth geometry}
+\label[section]{sec:Local_Derived_Smooth_Geometry_Talk_Eight}
+
+The affine comparison theorem gives a geometric meaning to a single animated
+algebra. We now allow these affine objects to be restricted and glued.
+
+\subsection{Open subobjects and locally affine schemes}
+\label[subsection]{sec:Open_Subobjects_Locally_Affine_Talk_Eight}
+
+Let $(X,\mathcal O_X)$ be a locally animated $\Cinfty$-ringed space and let
+$V\subseteq|X|$ be open. Restriction gives another such space
+\[
+  (V,\mathcal O_X|_V)
+\]
+and a morphism to $X$. We call this an \emph{open subobject}.
+
+On an affine derived spectrum, principal open restriction is precisely the
+geometric form of localization:
+\begin{equation}
+  \label{eq:Principal_Open_Derived_Spectrum}
+  \Spec A[a^{-1}]
+  \simeq
+  \bigl(D(a),\mathcal O_{\Spec A}|_{D(a)}\bigr).
+\end{equation}
+The underlying topological spaces agree by construction. On every smaller
+principal open, the structure sheaves agree by the universal properties of
+the corresponding iterated localizations.
+
+\begin{definition}[Derived $\Cinfty$-scheme]
+  \label[definition]{def:Locally_Affine_Derived_Cinfty_Scheme_Talk_Eight}
+  A \emph{derived $\Cinfty$-scheme locally of finite presentation} is a
+  locally animated $\Cinfty$-ringed space which admits an open cover by
+  affine derived $\Cinfty$-schemes of finite presentation.
+\end{definition}
+
+This is a genuine enlargement of the affine category. The universal
+$\infty$-category $\mathrm{DMfd}$ used so far is equivalent to the affine
+finite-presentation category. A locally affine derived $\Cinfty$-scheme may
+instead require several affine opens.
+
+The sheaf condition is what permits these affine restrictions to be glued.
+For the live route, it is enough to remember its familiar meaning: animated
+functions defined locally and agreeing coherently on all intersections arise
+from one function on the union. The Cech formulation and the distinction
+between sheaf descent here and moduli descent in Talk 9 are recorded in the
+supplement.
+
+\subsection{Truncation and quasi-smoothness are local}
+\label[subsection]{sec:Truncation_Quasi_Smoothness_Local_Talk_Eight}
+
+The ordinary truncation of a derived $\Cinfty$-scheme is
+\[
+  t_0X
+  =
+  \bigl(|X|,\pi_0\mathcal O_X\bigr).
+\]
+On an affine open it restricts to
+\[
+  t_0(\Spec A)=\Spec(\pi_0A).
+\]
+Again the topological space is unchanged. Only the animated structure sheaf
+has been truncated.
+
+The cotangent complex restricts to opens by
+\Cref{eq:Cotangent_Complex_Localizes_Talk_Eight}. This lets us globalize the
+finiteness condition from Talk 7.
+
+\begin{definition}[Quasi-smooth derived $\Cinfty$-scheme]
+  \label[definition]{def:Quasi_Smooth_Derived_Cinfty_Scheme_Talk_Eight}
+  A derived $\Cinfty$-scheme locally of finite presentation is
+  \emph{quasi-smooth} if, on an affine open cover $\Spec A_i$, every
+  cotangent complex $\mathbb L_{A_i}$ is perfect of Tor-amplitude contained
+  in $[-1,0]$.
+\end{definition}
+
+\begin{proposition}[Locality of quasi-smoothness]
+  \label[proposition]{prop:Locality_Quasi_Smoothness_Talk_Eight}
+  The condition in
+  \Cref{def:Quasi_Smooth_Derived_Cinfty_Scheme_Talk_Eight} is independent of
+  the chosen affine open cover and may be checked after any affine open
+  refinement.
+\end{proposition}
+
+\begin{proof}
+  \Cref{eq:Cotangent_Complex_Localizes_Talk_Eight} shows that
+  perfection and the stated Tor-amplitude persist under restriction.
+  Conversely, perfection and Tor-amplitude are local properties of stable
+  modules on an affine spectrum. If they hold on an open cover, the local
+  duals and amplitude bounds agree on overlaps and give the corresponding
+  global properties.
+\end{proof}
+
+We can now restate the normal-form theorem from Talk 7 without leaving the
+word ``locally'' undefined.
+
+\begin{theorem}[Local zero-locus form]
+  \label[theorem]{thm:Local_Zero_Locus_Form_Talk_Eight}
+  Let $X$ be a derived $\Cinfty$-scheme locally of finite presentation. Then
+  $X$ is quasi-smooth if and only if every point of $t_0X$ has an open
+  neighborhood equivalent to the derived zero locus of a section of a
+  finite-rank vector bundle over a manifold.
+\end{theorem}
+
+One direction was calculated in Talk 7: the cotangent complex of a
+finite-rank zero locus is perfect in degrees $-1$ and $0$. The converse is a
+derived inverse-function and normal-form theorem. We quote it from Steffens,
+Proposition~5.1.1.11 and Corollary~5.1.1.13
+\cite[Proposition~5.1.1.11 and
+Corollary~5.1.1.13]{Steffens_Derived_Differential_Geometry}.
+
+The converse is a substantial input. The tangent-complex calculation alone
+does not produce local coordinates or equations. It only verifies the
+amplitude of an object already presented as a zero locus.
+
+\subsection{One global zero locus and its local equations}
+\label[subsection]{sec:Global_Zero_Locus_Local_Charts_Talk_Eight}
+
+Let $q\colon E\to M$ be a finite-rank vector bundle and let
+$s\colon M\to E$ be a section. The global derived zero locus
+\[
+  Z=Z^{\mathrm{der}}(s)
+\]
+was constructed before any trivialization of $E$ was chosen:
+\[
+\begin{tikzcd}
+  Z \rar \dar \drar[pullback]
+    & M \dar["s"] \\
+  M \rar["0"'] & E.
+\end{tikzcd}
+\]
+
+Choose a bundle-trivializing open cover $M=\bigcup_iU_i$ and identify
+\[
+  E|_{U_i}\cong U_i\times\R^r.
+\]
+In this frame the section is a smooth map
+\[
+  s_i=(s_{i,1},\ldots,s_{i,r})
+  \colon
+  U_i\longrightarrow\R^r.
+\]
+Let $Z_i\subseteq Z$ be the inverse image of $U_i$ along the projection
+$Z\to M$.
+
+\begin{proposition}[Local Koszul presentations]
+  \label[proposition]{prop:Local_Koszul_Presentations_Talk_Eight}
+  There are natural equivalences
+  \[
+    Z_i
+    \simeq
+    \Spec K(s_i),
+  \]
+  where
+  \[
+    K(s_i)
+    =
+    \bigl(
+      \Cinfty(U_i)\otimes\Lambda(e_1,\ldots,e_r),
+      \partial e_j=s_{i,j}
+    \bigr).
+  \]
+\end{proposition}
+
+\begin{proof}
+  Open restriction commutes with the pullback defining $Z$, so
+  \[
+    Z_i
+    \simeq
+    U_i\times_{E|_{U_i}}U_i.
+  \]
+  After the chosen trivialization, this is the derived zero locus of
+  $s_i\colon U_i\to\R^r$. The Koszul calculation from Talk 5 identifies its
+  animated function algebra with $K(s_i)$.
+\end{proof}
+
+On an overlap $U_i\cap U_j$, the two local formulas are related by the frame
+change of $E$. More intrinsically, both formulas present the restriction of
+the same global pullback $Z$. Their comparison is therefore not additional
+structure imposed on $Z$. It is induced by restriction from the one object
+which was present before either frame was chosen.
+
+The tangent complexes behave in the same way. Globally along the classical
+zero set,
+\[
+  \mathbb T_Z
+  \simeq
+  [TM|_{Z(s)}\xrightarrow{Ds}E|_{Z(s)}]
+\]
+in cohomological degrees $0$ and $1$. In a frame on $U_i$, this restricts to
+\[
+  [TU_i|_{Z(s_i)}\xrightarrow{Ds_i}U_i\times\R^r].
+\]
+The change of frame acts simultaneously on the obstruction bundle and on the
+derivative. The local complexes are presentations of one global complex.
+
+This example joins the two halves of the chapter. The spectrum construction
+explains how one global derived zero locus acquires local equations. We now
+ask how much of one such system of equations belongs to the object itself.
+
+\section{Kuranishi charts as presentations}
+\label[section]{sec:Kuranishi_Charts_As_Presentations_Talk_Eight}
+
+\subsection{Presentation, object, and chart}
+\label[subsection]{sec:Presentation_Object_Chart_Talk_Eight}
+
+We work throughout without isotropy groups, boundaries, or corners. This is
+the finite-dimensional local situation needed for the later elliptic
+applications.
+
+\begin{definition}[Kuranishi presentation]
+  \label[definition]{def:Kuranishi_Presentation_Talk_Eight}
+  A \emph{Kuranishi presentation without isotropy} is a triple
+  \[
+    K=(U,E,s),
+  \]
+  where $U$ is a manifold, $E\to U$ is a finite-rank vector bundle, and
+  $s\colon U\to E$ is a section. It presents the derived zero locus
+  \[
+    \mathbf Z^{\mathrm{der}}(K)
+    :=
+    Z^{\mathrm{der}}(s).
+  \]
+  Its ordinary zero locus is
+  \[
+    Z(K)=\{x\in U\mid s(x)=0_x\}.
+  \]
+\end{definition}
+
+When a presentation is used as a chart for a fixed derived
+$\Cinfty$-scheme $X$, the data also include an equivalence
+\[
+  X|_V
+  \simeq
+  \mathbf Z^{\mathrm{der}}(K)
+\]
+for some open $V\subseteq|X|$. On ordinary truncations this gives a
+homeomorphism from $V$ to the zero set $Z(K)$, often called the footprint
+map. In informal usage the triple itself is frequently called a Kuranishi
+chart. The distinction between presentation and chart relative to $X$ is
+useful whenever choices are being compared.
+
+There are therefore three levels:
+
+\begin{enumerate}
+  \item The \emph{presentation} $(U,E,s)$ consists of auxiliary
+    finite-dimensional data.
+  \item The \emph{presented object} is the intrinsic derived zero locus
+    $\mathbf Z^{\mathrm{der}}(K)$.
+  \item A \emph{comparison} is a morphism of presentations which induces a
+    morphism between the presented derived objects.
+\end{enumerate}
+
+At $x\in Z(K)$, Talk 7 gives
+\begin{equation}
+  \label{eq:Tangent_Complex_Kuranishi_Presentation_Talk_Eight}
+  \mathbb T_x\mathbf Z^{\mathrm{der}}(K)
+  \simeq
+  [T_xU\xrightarrow{D_xs}E_x]
+\end{equation}
+in cohomological degrees $0$ and $1$. Thus
+\[
+  \operatorname{Def}_x(K)=\ker(D_xs),
+  \qquad
+  \operatorname{Obs}_x(K)=\operatorname{coker}(D_xs),
+\]
+and
+\[
+  \operatorname{vdim}K
+  =
+  \dim U-\operatorname{rank}E.
+\]
+
+The triple contains more information than the object it presents. It records
+one ambient manifold, one obstruction bundle, and one system of equations.
+The remainder of the chapter exhibits operations which change these choices.
+
+\subsection{The tangent complex is not a complete invariant}
+\label[subsection]{sec:Tangent_Complex_Not_Complete_Talk_Eight}
+
+Before comparing presentations, we must rule out a tempting shortcut.
+Consider
+\[
+  f(x)=x^2
+  \qquad\text{and}\qquad
+  g(x)=x^3.
+\]
+Both derivatives vanish at the origin, so their tangent complexes agree:
+\[
+  \mathbb T_0Z^{\mathrm{der}}(f)
+  \simeq
+  [\R\xrightarrow{0}\R]
+  \simeq
+  \mathbb T_0Z^{\mathrm{der}}(g).
+\]
+Their ordinary truncations are nevertheless different. Talk 5 gives
+\[
+  \pi_0\mathcal O\bigl(Z^{\mathrm{der}}(f)\bigr)
+  \cong
+  \frac{\Cinfty(\R)}{(x^2)},
+  \qquad
+  \pi_0\mathcal O\bigl(Z^{\mathrm{der}}(g)\bigr)
+  \cong
+  \frac{\Cinfty(\R)}{(x^3)}.
+\]
+Repeated use of Hadamard's lemma identifies the corresponding local rings at
+the origin with
+\[
+  \R[\varepsilon]/(\varepsilon^2)
+  \qquad\text{and}\qquad
+  \R[\varepsilon]/(\varepsilon^3).
+\]
+They are not isomorphic.
+
+\begin{warning}[Linear data do not classify the nonlinear object]
+  \label[warning]{warn:Tangent_Complex_Not_Classifier_Talk_Eight}
+  Isomorphic deformation and obstruction spaces, or even isomorphic abstract
+  tangent complexes, do not imply that two derived zero loci are equivalent.
+  A comparison of nonlinear presentations requires a morphism between them.
+\end{warning}
+
+This is analogous to the ordinary inverse-function theorem. The derivative
+of a specified smooth map may prove that the map is locally invertible. An
+accidental isomorphism between two tangent spaces does not produce a map of
+manifolds. Later we will quote a derived version of this principle for a
+specified morphism of Kuranishi presentations.
+
+\subsection{Shrinking and strict coordinate changes}
+\label[subsection]{sec:Elementary_Changes_Kuranishi_Talk_Eight}
+
+Two changes of presentation are immediate.
+
+First, let $W\subseteq U$ be open. Restriction gives
+\[
+  K|_W=(W,E|_W,s|_W).
+\]
+Its derived zero locus is the corresponding open restriction:
+\begin{equation}
+  \label{eq:Kuranishi_Shrinking_Open_Restriction}
+  \mathbf Z^{\mathrm{der}}(K|_W)
+  \simeq
+  \mathbf Z^{\mathrm{der}}(K)|_{W\cap Z(s)}.
+\end{equation}
+If $W$ contains all of $Z(s)$, the ambient presentation has been shrunk
+without changing the complete presented object. If $W$ contains only part of
+$Z(s)$, the result presents a proper open subobject. The word ``shrinking''
+is used for both operations, so the footprint should always be stated.
+
+Second, suppose that $f_b\colon U\to V$ is a diffeomorphism and
+$f_v\colon E\to F$ is a vector-bundle isomorphism over $f_b$ satisfying
+\[
+  f_v\circ s=t\circ f_b.
+\]
+Then $(f_b,f_v)$ is a strict coordinate and frame change. It carries the
+pullback square defining $Z^{\mathrm{der}}(s)$ isomorphically to the pullback
+square defining $Z^{\mathrm{der}}(t)$.
+
+These operations change the visible equations only mildly. Stabilization is
+the first operation which changes both the dimension of the ambient manifold
+and the rank of the obstruction bundle while preserving the derived object.
+
+\section{Stabilization and invariance}
+\label[section]{sec:Stabilization_And_Invariance_Talk_Eight}
+
+\subsection{Adding a variable and a transverse equation}
+\label[subsection]{sec:Definition_Stabilization_Talk_Eight}
+
+Let $K=(U,E,s)$ be a Kuranishi presentation and let $p\colon G\to U$ be a
+finite-rank vector bundle. On its total space, the pullback bundle $p^*G$ has
+a tautological section
+\[
+  \tau_G\colon\operatorname{Tot}(G)\longrightarrow p^*G,
+  \qquad
+  \tau_G(g)=g\in G_{p(g)}.
+\]
+
+\begin{definition}[Stabilization]
+  \label[definition]{def:Stabilization_Kuranishi_Talk_Eight}
+  The \emph{stabilization of $K$ by $G$} is the Kuranishi presentation
+  \[
+    K^G
+    =
+    \left(
+      \operatorname{Tot}(G),
+      p^*E\oplus p^*G,
+      (p^*s,\tau_G)
+    \right).
+  \]
+\end{definition}
+
+The new equation $\tau_G=0$ forces the new ambient variable to lie on the
+zero section $U\subseteq\operatorname{Tot}(G)$. Since this equation is
+transverse, it should contribute no residual derived structure. The original
+equation $s=0$ then remains.
+
+Projection $p\colon\operatorname{Tot}(G)\to U$ together with projection
+onto $p^*E$ defines a morphism of presentations
+\begin{equation}
+  \label{eq:Stabilization_Morphism_Talk_Eight}
+  \sigma_G\colon K^G\longrightarrow K.
+\end{equation}
+Indeed, projection carries $(p^*s,\tau_G)$ to $s\circ p$.
+
+\subsection{The stabilized square equation}
+\label[subsection]{sec:Stabilized_Square_Equation_Talk_Eight}
+
+Begin with
+\[
+  K
+  =
+  (\R,\R\times\R,x\mapsto x^2).
+\]
+Stabilization by the trivial line gives
+\[
+  K^{\R}
+  =
+  (\R^2,\R^2,(x,y)\mapsto(x^2,y)).
+\]
+We compare the two presentations at three levels.
+
+At the level of ordinary zero loci, both equations have only the origin as a
+solution. Projection $(x,y)\mapsto x$ identifies the two zero sets.
+
+At the level of stable linearization, the original tangent complex is
+\[
+  \mathbb T_0\mathbf Z^{\mathrm{der}}(K)
+  \simeq
+  [\R\xrightarrow{0}\R].
+\]
+The stabilized tangent complex is
+\[
+  \mathbb T_0\mathbf Z^{\mathrm{der}}(K^{\R})
+  \simeq
+  \left[
+    \R^2
+    \xrightarrow{
+      \left(
+        \begin{smallmatrix}
+          0&0\\
+          0&1
+        \end{smallmatrix}
+      \right)}
+    \R^2
+  \right].
+\]
+It decomposes as
+\begin{equation}
+  \label{eq:Square_Stabilization_Tangent_Decomposition}
+  \left[
+    \R^2
+    \xrightarrow{
+      \left(
+        \begin{smallmatrix}
+          0&0\\
+          0&1
+        \end{smallmatrix}
+      \right)}
+    \R^2
+  \right]
+  \cong
+  [\R\xrightarrow{0}\R]
+  \oplus
+  [\R\xrightarrow{1}\R].
+\end{equation}
+The second summand is zero in the stable module category. Projection induces
+a quasi-isomorphism from the stabilized complex to the original complex.
+
+The complete nonlinear calculation takes place on animated function
+algebras. The two Koszul presentations are
+\[
+  \mathcal K(K)
+  =
+  \bigl(
+    \Cinfty(\R)\otimes\Lambda(e),
+    \partial e=x^2
+  \bigr)
+\]
+and
+\[
+  \mathcal K(K^{\R})
+  =
+  \bigl(
+    \Cinfty(\R^2)\otimes\Lambda(e,f),
+    \partial e=x^2,
+    \partial f=y
+  \bigr).
+\]
+The pair $(y,f)$ is the Koszul resolution of the transverse equation $y=0$.
+Eliminating it restricts smooth functions to the $x$-axis and induces an
+equivalence
+\begin{equation}
+  \label{eq:Square_Stabilization_Koszul_Equivalence}
+  \mathcal K(K^{\R})
+  \simeq
+  \mathcal K(K).
+\end{equation}
+
+We have checked stabilization at three levels:
+
+\begin{enumerate}
+  \item The ordinary zero loci are identified.
+  \item The tangent complexes differ by an acyclic summand.
+  \item The full animated function algebras are equivalent.
+\end{enumerate}
+
+The third statement is the intrinsic conclusion. The first two are its
+ordinary and infinitesimal shadows. This is different from the comparison of
+$x^2$ and $x^3$: there we had an accidental agreement of tangent complexes
+but no equivalence of the nonlinear algebras.
+
+\subsection{Why stabilization preserves the derived object}
+\label[subsection]{sec:General_Stabilization_Proof_Talk_Eight}
+
+The preceding calculation globalizes without choosing a frame for $G$.
+
+\begin{theorem}[Invariance under stabilization]
+  \label[theorem]{thm:Stabilization_Preserves_Derived_Object_Talk_Eight}
+  For every Kuranishi presentation $K=(U,E,s)$ and every finite-rank vector
+  bundle $G\to U$, projection induces an equivalence
+  \[
+    \mathbf Z^{\mathrm{der}}(K^G)
+    \simeq
+    \mathbf Z^{\mathrm{der}}(K).
+  \]
+\end{theorem}
+
+\begin{proof}
+  The tautological section $\tau_G$ is transverse to the zero section of
+  $p^*G$. Its ordinary zero locus is the zero section
+  \[
+    U\longrightarrow\operatorname{Tot}(G).
+  \]
+  By transverse exactness, its derived zero locus is this ordinary manifold
+  $U$, with no additional derived structure.
+
+  The derived zero locus of the direct-sum section
+  $(p^*s,\tau_G)$ can be formed in two stages. First impose
+  $\tau_G=0$, and then impose the restriction of $p^*s=0$. Finite pullbacks
+  may be pasted in either order, so this iterated zero locus is equivalent to
+  the zero locus of the pair. After the first stage the ambient manifold is
+  the zero section $U$, the bundle $p^*E$ restricts to $E$, and the section
+  $p^*s$ restricts to $s$. Hence the second stage is precisely
+  $Z^{\mathrm{der}}(s)$.
+\end{proof}
+
+The tangent calculation is compatible with this equivalence. Along the zero
+section there is a canonical splitting
+\[
+  T_{0_x}\operatorname{Tot}(G)
+  \cong
+  T_xU\oplus G_x.
+\]
+The derivative of the stabilized section is block diagonal:
+\[
+  \left[
+    T_xU\oplus G_x
+    \xrightarrow{
+      \left(
+        \begin{smallmatrix}
+          D_xs&0\\
+          0&1
+        \end{smallmatrix}
+      \right)}
+    E_x\oplus G_x
+  \right].
+\]
+Consequently,
+\begin{equation}
+  \label{eq:General_Stabilization_Tangent_Decomposition}
+  \mathbb T_x\mathbf Z^{\mathrm{der}}(K^G)
+  \simeq
+  \mathbb T_x\mathbf Z^{\mathrm{der}}(K)
+  \oplus
+  [G_x\xrightarrow{1}G_x].
+\end{equation}
+The virtual dimension is unchanged:
+\[
+  \dim\operatorname{Tot}(G)
+  -\operatorname{rank}(p^*E\oplus p^*G)
+  =
+  \dim U-\operatorname{rank}E.
+\]
+
+\subsection{Recognizing safe changes of presentation}
+\label[subsection]{sec:Recognizing_Safe_Changes_Talk_Eight}
+
+Stabilization was proved directly. There is also a general practical
+criterion for a specified comparison map.
+
+\begin{definition}[Morphisms of Kuranishi presentations]
+  \label[definition]{def:Morphism_Kuranishi_Presentation_Talk_Eight}
+  Let $K=(U,E,s)$ and $L=(V,F,t)$. A \emph{morphism of presentations}
+  \[
+    f=(f_b,f_v)\colon K\longrightarrow L
+  \]
+  consists of a smooth map $f_b\colon U\to V$ and a fiberwise-linear map
+  $f_v\colon E\to F$ over $f_b$ such that
+  \[
+    f_v\circ s=t\circ f_b.
+  \]
+\end{definition}
+
+The compatibility carries $Z(s)$ into $Z(t)$ and induces a morphism
+\[
+  \mathbf Z^{\mathrm{der}}(f)
+  \colon
+  \mathbf Z^{\mathrm{der}}(K)
+  \longrightarrow
+  \mathbf Z^{\mathrm{der}}(L).
+\]
+At a zero $x$, differentiation gives a map of tangent complexes
+\begin{equation}
+  \label{eq:Tangent_Map_Kuranishi_Morphism_Talk_Eight}
+  \begin{tikzcd}
+    T_xU \rar["D_xs"] \dar["D_xf_b"']
+      & E_x \dar["(f_v)_x"] \\
+    T_{f_b(x)}V \rar["D_{f_b(x)}t"']
+      & F_{f_b(x)}.
+  \end{tikzcd}
+\end{equation}
+
+\begin{definition}[Weak equivalence of presentations]
+  \label[definition]{def:Weak_Equivalence_Kuranishi_Talk_Eight}
+  A morphism $f\colon K\to L$ is a \emph{weak equivalence} if it induces a
+  bijection $Z(K)\to Z(L)$ and the map in
+  \Cref{eq:Tangent_Map_Kuranishi_Morphism_Talk_Eight} is a
+  quasi-isomorphism at every zero.
+\end{definition}
+
+\begin{theorem}[Presentation-invariance criterion]
+  \label[theorem]{thm:Weak_Equivalence_Presents_Equivalence_Talk_Eight}
+  A morphism of finite-dimensional Kuranishi presentations is a weak
+  equivalence if and only if its induced morphism of derived zero loci is an
+  equivalence.
+\end{theorem}
+
+The direction from derived equivalence to weak equivalence follows by taking
+ordinary truncations and tangent complexes. The converse is a derived
+inverse-function theorem. Pointwise quasi-isomorphism makes the relative
+cotangent complex vanish at every zero. Finite presentation and derived
+Nakayama extend this vanishing to open neighborhoods, where the morphism is
+etale. The bijection of zero loci then globalizes these local equivalences.
+A fuller source-based proof is recorded in
+\Cref{sec:Supplement_Weak_Equivalence_Kuranishi}.
+
+The theorem must not be used without its input map. The comparison of $x^2$
+and $x^3$ supplies isomorphic abstract tangent complexes but no morphism whose
+linearization is being tested. The theorem recognizes equivalences; it does
+not construct nonlinear comparisons from linear data.
+
+\section{Summary and supplementary materials}
+\label[section]{sec:Summary_And_Supplementary_Materials_Talk_Eight}
+
+\subsection{Takeaways and the coherence problem}
+\label[subsection]{sec:Takeaways_Coherence_Problem_Talk_Eight}
+
+Let us collect the route of the chapter.
+\begin{enumerate}
+  \item Smooth localization is open restriction written on functions.
+  \item The topology of $\Spec A$ is controlled by $\pi_0A$, while its
+    structure sheaf retains the full animated $\Cinfty$-ring $A$.
+  \item In finite presentation, affine derived spectra and animated
+    $\Cinfty$-rings contain the same information.
+  \item Quasi-smoothness is local because cotangent complexes restrict under
+    smooth localization.
+  \item Quasi-smooth derived $\Cinfty$-schemes are locally derived zero loci.
+  \item A Kuranishi presentation is auxiliary data presenting such a local
+    derived object.
+  \item Stabilization changes the presentation by an acyclic variable-equation
+    pair and preserves the presented derived object.
+  \item Tangent complexes test a specified comparison map, but do not classify
+    nonlinear derived objects by themselves.
+\end{enumerate}
+
+There is one important problem which this chapter has deliberately not
+solved. Suppose that a moduli problem is covered by local Kuranishi
+presentations $K_i$. On a double overlap one wants a comparison between
+$K_i$ and $K_j$. On a triple overlap, the two composites of comparisons need
+not agree strictly, so one needs a homotopy between them. On a quadruple
+overlap, those homotopies must themselves be compatible. The pattern
+continues.
+
+Pairwise weak equivalences therefore do not constitute a global Kuranishi
+object. The next chapter replaces a list of chosen charts by an intrinsic
+moduli functor and packages all overlap data in an $\infty$-categorical
+descent condition. Its main representability input will be the following
+result.
+
+\begin{theorem}[Open local representability, preview]
+  \label[theorem]{thm:Open_Local_Representability_Preview}
+  Let $\mathcal X$ be a derived $\Cinfty$-stack with an effective open atlas
+  by affine derived $\Cinfty$-schemes belonging to a class stable under open
+  restriction. Then $\mathcal X$ is represented by a derived
+  $\Cinfty$-scheme locally belonging to that class.
+\end{theorem}
+
+The definitions and proof belong to Talk~9. For now, the point is only the
+shape of the answer: local presentations glue when their comparison data are
+the restrictions of one object satisfying descent. This is why the local
+geometry developed here is an input to, rather than a substitute for, the
+coherence theorem.
+
+\subsection{Supplement: the real spectrum and its structure sheaf}
+\label[subsection]{sec:Supplement_Real_Spectrum_Talk_Eight}
+
+The live talk used the derived spectrum at slogan level. We now record the
+ordinary construction more carefully. It explains where the topology and
+local rings come from.
+
+\begin{definition}[Real spectrum]
+  \label[definition]{def:Real_Spectrum_Talk_Eight}
+  Let $A$ be a $\Cinfty$-ring. Its \emph{real spectrum} is the set
+  \[
+    \Spec_{\R}A
+    =\Hom_{\Cinfty\text{-}\mathrm{Ring}}(A,\R).
+  \]
+  For $a\in A$, set
+  \[
+    D(a)=\{x\in\Spec_{\R}A\mid x(a)\neq0\}.
+  \]
+  The subsets $D(a)$ form a basis for a topology on $\Spec_{\R}A$.
+\end{definition}
+
+Indeed,
+\[
+  D(1)=\Spec_{\R}A,
+  \qquad
+  D(a)\cap D(b)=D(ab).
+\]
+Every $a\in A$ defines an evaluation function
+\[
+  a^*\colon\Spec_{\R}A\longrightarrow\R,
+  \qquad
+  a^*(x)=x(a).
+\]
+The spectrum topology is the weakest topology for which all evaluation
+functions are continuous. To see the nontrivial direction, choose, for an
+open $V\subseteq\R$, a smooth function $h$ with
+$V=\{t\mid h(t)\neq0\}$. Then
+\[
+  (a^*)^{-1}(V)=D(\Phi_h(a)).
+\]
+It is also Hausdorff: two distinct homomorphisms differ on some $a\in A$, and
+disjoint intervals around the two values pull back to disjoint
+neighborhoods.
+
+If $A=\Cinfty(\R^n)/I$, evaluation identifies the real spectrum with
+\[
+  Z(I)=\{p\in\R^n\mid f(p)=0\text{ for all }f\in I\}
+\]
+with its ordinary subspace topology. Thus the real spectrum recovers the
+expected point set, but it cannot see nilpotent or higher derived structure.
+
+For $x\in\Spec_{\R}A$, define the local $\Cinfty$-ring
+\[
+  A_x=A[(A\setminus x^{-1}(0))^{-1}].
+\]
+Its elements are germs of elements of $A$ near $x$. The structure sheaf may
+be described without making a choice of basis presentation.
+
+\begin{construction}[Structure sheaf]
+  \label[construction]{con:Structure_Sheaf_Talk_Eight}
+  For $U\subseteq\Spec_{\R}A$ open, let $\mathcal O_A(U)$ be the set of
+  families
+  \[
+    \sigma(x)\in A_x,
+    \qquad x\in U,
+  \]
+  which are locally represented by elements of $A$. Pointwise smooth
+  operations and restriction make $\mathcal O_A$ a sheaf of
+  $\Cinfty$-rings. Define
+  \[
+    \Spec A=(\Spec_{\R}A,\mathcal O_A).
+  \]
+\end{construction}
+
+By construction, $\mathcal O_{A,x}\cong A_x$. Moreover, localization induces
+an isomorphism of local $\Cinfty$-ringed spaces
+\begin{equation}
+  \label{eq:Principal_Open_Ordinary_Spectrum_Talk_Eight}
+  \Spec A[a^{-1}]
+  \iso
+  (D(a),\mathcal O_A|_{D(a)}).
+\end{equation}
+For a finitely presented $\Cinfty$-ring, the basis assignment
+$D(a)\mapsto A[a^{-1}]$ already gives the same sheaf after sheafification.
+For arbitrary rings, the local-germ construction avoids subtleties caused by
+different localization maps presenting the same real open subset.
+
+\begin{theorem}[Reconstruction of manifolds]
+  \label[theorem]{thm:Reconstruction_Manifolds_Talk_Eight}
+  For a manifold $M$, evaluation induces an isomorphism of local
+  $\Cinfty$-ringed spaces
+  \[
+    \Spec\Cinfty(M)\iso(M,\Cinfty_M).
+  \]
+\end{theorem}
+
+\begin{proof}
+  Every homomorphism $\Cinfty(M)\to\R$ is evaluation at a unique point of
+  $M$. The basic open $D(a)$ is the nonvanishing locus of the smooth function
+  $a$. Conversely, if $x\in U\subseteq M$ with $U$ open, a bump function
+  supported in $U$ and nonzero at $x$ produces a basic neighborhood
+  $x\in D(a)\subseteq U$. Hence the spectrum topology is the manifold
+  topology.
+
+  Smooth localization identifies the stalk at $x$ with the ring
+  $\Cinfty_{M,x}$ of smooth germs. Finally, a section of $\mathcal O_A$ is
+  locally represented by global smooth functions and is therefore smooth.
+  Conversely, cutoff functions show that every smooth function on an open
+  subset is locally the restriction of a global smooth function.
+\end{proof}
+
+For an animated $\Cinfty$-ring, the same construction is applied to
+$\pi_0A$ to obtain the point set and topology, while the localizations
+$A[a^{-1}]$ provide the animated structure sheaf. The homotopy groups of
+that sheaf are the sheafifications of
+\[
+  D(a)\longmapsto
+  \pi_n(A)\otimes_{\pi_0A}(\pi_0A)[a^{-1}].
+\]
+This makes precise the slogan that the topology sees $\pi_0A$, whereas the
+structure sheaf sees all of $A$.
+
+\subsection{Supplement: the Möbius self-intersection}
+\label[subsection]{sec:Supplement_Mobius_Self_Intersection_Talk_Eight}
+
+The zero section of a nontrivial bundle shows why local equations need not
+admit a global choice of generators. Let $L\to S^1$ be the Möbius line bundle
+and form the derived self-intersection of its zero section:
+\[
+  X=S^1\times_LS^1.
+\]
+Its classical truncation is $S^1$.
+
+Choose an open cover $S^1=U_0\cup U_1$ on which $L$ is trivial. On $U_i$,
+the zero section is represented by the zero function, and hence
+\[
+  \mathcal O_X|_{U_i}
+  \simeq
+  \bigl(\Cinfty_{U_i}\otimes\Lambda(e_i),\partial e_i=0\bigr).
+\]
+Thus $\pi_0\mathcal O_X|_{U_i}\cong\Cinfty_{U_i}$ and
+$\pi_1\mathcal O_X|_{U_i}\cong\Cinfty_{U_i}e_i$.
+
+Let $g_{01}\colon U_0\cap U_1\to\R^\times$ be the transition function of
+$L$. The degree-one Koszul generator transforms as a local frame of
+$L^\vee$:
+\[
+  e_1=g_{01}^{-1}e_0.
+\]
+Consequently,
+\[
+  \pi_1\mathcal O_X
+  \cong
+  \bigl(U\longmapsto\Gamma(U,L^\vee)\bigr).
+\]
+There is no global nowhere-vanishing degree-one generator. Dually, the
+tangent complex is
+\[
+  \mathbb T_X\simeq[TS^1\xrightarrow{0}L],
+\]
+so its obstruction sheaf is the Möbius bundle itself. The derived object is
+global, but every elementary equation displaying it is local and depends on
+a frame.
+
+\subsection{Supplement: weak equivalences of presentations}
+\label[subsection]{sec:Supplement_Weak_Equivalence_Kuranishi}
+
+We explain the source of
+\Cref{thm:Weak_Equivalence_Presents_Equivalence_Talk_Eight}. Let
+$f\colon K\to L$ be a morphism of the finite-dimensional presentations
+considered in this chapter, and write
+\[
+  F=\mathbf Z^{\mathrm{der}}(f)
+  \colon X\longrightarrow Y
+\]
+for the induced morphism of finite-presentation affine derived
+$\Cinfty$-schemes.
+
+If $F$ is an equivalence, its truncation is an isomorphism and its tangent
+map is a quasi-isomorphism at every point. Thus $f$ is a weak equivalence.
+For the converse, suppose that $f$ induces a bijection on zero loci and a
+quasi-isomorphism on tangent complexes. The fiber of the relative cotangent
+complex $\mathbb L_{X/Y}$ at a point $x$ is dual to the cofiber of the map of
+tangent complexes at $x$. It therefore vanishes. Since $\mathbb L_{X/Y}$ is
+perfect in the present finite-presentation setting, derived Nakayama implies
+that it vanishes on a neighborhood of every point. Hence $F$ is etale near
+every point.
+
+The derived inverse-function theorem then identifies a neighborhood of $x$
+with a neighborhood of $F(x)$. Because the map on underlying zero loci is a
+bijection, these local equivalences cover both source and target and assemble
+to an equivalence $X\simeq Y$. The finite-presentation and geometricity
+hypotheses are essential here. The statement is not a principle saying that
+arbitrary derived objects with isomorphic tangent complexes are equivalent.
+
+There is also an algebraic way to recognize what is happening. After
+trivializing the bundles, the presentations produce Koszul algebras. A
+morphism of presentations induces a morphism between these algebras. Weak
+equivalence says that the induced map has the same classical points and is a
+quasi-isomorphism on the linearized complexes at those points. The argument
+above promotes that pointwise linear information, through the relative
+cotangent complex and finite presentation, to a local equivalence of the
+full nonlinear Koszul algebras.
+
+\subsection{Supplement: terminology and truncations}
+\label[subsection]{sec:Supplement_Terminology_Truncations_Talk_Eight}
+
+The terminology surrounding Kuranishi geometry is not uniform. In this
+chapter a \emph{Kuranishi presentation} means only a finite-dimensional
+triple $(U,E,s)$ without isotropy, boundary, or corners. A \emph{Kuranishi
+chart for $X$} additionally includes an identification of its derived zero
+locus with an open subobject of $X$. This usage isolates exactly the local
+calculation needed later.
+
+Other theories package different amounts of information. Joyce's
+d-manifolds and d-orbifolds are 2-categorical geometric structures, while
+Kuranishi spaces are built from charts and coordinate changes with their own
+specified coherence. Fully derived manifolds retain higher mapping animae
+which cannot in general be recovered from a 2-categorical truncation. These
+frameworks are closely related, but they should not be identified without a
+comparison theorem and its hypotheses. In particular, the local
+stabilization calculation in this chapter does not by itself compare their
+global notions of atlas.
+
+\subsection{Related literature}
+\label[subsection]{sec:Related_Literature_Talk_Eight}
+
+The derived localization theorem, affine comparison, local zero-locus normal
+form, and weak-equivalence criterion used in the chapter come from Steffens
+\cite[Proposition~4.1.3.13, Corollary~4.1.3.34, Corollary~5.1.1.13, and
+Remarks~1.0.0.4 and~1.0.0.6]{Steffens_Derived_Differential_Geometry}.
+Joyce gives detailed accounts of ordinary $\Cinfty$-spectra, affine
+$\Cinfty$-schemes, and the reconstruction of manifolds
+\cite[Sections~2.2 and~3.1]{Joyce_Introduction_Cinfty_Schemes}
+\cite[Sections~4.4 and~4.5]{Joyce_Algebraic_Geometry_Cinfty_Rings}.
+The universal derived-manifold viewpoint and its relation to local
+zero-locus constructions are developed by Carchedi and Steffens
+\cite{Carchedi_Steffens_Universal_Derived_Manifolds}. The representability
+theorem previewed at the end of the live route is
+\cite[Proposition~2.1.48]{Steffens_Representability_Elliptic_Moduli}.
