@@ -43,13 +43,6 @@ descent, and only then construct local representatives. Detailed Cech
 constructions and the source status of strict Kuranishi atlases are recorded
 in the supplements.
 
-\section{Stacks as coherent functors of families}
-\label[section]{sec:Stacks_Coherent_Functors_Families}
-
-The Cech nerve of an atlas explains how to reconstruct an object that is
-already present. We now reverse the order. We define families first and ask
-for a representing object only afterwards.
-
 \subsection{Prestacks}
 \label[subsection]{sec:Prestacks_Derived_Cinfty}
 
@@ -98,6 +91,27 @@ Its Cech nerve is
 Applying a prestack contravariantly gives a cosimplicial anima
 $\mathcal F(T_\bullet)$.
 
+Before giving the definition, let us compare this diagram with the ordinary
+sheaf condition. For a set-valued presheaf $F$, the condition for the cover
+$\{T_i\to T\}_{i\in I}$ is often written as the equalizer formula
+\begin{equation}
+  \label{eq:Classical_Sheaf_Equalizer}
+  F(T)
+  \iso
+  \operatorname{Eq}\left(
+    \prod_i F(T_i)
+    \rightrightarrows
+    \prod_{i,j}F(T_i\cap T_j)
+  \right).
+\end{equation}
+The two arrows restrict a tuple of local sections along the two projections
+$T_i\cap T_j\to T_i$ and $T_i\cap T_j\to T_j$. Thus the equalizer consists of
+local sections whose restrictions agree on every double overlap. In sets,
+this pairwise agreement automatically satisfies the compatibility conditions
+on triple and higher overlaps. Equivalently, the right side of
+\Cref{eq:Classical_Sheaf_Equalizer} computes the limit of the entire
+cosimplicial set obtained from the Cech nerve.
+
 \begin{definition}[Stack]
   \label[definition]{def:Stack_Derived_Cinfty}
   A derived $\Cinfty$-prestack $\mathcal F$ is a \emph{stack for the open
@@ -111,8 +125,13 @@ $\mathcal F(T_\bullet)$.
   is an equivalence of animae.
 \end{definition}
 
-The limit on the right is the anima of coherent descent data. Its first
-levels have a familiar interpretation.
+This is the higher-categorical version of
+\Cref{eq:Classical_Sheaf_Equalizer}. Sets are replaced by animae, equality of
+restrictions is replaced by a chosen equivalence, and an ordinary equalizer is
+replaced by the limit of the full cosimplicial diagram. The higher terms can
+no longer be discarded: they record the coherence of the chosen
+equivalences. Thus the limit on the right is the anima of coherent descent
+data. Its first levels have a familiar interpretation.
 
 \begin{enumerate}
   \item Choose a family $\xi_i\in\mathcal F(T_i)$ on every open.
@@ -377,9 +396,30 @@ is stable under arbitrary base change.
   family an \emph{open atlas}.
 \end{definition}
 
+The terminology generalizes a familiar fact about sets. A surjection
+$q\colon U\to X$ exhibits $X$ as the coequalizer of its kernel pair:
+\[
+  U\times_XU
+  \rightrightarrows
+  U
+  \longrightarrow
+  X.
+\]
+The two copies of an element of $U$ are identified precisely when they have
+the same image in $X$. In an $\infty$-category, the kernel pair alone does not
+record all coherence among these identifications. It is replaced by the full
+Cech nerve, and the coequalizer is replaced by its geometric realization.
+The adjective \emph{effective} says that this quotient construction really
+recovers the target.
+
 For the open topology, one may read effective epimorphism as follows: every
 family in $\mathcal X(T)$ is locally on $T$ pulled back from some
-$\mathcal U_i$, and these local lifts satisfy descent.
+$\mathcal U_i$, and these local lifts satisfy descent. In particular, an open
+cover $T_0\to T$ is an effective epimorphism after passing to representable
+stacks. Under the Yoneda lemma, the stack condition is obtained by applying
+$\Hom(-,\mathcal F)$ to the Cech realization
+$|h_{T_\bullet}|\simeq h_T$. Mapping out of this realization turns it into the
+limit of coherent descent data.
 
 \begin{definition}[Locally representable morphism]
   \label[definition]{def:Locally_Representable_Morphism_Stacks}

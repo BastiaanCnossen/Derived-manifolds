@@ -133,7 +133,7 @@ theorem, or the (a\mapsto a^2) calculation.
 #### Item 4, localize on the base and domain, 15--21 minutes, quoted geometric reduction
 
 1. Say that relative representability is local on the smooth-stack base.
-2. Pull back to a manifold chart (S\to\mathcal S).
+2. Pull back to a manifold chart ($S \to \An$).
 3. Use local triviality of a proper family of manifolds to write
    \[
      M\iso S\times N,
