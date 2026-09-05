@@ -54,7 +54,7 @@ Each talk should last 90 minutes. The program below is a suggestion, but can be 
 
 \Talk{1}{13 October}{Why derived manifolds?}
 {Motivate the theory of derived manifolds}
-{Prove the transverse fiber product theorem. Discuss the issues with understanding non-transverse intersection. As a running example, compare the zero-set of a line with the zero-set of a parabola. Using more examples, explain how remembering the differential as a two-term complex, solves some, but not all, problems. This shows that the correct home for such intersections is necessarily ``derived". With more examples, such as the zero-sets of $x^2$ vs $x^3$, explain how this is still not enough to capture fully the geometry of non-tranverse intersections. Give an informal discussion of the universal property of derived manifolds, as a maximal way to encode such non-transerve intersections.
+{Prove that pullbacks of transverse intersection exist in the category of manifolds. Discuss the issues with understanding non-transverse intersection. As a running example, compare the zero-set of a line with the zero-set of a parabola. Using more examples, explain how remembering the differential as a two-term complex, solves some, but not all, problems. This shows that the correct home for such intersections is necessarily ``derived". With more examples, such as the zero-sets of $x^2$ vs $x^3$, explain how this is still not enough to capture fully the geometry of non-tranverse intersections. Give an informal discussion of the universal property of derived manifolds, as a maximal way to encode such non-transerve intersections.
 	
 End with giving an introduction to moduli spaces of elliptic equations. Discuss the local finite-dimensional reduction of an
 elliptic equation, which allows one to present such moduli spaces locally as non-transverse intersections. Formulate the nonuniqueness and coherence problem for the resulting local presentations, again motivating derived manifolds.}
@@ -63,98 +63,45 @@ elliptic equation, which allows one to present such moduli spaces locally as non
 Section~1.0.1; Pardon, \emph{Representability in non-linear elliptic Fredholm
 analysis}, Sections~1--2.}
 
-\Talk{2}{20 October}{Smooth geometry through \Cinfty-rings}
-{Learn the algebraic structure which remembers every smooth operation.}
-{Define a \Cinfty-ring as a finite-product-preserving functor from Euclidean
-spaces and smooth maps to sets. Prove that $\Cinfty(\mathbb R^n)$ is free on
-$n$ generators. Study quotients and the different equations which can define
-the same underlying point. Use Borel's theorem to illustrate the difference
-between smooth and polynomial algebra. Prove the closed-subset case of the
-full-faithfulness theorem needed for manifolds.}
+\Talk{2}{20 October}{Introduction to \Cinfty-rings}
+{Familiarize ourselves with the algebraic structure used to generalize manifolds.}
+{Define \Cinfty-rings and introduce its basic categorical properties. Prove that $\Cinfty(\mathbb R^n)$ is free on
+$n$ generators. Prove Hadamard's lemma and discuss quotients of \Cinfty-rings. Discuss Borel's theorem. Define $\Cinfty(X)$ for $X\subset \mathbb R^n$ an arbitrary closed subset. Prove that the resulting functor from closed subsets of $\mathbb{R}^n$ to $\Cinfty$-rings is fully faithful.}
 {Moerdijk--Reyes, \emph{Models for smooth infinitesimal analysis},
-Chapter~I, Section~1, especially Proposition~1.1, Theorem~1.3, and
-Proposition~1.5.}
+Chapter~I, Section~1}
 
-\Talk{3}{27 October}{Manifolds as \Cinfty-rings}
-{Recover the part of differential geometry needed for the universal
-construction of derived manifolds.}
-{Prove the regular-equation lemma and use it to show that $\Cinfty(M)$ is
-finitely presented for every manifold $M$. Compute products algebraically.
-Prove locally that transverse inverse images become pushouts of
-\Cinfty-rings, explain the descent step, and conclude that transverse fiber
-products become pushouts. Return to the line--parabola example to mark the
-boundary of this theorem.}
-{Moerdijk--Reyes, Chapter~I, Section~2, especially Lemma~2.1,
-Theorem~2.3, Propositions~2.5--2.6, and Theorem~2.8.}
+\Talk{3}{27 October}{\Cinfty-rings as generalized manifolds}
+{Understand how \Cinfty-rings function as generalized manifolds.}
+{Introduce coproducts of $\Cinfty$-rings. Prove Lemma 2.1 in Moerdijk--Reyes. Deduce that $\Cinfty(M)$ is finitely presented for every manifold $M$. Prove that $\Cinfty(M\times N) \simeq \Cinfty(M) \otimes \Cinfty(N)$. Prove that transverse pullbacks in manifolds induce pushouts of $\Cinfty$-rings.}
+{Moerdijk--Reyes, Chapter~I, Section~2}
 
-\Talk{4}{3 November}{From ordinary to derived smooth objects}
-{Understand why the universal enlargement of manifolds by arbitrary
-pullbacks is an $\infty$-category.}
-{First identify the opposite category of finitely presented ordinary
-\Cinfty-rings as the finite-limit envelope appropriate to ordinary
-categories. Show that it contains ordinary singular zero loci but collapses a
-repeated relation in a self-intersection. Use a self-pullback of a point in
-animae to show how pullbacks retain equality data. Introduce animated
-\Cinfty-rings and state the animated finite-limit-envelope theorem. Apply the
-Carchedi--Steffens comparison theorem to obtain the universal property and
-algebraic presentation of derived manifolds.}
-{Carchedi--Steffens, \emph{On the universal property of derived manifolds},
-Definition~2.1, Theorem~3.22, Remark~3.26, Lemma~5.1,
-Corollary~5.2, Theorem~5.3, and Corollary~5.4.}
+\Talk{4}{3 November}{From generalized manifolds to derived manifolds}
+{Understand why the universal enlargement of manifolds by arbitrary pullbacks should be an $\infty$-category.}
+{Formulate the 1-categorical universal property of finitely presented $\Cinfty$-rings. Use the results of the last talk to sketch a proof. Briefly introduce $\infty$-categories and homotopy pullbacks. Motivate the passage to $\infty$-categories for the theory of derived manifolds via abstract considerations and examples such as self-intersections. Discuss the process of ``animation". Define derived manifolds via the $\infty$-categorical analogue of the previous universal property. State the theorem of Carchedi--Steffens identifying them with finitely presented derived $\Cinfty$-rings. Discuss as much of the proof as possible.}
+{Carchedi--Steffens, \emph{On the universal property of derived manifolds}}
 
 \Talk{5}{10 November}{Calculating derived intersections}
-{Calculate the pullbacks constructed in Talk~4 and see exactly what their
-derived structure remembers.}
-{Define a derived zero locus as a pullback and calculate its animated
-\Cinfty-ring using a Koszul presentation. Introduce the smooth Dold--Kan
-bridge only as a computational tool. Compare the equations $x$, $x^2$, and the
-zero map, carefully distinguishing the underlying set, classical truncation,
-and positive homotopy groups. Extend the calculation to the zero locus of a
-vector-bundle section and ask how its class compares with the ordinary
-manifold obtained from a transverse perturbation.}
+{Familiarize ourselves with derived manifolds by presenting many examples of non-transverse pullbacks}
+{Define the derived zero locus as a pullback and calculate its animated \Cinfty-ring using a Koszul presentation. To do so introduce the model of animated rings given by \Cinfty-dga's, see 4.1.5.7 of Steffens thesis. Give specific examples, such as in Spivak's Example 2.7. Alternatively, compare the zero loci of the equations $x$, $x^2$, and the zero map, carefully distinguishing the underlying set, classical truncation, and positive homotopy groups of the resulting derived manifolds. Extend these calculations to family-versions, given by zero loci of a vector-bundle section.}
 {Steffens, \emph{Derived differential geometry},
-Examples~4.1.5.10--4.1.5.11 and Construction~5.1.0.1; Spivak,
-\emph{Derived smooth manifolds}, Sections~1 and~7.}
+Examples~4.1.5.10--4.1.5.11 and Construction~5.1.0.1; Spivak, \emph{Derived smooth manifolds}, Sections~1 and~2.}
 
 \Talk{6}{17 November}{Derived bordism and fundamental classes}
-{Turn compact quasi-smooth derived intersections into cobordism classes, and identify precisely
-what this does and does not provide for moduli problems.}
-{Begin with a compact derived zero locus $X=Z^{\mathrm{der}}(s)$ of a
-vector-bundle section. Perturb $s$ transversely and explain why a homotopy from
-$s$ to the perturbation defines a derived cobordism from $X$ to an ordinary
-manifold. Define derived cobordism using proper collared families over
-$\mathbb R$. Quote the embedding and global zero-locus theorems for compact
-quasi-smooth derived manifolds, and use them to extend the perturbation argument to the
-comparison isomorphism
+{Define the theory of derived bordism and understand its benefits over classical bordism.}
+{We follow Spivak. Explain how derived manifolds are good for doing intersection theory. Define derived cobordism over $X$. . State proposition~3.3, recalling it's proof for derived \Cinfty-rings. State proposition~3.4. Prove that the comparison map
 \[
-  \Omega(T) \xrightarrow{\ \cong\ } \Omega^{\mathrm{der}}(T).
-\]
-Deduce the intersection formula
+\Omega(X) \xrightarrow{\ \cong\ } \Omega^{\mathrm{der}}(X).
+\] 
+is an isomorphism by transverse pertubation. Deduce the intersection formula
 \[
-  [A]\smile[B]=[A\mathbin{\times^{\mathrm{der}}_M}B]
+[A]\smile[B]=[A\mathbin{\times^{\mathrm{der}}_M}B]
 \]
-without a transversality hypothesis, and use the derived self-intersection of
-the zero section of a vector bundle as the main example, recovering its Euler
-class. Briefly explain the stable normal-bundle formulation of orientations
-and how a map from~$MO$ extends compatible manifold fundamental classes to
-compact quasi-smooth derived manifolds. End by observing that bordism retains less than the
-full derived object and motivate the stable linearization studied next.}
-{Spivak, \emph{Derived smooth manifolds}, Definition~2.1(7),
-Proposition~3.3, Definitions~3.5--3.6, Theorem~3.12, and
-Corollary~3.13, together with the discussion of fundamental classes in
-Section~1; Carchedi--Steffens, Theorem~5.10, for comparison with the modern
-framework; Joyce,
-\emph{D-manifolds and d-orbifolds}, Section~15, for comparison with the
-orbifold and virtual-class setting.}
+without transversality hypothesis. Discuss the derived self-intersection of the zero section of a vector bundle as the main example, recovering its Euler class.}
+{Spivak, \emph{Derived smooth manifolds}, Sections 1,2 and 3}
 
 \Talk{7}{24 November}{Stable linearization and tangent complexes}
-{Extract the deformation and obstruction information which derived bordism
-does not see.}
-{Motivate stable modules by explaining why kernels and cokernels belong to one
-linear object. Give a brief heuristic comparison between $\mathbb S$-modules
-and $\mathbb Z$-modules, then define stable modules over an animated
-\Cinfty-ring through its underlying commutative ring spectrum. Introduce
-square-zero extensions and characterize the cotangent complex by derivations.
+{Define the tangent complex of a derived manifold and understand it's relevance to deformation and obstruction problems}
+{Give a brief heuristic comparison between $\mathbb S$-modules and $\mathbb Z$-modules, connecting the later to animation. Define modules over an animated \Cinfty-ring through its underlying commutative ring spectrum. Introduce square-zero extensions and characterize the cotangent complex by derivations.
 Use base change and transitivity to prove the tangent-complex formula
 \[
   [T_xU\longrightarrow E_x]
@@ -162,10 +109,7 @@ Use base change and transitivity to prove the tangent-complex formula
 for the derived zero locus of a section $s\colon U\to E$. Interpret its
 cohomology as deformation and obstruction spaces, compute the virtual
 dimension, and introduce affine quasi-smoothness.}
-{Steffens, \emph{Derived differential geometry}, Remark~5.1.0.4,
-Proposition~5.1.1.11, and Corollary~5.1.1.13; Spivak,
-\emph{Derived smooth manifolds}, Section~7, especially
-Corollaries~7.3--7.6.}
+{Steffens, \emph{Derived differential geometry}, Section 5; See also Spivak, Section~7 and Lorenzo Pascarella \emph{Cotangent complex in derived differential geometry}}
 
 \Talk{8}{1 December}{Local derived geometry and Kuranishi charts}
 {Pass from affine calculations to local geometric objects and understand why
