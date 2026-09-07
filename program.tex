@@ -126,21 +126,11 @@ Interpret its cohomology as deformation and obstruction spaces, compute the virt
 {\textcite[Sections~1--3]{Spivak_Derived_Smooth_Manifolds}.}
 
 \Talk{9}{8 December}{Stacks and local representability}
-{See how intrinsic moduli functors replace a manually chosen coherent
-Kuranishi atlas.}
-{Write down coordinate changes on double overlaps, homotopies on triple
-overlaps, and the next compatibility on quadruple overlaps. Explain what the
-\v{C}ech nerve of an already given derived object records, without asserting a
-general strictification theorem for arbitrary Kuranishi data. Then introduce a
-moduli functor of families, a representing object with its universal family,
-and the locality of representability. Use the derived zero locus of a section
-as the main example: maps into it are maps into the ambient manifold together
-with a chosen equality between the section and zero.}
+{Introduce stacks and descent.}
+{Define $\Cinfty$-prestacks and stacks for the open topology. Briefly define smooth stacks and the comparison. Discuss effective epimorphisms and atlases. Introduce representable stacks. Discuss the locality of relative representability. Use the derived zero locus of a section as an main example.}
 {\textcite[Section~1.0.2, Proposition~2.1.48, and
 Corollary~2.1.49]{Steffens_Representability_Elliptic_Moduli};
-\textcite[Introduction]{Pardon_Representability_Elliptic_Fredholm};
-\textcite[Chapter~1]{Steffens_Derived_Differential_Geometry}, for the
-coherence problem.}
+\textcite[Introduction]{Pardon_Representability_Elliptic_Fredholm}.}
 
 \Talk{10}{15 December}{Section stacks and derived solution stacks}
 {Construct the moduli stack of solutions to a differential operator}
@@ -155,74 +145,40 @@ on a closed connected Riemannian manifold as a running example.}
 	Definition~3.4.2]{Steffens_Representability_Elliptic_Moduli};
 	\textcite[Section~4]{Pardon_Representability_Elliptic_Fredholm}.}
 
-\Talk{11}{12 January}{Fredholm equations and finite-dimensional reduction}
-{Turn one infinite-dimensional elliptic equation into a finite-dimensional derived zero-locus model.}
-{Explain why Sobolev completion turns the elliptic linearization into a
-Fredholm operator. Choose a finite-dimensional obstruction space mapping
-isomorphically to its cokernel, apply the Banach implicit function theorem to
-the augmented problem, and use elliptic regularity to recover smooth
-solutions. Carry out the reduction for $\Delta u+u^2=0$ near $u=0$: split into
-constant and mean-zero functions, obtain the obstruction map $a\mapsto a^2$
-exactly, and compare its tangent complex with
-$[\mathbb R\xrightarrow{0}\mathbb R]$. End by identifying the gap between a
-chosen Kuranishi model and representability of the intrinsic solution stack.}
-{\textcite[Section~1.0.1, Lemmas~3.4.5--3.4.6, and the analytic part of the
-proof of Theorem~3.4.3]{Steffens_Representability_Elliptic_Moduli};
-\textcite[Section~2 and the first step of the proof sketch of
-Theorem~5.1]{Pardon_Representability_Elliptic_Fredholm}.}
+\Talk{11}{12 January}{Elliptic representability I: local reductions}
+{Begin the global representability theorem via various local reductions}
+{State Steffens's relative elliptic representability theorem. First reduce the base from an arbitrary smooth-stack to a smooth manifold. Around a chosen solution, trivialize the proper family of source manifolds and use local additions to replace the relevant section stacks by open substacks of stacks of sections of vector bundles over a fixed compact manifold $N$. Use the local description of relative jet stacks to rewrite the
+	two differential operators as a single partially defined nonlinear elliptic PDE
+	\[
+	\tilde{P}\colon S\times Q\longrightarrow S\times \operatorname{Map}_N(N,E),
+	\]
+	with $Q$ an open substack of $\operatorname{Map}_N(N,F)$\footnote{Here we use the notation of Steffens.}. Apply Lemma~3.4.4 to identify the corresponding solution stack with an open substack of the original solution stack. Explain how varying the solution gives an effective open cover, reducing the theorem to proving local representability for the space of solutions to the PDE above.}
+{\textcite[Theorem~3.4.3, Proposition~3.2.19, Lemmas~3.2.20--3.2.21,
+	Proposition~3.3.9, and Lemma~3.4.4]{Steffens_Representability_Elliptic_Moduli};
+	\textcite[Introduction and the beginning of Section~5]{Pardon_Representability_Elliptic_Fredholm}.}
 
-\Talk{12}{19 January}{Elliptic representability I: the smooth-to-derived bridge}
-{Explain why Sobolev analysis proves an intrinsic submersiveness statement in
-derived smooth geometry.}
-{State Steffens's relative elliptic representability theorem as the
-destination. Localize on the smooth-stack base, pass to vector-bundle charts
-for the relevant section stacks, and reduce to one nonlinear PDE over a fixed
-compact manifold. Construct a functorial Sobolev tower and compatible
-obstruction augmentation. Test the augmented smooth operator after pullback
-from an ordinary manifold, then use nonlinear and linear elliptic regularity
-to prove that the resulting tower is eventually locally constant. Conclude
-that the augmented operator is submersive after passage to derived geometry.
-Stop before forming its finite-dimensional derived zero locus.}
-{\textcite{Steffens_Representability_Elliptic_Moduli}, especially
-Proposition~2.2.18, Proposition~3.2.22, Lemma~3.4.4, Theorem~3.4.3, and
-Lemmas~3.4.5--3.4.6.}
+\Talk{12}{19 January}{Elliptic representability II: the local Kuranishi criterion}
+{Reduce local representability of $\tilde{P}$ to the existence of finite dimensional Kuranishi charts.}
+{Recall the embedding of smooth stacks into derived $\Cinfty$-stacks. Identify the stacks $\operatorname{Map}_N(N,F)$ and $\operatorname{Map}_N(N,E)$ with the corresponding convenient Fr\'echet manifolds of smooth sections. Define stacky submersive maps, explain why pullbacks along them are preserved by the inclusion of smooth stacks into derived stacks, and state that submersiveness may be checked after pullback from ordinary manifolds. Now fix a solution $t$ of $\tilde{P}$. Explain the formal obstruction-thickening argument: if there is a finite-dimensional vector space $V$, a map $\iota\colon V\to\Gamma(E;N)$ and a neighbourhood on which the augmented operator $P+\iota$ is submersive, with ordinary finite-dimensional zero fibre $Z$, then projection to $V$ gives a Kuranishi map $\kappa\colon Z\to S\times V$ over $S$ and an open neighbourhood of $t$ in the intrinsic solution stack agrees with the derived zero locus of $\kappa$. Use the effective open-atlas criterion to show that such charts at every solution imply the full relative representability theorem. This isolates the remaining input to the elliptic representability theorem as a \emph{Local Kuranishi Chart Theorem}: every solution of $\tilde{P}$ admits $V$, $\iota$ and $Z$ with these properties.}
+{\textcite[Propositions~2.2.17--2.2.18, Proposition~2.1.48,
+	Corollary~2.1.49, and the proof of Theorem~3.4.3]{Steffens_Representability_Elliptic_Moduli}.}
 
-\Talk{13}{26 January}{Elliptic representability II: derived charts and globalization}
-{Turn the derived-submersive augmented equation into local
-finite-dimensional charts and complete the representability theorem.}
-{Form the ordinary finite-dimensional zero fiber of the augmented operator,
-project it to the obstruction space, and recover the original problem as a
-finite-dimensional derived zero locus. Identify this object with an open
-restriction of the intrinsic solution stack by pasting pullback squares,
-compare its tangent complex with the elliptic deformation-obstruction complex,
-and prove quasi-smoothness. Vary the solution and apply the effective
-open-atlas criterion to complete Steffens's theorem. End with a concise
-comparison with Pardon's alternate route through ordinary regularity, proper
-section stacks on derived tests, and finite-dimensional parameter thickening.
-Treat the published argument as a proof sketch rather than as a second full
-proof.}
-{\textcite[Proposition~2.1.48, Corollary~2.1.49, Theorem~3.4.3, and
-Remark~3.4.7]{Steffens_Representability_Elliptic_Moduli};
-\textcite[Sections~4--5, especially Theorem~5.1, Proposition~5.2, and
-Lemma~5.3]{Pardon_Representability_Elliptic_Fredholm}.}
+\Talk{13}{26 January}{Elliptic representability III: constructing the Kuranishi charts}
+{Prove the Local Kuranishi Chart Theorem using standard nonlinear elliptic Fredholm analysis.}
+{Begin with linear elliptic theory on a compact manifold and explain why the Sobolev completions of the linearization are Fredholm. Introduce Steffens's functorial Sobolev scale and the compatible extensions
+\[
+P_\ell\colon S\times Q_{k+\ell}\longrightarrow S\times H^\ell(E;N).
+\]
+At a solution $t=(s,\sigma)$ choose the finite-dimensional obstruction space $V=\operatorname{coker}(T_tP)$ and a lift $\iota\colon V\to\Gamma(E;N)$, so that the derivative of $P+\iota$ is surjective at $t$. Apply the Banach implicit function theorem to $P_\ell+\iota$ at sufficiently high Sobolev regularity. Use nonlinear elliptic regularity to show that the tower of resulting finite-dimensional solution manifolds is eventually locally constant and consists of smooth solutions. Conclude that the smooth zero fibre of $P+\iota$ is a finite-dimensional manifold and that the augmented operator is submersive in the sense required in Talk~12; hence it determines the desired local derived Kuranishi chart. Carry out the model calculation for $P(u)=\Delta u+u^2$ near $u=0$. Summarize the proof of Steffens's representability theorem carried out in the previous three talks.}
+{\textcite[Lemmas~3.4.5--3.4.6, the analytic part of the proof of
+	Theorem~3.4.3]{Steffens_Representability_Elliptic_Moduli}}
 
 \Talk{14}{2 February}{Pseudo-holomorphic curves as a derived moduli problem}
-{See the complete representability architecture operate on its principal
-geometric application.}
-{Describe families of maps from smooth compact Riemann surfaces to an almost
-complex manifold and formulate the Cauchy--Riemann equation as a finite-order
-differential moduli problem. Identify its linearization as a Cauchy--Riemann
-type operator and prove ellipticity by calculating the principal symbol. Write
-the relative deformation-obstruction complex and interpret its cohomology.
-Retain families and automorphisms through the smooth-stack base, then apply
-Talks~12--13 to obtain relative representability. End the seminar by separating
-this smooth-domain result from compactification by nodal curves, orientations,
-and the construction of virtual classes, recalling the precise contribution
-of the bordism interlude.}
+{Apply the representability theorem to a key geometric application.}
+{Describe families of maps from smooth compact Riemann surfaces to an almost complex manifold and formulate the Cauchy--Riemann equation as a finite-order differential moduli problem. Identify its linearization as a Cauchy--Riemann type operator and discuss/prove its ellipticity. Write the relative deformation-obstruction complex and interpret its cohomology. Apply Steffen's elliptic representability to obtain a derived moduli stack of pseudo-holomorphic curves. Given time, briefly discuss the task of representing the compactifications thereof and its applications to enumerative questions.}
 {\textcite[Sections~2.1, 2.3--2.4, and
 3.3--3.4]{Wendl_Lectures_Holomorphic_Curves};
-\textcite[Section~4]{Steffens_Representability_Elliptic_Moduli};
-\textcite[Section~4]{Pardon_Representability_Elliptic_Fredholm}.}
+\textcite[Section~4]{Steffens_Representability_Elliptic_Moduli}.}
 
 \printbibliography[title={References}]
 
