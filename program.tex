@@ -7,6 +7,17 @@
 \usepackage{needspace}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage[
+  backend=biber,
+  natbib,
+  style=alphabetic,
+  maxcitenames=4,
+  maxalphanames=5,
+  maxbibnames=99
+]{biblatex}
+\renewbibmacro{in:}{}
+\addbibresource{Bibliography.bib}
 
 \definecolor{linkblue}{RGB}{30,75,135}
 \hypersetup{
@@ -44,7 +55,7 @@
 	
 \section*{Goals}
 
-The main goal of this seminar is to introduce the modern theory of derived manifolds, an elegant technical solution to various difficulties present in the classical theory of manifolds surrounding non-tranverse intersections. In the second half of the seminar we will present one application of derived manifolds: they are the correct home for moduli spaces of solutions to nonlinear elliptic partial differential equations. Such moduli spaces are of fundamental importance in much of modern geometric topology, such as symplectic topology, Floer theory, complex geometry and the theory of 4-manifolds. In each case, studying these moduli spaces leads to extremely interesting invariants. Specifically, our second goal will be to present an overview of a recent theorem of Pelle, which explains how to view such moduli spaces as derived manifolds: they end up being defined as solutions to natural moduli problems associated to the elliptic differential equation. We will not attempt to discuss complete proofs of every technical ingredient going into this theorem. Instead, we hope that by the end, participants will be ready to dig into the source material themselves.
+The main goal of this seminar is to introduce the modern theory of derived manifolds, an elegant technical solution to various difficulties present in the classical theory of manifolds surrounding non-tranverse intersections. In the second half of the seminar we will present one application of derived manifolds: they are the correct home for moduli spaces of solutions to nonlinear elliptic partial differential equations. Such moduli spaces are of fundamental importance in much of modern geometric topology, such as symplectic topology, Floer theory, complex geometry and the theory of 4-manifolds. In each case, studying these moduli spaces leads to extremely interesting invariants. Specifically, our second goal will be to present an overview of a recent theorem of Pelle Steffens, which explains how to view such moduli spaces as derived manifolds: they end up being defined as solutions to natural moduli problems associated to the elliptic differential equation. We will not attempt to discuss complete proofs of every technical ingredient going into this theorem. Instead, we hope that by the end, participants will be ready to dig into the source material themselves.
 
 The seminar is intended to be accessible to first-year PhD students joining the SFB. We have attempted to keep the seminar as self-contained and self-motivated as possible. In particular we do not suppose intimate knowledge of the theory of $\infty$-categories. Instead we hope to motivate it as a natural and indispensible language with which to discuss derived manifolds.  Nevertheless, the difficulty of talks does ramp up as we get to the later weeks of the program.
 
@@ -54,37 +65,36 @@ Each talk should last 90 minutes. The program below is a suggestion, but can be 
 
 \Talk{1}{13 October}{Why derived manifolds?}
 {Motivate the theory of derived manifolds}
-{Prove that pullbacks of transverse intersection exist in the category of manifolds. Discuss the issues with understanding non-transverse intersection. As a running example, compare the zero-set of a line with the zero-set of a parabola. Using more examples, explain how remembering the differential as a two-term complex, solves some, but not all, problems. This shows that the correct home for such intersections is necessarily ``derived". With more examples, such as the zero-sets of $x^2$ vs $x^3$, explain how this is still not enough to capture fully the geometry of non-tranverse intersections. Give an informal discussion of the universal property of derived manifolds, as a maximal way to encode such non-transerve intersections.
+{Prove that pullbacks of transverse intersection exist in the category of manifolds. Discuss the issues with understanding non-transverse intersection. As a running example, compare the zero-set of a line with the zero-set of a parabola. Using more examples, explain how remembering the differential as a two-term complex solves some, but not all, problems. This shows that the correct home for such intersections is necessarily ``derived''. With more examples, such as the zero-sets of $x^2$ vs $x^3$, explain how this is still not enough to fully capture the geometry of non-tranverse intersections. Give an informal discussion of the universal property of derived manifolds, as a maximal way to encode such non-transerve intersections.
 	
 End with giving an introduction to moduli spaces of elliptic equations. Discuss the local finite-dimensional reduction of an
 elliptic equation, which allows one to present such moduli spaces locally as non-transverse intersections. Formulate the nonuniqueness and coherence problem for the resulting local presentations, again motivating derived manifolds.}
-{Spivak, \emph{Derived smooth manifolds}, Section~1; Steffens,
-\emph{Derived differential geometry}, Chapter~1, especially
-Section~1.0.1; Pardon, \emph{Representability in non-linear elliptic Fredholm
-analysis}, Sections~1--2.}
+{\textcite[Section~1]{Spivak_Derived_Smooth_Manifolds};
+\textcite[Chapter~1, especially Section~1.0.1]{Steffens_Derived_Differential_Geometry};
+\textcite[Sections~1--2]{Pardon_Representability_Elliptic_Fredholm}.}
 
 \Talk{2}{20 October}{Introduction to \Cinfty-rings}
 {Familiarize ourselves with the algebraic structure used to generalize manifolds.}
-{Define \Cinfty-rings and introduce its basic categorical properties. Prove that $\Cinfty(\mathbb R^n)$ is free on
+{Define \Cinfty-rings and introduce their basic categorical properties. Prove that $\Cinfty(\mathbb R^n)$ is free on
 $n$ generators. Prove Hadamard's lemma and discuss quotients of \Cinfty-rings. Discuss Borel's theorem. Define $\Cinfty(X)$ for $X\subset \mathbb R^n$ an arbitrary closed subset. Prove that the resulting functor from closed subsets of $\mathbb{R}^n$ to $\Cinfty$-rings is fully faithful.}
-{Moerdijk--Reyes, \emph{Models for smooth infinitesimal analysis},
-Chapter~I, Section~1}
+{\textcite[Chapter~I, Section~1]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.}
 
 \Talk{3}{27 October}{\Cinfty-rings as generalized manifolds}
 {Understand how \Cinfty-rings function as generalized manifolds.}
 {Introduce coproducts of $\Cinfty$-rings. Prove Lemma 2.1 in Moerdijk--Reyes. Deduce that $\Cinfty(M)$ is finitely presented for every manifold $M$. Prove that $\Cinfty(M\times N) \simeq \Cinfty(M) \otimes \Cinfty(N)$. Prove that transverse pullbacks in manifolds induce pushouts of $\Cinfty$-rings.}
-{Moerdijk--Reyes, Chapter~I, Section~2}
+{\textcite[Chapter~I, Section~2]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.}
 
 \Talk{4}{3 November}{From generalized manifolds to derived manifolds}
 {Understand why the universal enlargement of manifolds by arbitrary pullbacks should be an $\infty$-category.}
-{Formulate the 1-categorical universal property of finitely presented $\Cinfty$-rings. Use the results of the last talk to sketch a proof. Briefly introduce $\infty$-categories and homotopy pullbacks. Motivate the passage to $\infty$-categories for the theory of derived manifolds via abstract considerations and examples such as self-intersections. Discuss the process of ``animation". Define derived manifolds via the $\infty$-categorical analogue of the previous universal property. State the theorem of Carchedi--Steffens identifying them with finitely presented derived $\Cinfty$-rings. Discuss as much of the proof as possible.}
-{Carchedi--Steffens, \emph{On the universal property of derived manifolds}}
+{Formulate the 1-categorical universal property of finitely presented $\Cinfty$-rings. Use the results of the last talk to sketch a proof. Briefly introduce $\infty$-categories and homotopy pullbacks. Motivate the passage to $\infty$-categories for the theory of derived manifolds via abstract considerations and examples such as self-intersections. Discuss the process of ``animation''. Define derived manifolds via the $\infty$-categorical analogue of the previous universal property. State the theorem of Carchedi--Steffens identifying them with finitely presented derived $\Cinfty$-rings. Discuss as much of the proof as time permits.}
+{\textcite{Carchedi_Steffens_Universal_Derived_Manifolds}.}
 
 \Talk{5}{10 November}{Calculating derived intersections}
 {Familiarize ourselves with derived manifolds by presenting many examples of non-transverse pullbacks}
-{Define the derived zero locus as a pullback and calculate its animated \Cinfty-ring using a Koszul presentation. To do so introduce the model of animated rings given by \Cinfty-dga's, see 4.1.5.7 of Steffens thesis. Give specific examples, such as in Spivak's Example 2.7. Alternatively, compare the zero loci of the equations $x$, $x^2$, and the zero map, carefully distinguishing the underlying set, classical truncation, and positive homotopy groups of the resulting derived manifolds. Extend these calculations to family-versions, given by zero loci of a vector-bundle section.}
-{Steffens, \emph{Derived differential geometry},
-Examples~4.1.5.10--4.1.5.11 and Construction~5.1.0.1; Spivak, \emph{Derived smooth manifolds}, Sections~1 and~2.}
+{Define the derived zero locus as a pullback and calculate its animated \Cinfty-ring using a Koszul presentation. To do so introduce the model of animated rings given by \Cinfty-dga's, see 4.1.5.7 of Steffens' thesis. Give specific examples, such as in Spivak's Example 2.7. Alternatively, compare the zero loci of the equations $x$, $x^2$, and the zero map, carefully distinguishing the underlying set, classical truncation, and positive homotopy groups of the resulting derived manifolds. Extend these calculations to family-versions, given by zero loci of a vector-bundle section.}
+{\textcite{Steffens_Derived_Differential_Geometry}, especially
+Examples~4.1.5.10--4.1.5.11 and Construction~5.1.0.1;
+\textcite[Sections~1--2]{Spivak_Derived_Smooth_Manifolds}.}
 
 \Talk{6}{17 November}{Tangent and cotangent complexes}
 {Define the tangent complex of a derived manifold and understand it's relevance to deformation and obstruction problems}
@@ -93,13 +103,14 @@ Examples~4.1.5.10--4.1.5.11 and Construction~5.1.0.1; Spivak, \emph{Derived smoo
   [T_xU\longrightarrow E_x].
 \]
 Interpret its cohomology as deformation and obstruction spaces, compute the virtual dimension, and introduce affine quasi-smoothness.}
-{Steffens, \emph{Derived differential geometry}, Section 5; See also Lorenzo Pascarella, \emph{The cotangent complex in derived differential geometry} and Spivak, Section~7}
+{\textcite[Section~5]{Steffens_Derived_Differential_Geometry};
+\textcite{Pascarella_Cotangent_Complex_Derived_Differential_Geometry};
+\textcite[Section~7]{Spivak_Derived_Smooth_Manifolds}.}
 
 \Talk{7}{24 November}{Local derived geometry and Kuranishi charts}
 {Define derived $\Cinfty$-schemes locally of finite presentation.  Connect this to the classical theory of Kuranishi charts, providing local models for the previous.}
 {Introduce localizations of $\Cinfty$-rings and discuss the proof that they are flat. Discuss the spectrum of a $\Cinfty$-ring. Define derived \Cinfty-schemes (locally of finite presentation). Identify the subcategory of affine derived \Cinfty-schemes l.f.p.~with the opposite of derived manifolds. Define quasi-smooth derived \Cinfty-schemes. Introduce Kuranishi charts $(U,E,s)$ and their associated derived manifolds. Discuss the inverse function theorem for quasi-smooth derived \Cinfty-schemes. Interpret Kuranishi charts as local presentations of quasi-smooth derived objects. Emphasize the non-uniqueness of the chosen chart.}
-{Steffens, \emph{Derived differential geometry}, Chapter~1,
-Section~4.1.3, 5.1.1.}
+{\textcite[Chapter~1 and Sections~4.1.3 and~5.1.1]{Steffens_Derived_Differential_Geometry}.}
 
 \Talk{8}{1 December}{Derived bordism and fundamental classes}
 {Define the theory of derived bordism and understand its benefits over classical bordism.}
@@ -112,7 +123,7 @@ Section~4.1.3, 5.1.1.}
 	[A]\smile[B]=[A\mathbin{\times^{\mathrm{der}}_M}B]
 	\]
 	without transversality hypothesis. Discuss the derived self-intersection of the zero section of a vector bundle as the main example, recovering its Euler class.}
-{Spivak, \emph{Derived smooth manifolds}, Sections 1,2 and 3}
+{\textcite[Sections~1--3]{Spivak_Derived_Smooth_Manifolds}.}
 
 \Talk{9}{8 December}{Stacks and local representability}
 {See how intrinsic moduli functors replace a manually chosen coherent
@@ -125,11 +136,11 @@ moduli functor of families, a representing object with its universal family,
 and the locality of representability. Use the derived zero locus of a section
 as the main example: maps into it are maps into the ambient manifold together
 with a chosen equality between the section and zero.}
-{Steffens, \emph{Representability of elliptic moduli problems},
-Section~1.0.2, Proposition~2.1.48, and Corollary~2.1.49; Pardon,
-\emph{Representability in non-linear elliptic Fredholm analysis},
-Introduction; Steffens, \emph{Derived differential geometry}, Chapter~1, for
-the coherence problem.}
+{\textcite[Section~1.0.2, Proposition~2.1.48, and
+Corollary~2.1.49]{Steffens_Representability_Elliptic_Moduli};
+\textcite[Introduction]{Pardon_Representability_Elliptic_Fredholm};
+\textcite[Chapter~1]{Steffens_Derived_Differential_Geometry}, for the
+coherence problem.}
 
 \Talk{10}{15 December}{Section stacks and derived solution stacks}
 {Construct the intrinsic moduli functor whose representability will later be
@@ -146,10 +157,10 @@ the linearized differential operator. Use
 \]
 on a closed connected Riemannian manifold as the running example, and isolate
 the analytic input still missing.}
-{Steffens, \emph{Representability of elliptic moduli problems},
-Definition~3.2.1, Proposition~3.2.22, Definition~3.3.7,
-Proposition~3.3.9, and Definition~3.4.2; Pardon,
-\emph{Representability in non-linear elliptic Fredholm analysis}, Section~4.}
+{\textcite[Definition~3.2.1, Proposition~3.2.22, Definition~3.3.7,
+Proposition~3.3.9, and
+Definition~3.4.2]{Steffens_Representability_Elliptic_Moduli};
+\textcite[Section~4]{Pardon_Representability_Elliptic_Fredholm}.}
 
 \Talk{11}{12 January}{Fredholm equations and finite-dimensional reduction}
 {Turn one infinite-dimensional elliptic equation into a finite-dimensional
@@ -163,10 +174,10 @@ constant and mean-zero functions, obtain the obstruction map $a\mapsto a^2$
 exactly, and compare its tangent complex with
 $[\mathbb R\xrightarrow{0}\mathbb R]$. End by identifying the gap between a
 chosen Kuranishi model and representability of the intrinsic solution stack.}
-{Steffens, \emph{Representability of elliptic moduli problems},
-Section~1.0.1, Lemmas~3.4.5--3.4.6, and the analytic part of the proof of
-Theorem~3.4.3; Pardon, \emph{Representability in non-linear elliptic Fredholm
-analysis}, Section~2 and the first step of the proof sketch of Theorem~5.1.}
+{\textcite[Section~1.0.1, Lemmas~3.4.5--3.4.6, and the analytic part of the
+proof of Theorem~3.4.3]{Steffens_Representability_Elliptic_Moduli};
+\textcite[Section~2 and the first step of the proof sketch of
+Theorem~5.1]{Pardon_Representability_Elliptic_Fredholm}.}
 
 \Talk{12}{19 January}{Elliptic representability I: the smooth-to-derived bridge}
 {Explain why Sobolev analysis proves an intrinsic submersiveness statement in
@@ -180,9 +191,9 @@ from an ordinary manifold, then use nonlinear and linear elliptic regularity
 to prove that the resulting tower is eventually locally constant. Conclude
 that the augmented operator is submersive after passage to derived geometry.
 Stop before forming its finite-dimensional derived zero locus.}
-{Steffens, \emph{Representability of elliptic moduli problems in derived
-\Cinfty-geometry}, Proposition~2.2.18, Proposition~3.2.22,
-Lemma~3.4.4, Theorem~3.4.3, and Lemmas~3.4.5--3.4.6.}
+{\textcite{Steffens_Representability_Elliptic_Moduli}, especially
+Proposition~2.2.18, Proposition~3.2.22, Lemma~3.4.4, Theorem~3.4.3, and
+Lemmas~3.4.5--3.4.6.}
 
 \Talk{13}{26 January}{Elliptic representability II: derived charts and globalization}
 {Turn the derived-submersive augmented equation into local
@@ -198,11 +209,10 @@ comparison with Pardon's alternate route through ordinary regularity, proper
 section stacks on derived tests, and finite-dimensional parameter thickening.
 Treat the published argument as a proof sketch rather than as a second full
 proof.}
-{Steffens, \emph{Representability of elliptic moduli problems in derived
-\Cinfty-geometry}, Proposition~2.1.48, Corollary~2.1.49,
-Theorem~3.4.3, and Remark~3.4.7; Pardon, \emph{Representability in non-linear
-elliptic Fredholm analysis}, Sections~4--5, especially Theorem~5.1,
-Proposition~5.2, and Lemma~5.3.}
+{\textcite[Proposition~2.1.48, Corollary~2.1.49, Theorem~3.4.3, and
+Remark~3.4.7]{Steffens_Representability_Elliptic_Moduli};
+\textcite[Sections~4--5, especially Theorem~5.1, Proposition~5.2, and
+Lemma~5.3]{Pardon_Representability_Elliptic_Fredholm}.}
 
 \Talk{14}{2 February}{Pseudo-holomorphic curves as a derived moduli problem}
 {See the complete representability architecture operate on its principal
@@ -217,9 +227,11 @@ Talks~12--13 to obtain relative representability. End the seminar by separating
 this smooth-domain result from compactification by nodal curves, orientations,
 and the construction of virtual classes, recalling the precise contribution
 of the bordism interlude.}
-{Wendl, \emph{Lectures on holomorphic curves in symplectic and contact
-geometry}, Sections~2.1, 2.3--2.4, and 3.3--3.4; Steffens,
-\emph{Representability of elliptic moduli problems}, Section~4; Pardon,
-\emph{Representability in non-linear elliptic Fredholm analysis}, Section~4.}
+{\textcite[Sections~2.1, 2.3--2.4, and
+3.3--3.4]{Wendl_Lectures_Holomorphic_Curves};
+\textcite[Section~4]{Steffens_Representability_Elliptic_Moduli};
+\textcite[Section~4]{Pardon_Representability_Elliptic_Fredholm}.}
+
+\printbibliography[title={References}]
 
 \end{document}

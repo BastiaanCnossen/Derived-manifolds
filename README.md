@@ -25,16 +25,17 @@ supplementary outlook material.
 ## Files
 
 1. [`program.tex`](program.tex) is the provisional public-facing seminar program.
-2. [`main.tex`](main.tex), [`preamble.tex`](preamble.tex), and [`book.cls`](book.cls) form the modular manuscript setup.
-3. [`chapters/`](chapters/) contains the fourteen manuscript chapters.
-4. [`planning/`](planning/) contains the current deliberation dossiers, timed
+2. [`Bibliography.bib`](Bibliography.bib) contains the program's local bibliography.
+3. [`main.tex`](main.tex), [`preamble.tex`](preamble.tex), and [`book.cls`](book.cls) form the modular manuscript setup.
+4. [`chapters/`](chapters/) contains the fourteen manuscript chapters.
+5. [`planning/`](planning/) contains the current deliberation dossiers, timed
    outlines, and selected review notes.
-5. [`supplements/`](supplements/) contains substantial material outside the
+6. [`supplements/`](supplements/) contains substantial material outside the
    live fourteen-talk route.
-6. [`NOTATION.md`](NOTATION.md) records notation and terminology that must remain stable across chapters.
-7. [`NARRATIVE.md`](NARRATIVE.md) explains the seminar arc and audience contract.
-8. [`LITERATURE.md`](LITERATURE.md) is an annotated and status-sensitive guide to the literature.
-9. [`AGENTS.md`](AGENTS.md) records the project instructions.
+7. [`NOTATION.md`](NOTATION.md) records notation and terminology that must remain stable across chapters.
+8. [`NARRATIVE.md`](NARRATIVE.md) explains the seminar arc and audience contract.
+9. [`LITERATURE.md`](LITERATURE.md) is an annotated and status-sensitive guide to the literature.
+10. [`AGENTS.md`](AGENTS.md) records the project instructions.
 
 ## Building the program
 
