@@ -2,238 +2,419 @@
 
 ## Status
 
-This document records the fourteen-talk architecture agreed on 30 August
-2026. There are fourteen meetings of 90 minutes. Every talk now has a complete
-manuscript chapter and a timed live route, with substantial additional
-material marked as supplementary.
+Updated on 9 September 2026 to match the final program after the organizers'
+editing discussion. This round of program editing is complete. The program
+remains adaptable during the semester, as its introduction states; the
+allocations below are the current decisions, not proposals awaiting approval.
+There are fourteen meetings of 90 minutes, from 13 October to 2 February.
+`program.tex` is authoritative for dates, titles, contents, and references.
 
-The former fifteen-talk architecture is superseded. Derived bordism now forms
-an interlude immediately after the nonlinear calculations of Talk 5. Elliptic
-representability remains the primary theorem, and pseudo-holomorphic curves
-form the final application. Logarithmic degeneration is supplementary outlook
-material rather than a second main theorem which the semester must reach.
+The route proceeds from classical smooth algebra to derived geometry and
+coherence, then to elliptic moduli problems. Talk 6 contains stability,
+cotangent complexes, and the tangent-complex calculation for a derived zero
+locus. Talk 7 develops quasi-smooth schemes and Kuranishi presentations.
+Talk 8 is the bordism interlude. Talks 11--13 prove relative elliptic
+representability through local coordinates, formal thickening, and analysis.
+Talk 14 applies this to pseudo-holomorphic curves, with compactification
+as an optional outlook.
+
+The AI-generated manuscript in `main.tex`, its chapters, and existing timed
+outlines reflect an older arrangement. Their revision is a later task;
+their numbering and allocation do not override the current program.
 
 ## The endpoint
 
-The seminar is heading towards a precise understanding of the following
-theorem of Steffens.
+The seminar works towards Steffens's Theorem 3.4.3:
 
 > Let $S$ be a smooth stack, let $M\to S$ be a proper $S$-family of manifolds,
 > and let $\mathcal E$ be an $S$-family of elliptic differential moduli
-> problems over $M$. Then the solution stack
-> $\operatorname{Sol}(\mathcal E)\to S$ is represented by quasi-smooth derived
-> $C^\infty$-schemes locally of finite presentation.
+> problems over $M$. Then $\operatorname{Sol}(\mathcal E)\to S$ is relatively
+> representable by quasi-smooth derived $C^\infty$-schemes locally of finite
+> presentation.
 
-The target is not a complete proof of every technical ingredient. Participants
-should instead understand why the theorem has exactly this form, what each
-hypothesis does, and how the proof is assembled from derived geometry,
-nonlinear Fredholm analysis, and locality of representability.
+Participants should understand the statement, the purpose of its hypotheses,
+and how the proof combines derived geometry, nonlinear Fredholm analysis,
+and locality of representability. The program does not promise complete
+proofs of every technical ingredient.
 
-The semester's central question is:
-
-> How does an elliptic equation produce an intrinsic global derived moduli
-> object, rather than merely a collection of noncanonical finite-dimensional
-> reductions?
+The central question is how an elliptic equation produces an intrinsic
+global derived moduli object, with local finite-dimensional presentations
+that retain the full derived solution problem.
 
 ## What counts as success
 
-By the end of the seminar, a participant should be able to do the following.
+By the end of the seminar, participants should be able to do the following.
 
-1. Explain why arbitrary pullbacks, rather than singular underlying sets, are
-   the basic derived construction.
+1. Explain the role of derived pullbacks in non-transverse intersections.
 2. Compute elementary derived zero loci and their two-term tangent complexes.
-3. Explain how a Kuranishi chart is a local presentation by a derived zero
-   locus, and why such presentations are nonunique.
-4. Formulate a differential equation as a map between stacks of sections and
-   define its solution stack by a pullback.
-5. Carry out one finite-dimensional reduction far enough to see the
-   deformation and obstruction spaces.
-6. Trace the proof architecture of Steffens's relative elliptic
-   representability theorem.
-7. Compare Steffens's architecture with Pardon's derived regularity argument.
-8. Distinguish representability from compactification, orientations, and the
-   construction of a virtual fundamental class.
+3. Explain Kuranishi presentations and their nonuniqueness.
+4. Formulate differential moduli problems using section stacks and jets,
+   including families and derived solution stacks.
+5. Explain how finite-dimensional auxiliary variables produce a Kuranishi
+   presentation when the augmented solution stack is an ordinary manifold.
+6. Trace the analytic and categorical steps proving relative representability.
+7. Distinguish representability from compactification, orientations, and
+   the construction of a virtual fundamental class or an invariant.
 
-## Engine and application
+## Proof dependencies
 
-The main theorem is the application. It rests on three engines which should
-remain visibly distinct throughout the semester.
+The solution stack is defined before its representability is known. The
+proof then has three distinct tasks.
 
-### The derived-geometric engine
+1. **Local coordinates.** Descent and local additions reduce the geometric
+   problem to a nonlinear differential operator between section stacks of
+   fixed vector bundles over a compact manifold. These local solution
+   stacks are open parts of the original solution stack.
+2. **Formal thickening.** Add finitely many auxiliary variables. If the
+   augmented derived solution stack is an ordinary finite-dimensional
+   manifold, imposing that the auxiliary variables vanish gives a Kuranishi
+   presentation. Submersiveness supplies a criterion that can be checked
+   using smooth stacks and ordinary families.
+3. **Analysis.** Fredholmness, Sobolev completions, the Banach implicit
+   function theorem, and elliptic regularity establish that criterion.
+   The open-cover criterion then gives the global representing object.
 
-Derived manifolds freely supply finite pullbacks while preserving transverse
-pullbacks. Affine derived zero loci retain equality data which ordinary
-$C^\infty$-rings forget. Their tangent complexes encode deformations and
-obstructions, and quasi-smooth derived $C^\infty$-schemes are locally governed
-by two-term complexes.
+Talks 1--4 supply the algebraic and higher-categorical foundations; Talks
+5--7 supply computable local models, tangent complexes, and quasi-smooth
+geometry. Talk 9 supplies descent and local representability, and Talk 10
+defines the differential moduli problems to which the proof applies.
 
-### The analytic engine
+## Current fourteen-talk route
 
-The linearization of an elliptic equation on a compact manifold is Fredholm
-after Sobolev completion. Adding a finite-dimensional obstruction space makes
-the augmented equation submersive. The implicit function theorem and elliptic
-regularity then produce a finite-dimensional obstruction section whose derived
-zero locus models the original problem locally.
+1. **Why derived manifolds?** Motivate non-transverse intersections through
+   equations, their differentials, and examples where tangent information
+   alone is insufficient. Introduce the universal-property viewpoint and
+   the coherence problem for local reductions of elliptic moduli problems.
+2. **Introduction to $C^\infty$-rings.** Introduce smooth rings, free objects,
+   Hadamard's lemma, quotients, Borel's theorem, and the fully faithful
+   description of closed subsets by their smooth functions.
+3. **$C^\infty$-rings as generalized manifolds.** Introduce coproducts,
+   finite presentation of manifold function rings, products, and the
+   pushouts associated with transverse pullbacks.
+4. **From generalized manifolds to derived manifolds.** Compare ordinary
+   and higher-categorical universal properties. Introduce animation and
+   homotopy pullbacks, and state the Carchedi--Steffens description by
+   opposites of finitely presented animated smooth rings.
+5. **Calculating derived intersections.** Introduce smooth dg-algebras and
+   the smooth Dold--Kan correspondence. Resolve evaluation at the origin
+   to compute derived zero loci by Koszul models, extend to families, and
+   distinguish zero sets, classical truncations, and higher homotopy groups.
+6. **Tangent and cotangent complexes.** Begin with smooth derivations and
+   Kähler differentials. Motivate cotangent complexes, introduce stability
+   through the derived infinity-category of real vector spaces, and define
+   cotangent complexes through derived square-zero extensions. State base
+   change and transitivity, and use them to calculate the tangent complex
+   of a derived zero locus and interpret deformations and obstructions.
+7. **Quasi-smooth derived geometry and Kuranishi charts.** Introduce smooth
+   localization, spectra, and derived schemes locally of finite presentation.
+   Identify the affine objects with derived manifolds in the convention of
+   the seminar. Define quasi-smoothness, discuss the Kuranishi normal-form
+   theorem, and illustrate nonuniqueness by stabilization.
+8. **Derived bordism and fundamental classes.** Follow Spivak's comparison
+   between classical and derived bordism by transverse perturbation. Deduce
+   the non-transverse intersection formula and recover the Euler class from
+   a zero-section self-intersection.
+9. **Stacks and local representability.** Define the open topology and
+   higher descent on derived manifolds, compare with smooth stacks, and
+   discuss representability by derived schemes. Introduce effective
+   epimorphisms, atlases, the open-local representability criterion, and
+   relative representability. Use a derived zero locus as a running example.
+10. **Section stacks and derived solution stacks.** Motivate differential
+    operators through harmonic functions, nonlinear energies, and
+    pseudo-holomorphic curves. Explain equations $P(u)=b$, introduce jets
+    and finite-order operators, and pass to families over manifolds and
+    smooth stacks. Define differential moduli problems, solution stacks,
+    linearization, and ellipticity, using $\Delta u+u^2$ as a running example.
+11. **Elliptic representability I: local reductions.** State Theorem 3.4.3.
+    Begin with $S=\mathrm{pt}$ and $P(u)=b$. Use relative exponential maps
+    and Lemma 3.4.4 to describe open neighbourhoods of solutions by equations
+    between section stacks of vector bundles. Explain the open cover,
+    matching problems $P_1(u_1)=P_2(u_2)$, and general bases $S$.
+12. **Elliptic representability II: the local Kuranishi criterion.** Begin
+    with the formal augmentation and pullback identity. Explain when this
+    gives a Kuranishi chart, then use submersive maps and the comparison
+    between smooth and derived stacks to give a sufficient condition.
+    Identify section stacks with the stacks presented by Fréchet spaces of
+    sections, and finish with the relative version and globalization.
+13. **Elliptic representability III: the analytic input.** Introduce Sobolev
+    spaces and Fredholm operators. Choose the cokernel augmentation and
+    suitable neighbourhoods. Apply the Banach implicit function theorem to
+    families of right-hand sides, and use linear and nonlinear elliptic
+    regularity to identify the resulting manifolds with smooth-stack
+    pullbacks. Establish submersiveness, return to a general base, and
+    conclude the theorem. Illustrate with $\Delta u+u^2$ near zero.
+14. **Pseudo-holomorphic curves as a derived moduli problem.** Describe
+    families of maps from smooth compact Riemann surfaces, formulate the
+    Cauchy--Riemann equation, discuss its linearization and ellipticity, and
+    identify the relative deformation-obstruction complex. Apply the
+    representability argument. If time permits, discuss representability
+    of compactifications and enumerative applications.
 
-### The globalization engine
+## Decisions about Talks 5--9
 
-The equation defines a solution functor before representability is known.
-Stacks of sections and relative jets make this construction compatible with
-families and base change. Descent and locality of representability turn the
-local finite-dimensional models into an intrinsic global representing object.
+### Talk 5: compute the pushout
 
-The Kuranishi viewpoint sits at the interface of these engines. It describes
-the local output of the analytic engine in the language of the derived engine,
-while the globalization engine explains why one need not choose a strict atlas
-of coordinate changes.
+The goal is to make the passage from animated rings to explicit derived
+zero loci understandable. Introduce smooth dg-algebras and explain why
+they can compute the homotopy pushout before presenting the Koszul model.
+Complexes and quasi-isomorphisms already occur in this role; the systematic
+discussion of stable infinity-categories belongs to Talk 6.
 
-## Backward dependency chain
+The extension to families is part of the program. The manuscript should
+explain how parameter-dependent equations give families of derived zero
+loci and how restricting parameters recovers the corresponding fibres.
 
-Starting from the endpoint, the required inputs are the following.
+The primary references are the foundations paper, Definition 3.3.1,
+Theorem 3.3.12, and Examples 3.3.16--3.3.17, together with Spivak's Example 2.7.
 
-1. To state relative elliptic representability, we need solution stacks,
-   proper families of manifolds, elliptic differential moduli problems, and
-   relative representability by derived $C^\infty$-schemes.
-2. To construct solution stacks, we need stacks of sections, relative jets,
-   base change, and pullbacks in derived geometry.
-3. To prove local representability, we need Fredholm linearizations, Sobolev
-   completions, obstruction spaces, the implicit function theorem, and
-   elliptic regularity.
-4. To identify the local representing objects, we need derived zero loci,
-   tangent complexes, quasi-smoothness, and the passage from affine derived
-   manifolds to locally affine derived $C^\infty$-schemes.
-5. To globalize the local objects, we need descent, open substacks, and the
-   locality criterion for representability.
-6. To understand why the resulting object resolves the Kuranishi coherence
-   problem, we need weak equivalences of local models and the first levels of
-   homotopy-coherent gluing.
-7. All of this rests on the material of Talks 1--4: transversality,
-   $C^\infty$-rings, the algebraic reconstruction of manifolds, and the
-   universal finite-limit characterization of derived manifolds.
+### Talks 6 and 7: cotangent complexes before local normal forms
 
-## Revised fourteen-talk route
+The final allocation puts **both the statements of base change and
+transitivity and their application to a derived zero locus in Talk 6**.
+This supersedes the earlier proposal to move the tangent-complex calculation
+to Talk 7.
 
-The labels below describe mathematical roles. The exact titles remain
-revisable, but the division of mathematical responsibilities is the working
-architecture for the rewrite.
+Talk 6 starts with ordinary smooth derivations and Kähler differentials,
+then explains why the derived setting needs a complex. The main example
+for stability is the derived infinity-category of real vector spaces.
+Shifts and fibre/cofibre sequences should be related to short exact
+sequences before they are used in cotangent-complex arguments. The final
+calculation is $[T_xU\xrightarrow{d_xs}E_x]$ in cohomological degrees $0,1$,
+with its deformation and obstruction interpretation. A Koszul dg-algebra
+and this tangent complex play different roles; explain that distinction.
 
-1. **Why derived manifolds?** Introduce failures of transversality, equations
-   versus underlying zero sets, complexes in families, and the elliptic moduli
-   problem which motivates the semester.
-2. **Smooth geometry through $C^\infty$-rings.** Introduce smooth functional
-   calculus, free smooth algebras, quotients, and reconstruction from
-   functions.
-3. **Manifolds as $C^\infty$-rings.** Prove finite presentation and show that
-   transverse pullbacks become pushouts.
-4. **From smooth algebra to derived manifolds.** Compare the ordinary and
-   animated finite-limit envelopes and establish the universal property of
-   derived manifolds.
-5. **Calculating derived intersections.** Introduce the smooth Dold--Kan
-   computational bridge, calculate derived zero loci by Koszul presentations,
-   and compare the equations $x$, $x^2$, and zero.
-6. **Derived bordism and fundamental classes.** Compare ordinary and derived
-   bordism through transverse perturbation, prove the nontransverse
-   intersection formula, and use the derived self-intersection of a zero
-   section to recover its Euler class. End by asking what finer information
-   survives beyond the bordism class.
-7. **Stable linearization and tangent complexes.** Introduce stable modules,
-   square-zero extensions, and the cotangent complex; calculate the two-term
-   tangent complex of a derived zero locus and interpret deformations,
-   obstructions, and virtual dimension.
-8. **Local derived geometry and Kuranishi charts.** Introduce only the
-   localization and spectrum language needed for locally affine derived
-   $C^\infty$-schemes, then study zero-locus charts, shrinking, stabilization,
-   and nonuniqueness of presentation.
-9. **Stacks and local representability.** Display the coherence problem,
-   introduce stacks and universal families, and state the open-atlas
-   representability mechanism.
-10. **Section stacks and derived solution stacks.** Construct sections in
-   families, state the finite-jet interface, define the solution stack, and
-   identify its tangent complex with the linearized operator.
-11. **Fredholm equations and finite-dimensional reduction.** Present one
-    obstruction-space reduction and calculate the exact finite-dimensional
-    model for $\Delta u+u^2=0$.
-12. **Elliptic representability I: the smooth-to-derived bridge.** Localize
-    the intrinsic solution stack, construct the functorial Sobolev tower, and
-    prove that the augmented smooth operator is derived-submersive.
-13. **Elliptic representability II: derived charts and globalization.** Turn
-    the augmented operator into finite-dimensional derived charts, assemble
-    them by an effective open atlas, complete Steffens's theorem, and compare
-    its proof architecture briefly with Pardon's alternate engine.
-14. **Pseudo-holomorphic curves as a derived moduli problem.** Formulate the
-    Cauchy--Riemann equation, prove symbol ellipticity, identify its relative
-    deformation-obstruction complex, and apply elliptic representability to
-    varying smooth domains. End by separating representability from
-    compactification, orientations, and virtual classes.
+Talk 7 begins with localization and spectra. Flatness of smooth localization
+is a quoted input. Spectra use real points of the classical truncation,
+not all prime ideals of the underlying real algebra. The purpose is to
+define locally affine derived schemes and make the local normal-form
+statement precise. Quasi-smoothness is expressed by cotangent
+Tor-amplitude $[-1,0]$; its geometric counterpart is local presentation by
+a derived zero locus. The substantial converse is discussed without
+promising a full proof. Stabilization illustrates nonuniqueness of charts.
 
-## Anchor examples
+The finiteness discussion from our exchange is useful background for the
+manuscript, not an additional assigned segment of Talk 6: perfect cotangent
+complexes give bounded finite-dimensional tangent complexes at real points,
+with no uniform bound on length across all derived manifolds. Perfection
+over an animated ring does not imply that its underlying real complex is
+bounded.
 
-The semester should reuse a small number of examples rather than introduce a
-new example every week.
+### Talks 8 and 9: topological payoff and the gluing criterion
+
+Talk 8 remains the derived-bordism interlude. Talk 9 now explicitly provides
+the machinery for turning local representing objects into a global derived
+scheme. Its assignment is Steffens's representability paper, **Section 2.1**.
+The former discussion of Talk 9 as an unresolved slot is superseded.
+
+## Decisions about Talks 10--13
+
+### Talk 10: motivate and formulate the equation
+
+Begin with the unknowns, equations, and reasons to study their solutions.
+The program keeps this opening short; develop it properly when revising
+the manuscript. For each example, specify the source and target before
+introducing jets. For pseudo-holomorphic curves, the equation naturally
+takes values in a bundle depending on the unknown map; its precise
+formulation requires care, as recorded in the literature guide.
+
+A morphism of section stacks and a right-hand side already define a derived
+solution stack by a pullback. Finite order is additional structure encoded
+by jets and needed for the subsequent elliptic analysis. The program includes
+families $M\to S$ and passage to smooth-stack bases by descent.
+
+Talk 10 introduces linearization and ellipticity. It does not promise a
+separate general theorem calculating the tangent complex of every solution
+stack. Proposition 3.2.22 concerns local charts of section stacks, not such
+a tangent-complex calculation, and was removed from this talk's references.
+The final assignment includes Definitions 3.2.1 and 3.3.7, Proposition 3.3.9,
+and Definitions 3.4.1--3.4.2, with Pardon's Section 4 as in the program.
+
+### Talk 11: exact nonlinear coordinates
+
+Start with a fixed compact source and $S=\mathrm{pt}$. Around a solution,
+relative exponential maps give coordinates for the unknown and the equation
+values in sections of fixed vector bundles. These are exact local coordinate
+changes; the resulting operator remains nonlinear. This is why the final
+title says "local reductions", not "local linear reductions".
+
+The explanatory example is a map $u_0\colon N\to Z$: nearby maps can be
+written as $u(x)=\exp_{u_0(x)}v(x)$ for small sections of $u_0^*TZ$.
+The general construction produces
+\[
+\widetilde P\colon Q\longrightarrow\operatorname{Map}_N(N,E),
+\qquad Q\subseteq\operatorname{Map}_N(N,F)\text{ open}.
+\]
+
+Lemma 3.4.4 ensures that restricting the diagram defining a solution stack
+by open charts induces an open inclusion of solution stacks. Thus the
+coordinate descriptions retain the derived structure and give an effective
+open cover as the chosen solution varies.
+
+After the single-equation case, treat matching problems by choosing
+coordinates in the common target and subtracting the operators. Finally
+return to a manifold base, local trivialization of the proper source family,
+and descent for a smooth-stack base. The program deliberately explains the
+fixed-source example before the general reduction.
+
+### Talk 12: formal augmentation and the comparison with analysis
+
+The first part is a formal argument in derived stacks. For a finite-dimensional
+vector space $V$ and a linear map $\iota$, set
+$\overline P(u,a)=\widetilde P(u)+\iota(a)$. Since $\iota(0)=0$, there is a
+pullback identity
+\[
+\operatorname{Sol}(\widetilde P)
+\cong\operatorname{Sol}(\overline P)\times^{\mathrm{der}}_V\{0\},
+\]
+without a representability assumption. If the augmented **derived solution
+stack** is an ordinary finite-dimensional manifold $Z$, this gives the
+Kuranishi presentation $(Z,Z\times V,\kappa)$, where $\kappa$ records the
+auxiliary variable. Its identification with an open part of the original
+solution stack makes it a chart. Smoothness of the ordinary zero set alone
+is insufficient.
+
+The second part explains a sufficient condition that analysis can establish.
+The functor $j_{\mathrm{Con}}$ regards a convenient manifold as the smooth
+stack of smooth maps into it from ordinary parameter manifolds. In particular,
+the Fréchet space $\Gamma(E;N)$ presents the smooth section stack, and its
+associated derived stack identifies with $\operatorname{Map}_N(N,E)$.
+This comparison concerns smooth families, not just individual sections.
+
+The sufficient condition is that, on a neighbourhood $U\subseteq Q\times V$,
+the augmented operator is a **submersive map of smooth stacks**. Explicitly,
+for every ordinary manifold $T$ and map $h\colon T\to\Gamma(E;N)$, the
+pullback $T\times_{\Gamma(E;N)}U$, formed in smooth stacks, must be represented
+by an ordinary finite-dimensional manifold mapping submersively to $T$.
+The comparison theorem promotes this to submersiveness in derived stacks
+and identifies the smooth and derived zero fibres.
+
+Distinguish this from the weaker property of being stacky submersive.
+Stacky submersiveness supplies pullback preservation, but alone does not
+ensure finite-dimensional representable fibres. The program uses the
+stronger, representable notion. It is not merely surjectivity of the
+derivative of a map of Fréchet manifolds.
+
+Finish with the relative version over a manifold base $S$: the augmented
+zero fibre is an ordinary manifold $Z\to S$, and its map to $S\times V$
+gives the local solution stack by derived pullback along $S\times\{0\}$.
+Apply the open-local criterion and descend to a smooth-stack base.
+
+The refined references cover Propositions 2.2.17--2.2.18, Corollary 2.2.19,
+Propositions 3.1.7 and 3.1.9, Lemma 3.2.11, and the final pullback argument
+after the proof of claim $(*)$ in Theorem 3.4.3. Proposition 2.1.48 and
+Corollary 2.1.49 supply globalization.
+
+### Talk 13: establish submersiveness using analysis
+
+The final title is **"Elliptic representability III: the analytic input"**.
+It proves the sufficient condition from Talk 12. The earlier placeholder
+name "Local Kuranishi Chart Theorem" is no longer used in the program.
+
+1. Introduce Sobolev spaces $H^\ell(E;N)$ and the compatible extensions
+   $\widetilde P_\ell\colon Q_{k+\ell}\to H^\ell(E;N)$ for an operator of
+   order $k$. Explain that the source needs $k$ additional derivatives.
+2. Define Fredholm operators and quote elliptic Fredholmness on a compact
+   manifold. Linear elliptic regularity identifies the smooth and Sobolev
+   kernels and cokernels. For the fixed solution $t$, choose
+   $V=\operatorname{coker}(T_t\widetilde P)$ and a linear splitting of the
+   quotient map to obtain $\iota$. The augmented derivative is surjective
+   at $(t,0)$.
+3. Restrict to compatible neighbourhoods with surjective augmented
+   derivatives. Their corresponding neighbourhood of smooth sections is
+   $U\subseteq Q\times V$. The program intentionally keeps this choice
+   concise; the manuscript can explain the open surjectivity loci and the
+   successive intersections making the neighbourhoods nested.
+4. For an ordinary manifold $Z$ and a smooth family $h\colon Z\to\Gamma(N;E)$,
+   apply the Banach implicit function theorem to
+   $\widetilde P_\ell(u)+\iota(a)=h(z)$. The resulting solution manifolds
+   $W_\ell$ are finite-dimensional and project submersively to $Z$.
+5. Use nonlinear elliptic regularity to recover smooth solutions and linear
+   elliptic regularity to compare their tangent spaces. The transition maps
+   identify the manifold structures at sufficiently high levels. The limit
+   represents the smooth-stack pullback $Z\times_{\Gamma(N;E)}U$, proving
+   the required submersiveness.
+6. Explain the relative argument over $S$, conclude representability, and
+   illustrate the construction with $\Delta u+u^2$ near zero.
+
+The fixed solution is called $t$, following Steffens; the varying parameter
+is $z\in Z$. Preserve this notation. The Sobolev notation is $H^\ell(E;N)$.
+
+The analytic focus is claim $(*)$ in the proof of Theorem 3.4.3. Lemma 3.4.5
+provides the Sobolev scale and Lemma 3.4.6 the nonlinear regularity input.
+Smoothness of the zero fibre for a fixed right-hand side is not enough:
+the argument must work for arbitrary smooth families of right-hand sides.
+
+## Anchor examples and manuscript explanations
 
 1. The line--parabola intersection and the zero loci of $x$, $x^2$, and $0$
-   anchor the finite-dimensional story.
-2. Stabilizing $x\mapsto x^2$ to
-   $(x,y)\mapsto(x^2,y)$ anchors changes of Kuranishi presentation.
-3. The equation
-   \[
-     P(u)=\Delta u+u^2
-   \]
-   on a closed connected Riemannian manifold anchors Fredholm reduction and
-   the transition from infinite-dimensional equations to finite-dimensional
-   obstruction maps.
-4. The zero-section self-intersection supplies the topological payoff in the
-   bordism interlude.
-5. The pseudo-holomorphic curve equation is the principal geometric
-   application and the final test of the complete representability
-   architecture.
+   anchor the finite-dimensional story. Comparing $x^2$ with $x^3$ shows
+   why tangent information alone is insufficient.
+2. Stabilizing $x\mapsto x^2$ to $(x,y)\mapsto(x^2,y)$ illustrates different
+   Kuranishi presentations of the same derived object. Their tangent
+   complexes differ by a contractible summand.
+3. Zero-section self-intersection supplies the Euler-class example in Talk 8.
+4. Harmonic functions, critical points of nonlinear energies, and
+   pseudo-holomorphic curves motivate why one studies differential equations.
+5. On a closed connected Riemannian manifold, $P(u)=\Delta u+u^2$ has only
+   the real-valued solution zero, while constant first-order deformations
+   have a quadratic obstruction. This explains its role as a simple model
+   connecting $x^2=0$ to elliptic finite-dimensional reduction.
+6. Exponential coordinates for maps near $u_0$ explain Talk 11. The scalar
+   example already has vector-bundle source and target and does not, by
+   itself, motivate those reductions.
 
-## Audience and delivery contract
+## Delivery guidance
 
-Each talk lasts 90 minutes. The prepared core route should normally occupy
-70--75 minutes. Every talk should do the following.
+The audience includes first-year PhD students with varied backgrounds.
+The program describes talks, not complete proofs: keep technical
+neighbourhood choices and similar details concise there, and develop them
+in the manuscript or speaker notes.
 
-1. Begin with a geometric question or a continuation of one of the anchor
-   examples.
-2. Ask the audience to remember at most one principal theorem.
-3. Distinguish definitions needed later from technical machinery used only in
-   a proof.
-4. State explicitly which results are proved, sketched, or quoted.
-5. Reserve approximately five minutes for the handoff from the preceding talk
-   and five minutes for the handoff to the next talk.
-6. Explain each higher-categorical construction by the mathematical work it
-   performs.
-7. Keep supplementary manuscript material outside the default live route.
+1. Begin with a geometric question or an explicit continuation of the
+   previous talk, stating the unknowns and source and target of an operator.
+2. Explain what a construction accomplishes before introducing its full
+   generality. In Talks 11--13, start with $S=\mathrm{pt}$ and return to
+   general bases after the main argument is understood.
+3. Separate statements being proved from standard results being quoted.
+   In Talk 13, quote the Fredholm and regularity inputs while explaining
+   how they establish the family criterion.
+4. Keep the distinction between smooth stacks and derived stacks explicit
+   when forming pullbacks. Agreement on ordinary points is not sufficient.
+5. Preserve time for questions and transitions. The earlier suggestion of
+   a 70--75 minute prepared core within a 90-minute meeting is delivery
+   guidance, not a fixed minute-by-minute allocation.
 
-## Research frontier and status
+## Later work and source cautions
 
-Steffens's relative elliptic representability theorem is the completed theorem
-towards which the seminar works. Pardon's 2024 proceedings article gives a
-proof sketch of a related representability theorem for pseudo-holomorphic maps
-and isolates a different categorical engine. His July 2026 logarithmic
-manuscript is explicitly unfinished work in progress. It is retained as
-supplementary outlook material, and no incomplete logarithmic theorem is a
-dependency of the core seminar.
+The program edit is complete. The following remain tasks for manuscript
+revision and speaker preparation, not unresolved allocations in the program.
 
-Representability is also logically separate from compactness and virtual
-fundamental classes. The bordism interlude obtains cobordism fundamental
-classes for compact derived manifolds. The final application recalls that
-compactness, orientations, isotropy, and compactification require further
-input in moduli problems.
+1. **Revise the manuscript.** Bring main.tex and its chapters into line with
+   this route. Expand the differential-operator examples in Talk 10 and
+   the explanations connecting coordinates, augmentation, and Sobolev
+   analysis in Talks 11--13. Check existing AI-generated text against
+   primary sources before reuse.
+2. **Prepare Talk 14 carefully.** Its program is the intended application,
+   but does not settle the source issue recorded in LITERATURE.md:
+   Steffens's printed Construction 4.0.1 requires care concerning the
+   full-jet target and the ellipticity of the resulting matching operator.
+   Check the local zero-section argument for the chosen formulation of
+   pseudo-holomorphic curves. Do not treat this caveat as resolved merely
+   because the program edit is finished.
+3. **Separate representability from enumerative constructions.** Talk 14
+   includes compactification only if time permits. Orientations, virtual
+   classes, isotropy, and compactness require additional input.
+4. **Retain supplementary sources with their recorded status.** Pardon's
+   2024 proceedings contribution is a proof sketch and remains cited where
+   indicated in the program. His July 2026 logarithmic manuscript is
+   recorded in LITERATURE.md as unfinished work in progress. Logarithmic
+   degeneration is not an assigned topic or dependency of the current
+   fourteen-talk program.
+5. **Bibliography and organization.** The foundations-paper entry
+   Steffens_Derived_Cinfty_Geometry_I was added to the project bibliography
+   for Talk 5; the shared-bibliography addition remains pending as recorded
+   in LITERATURE.md. Speaker assignments and detailed delivery timings
+   are not specified in the current program.
 
-## Remaining organizational choices
-
-The mathematical architecture and timed outlines are fixed for the current
-draft. The remaining choices concern speaker assignments and the results of a
-final program-wide revision pass. Such a pass may still shorten a live route
-or move material into a supplement, but it should preserve the dependency
-chain and the distinction between proved, quoted, and work-in-progress
-results.
-
-## Manuscript workflow
-
-The manuscript remains a diagnostic tool rather than a transcription of the
-program. Each unit was developed through a source-based deliberation dossier,
-a boundary and timing check, and a complete chapter. Future revisions should
-continue to test correctness, dependency order, accessibility, and live
-delivery time in that order.
+Update this narrative when the program changes. Keep the current program,
+supporting explanations from discussion, and later manuscript work distinct.

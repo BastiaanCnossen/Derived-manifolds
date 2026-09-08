@@ -90,31 +90,30 @@ $n$ generators. Prove Hadamard's lemma and discuss quotients of \Cinfty-rings. D
 {\textcite{Carchedi_Steffens_Universal_Derived_Manifolds}.}
 
 \Talk{5}{10 November}{Calculating derived intersections}
-{Familiarize ourselves with derived manifolds by presenting many examples of non-transverse pullbacks}
-{Define the derived zero locus as a pullback and calculate its animated \Cinfty-ring using a Koszul presentation. To do so introduce the model of animated rings given by \Cinfty-dga's, see 4.1.5.7 of Steffens' thesis. Give specific examples, such as in Spivak's Example 2.7. Alternatively, compare the zero loci of the equations $x$, $x^2$, and the zero map, carefully distinguishing the underlying set, classical truncation, and positive homotopy groups of the resulting derived manifolds. Extend these calculations to family-versions, given by zero loci of a vector-bundle section.}
-{\textcite{Steffens_Derived_Differential_Geometry}, especially
-Examples~4.1.5.10--4.1.5.11 and Construction~5.1.0.1;
-\textcite[Sections~1--2]{Spivak_Derived_Smooth_Manifolds}.}
+{Learn to calculate derived zero loci via explicit dg-algebra models}
+{Introduce \Cinfty-dg-algebras, state the \Cinfty-Dold--Kan correspondence, and explain how it identifies derived zero loci with homotopy pushouts of \Cinfty-dg-algebras. Construct the Koszul model for the derived zero locus of a smooth map $f\colon\mathbb R^n\to\mathbb R^r$ by resolving the evaluation map $\Cinfty(\mathbb R^r)\to\mathbb R$. Explain the extension to families. Give examples, such as Spivak's Example~2.7 and the zero loci of the equations $x$, $x^2$, and $0$, distinguishing the underlying zero set, classical truncation, and higher homotopy groups of the animated ring of functions.}
+{\textcite[Definition~3.3.1, Theorem~3.3.12, and Examples~3.3.16--3.3.17]{Steffens_Derived_Cinfty_Geometry_I};
+\textcite[Example~2.7]{Spivak_Derived_Smooth_Manifolds}.}
 
 \Talk{6}{17 November}{Tangent and cotangent complexes}
-{Define the tangent complex of a derived manifold and understand it's relevance to deformation and obstruction problems}
-{First in the non-derived setting, discuss K\"ahler differentials on a $C^\infty$-ring and its connection to the (co)tangent bundle of a manifold. Motivate the passage to the cotangent complex. Define modules over an animated \Cinfty-ring through its underlying commutative ring spectrum. Introduce square-zero extensions and characterize the cotangent complex by derivations. Define the tangent complex by dualization. Use base change and transitivity to prove the tangent-complex of the derived zero locus of a section $s\colon U\to E$ locally has the form
+{Learn about (co)tangent complexes of derived manifolds.}
+{Define $\Cinfty$-derivations, the module of smooth K\"ahler differentials, and its relation to the cotangent bundle of a manifold. Explain the need for a cotangent \emph{complex} in the derived setting. Introduce stable $\infty$-categories, with the derived $\infty$-category of real vector spaces as the main example. Discuss shifts, fiber and cofiber sequences, and their relation to short exact sequences in abelian categories. Introduce derived square-zero extensions and \Cinfty-derivations, and define absolute and relative cotangent complexes. State base change and the transitivity cofiber sequence for cotangent complexes, and use that to calculate the tangent complex of the derived zero locus of a section $s\colon U\to E$ at a zero $x$:
 \[
-  [T_xU\longrightarrow E_x].
+  [T_xU\xrightarrow{d_xs}E_x].
 \]
-Interpret its cohomology as deformation and obstruction spaces, compute the virtual dimension, and introduce affine quasi-smoothness.}
+Explain how to interpret its cohomology in degrees $0$ and $1$ as deformation and obstruction spaces.}
 {\textcite[Section~5]{Steffens_Derived_Differential_Geometry};
 \textcite{Pascarella_Cotangent_Complex_Derived_Differential_Geometry};
 \textcite[Section~7]{Spivak_Derived_Smooth_Manifolds}.}
 
-\Talk{7}{24 November}{Local derived geometry and Kuranishi charts}
-{Define derived $\Cinfty$-schemes locally of finite presentation.  Connect this to the classical theory of Kuranishi charts, providing local models for the previous.}
-{Introduce localizations of $\Cinfty$-rings and discuss the proof that they are flat. Discuss the spectrum of a $\Cinfty$-ring. Define derived \Cinfty-schemes (locally of finite presentation). Identify the subcategory of affine derived \Cinfty-schemes l.f.p.~with the opposite of derived manifolds. Define quasi-smooth derived \Cinfty-schemes. Introduce Kuranishi charts $(U,E,s)$ and their associated derived manifolds. Discuss the inverse function theorem for quasi-smooth derived \Cinfty-schemes. Interpret Kuranishi charts as local presentations of quasi-smooth derived objects. Emphasize the non-uniqueness of the chosen chart.}
+\Talk{7}{24 November}{Quasi-smooth derived geometry and Kuranishi charts}
+{Understand quasi-smooth derived \Cinfty-schemes and their local descriptions via Kuranishi charts.}
+{Introduce localizations of derived $\Cinfty$-rings, stating flatness as a black-box, and define the spectrum of a derived $\Cinfty$-ring. Define derived \Cinfty-schemes locally of finite presentation, and identify the affine objects with derived manifolds. Define quasi-smooth derived \Cinfty-schemes. Introduce Kuranishi charts $(U,E,s)$ and their associated derived manifolds, and discuss the normal-form theorem: every quasi-smooth derived \Cinfty-scheme of finite presentation is locally presented by a Kuranishi chart. Illustrate the non-uniqueness of the presentation by discussing stabilization of charts.}
 {\textcite[Chapter~1 and Sections~4.1.3 and~5.1.1]{Steffens_Derived_Differential_Geometry}.}
 
 \Talk{8}{1 December}{Derived bordism and fundamental classes}
 {Define the theory of derived bordism and understand its benefits over classical bordism.}
-{We follow Spivak. Explain how quasi-smooth derived manifolds are good for doing intersection theory. Define derived cobordism over $X$. State proposition~3.3, recalling it's proof for derived \Cinfty-rings. State proposition~3.4. Prove that the comparison map
+{We follow Spivak. Explain how quasi-smooth derived manifolds are good for doing intersection theory. Define derived cobordism over $X$. State proposition~3.3, recalling its proof for derived \Cinfty-rings. State proposition~3.4. Prove that the comparison map
 	\[
 	\Omega(X) \xrightarrow{\ \cong\ } \Omega^{\mathrm{der}}(X).
 	\] 
@@ -126,50 +125,52 @@ Interpret its cohomology as deformation and obstruction spaces, compute the virt
 {\textcite[Sections~1--3]{Spivak_Derived_Smooth_Manifolds}.}
 
 \Talk{9}{8 December}{Stacks and local representability}
-{Introduce stacks and descent.}
-{Define $\Cinfty$-prestacks and stacks for the open topology. Briefly define smooth stacks and the comparison. Discuss effective epimorphisms and atlases. Introduce representable stacks. Discuss the locality of relative representability. Use the derived zero locus of a section as an main example.}
-{\textcite[Section~1.0.2, Proposition~2.1.48, and
-Corollary~2.1.49]{Steffens_Representability_Elliptic_Moduli};
-\textcite[Introduction]{Pardon_Representability_Elliptic_Fredholm}.}
+{Understand how stacks describe moduli problems.}
+{Define open coverings of derived manifolds and the resulting notion of ($\infty$-)stacks on the category of derived manifolds via higher categorical descent. Briefly explain the comparison with smooth stacks. Define when such a derived \Cinfty-stack is representable by a derived \Cinfty-scheme, giving the derived zero locus of a section as a running example. Define effective epimorphisms and atlases. State the local criterion for representability criterion, and explain how an open atlas yields a global representing derived \Cinfty-scheme. Introduce relative representability and its locality on the base. }
+{\textcite[Section~2.1]{Steffens_Representability_Elliptic_Moduli}.}
 
 \Talk{10}{15 December}{Section stacks and derived solution stacks}
 {Construct the moduli stack of solutions to a differential operator}
-{Recall briefly the motivation from moduli spaces of elliptic PDE's. Define the Weyl restriction on stacks. For a family $W\to M\to S$ of derived stacks, define the stack of sections and the relative jet stack. Define a finite-order differential operator as a map of jet stacks. Define jet prolongation and the induced map on stacks of sections. Define differential moduli problems and their solution stacks. Finally define an \emph{elliptic} differential moduli problem. State the identification of the tangent complex of a section stack in Proposition~3.2.22. Deduce a presentation of the tangent complex of the solution stack in terms of the linearized differential operator. Use
+{Motivate differential operators and their solutions (e.g.\ harmonic functions, critical points of nonlinear energies, pseudo-holomorphic curves), and explain how to see these as solutions for $P(u) = b$ for a map $P\colon \Gamma_N(X \to N) \to \Gamma_N(Y \to N)$ and a section $b$. Introduce jet stacks to define finite-order differential operators and their induced maps on sections. Explain the relative version for smooth families $M\to S$, and briefly discuss how descent allows $S$ to be a stack. Define differential moduli problems and their solution stacks. Explain linearization and \emph{elliptic} differential moduli problems. As a running example, use
 \[
   P(u)=\Delta u+u^2
 \]
-
-on a closed connected Riemannian manifold as a running example.}
-{\textcite[Definition~3.2.1, Proposition~3.2.22, Definition~3.3.7,
+on a closed connected Riemannian manifold.}
+{\textcite[Definition~3.2.1, Definition~3.3.7,
 	Proposition~3.3.9, and
-	Definition~3.4.2]{Steffens_Representability_Elliptic_Moduli};
+	Definitions~3.4.1--3.4.2]{Steffens_Representability_Elliptic_Moduli};
 	\textcite[Section~4]{Pardon_Representability_Elliptic_Fredholm}.}
 
 \Talk{11}{12 January}{Elliptic representability I: local reductions}
-{Begin the global representability theorem via various local reductions}
-{State Steffens's relative elliptic representability theorem. First reduce the base from an arbitrary smooth-stack to a smooth manifold. Around a chosen solution, trivialize the proper family of source manifolds and use local additions to replace the relevant section stacks by open substacks of stacks of sections of vector bundles over a fixed compact manifold $N$. Use the local description of relative jet stacks to rewrite the
-	two differential operators as a single partially defined nonlinear elliptic PDE
-	\[
-	\tilde{P}\colon S\times Q\longrightarrow S\times \operatorname{Map}_N(N,E),
-	\]
-	with $Q$ an open substack of $\operatorname{Map}_N(N,F)$\footnote{Here we use the notation of Steffens.}. Apply Lemma~3.4.4 to identify the corresponding solution stack with an open substack of the original solution stack. Explain how varying the solution gives an effective open cover, reducing the theorem to proving local representability for the space of solutions to the PDE above.}
+{Reduce the representability problem to section stacks of vector bundles}
+{State the seminar's main theorem: Steffens's relative elliptic representability theorem \cite[Theorem~3.4.3]{Steffens_Representability_Elliptic_Moduli}. For most of the talk, fix $S = \mathrm{pt}$ and consider a moduli problem of the form $P(u) = b$ for a finite-order elliptic differential operator $P$ and a section $b$. Use relative exponential maps and Lemma 3.4.4 to identify its solution stack locally around a solution $u_0$ with the solution stack of a moduli problem of the form $\widetilde{P}(u) = 0$ for $\widetilde{P}\colon Q \to \operatorname{Map}_N(N,E)$, where $E,F \to N$ are vector bundles and $Q \subseteq \operatorname{Map}_N(N,F)$ is an open substack. Explain how varying the chosen solution gives an effective open cover, so that local representability implies representability. Next, explain how the same coordinate construction reduces a moduli problem $P_1(u_1) = P_2(u_2)$ to this form. Finally, explain what changes when the base $S$ is a general manifold or a smooth stack.}
 {\textcite[Theorem~3.4.3, Proposition~3.2.19, Lemmas~3.2.20--3.2.21,
 	Proposition~3.3.9, and Lemma~3.4.4]{Steffens_Representability_Elliptic_Moduli};
 	\textcite[Introduction and the beginning of Section~5]{Pardon_Representability_Elliptic_Fredholm}.}
 
 \Talk{12}{19 January}{Elliptic representability II: the local Kuranishi criterion}
-{Reduce local representability of $\tilde{P}$ to the existence of finite dimensional Kuranishi charts.}
-{Recall the embedding of smooth stacks into derived $\Cinfty$-stacks. Identify the stacks $\operatorname{Map}_N(N,F)$ and $\operatorname{Map}_N(N,E)$ with the corresponding convenient Fr\'echet manifolds of smooth sections. Define stacky submersive maps, explain why pullbacks along them are preserved by the inclusion of smooth stacks into derived stacks, and state that submersiveness may be checked after pullback from ordinary manifolds. Now fix a solution $t$ of $\tilde{P}$. Explain the formal obstruction-thickening argument: if there is a finite-dimensional vector space $V$, a map $\iota\colon V\to\Gamma(E;N)$ and a neighbourhood on which the augmented operator $P+\iota$ is submersive, with ordinary finite-dimensional zero fibre $Z$, then projection to $V$ gives a Kuranishi map $\kappa\colon Z\to S\times V$ over $S$ and an open neighbourhood of $t$ in the intrinsic solution stack agrees with the derived zero locus of $\kappa$. Use the effective open-atlas criterion to show that such charts at every solution imply the full relative representability theorem. This isolates the remaining input to the elliptic representability theorem as a \emph{Local Kuranishi Chart Theorem}: every solution of $\tilde{P}$ admits $V$, $\iota$ and $Z$ with these properties.}
-{\textcite[Propositions~2.2.17--2.2.18, Proposition~2.1.48,
-	Corollary~2.1.49, and the proof of Theorem~3.4.3]{Steffens_Representability_Elliptic_Moduli}.}
-
-\Talk{13}{26 January}{Elliptic representability III: constructing the Kuranishi charts}
-{Prove the Local Kuranishi Chart Theorem using standard nonlinear elliptic Fredholm analysis.}
-{Begin with linear elliptic theory on a compact manifold and explain why the Sobolev completions of the linearization are Fredholm. Introduce Steffens's functorial Sobolev scale and the compatible extensions
+{Explain the formal thickening argument that produces Kuranishi charts.}
+{Start with $S = \mathrm{pt}$ and continue from the case $\widetilde{P}(u) = 0$ from last talk. Explain formal thickening of operators: for a finite-dimensional vector space $V$ and a linear map $\iota\colon V \to \operatorname{Map}_N(N,E)$, consider the augmented operator
 \[
-P_\ell\colon S\times Q_{k+\ell}\longrightarrow S\times H^\ell(E;N).
+	\overline{P}\colon Q \times V \to \operatorname{Map}_N(N,E), \qquad \overline{P}(u,v) := \widetilde{P}(u) + \iota(v),
 \]
-At a solution $t=(s,\sigma)$ choose the finite-dimensional obstruction space $V=\operatorname{coker}(T_tP)$ and a lift $\iota\colon V\to\Gamma(E;N)$, so that the derivative of $P+\iota$ is surjective at $t$. Apply the Banach implicit function theorem to $P_\ell+\iota$ at sufficiently high Sobolev regularity. Use nonlinear elliptic regularity to show that the tower of resulting finite-dimensional solution manifolds is eventually locally constant and consists of smooth solutions. Conclude that the smooth zero fibre of $P+\iota$ is a finite-dimensional manifold and that the augmented operator is submersive in the sense required in Talk~12; hence it determines the desired local derived Kuranishi chart. Carry out the model calculation for $P(u)=\Delta u+u^2$ near $u=0$. Summarize the proof of Steffens's representability theorem carried out in the previous three talks.}
+and show that the solution stack $\operatorname{Sol}(\widetilde{P})$ is the derived zero locus of the map of stacks $\operatorname{Sol}(\overline{P}) \to V$. Deduce that if $Z = \operatorname{Sol}(\overline{P})$ is a finite-dimensional manifold, then $\operatorname{Sol}(\widetilde{P}) \simeq Z \times^{\mathrm{der}}_V 0$ provides a Kuranishi chart. Explain the analogous local statement around a solution of $\widetilde{P}$.
+
+Introduce submersive maps of smooth stacks and of derived \Cinfty-stacks, and show that the inclusion of smooth stacks into derived stacks preserves pullbacks along submersive maps. Show how to regard the Fréchet vector space $\Gamma(N;E)$ of sections of $E$ as a smooth stack, and identify its derived \Cinfty-stack with $\operatorname{Map}_N(N,E)$. Deduce that $\operatorname{Sol}(\overline{P}\vert_U)$ is a finite-dimensional manifold whenever $V$ and $\iota$ are chosen such that the augmented operator $\overline{P}\vert_U \colon U \subseteq Q \times V \to \Gamma(N;E)$ is a submersive map of smooth stacks. Finally, explain the relative version over $S$ and how the resulting local Kuranishi presentations imply relative representability.}
+{\textcite[Propositions~2.2.17--2.2.18 and Corollary~2.2.19;
+	Propositions~3.1.7 and~3.1.9 and Lemma~3.2.11;
+	the final pullback argument following the proof of claim~$(*)$ in Theorem~3.4.3;
+	Proposition~2.1.48 and Corollary~2.1.49]{Steffens_Representability_Elliptic_Moduli}.}
+
+\Talk{13}{26 January}{Elliptic representability III: the analytic input}
+{Use nonlinear elliptic Fredholm analysis to make the augmented operator into a submersive map of smooth stacks}
+{Start with $S = \mathrm{pt}$. Introduce the Sobolev spaces of sections $H^{\ell}(E;N)$ and explain how a differential operator of order $k$ extends to compatible maps
+\[
+	\widetilde{P}_\ell\colon Q_{k+\ell}\longrightarrow H^\ell(E;N)
+\]
+for sufficiently large $\ell$. Define Fredholm operators, and state as an analytic black-box that the Sobolev extensions of a linear elliptic operator on a compact manifold are Fredholm. Given a solution $t$ of $\widetilde{P}$, choose $V = \operatorname{coker}(T_t\widetilde{P}) = \Gamma(N;E)/\operatorname{im}(T_t\widetilde{P})$ and a splitting $\iota\colon V \to \Gamma(N;E)$ of the quotient map, so that the derivative of the augmented operator $\overline{P}$ is surjective at $(t,0)$. Restrict to compatible neighbourhoods on which the augmented derivatives are surjective.
+
+For an ordinary manifold $Z$ and a smooth map $h\colon Z \to \Gamma(N;E)$, apply the Banach implicit function theorem to the equation $\widetilde{P}_{\ell}(u) + \iota(a) = h(z)$ to obtain finite-dimensional manifolds $W_{\ell}$ of Sobolev solutions whose maps to $Z$ are submersions. Using linear and nonlinear elliptic regularity, show that the tower $\dots \to W_{\ell+1} \to W_{\ell}$ is eventually constant and consists of smooth solutions, so that the limit $W$ agrees with the pullback $Z \times_{\Gamma(N;E)} U$ of smooth stacks, where $U\subseteq Q\times V$ is the corresponding neighbourhood of smooth sections. Conclude that the augmented operator $\overline{P}\vert_U \colon U \to \Gamma(N;E)$ is submersive in the sense required by the previous talk. Explain the relative version over $S$, and conclude the proof of the representability theorem. Illustrate the argument with $P(u)=\Delta u+u^2$ near $u=0$.}
 {\textcite[Lemmas~3.4.5--3.4.6, the analytic part of the proof of
 	Theorem~3.4.3]{Steffens_Representability_Elliptic_Moduli}}
 

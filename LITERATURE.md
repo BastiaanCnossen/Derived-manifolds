@@ -247,11 +247,12 @@ Borisov--Noel, Steffens's foundations manuscript, Carchedi's comparison with
 dg-manifolds, the Kuranishi comparison sources, and Pardon's implicit-atlas
 paper.
 
-The proposed key for Steffens's foundations manuscript is
-`Steffens_Derived_Cinfty_Geometry_I`. It is not yet present in the shared
-bibliography. If the manuscript is cited later, its current arXiv metadata
-should be checked and a complete entry should be reviewed before the shared
-bibliography is changed.
+The key for Steffens's foundations manuscript is
+`Steffens_Derived_Cinfty_Geometry_I`. On 8 September 2026, a version-2 entry
+was added to the project `Bibliography.bib` for Talk 5, which now cites
+Definition 3.3.1, Theorem 3.3.12, and Examples 3.3.16--3.3.17. It is not yet
+present in the shared bibliography; the complete local entry is the proposal
+for a future shared-bibliography addition.
 
 The Joyce monograph entry records the published Memoirs version together with
 arXiv:1001.0023.
