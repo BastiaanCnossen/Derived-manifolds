@@ -1,941 +1,440 @@
-% This chapter is the complete working manuscript for the tenth seminar talk.
-% The final section contains supplementary material outside the default live
-% route.
+% !TEX root = ../main.tex
 
 \chapter{Section stacks and derived solution stacks}
 \label[chapter]{chap:Section_Stacks_Jets_Solution_Stacks}
 
-Talk 9 introduced intrinsic moduli stacks and the local representability
-theorem. We now construct the stack associated to a differential equation.
-The construction must work for families over arbitrary test objects before
-any representing derived scheme has been found.
+A differential operator assigns to a function, section, or map an expression
+in its derivatives. Its solutions often describe a geometric condition:
+harmonicity, stationarity of an energy, or compatibility with a complex
+structure. The equation can be defined for smooth families of unknowns.
+The resulting functor of solutions is a stack, whose geometric
+representability is a separate question.
 
-Three ingredients are needed. A \emph{section stack} records families of
-fields. A \emph{relative jet stack} makes finite-order differential operators
-act functorially on such families. The \emph{solution stack} imposes the
-equation by a derived pullback.
-
-Our running example is
+Our running example is the nonlinear elliptic equation
 \[
-  P(u)=\Delta u+u^2
+ P(u)=\Delta u+u^2=0
 \]
-on a closed connected Riemannian manifold. Its ordinary solution set is one
-point, but its linearization has both a kernel and a cokernel. The main payoff
-of the chapter is that these appear as the cohomology of the intrinsic tangent
-complex of the solution stack.
+on a closed connected Riemannian manifold. Its ordinary solution set is
+a single point, but its infinitesimal solutions and obstructions are
+both nontrivial. The eventual conclusion is concrete: near zero, its
+derived solution object is the multiple point defined by $c^2=0$.
+\Cref{chap:Elliptic_Representability_Derived_Charts} will prove this by
+eliminating the mean-zero part of $u$, leaving its constant part $c$
+as the remaining variable.
 
-The chapter defines this stack and calculates its linearization. It does not
-prove finite-dimensionality or representability. Talk 11 will construct one
-finite-dimensional analytic model near a fixed solution.
+This chapter sets up the functor that the later analytic argument will
+represent. Geometric examples lead to section stacks and their derived
+fibres. Jets then express the finite-order condition, and linearization
+gives the definition of ellipticity. Each construction is formulated
+for families, so it can be used over a parameter stack.
 
-\section{From one equation to families of sections}
-\label[section]{sec:One_Point_Hidden_Deformation_Theory}
+\section{Differential equations from geometry}
 
-\subsection{A nonlinear elliptic equation}
-\label[subsection]{sec:Nonlinear_Laplacian_Square_Equation}
+The examples below identify the unknowns, their equations, and the
+bundles in which the equations take values. We begin with scalar
+functions and then consider maps, where the output bundle depends
+on the unknown.
 
-Let $M$ be a closed connected Riemannian manifold. We use the nonnegative
-Laplacian
+\begin{example}[Harmonic functions]
+For a Riemannian manifold $N$, the Laplacian is an operator
 \[
-  \Delta=d^*d
+ \Delta\colon\Cinfty(N)\longrightarrow\Cinfty(N).
 \]
-on smooth functions and consider the nonlinear operator
+We use the nonnegative convention $\Delta=d^*d$.
+The equation $\Delta u=0$ says that $u$ is harmonic.
+It occurs in potential theory and in extending boundary data into a domain.
+On a closed connected manifold, integration by parts shows that harmonic
+functions are constant:
 \[
-  P\colon C^\infty(M)\longrightarrow C^\infty(M),
-  \qquad
-  P(u)=\Delta u+u^2.
+ 0=\int_Nu\Delta u=\int_N|du|^2.
 \]
+Boundary-value problems require additional analytic hypotheses; the
+representability theorem considered here concerns closed fibres.
 
-\begin{proposition}[The ordinary solution set]
-  \label[proposition]{prop:Laplacian_Square_Ordinary_Solutions}
-  The only smooth solution of
-  \[
-    \Delta u+u^2=0
-  \]
-  is $u=0$.
-\end{proposition}
+Both source and target are sections of the trivial real line bundle
+$N\times\R\to N$. The operator takes an entire section as its input
+and returns another section.
+\end{example}
 
-\begin{proof}
-  Since $M$ is closed, Stokes' theorem gives
-  \[
-    \int_M\Delta u=0.
-  \]
-  If $P(u)=0$, it follows that
-  \[
-    0
-    =\int_M(\Delta u+u^2)
-    =\int_Mu^2.
-  \]
-  Hence $u$ vanishes identically.
-\end{proof}
-
-As a set, the solution space therefore contains no visible singularity. It is
-just $\{0\}$.
-
-\subsection{The linearization puzzle}
-\label[subsection]{sec:Linearization_Puzzle_Laplacian_Square}
-
-The derivative of $P$ at a function $u$ is
+\begin{example}[Critical points of energies]
+Let $N$ be a closed Riemannian manifold and let $V\colon\R\to\R$ be smooth. Consider
 \[
-  D_uP(v)=\Delta v+2uv.
+ \mathcal E(u)=\int_N\left(\tfrac12|du|^2+V(u)\right)\,d\mathrm{vol}.
 \]
-At the unique solution, this becomes
+Differentiating in the direction $v$ and integrating by parts gives
 \[
-  D_0P=\Delta.
+ d\mathcal E_u(v)=\int_N\bigl(\Delta u+V'(u)\bigr)v\,d\mathrm{vol}.
 \]
-Compact Hodge theory gives
+Therefore the critical points are the solutions of
+$P(u)=0$, where
 \[
-  \ker(\Delta)\cong\R,
-  \qquad
-  \operatorname{coker}(\Delta)\cong\R.
+ P\colon\Cinfty(N)\longrightarrow\Cinfty(N),\qquad
+ P(u)=\Delta u+V'(u).
 \]
-Indeed, the kernel consists of the constant functions, and the image consists
-of the functions with integral zero. Thus the equation has one infinitesimal
-deformation direction and one obstruction direction at its only solution.
+The energy is a real-valued functional; its Euler--Lagrange operator $P$
+has a function as its output. The metric and volume form identify the
+first variation with this function.
 
-This produces the guiding question of the chapter.
+Taking $V(u)=u^3/3$ gives the running example $P(u)=\Delta u+u^2$.
+\end{example}
 
-\begin{question}
-  \label[question]{question:One_Point_Remembers_Laplacian_Kernel_Cokernel}
-  What geometric object has ordinary solution set $\{0\}$ but tangent complex
-  \[
-    [C^\infty(M)\xrightarrow{\Delta}C^\infty(M)]
-  \]
-  at that point?
-\end{question}
-
-We will not attach this complex to the point as auxiliary data. Instead, we
-will define the equation as a pullback in derived $\Cinfty$-stacks. The
-complex will then follow by linearizing that pullback, exactly as in the
-finite-dimensional calculation of Chapter~5.
-
-\subsection{From one section to a family}
-\label[subsection]{sec:From_One_Section_To_Family}
-
-Before imposing a differential equation, we must say what a family of fields
-is. If $T$ is an ordinary parameter manifold, a $T$-family of functions on
-$M$ is one smooth map
+\begin{example}[Pseudo-holomorphic maps]
+Let $(\Sigma,j)$ be a fixed Riemann surface and $(Z,J)$ an almost complex manifold.
+A smooth map $u\colon\Sigma\to Z$ is pseudo-holomorphic when
 \[
-  u\colon T\times M\longrightarrow\R.
+ \bar\partial_Ju=\tfrac12(du+J(u)\circ du\circ j)=0.
 \]
-Equivalently, it is a section of the pulled-back trivial line bundle
+The unknown is a section of $\Sigma\times Z\to\Sigma$.
+Its output lies in
 \[
-  T\times M\times\R\longrightarrow T\times M.
+ \Gamma\bigl(\Sigma,
+ \operatorname{Hom}^{0,1}_{\R}(T\Sigma,u^*TZ)\bigr),
 \]
-This formulation still makes sense when $T$ is derived. It is not a map from
-the set of points of $T$ to the set $C^\infty(M)$.
+where the superscript denotes complex-antilinear real linear maps.
+The output bundle depends on $u$.
 
-We now pass to a relative geometric situation. Let
+Globally, this is a section of a bundle over the space of maps.
+Near a fixed map, exponential coordinates on $Z$ and identifications
+of nearby output bundles turn it into an operator
 \[
-  Y\longrightarrow M\xrightarrow{q}S
+ Q\subseteq\Gamma(\Sigma,F)\longrightarrow\Gamma(\Sigma,E)
 \]
-be a diagram of derived $\Cinfty$-stacks. In the main geometric application,
-$M\to S$ is a family of manifolds and $Y\to M$ is a family of submersions.
-For a test object $a\colon T\to S$, write
+for fixed finite-rank bundles $F,E$.
+\Cref{chap:Elliptic_Equations_Kuranishi_Models} explains the coordinate principle, and \Cref{chap:Pseudo_Holomorphic_Curves_Derived_Moduli} carries out
+the Cauchy--Riemann application. Keeping track of these source and target
+bundles is necessary before applying an ellipticity theorem.
+\end{example}
+
+\section{Section stacks}
+
+To apply the functor-of-points viewpoint, we retain smooth families of
+sections and their pullbacks. We first fix the domain manifold, then
+allow it to vary over a base.
+
+For a submersion $p\colon X\to N$, the ordinary section set is
 \[
-  M_T=T\times_SM,
-  \qquad
-  Y_T=T\times_SY.
+ \Gamma(N;X)=\{u\colon N\to X:\ p\circ u=\operatorname{id}_N\}.
 \]
-The map $Y_T\to M_T$ is the family obtained after changing the parameter
-object from $S$ to $T$.
+If $X$ is a vector bundle, this is a vector space.
+A family parametrized by an ordinary manifold $T$ is a smooth map
+$T\times N\to X$ over $N$. Smoothness is joint smoothness in the
+parameter and in the point of $N$.
+
+The same formula makes sense with derived test objects.
+For $T$ derived, it uses maps of derived stacks, and so retains
+infinitesimal and higher data in the parameter.
 
 \begin{definition}[Section stack]
-  \label[definition]{def:Section_Stack}
-  The \emph{section stack} of $Y\to M$ relative to $M\to S$ is the object
-  \[
-    \operatorname{Sect}_{M/S}(Y)\longrightarrow S
-  \]
-  characterized by natural equivalences
-  \begin{equation}
-    \label{eq:Section_Stack_Universal_Property}
-    \Hom_S\bigl(T,\operatorname{Sect}_{M/S}(Y)\bigr)
-    \simeq
-    \Hom_{M_T}(M_T,Y_T)
-  \end{equation}
-  for all $T\to S$.
+\label[definition]{def:Section_Stack}
+The section stack of $X\to N$ is
+\[
+ \Sec_N(X)(T)=\Hom_{/N}(T\times N,X).
+\]
 \end{definition}
 
-The right side of \Cref{eq:Section_Stack_Universal_Property} is the anima of
-sections of $Y_T\to M_T$. Thus the definition has a short geometric reading:
+This is the mapping stack often written $\operatorname{Map}_N(N,X)$.
+The notation $\Gamma(N;X)$ will be reserved for ordinary smooth
+sections, and, for a vector bundle on compact $N$, their Fr\'echet
+manifold. The section stack is a functor on parameter objects.
 
-\begin{center}
-  A $T$-point of the section stack is a section after base change to $T$.
-\end{center}
+A family of manifolds over a smooth stack $S$
+is a map $q\colon M\to S$ whose pullback along every ordinary manifold
+$T\to S$ is a submersion of ordinary manifolds. The family is proper
+if each such pullback is proper. For a manifold base this is the usual
+notion of a submersion, or a proper submersion, respectively.
+Suppose $q\colon M\to S$ is such a family and $X\to M$ is a family
+of submersions.
 
-Steffens denotes this object by
+\begin{definition}[Relative section stack]
+\label[definition]{def:Relative_Section_Stack}
+The relative section stack $\Sec_{M/S}(X)\to S$ is characterized by
 \[
-  \operatorname{Res}_{M/S}(Y)
+ \Hom_{/S}(T,\Sec_{M/S}(X))
+ \cong\Hom_{/M}(T\times_S M,X).
 \]
-and calls it the \emph{Weil restriction} of $Y$ along $M\to S$. The name
-records its categorical construction. Pullback along $q$ defines a functor
-from the slice $\infty$-category of derived $\Cinfty$-stacks over $S$ to the
-corresponding slice over $M$, sending $T$ to $T\times_SM$.
-Because the $\infty$-category of derived $\Cinfty$-stacks is locally
-Cartesian closed, this functor admits a right adjoint $q_*$. One has
-\[
-  \operatorname{Sect}_{M/S}(Y)
-  =\operatorname{Res}_{M/S}(Y)
-  =q_*Y.
-\]
-The adjunction formula for $q^*\dashv q_*$ is precisely
-\Cref{eq:Section_Stack_Universal_Property}. We quote the existence of this
-right adjoint. The universal property, rather than its construction, will do
-all of the work below.
-
-\begin{example}[Families of functions]
-  \label[example]{ex:Section_Stack_Families_Of_Functions}
-  Take $S=*$ and $Y=M\times\R$. Then
-  \[
-    \Hom\bigl(T,\operatorname{Sect}_{M}(M\times\R)\bigr)
-    \simeq
-    \Hom_M(T\times M,T\times M\times\R).
-  \]
-  A point of the right side is a map $T\times M\to\R$. Consequently,
-  $\operatorname{Sect}_{M}(M\times\R)$ is the stack of families of smooth
-  functions on $M$. Its ordinary points form $C^\infty(M)$, but the stack
-  remembers its behavior on all parameter objects.
-\end{example}
-
-\subsection{Base change and descent}
-\label[subsection]{sec:Section_Stacks_Base_Change_Descent}
-
-The main formal advantage of the section stack is its compatibility with
-changes of parameters.
-
-\begin{proposition}[Base change for section stacks]
-  \label[proposition]{prop:Section_Stack_Base_Change}
-  Let $S'\to S$ be a morphism and put
-  \[
-    M_{S'}=S'\times_SM,
-    \qquad
-    Y_{S'}=S'\times_SY.
-  \]
-  There is a natural equivalence over $S'$
-  \begin{equation}
-    \label{eq:Section_Stack_Base_Change}
-    S'\times_S\operatorname{Sect}_{M/S}(Y)
-    \simeq
-    \operatorname{Sect}_{M_{S'}/S'}(Y_{S'}).
-  \end{equation}
-\end{proposition}
-
-\begin{proof}
-  Let $T\to S'$ be a test object. The universal properties of pullback and
-  the section stack give
-  \begin{align*}
-    \Hom_{S'}\bigl(
-      T,S'\times_S\operatorname{Sect}_{M/S}(Y)
-    \bigr)
-    &\simeq
-    \Hom_S\bigl(T,\operatorname{Sect}_{M/S}(Y)\bigr)\\
-    &\simeq
-    \Hom_{M_T}(M_T,Y_T)\\
-    &\simeq
-    \Hom_{S'}\bigl(
-      T,\operatorname{Sect}_{M_{S'}/S'}(Y_{S'})
-    \bigr).
-  \end{align*}
-  These equivalences are natural in $T$, so the claim follows from Yoneda.
-\end{proof}
-
-In words, taking sections after pulling back the geometric family is the same
-as pulling back the section stack. This is the precise sense in which a
-single construction organizes sections for all parameter objects.
-
-There is also no separate descent problem to solve. The right adjoint $q_*$
-is formed inside the $\infty$-category of stacks. Hence
-$\operatorname{Sect}_{M/S}(Y)$ is already a stack, and its values on an open
-cover of a parameter object satisfy the coherent descent condition from
-Chapter~9. Concretely, local families of sections which agree coherently on
-overlaps glue to a global family.
-
-\subsection{The local model near a section}
-\label[subsection]{sec:Local_Model_Near_Section}
-
-The existence of the section stack is formal. Its local smooth geometry is
-not. We record only the part needed for the tangent calculation at the end of
-the chapter.
-
-Suppose that $S$ is a manifold, that $M\to S$ is locally a product with
-compact fiber, and that $Y\to M$ is a family of submersions. Let $s\in S$ and
-let
-\[
-  \sigma\colon M_s\longrightarrow Y_s
-\]
-be a section. A fiberwise local addition identifies a neighborhood of the
-image of $\sigma$ with a neighborhood of the zero section in the vertical
-tangent bundle $\sigma^*T_{Y_s/M_s}$. After restricting to a neighborhood
-$S'\subseteq S$ of $s$, this produces an open section-stack chart modeled on
-\[
-  S'\times
-  \operatorname{Sect}_{M_s}
-  \bigl(\sigma^*T_{Y_s/M_s}\bigr)
-\]
-whose image contains $\sigma$. This is the focused consequence of Steffens's
-Proposition~3.2.22 that we will use
-\cite[Proposition~3.2.22]{Steffens_Representability_Elliptic_Moduli}.
-
-At the zero section, the relative tangent space of this chart is the vector
-space of smooth sections. Thus
-\begin{equation}
-  \label{eq:Relative_Tangent_Section_Stack}
-  T_\sigma\bigl(\operatorname{Sect}_{M/S}(Y)/S\bigr)
-  \cong
-  \Gamma\bigl(M_s,\sigma^*T_{Y_s/M_s}\bigr).
-\end{equation}
-An infinitesimal variation of a section is a vertical vector field along it.
-The word \emph{relative} matters: the parameter $s$ is held fixed. An
-absolute tangent object would also see variations of the base.
-
-Compactness and the submersion hypotheses enter this local smoothness
-analysis. They are not needed merely to define
-$\operatorname{Sect}_{M/S}(Y)$.
-
-\section{Relative jets and differential operators}
-\label[section]{sec:Relative_Jets_Differential_Operators}
-
-\subsection{Why finite order matters}
-\label[subsection]{sec:Why_Finite_Order_Matters}
-
-An arbitrary map between spaces of sections need not be local. Its value at a
-point might depend on the section everywhere on $M$. A differential operator
-of order at most $k$ has a much stronger property: its value at $x$ depends
-only on the value and derivatives of the section at $x$ through order $k$.
-
-Let $Y\to M$ be a submersion of manifolds. The fiber of the classical jet
-bundle
-\[
-  J^k_M(Y)\longrightarrow M
-\]
-at $x$ consists of equivalence classes of local sections near $x$, where two
-sections are equivalent if their derivatives through order $k$ agree at
-$x$. For a function $u$, a connection gives the schematic description
-\[
-  j_x^2u=(u(x),d_xu,\nabla_x^2u).
-\]
-The connection supplies a convenient splitting, but the second jet itself is
-intrinsic.
-
-If $M\to S$ varies in a family, the operator should differentiate only along
-the fibers. A family parametrized by $T\to S$ is a section over
-$M_T\to T$, and its derivatives in the $T$-directions are irrelevant to the
-fiberwise equation. This leads to the following slogan.
-
-\begin{center}
-  A relative jet remembers derivatives along $M\to S$, not in the parameter
-  direction.
-\end{center}
-
-For a family of submersions $Y\to M\to S$, the fiber of
-$J^k_{M/S}(Y)\to M$ over a point $x\in M_s$ is therefore the space of
-$k$-jets at $x$ of local sections of $Y_s\to M_s$.
-
-\subsection{Relative jets and jet prolongation}
-\label[subsection]{sec:Infinitesimal_Diagonal_Relative_Jets}
-
-Let $(M/S)^{(k)}$ be the $k$th infinitesimal neighborhood of the relative
-diagonal in $M\times_SM$, with projections
-\[
-  \pi_1,\pi_2\colon(M/S)^{(k)}\longrightarrow M.
-\]
-For ordinary manifolds it is locally cut out by
-$I_\Delta^{k+1}$. Over a general smooth stack its construction and base-change
-functoriality are obtained by descent.
-
-\begin{definition}[Relative jet stack]
-  \label[definition]{def:Relative_Jet_Stack}
-  For $Y\to M$, define
-  \begin{equation}
-    \label{eq:Relative_Jet_Stack_Definition}
-    J^k_{M/S}(Y)
-    =
-    \operatorname{Res}_{(M/S)^{(k)}/M}
-    \bigl(Y\times_{M,\pi_1}(M/S)^{(k)}\bigr),
-  \end{equation}
-  where the Weil restriction is taken along $\pi_2$.
+It is the Weil restriction $\operatorname{Res}_{M/S}(X)$.
 \end{definition}
 
-The variance has a geometric meaning. Pull $Y$ back along the first
-projection, then take sections over the vertically thickened point described
-by the second projection. The result classifies fiberwise $k$-jets.
+The terminology describes the right adjoint to pullback along $M\to S$.
+Its existence here follows from the locally cartesian closed
+$\infty$-category of stacks
+\cite[Definition~3.2.1]{Steffens_Representability_Elliptic_Moduli}.
+The formula also proves base-change compatibility:
+\[
+ \Sec_{M/S}(X)\times_S T
+ \cong\Sec_{M_T/T}(X_T),
+ \qquad M_T=M\times_S T.
+\]
+Over $s\in S$, its fibre is the section stack on $M_s$.
 
-We quote the properties needed below.
+\section{Solution stacks as derived fibres}
 
-\begin{proposition}[Properties of relative jets]
-  \label[proposition]{prop:Relative_Jet_Properties}
-  Relative jets commute with base change,
-  \begin{equation}
-    \label{eq:Relative_Jets_Base_Change}
-    J^k_{M_{S'}/S'}(Y_{S'})
-    \simeq
-    S'\times_SJ^k_{M/S}(Y),
-  \end{equation}
-  recover the classical relative jet bundle for ordinary families, and
-  preserve the relevant open restrictions and smoothness properties.
-\end{proposition}
-
-These statements are part of Steffens's Proposition~3.3.9
-\cite[Proposition~3.3.9]{Steffens_Representability_Elliptic_Moduli}. Their
-proof and the complete list of properties are supplementary.
-
-The universal section over
-$\operatorname{Sect}_{M/S}(Y)\times_SM$ restricts to every relative
-infinitesimal neighborhood. Adjunction gives the \emph{jet prolongation}
-\begin{equation}
-  \label{eq:Jet_Prolongation_Section_Stack}
-  j^k\colon
-  \operatorname{Sect}_{M/S}(Y)
-  \longrightarrow
-  \operatorname{Sect}_{M/S}\bigl(J^k_{M/S}(Y)\bigr).
+Let $P\colon\Sec_N(X)\to\Sec_N(Y)$ be any morphism of stacks, and let
+$b$ be a section of $Y$. Define
+\begin{equation}\label{eq:Solution_Stack_Inhomogeneous}
+ \Sol(P;b)=\Sec_N(X)\times_{\Sec_N(Y)}^{\mathrm{der}}*,
 \end{equation}
+where the second map classifies $b$.
+The adjective derived emphasizes the category in which the pullback is
+taken; all pullbacks in derived stacks are already homotopy pullbacks.
+
+On a derived parameter $T$, a solution is a family $u$ together with a
+homotopy from $P(u)$ to the constant family $b_T$.
+Thus a solution stack can be defined without any finite-order assumption.
+One does need a morphism of stacks, not merely a map between sets
+of smooth sections.
+
+For closed $N$, a smooth map between the corresponding convenient
+section manifolds supplies such a morphism. This follows from the
+comparison between section stacks and convenient manifolds explained
+in \Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge}. For example, on $S^1$ the map
+\[
+ u\longmapsto\left(x\longmapsto\int_{S^1}u\,d\theta\right)
+\]
+is a smooth linear map of section manifolds and defines a solution stack.
+It is not a finite-order differential operator: changing $u$ away from
+$x$ can change the output at $x$ while leaving every derivative there fixed.
+
+For a parameter base $S$, a right-hand side is a section
+$b\colon S\to\Sec_{M/S}(Y)$, and the same pullback is formed over $S$.
+All these constructions commute with base change.
+The finite-order differential condition introduced next provides a
+geometric way to define $P$ and the analytic structure needed for
+representability.
+
+\section{Jets and finite-order operators}
+
+Jets encode the dependence of an operator on finitely many derivatives.
+Their relative construction also makes the induced map of section
+stacks available on derived parameters.
+
+A $k$-jet of a local section of $X\to N$ at $x\in N$ records its value
+and its derivatives through order $k$ at $x$.
+Two sections define the same jet when those derivatives agree in local
+coordinates. The chain rule makes this independent of the coordinates.
+These jets form the bundle $J_N^k(X)\to N$.
+
+For example, for $X=N\times\R$, a first jet records a scalar and a covector.
+A second jet records the second derivatives as well; a connection
+identifies that last datum with a symmetric tensor.
+The jet prolongation sends a section $u$ to $j^ku$.
 
 \begin{definition}[Finite-order differential operator]
-  \label[definition]{def:Finite_Order_Differential_Operator_Families}
-  A family of nonlinear differential operators of order at most $k$ is a
-  morphism
-  \[
-    \widetilde P\colon J^k_{M/S}(Y)\longrightarrow X
-  \]
-  over $M$.
+\label[definition]{def:Finite_Order_Differential_Operator}
+A nonlinear differential operator of order at most $k$ from $X$ to $Y$
+over $N$ is a smooth map
+\[
+ p\colon J_N^k(X)\longrightarrow Y
+\]
+over $N$. Its induced map on sections is
+$P(u)=p\circ j^ku$.
 \end{definition}
 
-It induces the morphism of section stacks
-\begin{equation}
-  \label{eq:Differential_Operator_On_Section_Stacks}
-  \begin{aligned}
-    P\colon
-    \operatorname{Sect}_{M/S}(Y)
-    &\xrightarrow{j^k}
-    \operatorname{Sect}_{M/S}\bigl(J^k_{M/S}(Y)\bigr)\\
-    &\xrightarrow{\operatorname{Sect}(\widetilde P)}
-    \operatorname{Sect}_{M/S}(X).
-  \end{aligned}
+Using the lowercase $p$ distinguishes the finite-dimensional map on
+jets from the induced map $P$ on sections.
+The latter is determined at $x$ by finitely many derivatives of $u$ at
+that same point. A general map on sections need not have this locality.
+
+For $\Delta u+u^2$, $k=2$. In local coordinates the Laplacian depends
+on derivatives of $u$ of order at most two, while $u^2$ uses only its value.
+For the Cauchy--Riemann equation only first jets are needed.
+
+For $M\to S$, relative jets $J^k_{M/S}(X)$ record derivatives in the
+directions tangent to the fibres $M_s$. No differentiation in the
+parameter $s$ is involved. The resulting map $P$ is therefore an
+$S$-family of operators on the fibre manifolds.
+
+The derived jet stack has a coordinate-independent construction.
+Let $(M/S)^{(k)}$ be the order-$k$ infinitesimal neighbourhood of the
+relative diagonal, with projections $\pi_1,\pi_2$ to $M$. Then
+\[
+ J^k_{M/S}(X)
+ =\operatorname{Res}_{(M/S)^{(k)}/M}
+       \bigl(X\times_{M,\pi_1}(M/S)^{(k)}\bigr),
+\]
+where the Weil restriction uses $\pi_2$.
+It parametrizes sections on infinitesimal neighbourhoods.
+For an ordinary submersion this recovers the classical jet bundle.
+The construction, the prolongation map, and base-change compatibility are
+proved in
+\cite[Definition~3.3.7 and Proposition~3.3.9]
+{Steffens_Representability_Elliptic_Moduli}.
+
+In particular, a map $p\colon J^k_{M/S}(X)\to Y$ induces a morphism
+of relative section stacks. This makes the preceding solution
+construction available over all derived test objects.
+
+\section{Differential moduli problems and ellipticity}
+
+We now collect the geometric data of an equation into a differential
+moduli problem. Its linearization gives the deformation-obstruction
+complex, and its principal symbol determines whether elliptic analysis
+can be applied.
+
+A useful common formulation asks two operators to have the same output:
+\[
+ P_1(u_1)=P_2(u_2).
+\]
+It includes $P(u)=b$ by taking the second unknown bundle to be $N\to N$,
+whose only section is the identity, and taking its operator to be $b$.
+
+\begin{definition}
+\label[definition]{def:Differential_Moduli_Problem}
+Over a family $M\to S$, a differential moduli problem consists of
+submersions $Y_1,Y_2,X\to M$ and maps
+\[
+ p_i\colon J^k_{M/S}(Y_i)\longrightarrow X.
+\]
+Its solution stack is
+\[
+ \Sol(\mathcal E)=
+ \Sec_{M/S}(Y_1)
+ \times_{\Sec_{M/S}(X)}
+ \Sec_{M/S}(Y_2),
+\]
+with maps induced by $p_1,p_2$.
+\end{definition}
+
+This is \cite[Definitions~3.4.1--3.4.2]
+{Steffens_Representability_Elliptic_Moduli}.
+The order $k$ is a common order: an operator of lower order can be
+composed with a jet truncation map. Ellipticity below is then a
+condition on the symbol for that chosen common order.
+
+When $S$ is a smooth stack, these data are specified on manifold
+families over $S$ and are compatible with pullback. Relative jets and
+section stacks commute with that pullback, so the equations and
+solution stacks descend. This includes families with symmetries
+encoded in the base stack.
+
+Fix first $S=*$ and a solution $u$ of $P(u)=b$.
+Variations of $u$ are sections of
+$F=u^*T_{X/N}$; variations of the output at $b$ are sections of
+$E=b^*T_{Y/N}$. Differentiating the finite jet formula gives a linear
+differential operator
+\[
+ D_uP\colon\Gamma(N;F)\longrightarrow\Gamma(N;E).
+\]
+In coordinates it has the form
+\[
+ D_uP(v)=\sum_{|\alpha|\leq k}A_\alpha(x)\partial^\alpha v.
+\]
+Its coefficients depend on $u$ and its derivatives, but the expression
+is linear in $v$.
+
+For a matching problem and solution $(u_1,u_2)$ with common output $w$,
+put
+\[
+ F=u_1^*T_{Y_1/N}\oplus u_2^*T_{Y_2/N},\qquad
+ E=w^*T_{X/N}.
+\]
+The linearized matching equation is
+\begin{equation}\label{eq:Tangent_Complex_Solution_Stack}
+ D(v_1,v_2)=D_{u_1}P_1(v_1)-D_{u_2}P_2(v_2).
 \end{equation}
-Both stages commute with base change.
+Its deformation-obstruction complex is
+$[\Gamma(N;F)\xrightarrow D\Gamma(N;E)]$ in degrees $0,-1$.
+The kernel is the infinitesimal solution space.
+The cokernel receives obstructions to solving inhomogeneous correction
+equations, as in the finite-dimensional zero-locus calculation.
+The representability proof will identify this complex with the
+finite-dimensional tangent complex of a local derived chart.
 
-\begin{example}[The running operator as a jet map]
-  \label[example]{ex:Laplacian_Square_As_Jet_Map}
-  For $S=*$ and $Y=X=M\times\R$, the metric defines
-  \[
-    \widetilde P\colon J^2_M(M\times\R)\longrightarrow M\times\R,
-    \qquad
-    j_x^2u\longmapsto d^*du(x)+u(x)^2.
-  \]
-  The induced morphism of section stacks has ordinary points
-  $u\mapsto\Delta u+u^2$.
-\end{example}
+Ellipticity is a condition on the highest-order part of the linearized
+operator. In particular, it depends on the source and target bundles
+of the full matching equation.
 
-\section{The derived stack of solutions}
-\label[section]{sec:Derived_Stack_Of_Solutions}
-
-\subsection{The zero-fiber case}
-\label[subsection]{sec:Solution_Stack_Zero_Fiber_Case}
-
-Suppose first that $X\to M$ is a vector bundle. Its zero section determines a
-family of zero sections after every base change, hence a map
+\begin{definition}[Principal symbol and ellipticity]
+\label[definition]{def:Elliptic_Differential_Moduli_Problem}
+For a linear operator $D$ of order $k$, its principal symbol is
 \[
-  0\colon S\longrightarrow\operatorname{Sect}_{M/S}(X).
+ \sigma_D(x,\xi)=\sum_{|\alpha|=k}A_\alpha(x)\xi^\alpha
+ \colon F_x\longrightarrow E_x.
 \]
-Let $P\colon\operatorname{Sect}_{M/S}(Y)\to
-\operatorname{Sect}_{M/S}(X)$ be induced by a finite-order differential
-operator.
-
-\begin{definition}[Solution stack of a zero equation]
-  \label[definition]{def:Solution_Stack_Zero_Equation}
-  The \emph{solution stack} of the equation $P=0$ is the pullback
-  \[
-  \begin{tikzcd}
-    \operatorname{Sol}(P) \rar \dar \drar[pullback]
-      & \operatorname{Sect}_{M/S}(Y) \dar["P"] \\
-    S \rar["0"']
-      & \operatorname{Sect}_{M/S}(X)
-  \end{tikzcd}
-  \]
-  in derived $\Cinfty$-stacks over $S$.
+It is elliptic if this map is invertible for every nonzero covector $\xi$.
+A differential moduli problem is elliptic if its linearized matching
+operator is elliptic at every solution on every fibre $M_s$.
 \end{definition}
 
-For $S=*$, this is the derived fiber of $P$ over zero. It is the direct
-infinite-dimensional analogue of the finite-dimensional derived zero locus
+This real symbol convention omits the optional factors of $i$ used in
+Fourier analysis; the invertibility condition is unchanged.
+For the nonnegative Laplacian the real symbol with this convention is
+$-|\xi|^2$, while the Fourier convention gives $|\xi|^2$.
+Both are invertible away from the zero covector.
+
+Ellipticity concerns the highest-order part. On a compact manifold
+it leads to finite-dimensional kernel and cokernel after Sobolev
+completion. It does not assert surjectivity. The latter failure is
+exactly why a derived zero locus can be needed.
+
+\section{Solutions and linearization of the running example}
+
+Return to $P(u)=\Delta u+u^2$ on a closed connected manifold $N$.
+If $P(u)=0$, integration gives
 \[
-  Z^{\mathrm{der}}(f)=U\times_{\R^r}\{0\}.
+ 0=\int_N(\Delta u+u^2)=\int_Nu^2,
 \]
-At this point, the adjective \emph{infinite-dimensional} describes the
-section stacks entering the presentation. It does not assert that the
-solution stack is represented by an infinite-dimensional geometric object.
-Representability has not yet been addressed.
+so $u=0$. Its ordinary solution set is one point.
 
-Let $T\to S$ be a test object. Mapping $T$ into the defining pullback shows
-that a $T$-point of $\operatorname{Sol}(P)$ consists of
-
-\begin{enumerate}
-  \item A section $u\colon M_T\to Y_T$.
-  \item The zero section of $X_T\to M_T$.
-  \item A path
-    \[
-      \eta\colon P(u)\simeq0
-    \]
-    in the anima of sections of $X_T\to M_T$.
-\end{enumerate}
-
-The equation is imposed by a derived equality. We do not first take the
-underlying set on which an ordinary equality happens. If $T$ and all the
-geometric data are classical, the relevant mapping animae are discrete and
-this reduces to the usual equation $P(u)=0$.
-
-\begin{example}[The derived solution stack of the running equation]
-  \label[example]{ex:Derived_Solution_Stack_Laplacian_Square}
-  The operator from \Cref{ex:Laplacian_Square_As_Jet_Map} defines
-  \[
-    \operatorname{Sol}(P)
-    =
-    \operatorname{Sect}_{M}(M\times\R)
-    \times_{\operatorname{Sect}_{M}(M\times\R)}*.
-  \]
-  The first map to the middle section stack is
-  $u\mapsto\Delta u+u^2$, while the second selects the zero function.
-  \Cref{prop:Laplacian_Square_Ordinary_Solutions} says that its ordinary
-  solution set is $\{0\}$. The derived pullback retains the way in which the
-  operator meets zero.
-\end{example}
-
-\subsection{Differential moduli problems}
-\label[subsection]{sec:Differential_Moduli_Problems}
-
-The zero-fiber format presupposes a vector-bundle target and a preferred zero
-section. Many geometric equations instead compare two differential
-constructions which take values in the same nonlinear family. Steffens uses a
-symmetric formulation which includes both situations.
-
-\begin{definition}[Differential moduli problem]
-  \label[definition]{def:Differential_Moduli_Problem}
-  Let $M\to S$ be a family of manifolds. A \emph{differential moduli
-  problem} over $M$ is a quintuple
-  \[
-    \mathcal E=(X,Y_1,Y_2,\widetilde P_1,\widetilde P_2)
-  \]
-  in which $X,Y_1,Y_2\to M$ are families of submersions and
-  \[
-    \widetilde P_i\colon J^k_{M/S}(Y_i)\longrightarrow X,
-    \qquad i=1,2,
-  \]
-  are families of differential operators. We write
-  \[
-    P_i\colon
-    \operatorname{Sect}_{M/S}(Y_i)
-    \longrightarrow
-    \operatorname{Sect}_{M/S}(X)
-  \]
-  for the induced maps of section stacks.
-\end{definition}
-
-Allowing different finite orders would give no additional generality: replace
-both orders by their maximum and use the truncation maps between jet stacks.
-
-\begin{definition}[Solution stack]
-  \label[definition]{def:Solution_Stack_Differential_Moduli_Problem}
-  The \emph{solution stack} of $\mathcal E$ is the pullback
-  \begin{equation}
-    \label{eq:General_Solution_Stack_Pullback}
-    \operatorname{Sol}(\mathcal E)
-    =
-    \operatorname{Sect}_{M/S}(Y_1)
-    \times_{\operatorname{Sect}_{M/S}(X)}
-    \operatorname{Sect}_{M/S}(Y_2).
-  \end{equation}
-\end{definition}
-
-Thus a $T$-point of $\operatorname{Sol}(\mathcal E)$ is a triple
+Differentiating gives
 \[
-  (\sigma_1,\sigma_2,\eta)
+ D_uP(v)=\Delta v+2uv.
 \]
-where $\sigma_i$ is a section of $Y_{i,T}\to M_T$ and
-\[
-  \eta\colon P_1(\sigma_1)\simeq P_2(\sigma_2)
-\]
-is a path in the anima of sections of $X_T\to M_T$. The two fields are part
-of the moduli problem, and the path is the derived equality between the
-values of their equations.
-
-The zero-fiber case is recovered by taking $Y_2=M$, whose section stack is
-terminal over $S$, and taking $\widetilde P_2$ to be a chosen section of
-$X\to M$. In the running example, that section is zero.
-
-\begin{proposition}[Functoriality of the solution stack]
-  \label[proposition]{prop:Solution_Stack_Base_Change_Descent}
-  The solution construction has the following properties.
-  \begin{enumerate}
-    \item The functor of $T$-families described above is a derived
-      $\Cinfty$-stack.
-    \item For every map $S'\to S$, there is a natural equivalence
-      \[
-        S'\times_S\operatorname{Sol}(\mathcal E)
-        \simeq
-        \operatorname{Sol}(\mathcal E_{S'}).
-      \]
-  \end{enumerate}
-\end{proposition}
-
-\begin{proof}
-  The three section objects in
-  \Cref{eq:General_Solution_Stack_Pullback} are stacks, and stacks are closed
-  under pullbacks. This proves the first assertion. For the second, pull the
-  defining square back along $S'\to S$. Pullbacks commute with pullbacks, and
-  \Cref{prop:Section_Stack_Base_Change} together with
-  \Cref{eq:Relative_Jets_Base_Change} identifies the resulting diagram with
-  the diagram defining $\operatorname{Sol}(\mathcal E_{S'})$.
-\end{proof}
-
-We have now completed the first two tasks from the opening of the chapter. The
-families have been defined over every test object, and descent is built into
-the resulting solution stack. No properness or ellipticity hypothesis was
-needed. Those hypotheses concern the local geometry and representability of
-the stack, not its existence.
-
-\section{Linearization and ellipticity}
-\label[section]{sec:Solution_Stack_Linearization_Ellipticity}
-
-\subsection{The relative tangent complex}
-\label[subsection]{sec:Relative_Tangent_Complex_Solution_Stack}
-
-Let $s\in S$ and let
-\[
-  \sigma=(\sigma_1,\sigma_2,\eta)
-\]
-be a solution over $s$. Write $\sigma_X$ for the common output section of
-$X_s\to M_s$, where the path $\eta$ is used to identify the two outputs.
-By \Cref{eq:Relative_Tangent_Section_Stack}, the relative tangent spaces of
-the three section stacks are
-\begin{align*}
-  T_{\sigma_i}\bigl(\operatorname{Sect}_{M/S}(Y_i)/S\bigr)
-  &\cong
-  \Gamma\bigl(M_s,\sigma_i^*T_{Y_{i,s}/M_s}\bigr),\\
-  T_{\sigma_X}\bigl(\operatorname{Sect}_{M/S}(X)/S\bigr)
-  &\cong
-  \Gamma\bigl(M_s,\sigma_X^*T_{X_s/M_s}\bigr).
-\end{align*}
-
-The maps $P_i$ linearize to finite-order linear differential operators
-\[
-  D_{\sigma_i}P_i\colon
-  \Gamma\bigl(M_s,\sigma_i^*T_{Y_{i,s}/M_s}\bigr)
-  \longrightarrow
-  \Gamma\bigl(M_s,\sigma_X^*T_{X_s/M_s}\bigr).
-\]
-The chosen path $\eta$ supplies the identification needed to regard their
-targets as the same vector space.
-
-\begin{theorem}[Tangent complex of a solution stack]
-  \label[theorem]{thm:Tangent_Complex_Solution_Stack}
-  With notation as above, the relative tangent complex of the solution stack
-  over $S$ is
-  \begin{equation}
-    \label{eq:Tangent_Complex_Solution_Stack}
-    \mathbb T_\sigma\bigl(\operatorname{Sol}(\mathcal E)/S\bigr)
-    \simeq
-    \left[
-      \begin{matrix}
-        \Gamma\bigl(M_s,\sigma_1^*T_{Y_{1,s}/M_s}\bigr)\\
-        {}\oplus
-        \Gamma\bigl(M_s,\sigma_2^*T_{Y_{2,s}/M_s}\bigr)
-      \end{matrix}
-      \xrightarrow{D_{\sigma_1}P_1-D_{\sigma_2}P_2}
-      \Gamma\bigl(M_s,\sigma_X^*T_{X_s/M_s}\bigr)
-    \right]
-  \end{equation}
-  in cohomological degrees $0$ and $1$.
-\end{theorem}
-
-\begin{proof}
-  The solution stack is the pullback in
-  \Cref{eq:General_Solution_Stack_Pullback}. The exactness of tangent objects
-  for pullbacks is formal in derived geometry. Talk~6 calculates its
-  finite-dimensional instance; the same relative pullback formula applies to
-  the smooth section-stack charts used here. It gives the
-  two-term complex
-  \[
-    \left[
-      T_{\sigma_1}\bigl(\operatorname{Sect}_{M/S}(Y_1)/S\bigr)
-      \oplus
-      T_{\sigma_2}\bigl(\operatorname{Sect}_{M/S}(Y_2)/S\bigr)
-      \longrightarrow
-      T_{\sigma_X}\bigl(\operatorname{Sect}_{M/S}(X)/S\bigr)
-    \right].
-  \]
-  Substituting \Cref{eq:Relative_Tangent_Section_Stack} gives
-  \Cref{eq:Tangent_Complex_Solution_Stack}. The differential is the
-  difference of the two derivatives because the pullback imposes equality of
-  the two outputs.
-\end{proof}
-
+The zeroth-order term does not change the principal symbol, so this
+operator is elliptic. At zero it is $\Delta$.
+The standard solvability theorem for the Laplacian on a closed connected
+manifold says that its image consists of the functions of integral zero.
 Consequently,
-\begin{align*}
-  H^0\mathbb T_\sigma\bigl(\operatorname{Sol}(\mathcal E)/S\bigr)
-  &=\ker(D_{\sigma_1}P_1-D_{\sigma_2}P_2),\\
-  H^1\mathbb T_\sigma\bigl(\operatorname{Sol}(\mathcal E)/S\bigr)
-  &=\operatorname{coker}(D_{\sigma_1}P_1-D_{\sigma_2}P_2).
-\end{align*}
-These are the infinitesimal deformation and obstruction spaces. The chain
-groups in \Cref{eq:Tangent_Complex_Solution_Stack} are spaces of smooth
-sections and are generally infinite-dimensional. At this stage, there is no
-claim that the complex is perfect.
-
-\subsection{Returning to the one-point solution stack}
-\label[subsection]{sec:Return_One_Point_Solution_Stack}
-
-For a zero equation, the second section stack is terminal and contributes no
-tangent directions. Hence the tangent complex reduces to
 \[
-  [T_u\operatorname{Sect}_{M/S}(Y)\xrightarrow{D_uP}
-    T_0\operatorname{Sect}_{M/S}(X)].
+ \ker\Delta\cong\R,\qquad\operatorname{coker}\Delta\cong\R.
 \]
-Applying this to $P(u)=\Delta u+u^2$ at its unique solution gives
-\begin{equation}
-  \label{eq:Tangent_Complex_Laplacian_Square_Solution}
-  \mathbb T_0\operatorname{Sol}(P)
-  \simeq
-  [C^\infty(M)\xrightarrow{\Delta}C^\infty(M)].
-\end{equation}
-Therefore
+Constants give representatives in both cases.
+
+This explains the usefulness of the example. Its real zero set is
+particularly simple, while its infinitesimal solutions and obstructions
+are both nontrivial. \Cref{chap:Elliptic_Representability_Derived_Charts} will obtain its local Kuranishi equation
+explicitly, recovering a multiple point.
+
+\section{Further reading}
+
+The jet tower makes the highest-order part of an operator explicit.
+We describe it for vector bundles, then illustrate parameter dependence
+with a family of metrics and give two further calculations.
+
+For a vector bundle $F\to N$, the jet tower has exact sequences
 \[
-  H^0\mathbb T_0\operatorname{Sol}(P)\cong\R,
-  \qquad
-  H^1\mathbb T_0\operatorname{Sol}(P)\cong\R.
+ 0\longrightarrow\operatorname{Sym}^k(T^*N)\otimes F
+ \longrightarrow J_N^k(F)\longrightarrow J_N^{k-1}(F)
+ \longrightarrow0.
 \]
+The kernel consists of the highest derivatives when all lower derivatives
+vanish. Connections can split these sequences, but the exact sequences
+themselves are canonical. This is also the part of the jet data
+used by the principal symbol.
 
-This answers \Cref{question:One_Point_Remembers_Laplacian_Kernel_Cokernel}.
-The ordinary solution space sees one point. The derived solution stack sees
-the kernel and cokernel of the linearized equation at that point. It is the
-infinite-dimensional counterpart of the derived zero locus of
-$x\mapsto x^2$, whose tangent complex at zero is
-\[
-  [\R\xrightarrow{0}\R].
-\]
-Talk 11 will make this comparison stronger: a finite-dimensional reduction of
-the running equation is locally the derived zero locus of the one-variable map
-$a\mapsto a^2$ itself.
+A smooth family of metrics $g_s$ gives operators
+$P_s(u)=\Delta_{g_s}u+u^2$ on the fibres. For a test family
+$T\to S$, the equation is evaluated using the pulled-back metric.
+The parameter affects the coefficients, while all derivatives of $u$
+remain in the fibre directions.
+The relative solution stack is defined before any assertion about
+its projection to $S$ being a submersion or being representable.
 
-\subsection{Ellipticity as the analytic handoff}
-\label[subsection]{sec:Ellipticity_Analytic_Handoff}
+\begin{exercise}
+Compute the Euler--Lagrange operator for
+$\int_N(\tfrac12|du|^2+\tfrac14u^4-\tfrac12u^2)$ and its linearization
+at each constant solution. Check ellipticity.
+\end{exercise}
 
-The map in the tangent complex is the point at which analysis enters.
+\begin{exercise}
+Let $P_1,P_2$ be first-order linear operators with a common target.
+Write the principal symbol of the matching equation.
+Explain why ellipticity of either operator individually does not
+imply ellipticity of their difference on the direct sum of the sources.
+\end{exercise}
 
-\begin{definition}[Elliptic differential moduli problem]
-  \label[definition]{def:Elliptic_Differential_Moduli_Problem}
-  A differential moduli problem $\mathcal E$ is \emph{elliptic} if, for every
-  point $s\to S$ and every solution
-  $\sigma=(\sigma_1,\sigma_2,\eta)$ over $s$, the linear differential
-  operator
-  \[
-    D_{\sigma_1}P_1-D_{\sigma_2}P_2
-  \]
-  in \Cref{eq:Tangent_Complex_Solution_Stack} is elliptic on $M_s$.
-\end{definition}
-
-Equivalently, its principal symbol is invertible away from the zero section of
-$T^*M_s$. The definition concerns the linearization at every solution. The
-original operator may be nonlinear.
-
-For the running example,
-\[
-  D_uP=\Delta+2u.
-\]
-Multiplication by $2u$ has order zero, so it does not affect the principal
-symbol. Every linearization has the symbol $|\xi|^2$ and is elliptic.
-
-The hypotheses which will appear in the representability theorem have
-different roles.
-
-\begin{enumerate}
-  \item Finite order makes the nonlinear operator factor through a relative
-    jet stack and hence act functorially on families.
-  \item Ellipticity makes each linearization Fredholm after suitable analytic
-    completion.
-  \item Properness of $M\to S$ supplies compact fibers. Together with
-    ellipticity, it gives finite-dimensional kernel and cokernel.
-  \item None of these hypotheses is needed merely to form the solution
-    pullback.
-\end{enumerate}
-
-The chapter ends at the boundary between geometry and analysis:
-\[
-  \begin{gathered}
-    \text{finite-order equation}
-    \longrightarrow
-    \text{map of section stacks}
-    \longrightarrow
-    \text{derived solution pullback}\\
-    {}\longrightarrow
-    \text{elliptic deformation-obstruction complex}.
-  \end{gathered}
-\]
-Talk 11 will choose analytic completions, isolate a finite-dimensional
-obstruction space, and apply the implicit function theorem. The result will
-be a finite-dimensional Kuranishi model with the same tangent complex.
-
-\section{Summary and supplementary materials}
-\label[section]{sec:Section_Stacks_Summary_Supplementary_Materials}
-
-\subsection{Takeaways}
-\label[subsection]{sec:Section_Jet_Solution_Takeaways}
-
-The live route can be compressed into eight statements.
-
-\begin{enumerate}
-  \item A $T$-point of $\operatorname{Sect}_{M/S}(Y)$ is a section of
-    $Y_T\to M_T$.
-  \item Section stacks commute with base change and already satisfy descent.
-  \item A relative jet remembers derivatives in the fibers of $M\to S$ and
-    ignores parameter directions.
-  \item A finite-order differential operator is a map from a relative jet
-    stack and therefore induces a map of section stacks.
-  \item A solution is imposed by a derived equality between the values of two
-    differential operators.
-  \item The solution stack exists before any representability theorem has
-    been proved.
-  \item Its relative tangent complex is the two-term complex obtained by
-    linearizing the equation.
-  \item Ellipticity and properness make the cohomology of this complex
-    finite-dimensional and prepare the finite-dimensional reduction.
-\end{enumerate}
-
-
-\subsection{Supplement: the full relative-jet package}
-\label[subsection]{sec:Supplement_Full_Relative_Jet_Package_Talk_Ten}
-
-Steffens's Proposition~3.3.9 states five properties of
-$J^k_{M/S}$. It preserves limits, commutes with arbitrary base change,
-preserves open restrictions of the target, recovers classical relative jet
-bundles for ordinary families, and carries families of submersions to smooth
-objects with submersive truncation maps
-\[
-  J^k_{M/S}(Y)\longrightarrow J^{k-1}_{M/S}(Y).
-\]
-The construction over a stacky base is obtained by descent from the
-infinitesimal neighborhood of the relative diagonal. These facts justify all
-restrictions and changes of parameters used in the live route, but their
-proof is independent of the solution-stack calculation.
-
-\subsection{Supplement: the vector-bundle tower of jets}
-\label[subsection]{sec:Supplement_Vector_Bundle_Tower_Jets}
-
-The structural statement in
-\Cref{prop:Relative_Jet_Properties} has a familiar concrete form for vector
-bundles. Suppose that $M\to S$ is a submersion of manifolds with
-$n$-dimensional fibers and that $E\to M$ is a vector bundle of rank $r$.
-Then $J^k_{M/S}(E)\to M$ is a vector bundle of rank
-\[
-  r\binom{n+k}{k}.
-\]
-For $k\geq1$, it fits into a short exact sequence
-\begin{equation}
-  \label{eq:Relative_Jet_Vector_Bundle_Exact_Sequence}
-  0\longrightarrow
-  \operatorname{Sym}^k(T^*_{M/S})\otimes E
-  \longrightarrow
-  J^k_{M/S}(E)
-  \longrightarrow
-  J^{k-1}_{M/S}(E)
-  \longrightarrow0.
-\end{equation}
-The quotient map forgets the top derivative. Its kernel is the symmetric
-$k$-linear part of the Taylor expansion. A connection splits
-\Cref{eq:Relative_Jet_Vector_Bundle_Exact_Sequence}, but the sequence itself
-is canonical.
-
-For a general submersion $Y\to M$, the map
-\[
-  J^k_{M/S}(Y)\longrightarrow J^{k-1}_{M/S}(Y)
-\]
-is an affine analogue of this vector-bundle projection. Steffens proves the
-submersiveness needed for local chart arguments. A more precise torsor
-description is discussed in Remark~3.3.14 of
-\cite{Steffens_Representability_Elliptic_Moduli}; the paper explicitly does
-not supply all of the technology for a full proof of that refinement.
-
-\subsection{Supplement: what the path in a solution controls}
-\label[subsection]{sec:Supplement_Path_In_Solution_Tangent_Complex}
-
-For a point
-\[
-  (\sigma_1,\sigma_2,\eta)
-  \in\operatorname{Sol}(\mathcal E)(T),
-\]
-the two output sections need not be literally equal. They are joined by a
-path in the mapping anima. Applying the tangent construction to this path
-identifies the tangent objects at its endpoints. Only after making this
-identification can one form
-\[
-  D_{\sigma_1}P_1-D_{\sigma_2}P_2.
-\]
-This is why the path is part of the point of the pullback rather than a
-dispensable witness. In the classical zero-fiber example, the mapping anima
-is discrete and the identification is invisible.
-
-The same phenomenon already occurs in any pullback $X\times_ZY$ in an
-$\infty$-category. A point consists of $x$, $y$, and a path between their
-images in $Z$. The tangent complex is formed by transporting along that path
-and then taking the difference of the two derivatives.
-
-\subsection{Supplement: definition, smoothness, and representability}
-\label[subsection]{sec:Supplement_Definition_Smoothness_Representability_Solution}
-
-Three logically different assertions have appeared.
-
-\begin{enumerate}
-  \item The section stack exists because pullback in the stack category has a
-    right adjoint.
-  \item Under compactness and submersion hypotheses, the section stack has
-    smooth local charts modeled on spaces of smooth sections.
-  \item Under properness and ellipticity hypotheses, the solution stack is
-    represented by a quasi-smooth derived $\Cinfty$-scheme locally of finite
-    presentation.
-\end{enumerate}
-
-Only the first assertion is formal. The second uses local additions and
-infinite-dimensional smooth geometry. The third is Steffens's relative
-elliptic representability theorem and additionally uses Sobolev completions,
-elliptic regularity, finite-dimensional reduction, and the local
-representability theorem from Chapter~9. This chapter has used a focused
-local consequence of the second assertion, but it has not proved either the
-second or third assertion.
-
-The distinction prevents a common circularity. We did not define the solution
-stack by first choosing Kuranishi charts. We defined it as a functorial
-pullback. The Kuranishi charts constructed later must represent restrictions
-of that already-defined stack.
-
-\subsection{Related literature}
-\label[subsection]{sec:Section_Jet_Solution_Related_Literature}
-
-The primary source for this chapter is Steffens,
-\emph{Representability of Elliptic Moduli Problems in Derived
-$C^\infty$-Geometry}. Definition~3.2.1, Example~3.2.3, and Remark~3.2.4 treat
-Weil restriction, section stacks, and base change. Proposition~3.2.22 gives
-the local section-stack chart used in
-\Cref{eq:Relative_Tangent_Section_Stack}
-\cite[Definition~3.2.1, Example~3.2.3, Remark~3.2.4, and
-Proposition~3.2.22]{Steffens_Representability_Elliptic_Moduli}.
-
-Definition~3.3.7 and Remark~3.3.8 give the infinitesimal-diagonal definition
-and universal property of relative jets. Proposition~3.3.9 proves the five
-properties quoted in \Cref{prop:Relative_Jet_Properties}, and the construction
-immediately before Section~3.4 defines jet prolongation
-\cite[Definition~3.3.7, Remark~3.3.8, and
-Proposition~3.3.9]{Steffens_Representability_Elliptic_Moduli}. Definitions
-3.4.1--3.4.2 introduce families of nonlinear PDEs, elliptic differential
-moduli problems, and their solution stacks
-\cite[Definitions~3.4.1--3.4.2]{Steffens_Representability_Elliptic_Moduli}.
-
-Pardon's \emph{Representability in non-linear elliptic Fredholm analysis}
-uses the same central idea: the derived fiber of a nonlinear elliptic operator
-has linearized deformation complex
-\[
-  [\Gamma(E)\longrightarrow\Gamma(F)],
-\]
-and the geometric work is to prove that this functorial solution object is
-locally finite-dimensional. Section~4 applies the philosophy to moduli of
-pseudo-holomorphic sections
-\cite[Sections~2 and 4]{Pardon_Representability_Elliptic_Fredholm}. Pardon's
-article is a research announcement and proof overview. Steffens supplies the
-general relative section-stack and jet formalism used here.
+The section and jet constructions are in
+\cite[Sections~3.2--3.3 and Definitions~3.4.1--3.4.2]
+{Steffens_Representability_Elliptic_Moduli}.
+The remainder of the seminar proves the representability statement
+for the elliptic problems defined here.

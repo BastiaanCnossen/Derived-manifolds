@@ -1,573 +1,473 @@
-% This chapter is the complete working manuscript for the thirteenth seminar
-% talk. The final section contains supplementary source material outside the
-% default live route.
+% !TEX root = ../main.tex
 
-\chapter{Elliptic representability II: derived charts and globalization}
+\chapter{Elliptic representability III: the analytic input}
 \label[chapter]{chap:Elliptic_Representability_Derived_Charts}
 
-The previous chapter ended with one precise statement. Near a chosen solution
-of an elliptic differential moduli problem, the augmented operator
+The local Kuranishi criterion reduces representability to an analytic
+claim: after adding finitely many auxiliary variables, the equation
+must be submersive as a map of smooth stacks. We now choose those
+variables from the cokernel of the linearized operator and prove the
+required condition for every smooth family of right-hand sides.
+
+The analytic argument uses three results. Elliptic operators on a closed
+manifold are Fredholm on suitable Sobolev spaces. The Banach implicit
+function theorem turns a surjective Fredholm derivative into a local
+finite-dimensional family of solutions. Elliptic regularity identifies
+these Sobolev solutions, and their smooth family structure, with the
+original smooth-section problem.
+
+Once the analytic condition is established, the augmentation identity
+gives a derived chart and identifies its tangent complex. We then
+retain parameters and glue the charts to complete the relative
+representability theorem. The final calculation returns to
+$\Delta u+u^2=0$ and exhibits the multiple point that its solution
+stack contains near zero.
+
+\section{Sobolev spaces and the loss of derivatives}
+
+Fix a closed manifold $N$ and a local equation
 \[
-  \widetilde P\colon
-  \widetilde U\longrightarrow S\times\Gamma(E;N)
+ \widetilde P\colon Q\subseteq\Gamma(N;F)\longrightarrow\Gamma(N;E)
 \]
-is submersive as a morphism of derived $\Cinfty$-stacks. All
-infinite-dimensional analysis was concentrated in the proof of that
-statement.
+of order $k$, with a chosen solution $t\in Q$.
+The bundles $F,E$ and the open set $Q$ come from
+\Cref{chap:Elliptic_Equations_Kuranishi_Models}.
+We seek a finite-dimensional space $V$, a map
+$\iota\colon V\to\Gamma(N;E)$, and a neighbourhood $U$ of $(t,0)$
+on which $G(u,a)=\widetilde P(u)+\iota(a)$ is submersive.
+Sobolev completions provide the Banach spaces on which we will first
+study this augmented operator.
 
-This chapter turns it into geometry. We first take the zero fiber of
-$\widetilde P$. Submersiveness makes this an ordinary finite-dimensional
-manifold $V$. We then project $V$ to the finite-dimensional obstruction space
-and take one further derived zero fiber. Pullback pasting identifies the
-result with an open restriction of the intrinsic solution stack. Varying the
-solution produces an effective open atlas and completes the proof of
-\Cref{thm:Relative_Elliptic_Representability}.
-
-The final part compares this mechanism with Pardon's organization of the same
-Fredholm geometry. Steffens proves derived submersiveness of an augmented
-operator through a Sobolev tower. Pardon first represents the ordinary
-regular locus, extends proper section stacks from smooth to derived test
-objects, and makes an arbitrary solution regular by enlarging the parameter
-space. The comparison is structural. Pardon's published article gives a
-proof sketch for pseudo-holomorphic section problems, not a second complete
-proof of Steffens's theorem in its full generality.
-
-\section{The finite-dimensional derived chart}
-\label[section]{sec:Finite_Dimensional_Derived_Chart_Thirteen}
-
-\subsection{The augmented zero fiber is ordinary}
-\label[subsection]{sec:Augmented_Zero_Fiber_Ordinary_Thirteen}
-
-Retain the local data from the previous chapter. Thus $S$ is a manifold,
-$N$ is compact,
+Choose metrics and a connection on a vector bundle $E$ over $N$.
+For a nonnegative integer $\ell$, the Sobolev norm is equivalent to
 \[
-  P\colon S\times Q\longrightarrow S\times\Gamma(E;N)
+ \|u\|_{H^\ell}^2
+ =\sum_{j=0}^{\ell}\int_N|\nabla^ju|^2\,d\mathrm{vol}.
 \]
-is the local family of elliptic equations, and
+Completing smooth sections gives the Hilbert space $H^\ell(E;N)$.
+Its elements have weak derivatives through order $\ell$ in $L^2$;
+they need not be smooth. Different geometric choices give equivalent
+norms.
+
+The Sobolev embedding theorem implies
 \[
-  \widetilde U\subseteq S\times Q\times C
+ H^{k+\ell}(F;N)\longrightarrow C^k(F;N)
+ \quad\text{if }\ell>\tfrac12\dim N.
 \]
-is an augmented neighborhood on which
-\begin{equation}
-  \label{eq:Augmented_Operator_Thirteen}
-  \widetilde P(s',\tau,c)
-  =\bigl(s',P_{s'}(\tau)+\iota(c)\bigr)
+Thus, at these levels, a section has a well-defined continuous $k$-jet.
+If $Q$ was defined by requiring the jet to lie in an open
+$W\subseteq J_N^k(F)$, the same requirement defines an open subset
+$Q_{k+\ell}\subseteq H^{k+\ell}(F;N)$.
+
+A differential operator of order $k$ uses $k$ derivatives.
+Its Sobolev extension therefore has the form
+\begin{equation}\label{eq:Sobolev_Extension_Nonlinear_Operator}
+ \widetilde P_\ell\colon Q_{k+\ell}\longrightarrow H^\ell(E;N).
 \end{equation}
-is derived-submersive.
+For $\ell>\dim N/2$, multiplication and smooth substitution are
+continuous operations on $H^\ell$. Applied to the finite jet formula,
+these results make \Cref{eq:Sobolev_Extension_Nonlinear_Operator}
+a smooth map of Banach manifolds.
+We use the compatible construction in
+\cite[Lemma~3.4.5]{Steffens_Representability_Elliptic_Moduli}.
 
-Let $0_E\colon S\to S\times\Gamma(E;N)$ be the zero section and form the
-derived pullback
-\begin{equation}
-  \label{eq:Augmented_Zero_Fiber_Thirteen}
-  \begin{tikzcd}
-    V \rar \dar \drar[pullback]
-      & \widetilde U \dar["\widetilde P"] \\
-    S \rar["0_E"']
-      & S\times\Gamma(E;N).
-  \end{tikzcd}
+The extensions commute with the inclusions between Sobolev levels.
+Moreover,
+\[
+ \Gamma(N;E)\cong\lim_\ell H^\ell(E;N)
+\]
+as Fr\'echet spaces, with the smooth-section topology.
+The corresponding statement holds for $Q$ and its Sobolev domains.
+It is a limit statement in convenient manifolds and hence in smooth
+stacks after applying $j_{\mathrm{Con}}$.
+It is not asserted to be a limit statement after passage to derived
+stacks.
+
+\section{Choosing the auxiliary variables by elliptic theory}
+
+Ellipticity makes the missing directions in the image of the derivative
+finite-dimensional. Linear regularity supplies smooth representatives
+of those directions, so a single augmentation works at every Sobolev level.
+
+\begin{definition}
+\label[definition]{def:Fredholm_Operator}
+A bounded linear map between Banach spaces is Fredholm if its kernel
+and cokernel are finite-dimensional and its image is closed.
+Its index is
+$\dim\ker D-\dim\operatorname{coker}D$.
+\end{definition}
+
+\begin{theorem}[Linear elliptic theory]
+\label[theorem]{thm:Elliptic_Fredholm_Regularity}
+A smooth linear elliptic differential operator of order $k$ on a
+closed manifold extends to Fredholm operators
+\[
+ D_\ell\colon H^{k+\ell}(F;N)\longrightarrow H^\ell(E;N).
+\]
+Its kernel consists of smooth sections and is independent of $\ell$.
+Its cokernel is naturally identified with
+$\Gamma(N;E)/D\Gamma(N;F)$, also independently of $\ell$.
+If $v$ is a Sobolev section and $Dv$ is smooth, then $v$ is smooth.
+\end{theorem}
+
+We quote this standard analytic input, used in the proof of Steffens's
+theorem. A basic estimate underlying it is
+\[
+ \|v\|_{H^{k+\ell}}
+ \leq C_\ell\bigl(\|Dv\|_{H^\ell}+\|v\|_{L^2}\bigr).
+\]
+Ellipticity controls the highest derivatives through $Dv$.
+The lower-order term accommodates the kernel.
+A parametrix and compactness of the lower Sobolev inclusions give
+Fredholmness; regularity gives smoothness of kernel elements.
+Applying the same reasoning to the formal adjoint identifies the
+cokernel by smooth representatives.
+
+At the chosen solution, put $D=T_t\widetilde P$ and
+\[
+ V=\operatorname{coker}D
+   =\Gamma(N;E)/D\Gamma(N;F).
+\]
+It is finite-dimensional. Choose a linear splitting
+\[
+ \iota\colon V\longrightarrow\Gamma(N;E)
+\]
+of the quotient map.
+Concretely, choose a basis of the quotient and one smooth section
+representing each basis vector, and extend linearly.
+The phrase smooth representatives refers to these sections on $N$.
+A map from finite-dimensional $V$ obtained in this way is also smooth
+as a map to the Fr\'echet section space.
+
+The augmented derivative is
+\[
+ D+\iota\colon\Gamma(N;F)\oplus V\longrightarrow\Gamma(N;E).
+\]
+It is surjective: the image of $\iota$ supplies every missing cokernel
+class. The same is true at every Sobolev level by the linear regularity
+theorem. Its kernel is finite-dimensional.
+
+For nearby sections we restrict the jet neighbourhood so the principal
+symbol remains elliptic. This is possible because invertibility is open
+and the cosphere bundle of $N$ is compact. It also keeps the Fredholm
+index fixed near the chosen solution.
+
+\section{The augmented operator on Sobolev spaces}
+
+The augmented derivative is surjective Fredholm at the chosen solution.
+The Banach implicit function theorem describes its nearby fibres.
+We must then choose the neighbourhoods compatibly, so that they return
+to a single open set of smooth sections.
+
+The version needed here follows from the Banach inverse function theorem.
+
+\begin{theorem}[Implicit function theorem]
+\label[theorem]{thm:Banach_Implicit_Function}
+Let $g\colon B\supseteq O\to C$ be smooth between Banach spaces.
+Suppose $d_bg$ is surjective and its kernel $K$ has a closed complement.
+Then near $b$, there are smooth coordinates in which $g$ is the
+projection from an open subset of $K\times C$ to $C$.
+\end{theorem}
+
+Choose $B=K\oplus B'$ so that $d_bg|_{B'}$ is an isomorphism.
+The bounded inverse theorem makes its inverse bounded.
+The map
+\[
+ x\longmapsto\bigl(\operatorname{pr}_K(x-b),g(x)\bigr)
+\]
+has an invertible derivative at $b$, so the inverse function theorem
+gives the required coordinates.
+For a surjective Fredholm operator, the finite-dimensional kernel has
+a closed complement. In the Hilbert spaces used here one can take
+its orthogonal complement.
+
+Consequently, a smooth map with everywhere surjective Fredholm
+derivative has local finite-dimensional fibres.
+More generally, pull it back along a smooth map from a finite-dimensional
+manifold $Z$. In the local coordinates above, the pullback is an open
+subset of $K\times Z$, and its projection to $Z$ is a submersion.
+This family statement is exactly the form required in \Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge}.
+
+For each sufficiently large $\ell$, define
+\[
+ G_\ell(u,a)=\widetilde P_\ell(u)+\iota(a).
+\]
+Its derivative at $(t,0)$ is surjective Fredholm.
+Surjectivity of a split surjection is open in the operator norm, and
+Fredholmness is also open. We can therefore restrict to an open
+neighbourhood $U_\ell\subseteq Q_{k+\ell}\times V$ where
+$dG_\ell$ is everywhere surjective Fredholm.
+
+The neighbourhoods must be chosen compatibly across Sobolev levels.
+At a smooth section, linear elliptic regularity identifies the kernel
+and cokernel of the derivative at every level.
+Thus the condition that $dG_\ell$ be onto has the same restriction
+to smooth sections for every $\ell$. Using these surjectivity loci,
+and successively intersecting higher-level neighbourhoods with
+the inverse images of lower-level ones, gives
+\[
+ U_{\ell+1}\longrightarrow U_\ell,\qquad
+ U=U_\ell\cap(Q\times V)
+\]
+with the same smooth open neighbourhood $U$ at every level.
+This is the neighbourhood construction in the proof of
+\cite[Theorem~3.4.3, p.~69]{Steffens_Representability_Elliptic_Moduli}.
+The inverse limit of the resulting domains is $U$ in convenient
+manifolds.
+
+The derivative is independent of the auxiliary variable $a$, since
+$\iota$ is linear. At the chosen section it has the form $D+\iota$.
+The restriction is needed because the derivative in the section variable
+changes with $u$.
+
+\section{Testing submersiveness on smooth families}
+
+We now verify the family condition from the preceding chapter. At each
+Sobolev level, the implicit function theorem gives a finite-dimensional
+pullback. Nonlinear regularity identifies its points with smooth
+solutions, and linear regularity identifies its smooth structure.
+
+Let $Z$ be an ordinary finite-dimensional manifold and let
+$h\colon Z\to\Gamma(N;E)$ be smooth.
+At Sobolev level $\ell$, consider
+\begin{equation}\label{eq:Sobolev_Test_Family}
+ W_\ell
+ =\{(z,u,a)\in Z\times U_\ell:
+       \widetilde P_\ell(u)+\iota(a)=h(z)\}.
 \end{equation}
-By \Cref{prop:Augmented_Operator_Derived_Submersive_Twelve}, the right-hand
-map is submersive. The square is therefore transverse, so its derived
-pullback is represented by the ordinary smooth pullback
-\begin{equation}
-  \label{eq:Augmented_Solution_Manifold_Thirteen}
-  V
-  =\{(s',\tau,c)\in\widetilde U:
-       P_{s'}(\tau)+\iota(c)=0\}.
-\end{equation}
-This is a finite-dimensional manifold, and $V\to S$ is a submersion.
+The Banach implicit function theorem makes $W_\ell$ an ordinary
+finite-dimensional manifold with a submersion $W_\ell\to Z$.
+The dimension of a fibre is the Fredholm index of $G_\ell$, namely
+$\operatorname{ind}D+\dim V$.
 
-The first pullback has removed the infinite-dimensional ambient section
-spaces. It has not yet imposed the original equation, because a point of $V$
-may have $c\neq0$.
+It remains to identify these manifolds with the smooth-stack pullback.
 
-\subsection{The obstruction section}
-\label[subsection]{sec:Relative_Obstruction_Section_Thirteen}
+We use the following nonlinear regularity statement from
+\cite[Lemma~3.4.6]{Steffens_Representability_Elliptic_Moduli}:
+above a sufficiently high Sobolev threshold, a solution of the
+nonlinear elliptic equation with smooth right-hand side is smooth.
+The threshold includes $\ell>\dim N/2$ and the additional regularity
+needed for the nonlinear elliptic bootstrap.
+No optimal numerical threshold is required for the argument.
 
-Projection to the obstruction coordinate restricts to a map over $S$,
-\begin{equation}
-  \label{eq:Obstruction_Section_Thirteen}
-  \kappa\colon V\longrightarrow S\times C,
-  \qquad
-  (s',\tau,c)\longmapsto(s',c).
-\end{equation}
-Let $0_C\colon S\to S\times C$ be the zero section. Define
-\begin{equation}
-  \label{eq:Derived_Obstruction_Zero_Locus_Thirteen}
-  \begin{tikzcd}
-    \mathcal Z_t \rar \dar \drar[pullback]
-      & V \dar["\kappa"] \\
-    S \rar["0_C"']
-      & S\times C.
-  \end{tikzcd}
-\end{equation}
-On ordinary points, $c=0$ reduces
-$P_{s'}(\tau)+\iota(c)=0$ to $P_{s'}(\tau)=0$. The derived statement is
-stronger and follows by pasting pullback squares.
-
-To make the pasting precise, let
+At a point of $W_\ell$ the equation reads
 \[
-  U_0
-  =\widetilde U\times_{S\times Q\times C}(S\times Q),
+ \widetilde P_\ell(u)=h(z)-\iota(a).
 \]
-where $S\times Q\to S\times Q\times C$ is the zero section. The map
-$U_0\to S\times Q$ is an open inclusion and
-$\widetilde P|_{U_0}=P|_{U_0}$. Pasting
-\Cref{eq:Augmented_Zero_Fiber_Thirteen} and
-\Cref{eq:Derived_Obstruction_Zero_Locus_Thirteen} gives an isomorphism
-\begin{equation}
-  \label{eq:Derived_Chart_Local_Solution_Isomorphism_Thirteen}
-  \mathcal Z_t
-  \iso
-  U_0\times_{S\times\Gamma(E;N)}S.
-\end{equation}
-The right side is the derived zero locus of $P$ restricted to $U_0$. By
-\Cref{eq:Local_Solution_Open_Substack_Twelve} and
-\Cref{lem:Open_Charts_Pass_To_Pullbacks_Twelve}, it is an open restriction
-of the intrinsic stack $\Sol(\mathcal E)$ containing $t$.
+The right side is a smooth section.
+For $\ell$ above the regularity threshold, $u$ is therefore smooth.
+The common smooth trace of the $U_\ell$ then shows that all
+sufficiently high $W_\ell$ have the same underlying set.
+Their transition maps are bijections.
 
-This argument is the decisive comparison. Equality of ordinary zero sets and
-agreement of tangent complexes would not identify the derived moduli
-functors. The pasted universal properties do.
+This only compares points. A bijective smooth map between manifolds
+need not be a diffeomorphism, so one further step is necessary.
 
-\subsection{Quasi-smoothness and the tangent complex}
-\label[subsection]{sec:Quasi_Smoothness_Tangent_Thirteen}
-
-Both $V$ and $S\times C$ are finite-dimensional manifolds over $S$. After
-shrinking around $t$, they are affine $\Cinfty$-schemes of finite
-presentation. The derived zero locus in
-\Cref{eq:Derived_Obstruction_Zero_Locus_Thirteen} is therefore a quasi-smooth
-derived $\Cinfty$-scheme locally of finite presentation.
-
-At $v=(s,\sigma,0)\in V$, its relative tangent complex is
-\begin{equation}
-  \label{eq:Kuranishi_Tangent_Complex_Thirteen}
-  \left[
-    T_v(V/S)\xrightarrow{D_v\kappa}C
-  \right]
-\end{equation}
-in cohomological degrees $0$ and $1$. We compare it directly with the
-elliptic complex. Put
+At a smooth solution $(z,u,a)$, the tangent space along the fibre
+of $W_\ell\to Z$ is
 \[
-  L=D_\sigma P_s\colon
-  \Gamma(F;N)\longrightarrow\Gamma(E;N).
+ \ker\bigl(T_u\widetilde P_\ell+\iota\bigr).
 \]
-The derivative of the augmented equation is
+If $(v,b)$ lies in this kernel, then
+$T_u\widetilde P_\ell(v)=-\iota(b)$ is smooth.
+Linear elliptic regularity makes $v$ smooth.
+It follows that the inclusions between Sobolev levels induce
+isomorphisms on these vertical tangent spaces.
+
+Each $W_\ell\to Z$ is a submersion, and the transition maps are over $Z$.
+The short exact sequences of tangent spaces therefore show that
+$W_{\ell+1}\to W_\ell$ induces an isomorphism on the full tangent space.
+The finite-dimensional inverse function theorem makes it a local
+diffeomorphism. Combined with bijectivity, this makes it a diffeomorphism.
+
+Thus the tower is eventually constant as a tower of manifolds.
+Write $W$ for its limiting manifold; $W\to Z$ is a submersion.
+
+The Sobolev tower for smooth sections is a limit in convenient manifolds,
+and $j_{\mathrm{Con}}$ preserves such limits in smooth stacks.
+Since limits commute with pullbacks, the preceding identification gives
 \[
-  A=(L,\iota)\colon
-  \Gamma(F;N)\oplus C
-  \longrightarrow
-  \Gamma(E;N),
+ j_{\mathrm{Con}}W
+ \cong Z\times_{j_{\mathrm{Con}}\Gamma(N;E)}^{\mathrm{Sm}}
+                 j_{\mathrm{Con}}U.
 \]
-and it is surjective. Moreover,
+This identifies the entire smooth family functor, including its
+smooth dependence on parameters.
+
+The test manifold $Z$ and map $h$ were arbitrary.
+By the criterion of \Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge}, the augmented map
+$j_{\mathrm{Con}}G$ is submersive.
+The comparison theorem then makes it submersive in derived stacks too.
+This proves claim $(*)$ in Steffens's argument.
+
+\section{The derived chart and its tangent complex}
+
+The derived zero fibre of $G$ is now an ordinary finite-dimensional
+manifold $Z_U$. Its projection onto $V$ gives
+$\kappa\colon Z_U\to V$, and the augmentation identity identifies
 \[
-  T_v(V/S)=\ker A,
-  \qquad
-  D_v\kappa=\operatorname{pr}_C|_{\ker A}.
+ Z_U\times_V^{\mathrm{der}}\{0\}
 \]
-There is therefore a chain map
-\begin{equation}
-  \label{eq:Kuranishi_Elliptic_Chain_Map_Thirteen}
-  \begin{tikzcd}[column sep=large]
-    \ker A \rar["\operatorname{pr}_C"] \dar["\operatorname{pr}_{\Gamma(F)}"']
-      & C \dar["-\iota"] \\
-    \Gamma(F;N) \rar["L"']
-      & \Gamma(E;N).
-  \end{tikzcd}
-\end{equation}
-It commutes because $L(\xi)+\iota(c)=0$ for $(\xi,c)\in\ker A$.
+with an open part of $\Sol(\widetilde P)$.
 
-\begin{proposition}[Finite and elliptic tangent complexes agree]
-  \label[proposition]{prop:Finite_Elliptic_Tangent_Complexes_Agree}
-  The chain map in
-  \Cref{eq:Kuranishi_Elliptic_Chain_Map_Thirteen} is a quasi-isomorphism.
-  Consequently,
-  \[
-    \mathbb T_{\mathcal Z_t/S,v}
-    \simeq
-    [\Gamma(F;N)\xrightarrow{L}\Gamma(E;N)].
-  \]
-\end{proposition}
-
-\begin{proof}
-  On degree-zero cohomology, the map identifies
-  \[
-    \ker(D_v\kappa)
-    =\{(\xi,0):L\xi=0\}
-  \]
-  with $\ker L$.
-
-  For degree one, the induced map is
-  \[
-    C/\operatorname{im}(D_v\kappa)
-    \longrightarrow
-    \operatorname{coker}L,
-    \qquad
-    [c]\longmapsto[-\iota(c)].
-  \]
-  It is surjective because $A=(L,\iota)$ is surjective. Its kernel consists
-  of those $c$ for which $\iota(c)=-L\xi$ for some $\xi$. Equivalently,
-  $(\xi,c)\in\ker A$, so $c$ lies in the image of $D_v\kappa$. Hence the map
-  is an isomorphism.
-\end{proof}
-
-The two pullbacks have complementary roles:
+The tangent calculation also follows directly from the augmentation.
+At a zero $(u,0)$, put
 \[
-  \begin{gathered}
-    \widetilde P\text{ is submersive}
-    \quad\Longrightarrow\quad
-    V\text{ is an ordinary manifold},\\
-    \kappa\text{ need not be submersive}
-    \quad\Longrightarrow\quad
-    \mathcal Z_t\text{ may carry derived structure}.
-  \end{gathered}
+ K=\ker(T_u\widetilde P+\iota)=T_{(u,0)}Z_U.
 \]
-The augmentation removes the infinite-dimensional failure of transversality.
-The derived zero locus retains the remaining finite-dimensional obstruction.
-
-\section{Globalization and the representability theorem}
-\label[section]{sec:Globalization_Representability_Thirteen}
-
-\subsection{An effective open atlas}
-\label[subsection]{sec:Effective_Open_Atlas_Thirteen}
-
-The construction above applies near every solution $t$. For each such point,
-we obtain a quasi-smooth derived $\Cinfty$-scheme $\mathcal Z_t$ locally of
-finite presentation and an open morphism
+The derivative of $\kappa$ is projection $K\to V$.
+There is a chain map
 \[
-  \mathcal Z_t\longrightarrow\Sol(\mathcal E)
+ [K\longrightarrow V]\longrightarrow
+ [\Gamma(N;F)\xrightarrow{T_u\widetilde P}\Gamma(N;E)]
 \]
-whose image contains $t$.
+given by projection onto $\Gamma(N;F)$ in degree zero and $-\iota$
+in degree minus one. It is a chain map because
+$T_u\widetilde P(v)=-\iota(a)$ for $(v,a)\in K$.
+Surjectivity of the augmented derivative makes this a
+quasi-isomorphism: its degree-zero homology is the original kernel,
+and its degree-minus-one homology is the original cokernel.
 
-These maps cover the solution stack. More precisely, every family of
-solutions over a test manifold is locally on that manifold contained in one
-of the chosen section-stack charts and augmented neighborhoods. Thus
-\begin{equation}
-  \label{eq:Effective_Open_Atlas_Thirteen}
-  \coprod_t\mathcal Z_t
-  \longrightarrow
-  \Sol(\mathcal E)
-\end{equation}
-is an effective epimorphism and each summand is an open substack.
-
-There is no independent coordinate-change problem to solve. On an overlap,
-both charts represent open restrictions of the same intrinsic stack. Their
-intersection is the corresponding pullback over $\Sol(\mathcal E)$, and its
-coherent transition data are inherited from that stack.
-
-\subsection{Completion of the proof}
-\label[subsection]{sec:Completion_Relative_Representability_Thirteen}
-
-\begin{proof}[Proof of \Cref{thm:Relative_Elliptic_Representability}]
-  Work first after a representable base change to a manifold chart of $S$.
-  Around every solution, the localization in Chapter~12 gives one smooth
-  family of elliptic equations over a compact manifold. The Sobolev-scale
-  argument and
-  \Cref{prop:Augmented_Operator_Derived_Submersive_Twelve} make its augmented
-  operator derived-submersive.
-
-  The two pullbacks in
-  \Cref{eq:Augmented_Zero_Fiber_Thirteen,eq:Derived_Obstruction_Zero_Locus_Thirteen}
-  produce a quasi-smooth derived $\Cinfty$-scheme locally of finite
-  presentation. Pullback pasting identifies it with an open substack of the
-  intrinsic solution stack. Varying the solution yields the effective open
-  atlas in \Cref{eq:Effective_Open_Atlas_Thirteen}.
-
-  Apply the open-atlas criterion
-  \Cref{thm:Open_Local_Representability}. It follows that the solution stack
-  after base change to the manifold chart is represented. Finally, use the
-  relative consequence
-  \Cref{cor:Local_Representability_Relative} to descend this conclusion over
-  the original smooth-stack base $S$. Quasi-smoothness and local finite
-  presentation are local on the representing scheme, so they descend as
-  well.
-\end{proof}
-
-This final globalization is deliberately short. The technical work was the
-construction and identification of one open chart. Once those charts are
-open substacks of a single intrinsic stack, Proposition~2.1.48 and
-Corollary~2.1.49 perform the gluing
-\cite[Proposition~2.1.48 and Corollary~2.1.49]{Steffens_Representability_Elliptic_Moduli}.
-
-\subsection{What the hypotheses and choices do}
-\label[subsection]{sec:Hypotheses_Choices_Thirteen}
-
-The proof assigns a distinct role to every hypothesis.
-\begin{enumerate}
-  \item The smooth-stack base permits descent to manifold charts while
-    retaining families and automorphisms.
-  \item Properness gives compact fibers and local triviality of the family of
-    domains.
-  \item Finite order makes the nonlinear equation functorial through relative
-    jets and compatible with the Sobolev tower.
-  \item Ellipticity gives Fredholm linearizations and the regularity which
-    returns Sobolev solutions to smooth sections.
-  \item Finite-dimensional obstruction spaces turn the local problem into a
-    quasi-smooth finite-presentation derived zero locus.
-\end{enumerate}
-
-Local trivializations, local additions, Sobolev indices, complements, and
-representatives of the cokernel all occur in the construction. They do not
-occur in the definition of $\Sol(\mathcal E)$. Every resulting chart is
-identified with an open restriction of that same intrinsic stack. This is the
-precise sense in which the representing object is independent of the
-analytic choices.
-
-\section{The proof pattern in finite dimensions}
-\label[section]{sec:Proof_Pattern_Finite_Dimensions_Thirteen}
-
-\subsection{The complete route}
-\label[subsection]{sec:Complete_Representability_Route_Thirteen}
-
-The proof can be read as the following chain of constructions:
+Thus the finite-dimensional derived tangent complex is represented
+by the linearized elliptic equation. Its virtual dimension is
 \[
-  \begin{aligned}
-    &\text{Intrinsic elliptic solution stack}\\
-    &\quad\rightsquigarrow
-      \text{local smooth nonlinear operator }P\\
-    &\quad\rightsquigarrow
-      \text{derived-submersive augmentation }\widetilde P\\
-    &\quad\rightsquigarrow
-      \text{ordinary manifold }V\xrightarrow{\kappa}S\times C\\
-    &\quad\rightsquigarrow
-      V\times_{S\times C}^{\mathbf R}S\\
-    &\quad\rightsquigarrow
-      \text{effective open atlas}.
-  \end{aligned}
+ \dim Z_U-\dim V=\operatorname{ind}(T_u\widetilde P).
 \]
-The first two arrows use differential geometry and jets. The third uses
-Fredholm analysis, the Sobolev tower, and the smooth-to-derived criterion.
-The fourth is a transverse pullback. The fifth is finite-dimensional derived
-geometry. The last uses descent.
+At the centre $t$, our choice $V=\operatorname{coker}D$ implies
+$K\cong\ker D$ and $d\kappa=0$.
 
-\subsection{The model calculation}
-\label[subsection]{sec:X_Squared_Regular_Enlargement_Thirteen}
+\section{Relative charts and completion of the proof}
 
-The whole route is visible in the function
+To finish the theorem, we carry out the same analytic construction
+with parameters and apply the local representability results. The
+relative chart is the analytic output; gluing uses the solution stack
+already defined before making any coordinate choices.
+
+For a manifold base, the locally reduced operator is
 \[
-  f\colon\R\longrightarrow\R,
-  \qquad
-  f(x)=x^2.
+ (s,u)\longmapsto(s,\widetilde P_s(u)).
 \]
-Its ordinary zero locus is one point, but its derived zero locus has tangent
-complex
+At a chosen solution $t=(s_0,u_0)$, use the cokernel of the vertical
+operator $T_{u_0}\widetilde P_{s_0}$.
+It is also the cokernel of the total derivative: the total derivative
+has the block form
 \[
-  [\R\xrightarrow{0}\R]
+ (\dot s,v)\longmapsto
+ \bigl(\dot s,\partial_s\widetilde P(\dot s)
+                    +T_{u_0}\widetilde P_{s_0}(v)\bigr),
 \]
-at the origin. Add an obstruction coordinate and define
+and subtracting the parameter term in the target identifies its
+kernel and cokernel with those of the vertical operator.
+
+Choose smooth representatives $\iota$ at this solution and repeat the
+Sobolev construction on $S\times Q\times V$.
+A test family is now a map
+$Z\to S\times\Gamma(N;E)$, written $(s(z),h(z))$.
+Its equation is
 \[
-  \widetilde f\colon\R^2\longrightarrow\R,
-  \qquad
-  \widetilde f(x,c)=x^2+c.
+ \widetilde P_{s(z),\ell}(u)+\iota(a)=h(z).
 \]
-This map is a submersion. Its zero fiber
+The Banach argument and both regularity arguments work with these
+additional finite-dimensional parameters. They prove that the
+augmented operator is submersive over $S$ in the required sense.
+
+\Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge} therefore produces relative Kuranishi charts.
+\Cref{chap:Elliptic_Equations_Kuranishi_Models} showed that their neighbourhoods cover all solutions,
+and \Cref{chap:Coherence_Descent_Local_Representability} glues this effective open atlas.
+For a smooth stack base $S$, choose an effective covering by ordinary
+manifolds and pull the differential moduli problem back to them.
+The argument above proves relative representability on each such
+family. Locality on the base, proved in
+\Cref{cor:Local_Representability_Relative}, descends this conclusion
+to $S$. The globally defined solution stack supplies the overlaps and
+their coherence, so no independent choices of chart transitions are
+needed. This completes the proof of
+\Cref{thm:Relative_Elliptic_Representability}, subject to the
+analytic and geometric input theorems explicitly quoted above.
+
+\section{The running example as a multiple point}
+
+Return to $P(u)=\Delta u+u^2$ on closed connected $N$.
+At zero, the cokernel of $\Delta$ is represented by constants.
+Take $V=\R$ and $\iota(a)=a$. The augmented equation is
 \[
-  V=\{(x,c):x^2+c=0\}
+ \Delta u+u^2+a=0.
 \]
-is an ordinary one-dimensional manifold. Restrict the second coordinate to
-obtain
+Its derivative at $(0,0)$ is $(v,b)\mapsto\Delta v+b$, which is
+surjective.
+
+Write $u=c+w$, where $c$ is constant and $w$ has mean zero.
+Let $\langle g\rangle$ denote the average of a function over $N$.
+The mean-zero part of the augmented equation is
 \[
-  \kappa\colon V\longrightarrow\R,
-  \qquad
-  \kappa(x,-x^2)=-x^2.
+ \Delta w+2cw+w^2-\langle w^2\rangle=0.
 \]
-Pullback pasting gives
-\begin{equation}
-  \label{eq:X_Squared_Regular_Enlargement_Thirteen}
-  \R\times_{\R}^{\mathbf R}\{0\}
-  \iso
-  V\times_{\R}^{\mathbf R}\{0\},
-\end{equation}
-where the map on the left is $f$ and the map on the right is $\kappa$.
+On mean-zero functions, $\Delta$ is an isomorphism between the relevant
+Sobolev spaces. The implicit function theorem, with parameter $c$,
+gives a unique small solution $w=w(c)$.
+Since $w=0$ solves the equation for every $c$, uniqueness implies
+$w(c)=0$.
 
-The left side presents the singular equation directly. The right side first
-solves a regular enlarged equation and then imposes the obstruction parameter
-by a derived fiber. Steffens's proof is the elliptic family version of this
-calculation.
-
-\subsection{Representability is not a virtual class}
-\label[subsection]{sec:Representability_Not_Virtual_Class_Thirteen}
-
-The theorem proves that the moduli functor is represented and that its local
-derived geometry is quasi-smooth. It does not automatically produce an
-enumerative invariant. A virtual fundamental class additionally requires a
-suitable global setting, typically including compactness or properness of the
-moduli object and orientation data for its determinant complex.
-
-The bordism interlude explained what a compact oriented derived manifold can
-contribute. The present theorem supplies a represented quasi-smooth object,
-but it does not establish those further hypotheses. This distinction remains
-essential in applications.
-
-\section{Comparison with Pardon's regular-locus engine}
-\label[section]{sec:Pardon_Regular_Locus_Comparison_Thirteen}
-
-\subsection{The regular locus on smooth tests}
-\label[subsection]{sec:Pardon_Regular_Locus_Smooth_Tests_Thirteen}
-
-Pardon's published argument begins with a pseudo-holomorphic section problem
-over a proper family of smooth compact curves. Schematically, one has an
-equation morphism
+The remaining average equation is $a=-c^2$.
+Hence near zero the augmented solution manifold is the curve
 \[
-  \Phi\colon
-  \operatorname{Sect}_{C/B}(W)
-  \longrightarrow
-  \operatorname{Sect}_{C/B}(H)
+ c\longmapsto(u=c,\ a=-c^2).
 \]
-and the solution stack is its fiber over the zero section.
+Its Kuranishi map is $\kappa(c)=-c^2$.
+Multiplying the target by $-1$ identifies its derived zero locus
+with that of $c^2$.
 
-The \emph{regular locus} consists of the solutions where the total
-linearization of $\Phi$ is surjective. Ordinary parametric Fredholm theory
-represents this locus, on smooth test manifolds, by an ordinary smooth
-manifold. The new question is not analytic:
-\begin{quote}
-  Why does the same manifold classify regular families over derived test
-  objects?
-\end{quote}
-
-\subsection{Proper section stacks and derived tests}
-\label[subsection]{sec:Pardon_Proper_Section_Stacks_Thirteen}
-
-Let
+The local function ring is therefore
 \[
-  i\colon\mathrm{Sm}\longrightarrow\mathrm{Der}
+ \Cinfty(\R)/(c^2)\cong\R[\delta]/(\delta^2).
 \]
-denote the inclusion of manifolds into derived smooth manifolds. Restriction
-of stacks has a left adjoint $i_!$, the sheaf left Kan extension. For a stack
-$F$ on manifolds, $i_!F$ is the universal extension of $F$ to derived tests
-which respects the required colimits and descent.
+The real solution set is one point, but it has a nontrivial infinitesimal
+direction. Its tangent complex is $[\R\xrightarrow0\R]$ in degrees
+$0,-1$, agreeing with the kernel and cokernel of $\Delta$.
+This is the finite-dimensional singularity encoded by the original
+infinite-dimensional equation.
 
-Pardon's Proposition~5.2 says, in the form needed here, that the section stack
-of a submersion over a proper smooth source is obtained by this universal
-extension:
-\begin{equation}
-  \label{eq:Pardon_Proper_Section_Stack_Thirteen}
-  i_!\operatorname{Sect}_{C/B}(W)_{\mathrm{Sm}}
-  \iso
-  \operatorname{Sect}_{C/B}(W)_{\mathrm{Der}}.
-\end{equation}
-Properness and the softness supplied by partitions of unity are the
-geometric inputs. The statement does not say that derived families are
-ordinary families. It says that their coherent behavior on derived tests is
-determined by the ordinary smooth functor.
+\section{Further reading}
 
-Left adjoints do not preserve arbitrary pullbacks. Pardon's Lemma~5.3 gives
-the additional fact used in the proof: sheaf left Kan extension preserves the
-pullbacks in which the distinguished morphism is submersive. On the regular
-locus, the equation morphism is submersive. Applying the lemma to its zero
-fiber shows that
-\begin{equation}
-  \label{eq:Pardon_Regular_Locus_Extension_Thirteen}
-  i_!\operatorname{Sol}(\Phi)^{\mathrm{reg}}_{\mathrm{Sm}}
-  \iso
-  \operatorname{Sol}(\Phi)^{\mathrm{reg}}_{\mathrm{Der}}.
-\end{equation}
-Thus the ordinary manifold which represents the regular locus on smooth tests
-also represents it on derived tests
-\cite[Proposition~5.2 and Lemma~5.3]{Pardon_Representability_Elliptic_Fredholm}.
+The construction used auxiliary sections and Sobolev completions.
+We explain how these choices affect the presentations, and distinguish
+the representability theorem from the further compactness questions
+needed for enumerative applications.
 
-\subsection{Parameter thickening}
-\label[subsection]{sec:Pardon_Parameter_Thickening_Thirteen}
+The auxiliary space is not unique. Any finite-dimensional collection
+of smooth sections surjecting onto the cokernel can be used.
+Adding unnecessary representatives increases the dimension of the
+augmented zero manifold and the number of auxiliary equations together.
+The resulting presentations still describe open parts of the same
+intrinsic solution stack.
 
-At a nonregular solution, choose a finite-dimensional space $C$ mapping
-surjectively to the cokernel of the linearization. Enlarge the parameter base
-by $C$ and add the corresponding inhomogeneous terms to the equation. The
-chosen solution is regular in this enlarged family. The preceding argument
-represents the enlarged regular locus by an ordinary manifold. The original
-problem is recovered by taking its derived fiber over the zero value of the
-new parameter.
+A change of Sobolev exponent is also auxiliary. The regularity argument
+identifies the resulting finite-dimensional manifolds at sufficiently
+high levels and compares their universal smooth families.
+This is stronger than observing that their real solution sets agree.
+It explains why the theorem belongs to the original smooth equation,
+rather than to a chosen Banach completion.
 
-This is the same enlargement-and-derived-fiber pattern as
-\Cref{eq:X_Squared_Regular_Enlargement_Thirteen}. The two proofs organize its
-middle step differently:
-\begin{enumerate}
-  \item Steffens adds an obstruction coordinate to the operator and uses the
-    functorial Sobolev tower to prove that the augmented smooth operator is
-    derived-submersive.
-  \item Pardon enlarges the parameter base, represents the ordinary regular
-    locus, uses proper section stacks to extend it to derived tests, and
-    returns by a derived parameter fiber.
-\end{enumerate}
+The analytic input proves representability and quasi-smoothness.
+Compactness of the domain $N$ does not imply compactness of its
+solution moduli object. Compactifying that object and constructing
+enumerative invariants require further geometric arguments.
 
-Both methods obtain local representatives as open substacks of an intrinsic
-solution functor. Consequently, both avoid constructing a strict cocycle of
-independently chosen Kuranishi charts.
+\begin{exercise}
+For a Fredholm map $D$ and a cokernel splitting $\iota$, verify directly
+that $\ker(D+\iota)\cong\ker D$.
+Then replace $V$ by a larger auxiliary space and calculate the change
+in the kernel dimension.
+\end{exercise}
 
-\subsection{Scope and source status}
-\label[subsection]{sec:Pardon_Scope_Source_Status_Thirteen}
+\begin{exercise}
+In the running example, replace $u^2$ by $u^3$.
+Use the mean-zero equation to compute the local Kuranishi map.
+Compare the resulting classical function ring and tangent complex.
+\end{exercise}
 
-Pardon's published Theorem~5.1 concerns pseudo-holomorphic section problems
-over proper families of smooth compact curves. Its conclusion and hypotheses
-are not identical to Steffens's general theorem on elliptic differential
-moduli problems. The article explicitly presents the argument as a brief
-proof sketch
-\cite[Theorem~5.1 and its proof sketch]{Pardon_Representability_Elliptic_Fredholm}.
-
-Pardon's July 2026 manuscript develops a much broader logarithmic and
-elliptic framework and gives a longer account of the regular-locus strategy.
-It also explicitly identifies itself as unfinished work in progress and
-contains unresolved internal placeholders. In particular, the proposed
-logarithmic derived-base reduction is not a completed proof source. We use
-the manuscript only to clarify the architecture of the published sketch
-\cite[Section~N.6.4]{Pardon_Logarithmic_Derived_Moduli}.
-
-\section{Summary and supplementary materials}
-\label[section]{sec:Derived_Charts_Globalization_Summary_Supplementary}
-
-\subsection{Takeaways}
-\label[subsection]{sec:Derived_Charts_Globalization_Takeaways}
-
-The live route has nine conclusions.
-\begin{enumerate}
-  \item The zero fiber of the derived-submersive augmented operator is an
-    ordinary finite-dimensional manifold $V$.
-  \item Projection to the obstruction coordinate gives a finite-dimensional
-    map $\kappa\colon V\to S\times C$.
-  \item Its derived zero locus recovers the original local equation.
-  \item Pullback pasting identifies this derived zero locus with an open
-    restriction of the intrinsic solution stack.
-  \item Its tangent complex is quasi-isomorphic to the elliptic
-    deformation-obstruction complex.
-  \item The local chart is quasi-smooth and locally of finite presentation.
-  \item The local charts form an effective open atlas, so the open-atlas
-    theorem proves relative representability.
-  \item The analytic choices affect presentations, not the intrinsic
-    represented stack.
-  \item Pardon's regular-locus proof uses the same enlargement-and-derived-
-    fiber pattern with a different smooth-to-derived engine.
-\end{enumerate}
-
-\subsection{Supplement: the precise published Pardon endpoint}
-\label[subsection]{sec:Supplement_Pardon_Published_Endpoint_Thirteen}
-
-Pardon's published Derived Regularity Theorem states representability for a
-pseudo-holomorphic section problem
-\[
-  W\longrightarrow C\longrightarrow B
-\]
-over a derived smooth stack, with $C\to B$ a proper family of real
-two-dimensional domains and with the relevant complex structures. It also
-identifies the derived-to-topological comparison for the solution stack
-\cite[Theorem~5.1]{Pardon_Representability_Elliptic_Fredholm}.
-
-The printed statement says that $B\to C$ is proper of relative dimension two,
-although the displayed composable maps and the proof require $C\to B$. This
-is best treated as a typographical reversal, not as a new mathematical
-hypothesis.
-
-\subsection{Related literature}
-\label[subsection]{sec:Derived_Charts_Globalization_Related_Literature}
-
-Steffens's Theorem~3.4.3 is the primary source for the completed
-representability proof. The local chart and globalization occupy the final
-part of its proof, while Proposition~2.1.48 and Corollary~2.1.49 supply the
-open-atlas step
-\cite[Theorem~3.4.3, Proposition~2.1.48, and
-Corollary~2.1.49]{Steffens_Representability_Elliptic_Moduli}.
-
-Pardon's published proceedings article supplies the comparison through
-Theorem~5.1, Proposition~5.2, and Lemma~5.3
-\cite[Section~5]{Pardon_Representability_Elliptic_Fredholm}. The July 2026
-manuscript is useful for terminology and proof order, but its work-in-progress
-status must be retained whenever it is cited
-\cite[Sections~P.5 and N.6.4]{Pardon_Logarithmic_Derived_Moduli}.
+The detailed analytic construction is
+\cite[Lemmas~3.4.5--3.4.6 and the proof of Theorem~3.4.3,
+pp.~67--70]{Steffens_Representability_Elliptic_Moduli}.
+The distinction between limits in smooth stacks and derived stacks
+is discussed in its Remark 3.4.7.

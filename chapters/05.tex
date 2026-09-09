@@ -1,824 +1,433 @@
-% This chapter is the complete working manuscript for the fifth seminar talk.
-% The final section contains supplementary material outside the default live
-% route.
+% !TEX root = ../main.tex
 
 \chapter{Calculating derived intersections}
 \label[chapter]{chap:Derived_Zero_Loci_And_Tangent_Complexes}
 
-The preceding chapter constructed the $\infty$-category of derived manifolds
-and identified it algebraically:
+A smooth map $f\colon U\to\R^r$ determines a derived manifold
 \[
-  \mathrm{DMfd}
-  \simeq
-  \operatorname{Alg}_{\Cinfty}(\An)_{\mathrm{fp}}\catop.
+Z^{\mathrm{der}}(f)=U\times_{\R^r}\{0\}.
 \]
-We therefore know that arbitrary finite pullbacks of manifolds exist in
-$\mathrm{DMfd}$. If the maps are transverse, the result agrees with the
-ordinary manifold pullback. If they are not transverse, the universal
-property still supplies an object, but it does not yet tell us what that
-object contains.
+The preceding chapter guarantees that this pullback exists. We now ask
+what its functions remember about the equations defining it. To calculate
+them, we need an algebraic presentation of the pullback.
+The resulting algebra has one generator for each equation, together with a
+differential recording that equation. Products of the generators keep track
+of relations among the equations.
 
-This chapter makes the new pullbacks calculable. Its protagonist is the
-derived zero locus of a smooth map. We first express it as a pushout of
-animated $\Cinfty$-rings, then present that pushout by a Koszul algebra, and
-finally compare three equations:
+Write $f=(f_1,\ldots,f_r)$. Under the
+contravariant description of derived manifolds by animated $\Cinfty$-rings,
+the defining pullback becomes the pushout
 \[
-  x,
-  \qquad
-  x^2,
-  \qquad
-  0.
+\begin{tikzcd}
+ \Cinfty(\R^r) \rar["f^*"] \dar["0^*"'] \drar[pushout]
+   & \Cinfty(U) \dar\\
+ \R \rar & \mathcal O(Z^{\mathrm{der}}(f)).
+\end{tikzcd}
 \]
-The examples are deliberately elementary. Their purpose is to separate three
-levels of information which become easy to conflate once the notation grows
-more sophisticated: the underlying zero set, the classical truncation, and
-the full animated function algebra.
+Thus
+\begin{equation}\label{eq:Derived_Zero_Locus_Animated_Pushout}
+ \mathcal O(Z^{\mathrm{der}}(f))
+ \cong \Cinfty(U)\mathbin{\otimes^{\mathbb L}_{\infty,\Cinfty(\R^r)}}\R.
+\end{equation}
+Here the tensor notation denotes a pushout of animated smooth rings.
+The corresponding ordinary pushout is
+$\Cinfty(U)/(f_1,\ldots,f_r)$. Computing that quotient first would discard
+the higher homotopy of the animated pushout.
 
-We will not yet extract either a bordism class or a stable linearization from
-the derived zero locus. The next chapter first asks how a compact derived zero
-locus compares with a transverse perturbation. The following chapter then
-studies its intrinsic first-order approximation. These divisions are
-important: the Koszul algebra calculated here contains nonlinear information
-which both later constructions deliberately simplify.
+There are already two different classical objects in this discussion.
+The ring $\Cinfty(U)/(f_1,\ldots,f_r)$ records the equations, whereas the
+set $f^{-1}(0)$ only records their common real solutions. For example,
+$x$ and $x^2$ have the same zero set but give different quotients.
+The derived construction adds a third level: homotopy groups beyond
+$\pi_0$.
 
-\section{From formal pullbacks to derived zero loci}
-\label[section]{sec:Calculating_Derived_Zero_Loci}
+We first introduce smooth differential graded algebras as a tool for
+computing animated smooth rings, then construct the Koszul model of a
+zero locus. Comparing a transverse equation, a multiple zero, and a
+repeated equation will make these three levels visible. The same
+construction will then apply to families and to sections of vector bundles.
 
-\subsection{The self-intersection test}
-\label[subsection]{sec:Derived_Self_Intersection_Test}
+\section{Smooth differential graded algebras}
+\label[section]{sec:Smooth_Dold_Kan_Bridge}
 
-Return to the self-intersection of the $x$-axis in $\R^2$. Write
+Smooth differential graded algebras make the higher homotopy of an
+animated smooth ring accessible through homology. We use homological
+grading, as in Steffens: the differential lowers degree by one. Our
+connective dg-algebra models are concentrated in nonnegative degrees.
+After describing their smooth structure, we state the comparison theorem
+that justifies using them to compute derived pushouts.
+
+\begin{definition}[Smooth dg-algebra]
+\label[definition]{def:Smooth_Dg_Algebra}
+A \emph{connective $\Cinfty$-dg-algebra} is a commutative differential
+graded $\R$-algebra
 \[
-  i\colon \R\longrightarrow\R^2,
-  \qquad
-  i(x)=(x,0).
+ \cdots\longrightarrow A_2\xrightarrow{d}A_1
+ \xrightarrow{d}A_0
 \]
-The ordinary set-theoretic fiber product of $i$ with itself is again the
-$x$-axis. The same collapse occurs in ordinary smooth algebra. If
-\[
-  B=\Cinfty(\R^2),
-  \qquad
-  A=B/(y)\cong\Cinfty(\R),
-\]
-then
-\[
-  A\amalg_B A
-  \cong
-  A.
-\]
-The two copies of the equation $y=0$ have become indistinguishable. This is
-exactly the defect isolated in the previous chapter: an ordinary pushout of
-sets of algebraic data remembers the imposed relation, but not the ways in
-which two copies of that relation agree.
-
-The derived self-intersection exists by the universal property of
-$\mathrm{DMfd}$. What remains is to calculate its animated function algebra.
-We begin in a slightly more general form which will be reused throughout the
-seminar.
-
-\subsection{The intrinsic definition}
-\label[subsection]{sec:Derived_Zero_Locus_Pullback_Pushout}
-
-Let $U$ be a manifold and let
-\[
-  f=(f_1,\ldots,f_k)\colon U\longrightarrow\R^k
-\]
-be smooth. Its ordinary zero set is the set-theoretic pullback of $f$ along
-the origin. We form the corresponding pullback in derived manifolds.
-
-\begin{definition}[Derived zero locus]
-  \label[definition]{def:Derived_Zero_Locus_Function}
-  The \emph{derived zero locus} of $f$ is the pullback
-  \[
-  \begin{tikzcd}
-    Z^{\mathrm{der}}(f) \rar \dar \drar[pullback]
-      & * \dar["0"] \\
-    U \rar["f"'] & \R^k
-  \end{tikzcd}
-  \]
-  in $\mathrm{DMfd}$.
+together with a $\Cinfty$-ring structure on $A_0$ whose underlying
+$\R$-algebra structure is the given one. A morphism preserves the differential,
+the multiplication, and the smooth operations on degree zero.
 \end{definition}
 
-All pullbacks in this chapter are formed in an $\infty$-category. We do not
-add a separate adjective such as ``homotopy'' to the construction.
-
-Passing contravariantly to animated function algebras turns the pullback into
-a pushout:
+For homogeneous elements, commutativity and the differential rule mean
 \[
-\begin{tikzcd}
-  \Cinfty(\R^k) \rar["f^*"] \dar["0^*"'] \drar[pushout]
-    & \Cinfty(U) \dar \\
-  \R \rar
-    & \mathcal O\bigl(Z^{\mathrm{der}}(f)\bigr).
-\end{tikzcd}
+ ab=(-1)^{|a||b|}ba,\qquad
+ d(ab)=d(a)b+(-1)^{|a|}a\,d(b).
 \]
-We write the lower-right corner as
-\begin{equation}
-  \label{eq:Derived_Zero_Locus_Animated_Pushout}
-  \mathcal O\bigl(Z^{\mathrm{der}}(f)\bigr)
-  \simeq
-  \Cinfty(U)
-  \mathbin{\mathop{\otimes}^{\mathbb L}_{\Cinfty(\R^k)}}
-  \R.
-\end{equation}
-The notation $\otimes^{\mathbb L}$ means the displayed pushout in animated
-$\Cinfty$-rings. It is not a second definition of the derived zero locus.
-The geometric pullback is intrinsic, and
-\Cref{eq:Derived_Zero_Locus_Animated_Pushout} is its algebraic expression.
+In particular, an odd-degree generator has square zero over $\R$.
+The smooth operations are supplied in degree zero. There is no operation
+$f(a_1,\ldots,a_n)$ for arbitrary nonhomogeneous elements in this definition.
 
-This observation also explains why the passage to animated rings is doing
-real work. In ordinary $\Cinfty$-rings the same diagram has a pushout, but
-that pushout retains only an ordinary quotient. The animated pushout retains
-the entire universal gluing datum.
+This is the convention of the foundations paper \cite[Definition~3.3.1]
+{Steffens_Derived_Cinfty_Geometry_I}. Because $d$ vanishes on $A_0$, there
+is no additional chain-rule condition to impose on its degree-zero elements.
 
-\subsection{Three levels of information}
-\label[subsection]{sec:Three_Levels_Derived_Zero_Locus}
-
-There are three related objects which we will keep separate throughout the
-chapter.
-
-\begin{enumerate}
-  \item The \emph{underlying zero set} $f^{-1}(0)$ records which points solve
-    the equation.
-  \item The \emph{classical truncation} is obtained by applying $\pi_0$ to
-    the animated function algebra. It records the ordinary smooth algebra of
-    the equation, including nilpotents.
-  \item The \emph{full animated function algebra} also includes the positive
-    homotopy groups $\pi_i$ for $i>0$.
-\end{enumerate}
-
-Each passage forgets information:
+\begin{example}
+An ordinary $\Cinfty$-ring is a smooth dg-algebra concentrated in degree
+zero. More generally, for an ordinary smooth ring $A$ and elements
+$f_1,\ldots,f_r\in A$, form
 \[
-  \text{animated function algebra}
-  \longmapsto
-  \pi_0
-  \longmapsto
-  \text{set of real points}.
+ A[\varepsilon_1,\ldots,\varepsilon_r],
+ \qquad |\varepsilon_i|=1,\qquad d\varepsilon_i=f_i.
 \]
-The two forgetting steps diagnose different phenomena. The equations $x=0$
-and $x^2=0$ have the same underlying zero set, but their classical
-truncations differ. On the other hand, the derived zero locus of the zero
-function has the same classical truncation as its underlying manifold, but
-its animated function algebra has positive homotopy.
-
-This is the organizing principle for the calculations below. Derived
-structure is not synonymous with either nilpotence in $\pi_0$ or positive
-homotopy. Both can occur, and they measure different failures of ordinary
-smoothness.
-
-\section{The Koszul presentation}
-\label[section]{sec:Koszul_Presentation_Derived_Zero_Locus}
-
-\subsection{A computational bridge}
-\label[subsection]{sec:Smooth_Dold_Kan_Bridge}
-
-The intrinsic pushout in
-\Cref{eq:Derived_Zero_Locus_Animated_Pushout} is not yet explicit. To
-calculate it, we use a comparison between animated $\Cinfty$-rings and chain
-$\Cinfty$-algebras.
-
-A connective chain $\Cinfty$-algebra is a nonnegatively graded
-graded-commutative differential algebra
+The notation denotes a free graded-commutative extension: as a graded
+$A$-module it is $A\otimes_\R\Lambda^\bullet(\R^r)$, with
+$\Lambda^q$ placed in degree $q$. Its differential is determined by the
+displayed equations and the Leibniz rule. In particular,
 \[
-  A_0\xleftarrow{\partial}A_1
-  \xleftarrow{\partial}A_2
-  \xleftarrow{\partial}\cdots
+ d(\varepsilon_i\varepsilon_j)
+ =f_i\varepsilon_j-f_j\varepsilon_i.
 \]
-whose degree-zero algebra carries compatible smooth functional calculus. A
-quasi-isomorphism is a morphism inducing isomorphisms on homology.
+The equality $d^2=0$ follows on generators and hence on the whole algebra.
+\end{example}
 
-\begin{fact}[Smooth Dold--Kan comparison]
-  \label[fact]{fact:Smooth_Dold_Kan_Comparison}
-  The $\infty$-category obtained from connective chain
-  $\Cinfty$-algebras by inverting quasi-isomorphisms is equivalent to the
-  $\infty$-category of animated $\Cinfty$-rings. Under this equivalence, the
-  homology groups of a chain $\Cinfty$-algebra are the homotopy groups of the
-  corresponding animated $\Cinfty$-ring.
-\end{fact}
-
-This is the smooth Dold--Kan correspondence of Steffens,
-Theorem~4.1.5.7, translated into our homological grading convention
-\cite[Theorem~4.1.5.7]{Steffens_Derived_Differential_Geometry}. We use it only
-as a computational bridge. The intrinsic definition remains the pullback in
-$\mathrm{DMfd}$, or equivalently the animated pushout of
-\Cref{eq:Derived_Zero_Locus_Animated_Pushout}. A chain algebra is one
-convenient presentation of that object.
-
-\subsection{The algebra attached to an equation}
-\label[subsection]{sec:Koszul_Algebra_Attached_To_Equation}
-
-For $f=(f_1,\ldots,f_k)$, introduce generators
-$e_1,\ldots,e_k$ in homological degree one and define
-\begin{equation}
-  \label{eq:Koszul_Algebra_Function}
-  K(f)
-  =
-  \bigl(
-    \Cinfty(U)\otimes\Lambda(e_1,\ldots,e_k),
-    \partial e_i=f_i
-  \bigr).
-\end{equation}
-Thus
+The image of $d\colon A_1\to A_0$ is an ideal: for $a\in A_0$ and
+$b\in A_1$, $a\,d(b)=d(ab)$. Therefore $H_0(A)$ is an ordinary
+$\Cinfty$-ring. To see that all smooth operations descend, apply Hadamard's
+lemma to a smooth function $\varphi\colon\R^n\to\R$:
 \[
-  e_ie_j=-e_je_i,
-  \qquad
-  e_i^2=0,
+ \varphi(x)-\varphi(y)=\sum_i(x_i-y_i)\psi_i(x,y).
 \]
-and the graded Leibniz rule determines the differential on products. For
-example,
-\[
-  \partial(ge_i)=gf_i
-\]
-for $g\in\Cinfty(U)$. With two generators one has
-\[
-  \partial(ge_1e_2)=g(f_1e_2-f_2e_1).
-\]
+Replacing each $x_i$ by an element congruent to $y_i$ modulo the ideal
+changes the output by an element of the same ideal. The groups $H_i(A)$
+are modules over $H_0(A)$, and their products form a graded algebra.
 
-The formula has a simple interpretation. The generator $e_i$ is a degree-one
-witness for the equation $f_i=0$, and the differential sends that witness to
-the function which is required to vanish. This interpretation is useful for
-reading the algebra, but it should not be mistaken for extra chosen structure
-on the derived zero locus. The Koszul algebra is a presentation of an
-intrinsic animated ring.
+The passage from dg-algebras to animated smooth rings identifies maps
+that induce isomorphisms on homology.
 
-\begin{theorem}[Koszul presentation of a derived zero locus]
-  \label[theorem]{thm:Koszul_Presentation_Derived_Zero_Locus}
-  Let $f=(f_1,\ldots,f_k)\colon U\to\R^k$ be smooth. The animated
-  $\Cinfty$-ring of its derived zero locus is represented by $K(f)$. In
-  particular,
-  \[
-    \pi_i\mathcal O\bigl(Z^{\mathrm{der}}(f)\bigr)
-    \cong
-    H_iK(f)
-  \]
-  for every $i\geq0$.
+\begin{definition}
+\label[definition]{def:Smooth_Dga_Quasi_Isomorphism}
+A morphism of smooth dg-algebras is a \emph{quasi-isomorphism} if it induces
+an isomorphism on every homology group.
+\end{definition}
+
+\begin{theorem}[Smooth Dold--Kan correspondence]
+\label[theorem]{fact:Smooth_Dold_Kan_Comparison}
+The localization of connective $\Cinfty$-dg-algebras at quasi-isomorphisms,
+taken as an $\infty$-categorical localization, is equivalent to the
+$\infty$-category of animated $\Cinfty$-rings. If $A_{\mathrm{an}}$
+corresponds to a dg-algebra $A$, then
+\[
+ \pi_i(A_{\mathrm{an}})\cong H_i(A),\qquad i\geq0.
+\]
 \end{theorem}
 
-The proof has two steps. First resolve the evaluation map
-\[
-  \Cinfty(\R^k)\longrightarrow\R
-\]
-by adjoining degree-one generators whose differentials are the coordinate
-functions. Then extend scalars along
-\[
-  f^*\colon\Cinfty(\R^k)\longrightarrow\Cinfty(U).
-\]
-The coordinate functions become $f_1,\ldots,f_k$, which gives
-\Cref{eq:Koszul_Algebra_Function}. The full argument is recorded in
-\Cref{sec:Supplement_Koszul_Calculation}. Steffens gives the calculation in
-Examples~4.1.5.10--4.1.5.11
-\cite[Examples~4.1.5.10--4.1.5.11]{Steffens_Derived_Differential_Geometry}.
+We use this as a comparison theorem
+\cite[Theorem~3.3.12]{Steffens_Derived_Cinfty_Geometry_I}.
+It includes multiplicative and smooth structure. The ordinary Dold--Kan
+correspondence for vector spaces alone does not supply that structure.
 
-\subsection{The classical truncation}
-\label[subsection]{sec:Classical_Truncation_Koszul_Algebra}
-
-The degree-zero homology can be read off immediately. Since the only
-boundaries in degree zero are sums of the form
+One way to describe the animated object attached to $A$ is through its
+values on free smooth rings. In the localized category $D$ of smooth
+dg-algebras, set
 \[
-  \sum_{i=1}^k g_if_i,
-  \qquad
-  g_i\in\Cinfty(U),
+ A_{\mathrm{an}}(\R^n)=\Hom_D(\Cinfty(\R^n),A).
 \]
-we obtain
-\begin{equation}
-  \label{eq:H_Zero_Koszul_Quotient}
-  H_0K(f)
-  \cong
-  \frac{\Cinfty(U)}{(f_1,\ldots,f_k)}.
+The functor is covariant in Euclidean spaces because smooth functions are
+contravariant. Free smooth rings turn finite products of Euclidean spaces
+into coproducts, so this functor preserves finite products. It is therefore
+an animated $\Cinfty$-ring. The mapping objects in this formula are animae;
+using only strict dg-algebra maps would lose the higher homotopies.
+
+The theorem allows computations using dg-algebras provided we compute
+their \emph{derived} pushouts. An arbitrary strict pushout of dg-algebras
+need not have the required universal property. In the zero-locus
+calculation, we will replace evaluation at the origin by a free resolution
+before taking the strict pushout.
+
+\section{The Koszul model of a zero locus}
+\label[section]{sec:Koszul_Presentation_Derived_Zero_Locus}
+
+We compute the pushout in
+\Cref{eq:Derived_Zero_Locus_Animated_Pushout} in two stages. First we
+resolve evaluation at the origin of $\R^r$. We then substitute the
+functions defining our zero locus into this resolution.
+
+Start with one coordinate $t$ and put $B=\Cinfty(\R)$. Consider the map
+\[
+ B[\varepsilon]\longrightarrow\R,\qquad
+ |\varepsilon|=1,\quad d\varepsilon=t,
+\]
+sending $t$ and $\varepsilon$ to zero. Its underlying complex is
+\[
+ B\xrightarrow{\ t\ }B
+\]
+in degrees $1,0$. Multiplication by $t$ is injective: a smooth function
+annihilated by $t$ vanishes away from the origin, hence everywhere.
+Its cokernel is $\R$, since a smooth function vanishing at zero is divisible
+by $t$. Thus this map is a quasi-isomorphism.
+
+For $B=\Cinfty(\R^r)$, the same construction gives
+\[
+ K_B(t_1,\ldots,t_r)
+ =\bigl(B[\varepsilon_1,\ldots,\varepsilon_r],
+          d\varepsilon_i=t_i\bigr)\longrightarrow\R.
+\]
+The coordinate functions form a regular sequence. Indeed, quotienting by
+the first $j$ coordinates gives the smooth functions on the remaining
+coordinate subspace, and the next coordinate is a non-zero-divisor there.
+Successively applying the one-variable calculation proves that the
+augmentation is a quasi-isomorphism.
+
+The map $B\to K_B(t_1,\ldots,t_r)$ is built by adjoining generators in
+positive degree with prescribed differential. Together with the
+augmentation to $\R$, it is a relative free resolution of evaluation.
+Taking its strict pushout computes derived base change. The criterion
+used here is \citet[Corollary~3.3.15]{Steffens_Derived_Cinfty_Geometry_I}:
+this map is an isomorphism in
+degree zero, is surjective on $H_0$, and is a relative cell extension
+of underlying commutative dg-algebras. The resulting zero-locus
+calculation is given in
+\citet[Example~3.3.16]
+{Steffens_Derived_Cinfty_Geometry_I}.
+
+Now base change along $f^*\colon B\to A=\Cinfty(U)$. Each $t_i$ becomes
+$f_i$, so the pushout is
+\begin{equation}\label{eq:Koszul_Algebra_Function}
+ K_A(f)=\bigl(A[\varepsilon_1,\ldots,\varepsilon_r],
+               d\varepsilon_i=f_i\bigr).
 \end{equation}
-Thus the classical truncation is the ordinary algebraic zero locus studied in
-Chapters~2--4.
 
-The higher homology asks a different question. A degree-one cycle is a
-relation
+\begin{theorem}[Koszul model]
+\label[theorem]{thm:Koszul_Presentation_Derived_Zero_Locus}
+The smooth dg-algebra $K_A(f)$ presents the animated function ring of
+$Z^{\mathrm{der}}(f)$. Consequently,
 \[
-  \sum_i g_if_i=0
+ \pi_i\mathcal O(Z^{\mathrm{der}}(f))\cong H_i(K_A(f)).
 \]
-among the equations. It contributes to $H_1$ only if it is not generated by
-the evident antisymmetric relations coming from degree two. Higher degrees
-record higher relations among relations. This is the first reason the Koszul
-presentation is useful: it turns the equality data retained by an animated
-pushout into explicit algebra.
-
-When the equations form a regular sequence, the positive Koszul homology
-vanishes. Transverse equations are the smooth geometric instance of this
-behavior. The converse intuition must be treated carefully, however. The
-vanishing of positive homology does not imply that the classical truncation
-is a manifold, as the equation $x^2=0$ will show.
-
-\section{Three diagnostic calculations}
-\label[section]{sec:Three_Koszul_Calculations}
-
-We now compare a transverse equation, a singular equation with discrete
-animated algebra, and a genuinely derived self-intersection. No new machinery
-enters. The point is to learn how to read the three levels introduced in
-\Cref{sec:Three_Levels_Derived_Zero_Locus}.
-
-\subsection{A transverse zero}
-\label[subsection]{sec:Koszul_Transverse_Zero}
-
-\begin{example}[The equation $x=0$]
-  \label[example]{ex:Koszul_Transverse_Zero}
-  Let $f\colon\R\to\R$ be the identity. Its Koszul algebra has underlying
-  two-term chain complex
-  \begin{equation}
-    \label{eq:Koszul_Complex_X}
-    \Cinfty(\R)e
-    \xrightarrow{x}
-    \Cinfty(\R),
-  \end{equation}
-  where the right-hand term is in degree zero.
-\end{example}
-
-Multiplication by $x$ is injective. Indeed, if $xg(x)=0$, then $g$ vanishes
-away from the origin and hence, by continuity, also at the origin. Evaluation
-at zero induces an isomorphism
-\[
-  \frac{\Cinfty(\R)}{(x)}
-  \iso
-  \R.
-\]
-Consequently,
-\[
-  H_0K(x)\cong\R,
-  \qquad
-  H_iK(x)=0\quad(i>0).
-\]
-
-The derived zero locus is therefore the ordinary point. At all three levels
-there is nothing new:
-\[
-  \text{underlying set }\{0\},
-  \qquad
-  \pi_0\cong\R,
-  \qquad
-  \pi_{>0}=0.
-\]
-This is the algebraic form of transverse agreement. Derived geometry does not
-alter a pullback which was already transverse.
-
-\subsection{A singular but discrete zero locus}
-\label[subsection]{sec:Koszul_Square_Zero}
-
-Now replace the identity by its square.
-
-\begin{example}[The equation $x^2=0$]
-  \label[example]{ex:Koszul_Square_Zero}
-  Let $f(x)=x^2$. Its Koszul algebra has underlying two-term chain complex
-  \begin{equation}
-    \label{eq:Koszul_Complex_X_Squared}
-    \Cinfty(\R)e
-    \xrightarrow{x^2}
-    \Cinfty(\R).
-  \end{equation}
-\end{example}
-
-Multiplication by $x^2$ is again injective. If $x^2g(x)=0$, then $g$ vanishes
-for $x\neq0$ and hence also at zero. It follows that
-\[
-  H_0K(x^2)
-  \cong
-  \frac{\Cinfty(\R)}{(x^2)},
-  \qquad
-  H_iK(x^2)=0\quad(i>0).
-\]
-Thus the animated function algebra is discrete.
-
-It is nevertheless not the algebra of an ordinary manifold. Let $\bar x$ be
-the class of $x$ in the quotient. Then $\bar x^2=0$, but $\bar x\neq0$. If
-$x$ lay in the ideal $(x^2)$, there would be a smooth function $h$ satisfying
-$x=x^2h$. Away from zero this would force $h(x)=1/x$, which does not extend
-continuously across the origin. Hence the quotient contains a nonzero
-nilpotent element.
-
-The equations $x$ and $x^2$ therefore have the same underlying zero set
-\[
-  \{x=0\}=\{x^2=0\}=\{0\},
-\]
-but their classical truncations differ:
-\[
-  \frac{\Cinfty(\R)}{(x)}\cong\R,
-  \qquad
-  \frac{\Cinfty(\R)}{(x^2)}\not\cong\R.
-\]
-The set of solutions has forgotten the infinitesimal thickening retained by
-the ordinary quotient.
-
-This example establishes an important boundary:
-
-\begin{quote}
-  Nontransversality does not by itself force positive homotopy groups in the
-  animated function algebra.
-\end{quote}
-
-The singularity of $x^2=0$ is already present in $\pi_0$. Positive homotopy is
-not the definition of singularity in derived geometry.
-
-\subsection{The zero equation and self-intersection}
-\label[subsection]{sec:Koszul_Zero_Section}
-
-The third calculation exhibits information which $\pi_0$ itself forgets.
-
-\begin{example}[The zero function]
-  \label[example]{ex:Koszul_Zero_Section}
-  Let $U$ be a manifold and consider
-  \[
-    0\colon U\longrightarrow\R.
-  \]
-  Its Koszul algebra is
-  \[
-    K(0)
-    =
-    \bigl(\Cinfty(U)\otimes\Lambda(e),\partial e=0\bigr).
-  \]
-  Since the differential vanishes,
-  \[
-    H_0K(0)\cong\Cinfty(U),
-    \qquad
-    H_1K(0)\cong\Cinfty(U).
-  \]
-\end{example}
-
-The ordinary zero locus of the zero function is all of $U$. The classical
-truncation of its derived zero locus is also $U$. Nevertheless,
-\[
-  \pi_1\mathcal O\bigl(Z^{\mathrm{der}}(0)\bigr)
-  \cong
-  \Cinfty(U)
-\]
-is nonzero. Thus the passage to $\pi_0$ forgets a genuine derived class.
-
-Geometrically, the same object is the derived self-intersection of the zero
-section of the trivial line bundle $U\times\R\to U$. For $U=\R$, this is the
-self-intersection of the $x$-axis with which the chapter began. The
-degree-one generator records the repeated normal equation which disappeared
-from the ordinary pushout.
-
-This language requires one qualification. The generator $e$ belongs to the
-chosen Koszul presentation, not canonically to the derived manifold as a
-named element. What is intrinsic is the resulting animated function algebra,
-including its nonzero $\pi_1$. Another presentation can encode the same
-derived object differently.
-
-\subsection{What the examples distinguish}
-\label[subsection]{sec:What_Three_Koszul_Examples_Distinguish}
-
-The three calculations, together with their ordinary benchmarks, give the
-following comparison:
-\[
-\begin{array}{c|c|c|c}
-  \text{object}
-    & \text{underlying set}
-    & \pi_0\mathcal O
-    & \pi_{>0}\mathcal O
-  \\
-  \hline
-  Z^{\mathrm{der}}(x)
-    & \{0\}
-    & \R
-    & 0
-  \\
-  Z^{\mathrm{der}}(x^2)
-    & \{0\}
-    & \Cinfty(\R)/(x^2)
-    & 0
-  \\
-  U
-    & U
-    & \Cinfty(U)
-    & 0
-  \\
-  Z^{\mathrm{der}}(0\colon U\to\R)
-    & U
-    & \Cinfty(U)
-    & \pi_1\cong\Cinfty(U).
-\end{array}
-\]
-
-The first two rows show that the underlying set does not determine the
-classical truncation. The final two rows show that the classical truncation
-does not determine the derived object. These are two independent losses of
-information.
-
-One should therefore resist arranging the examples on a single scale from
-``less derived'' to ``more derived.'' The equation $x^2=0$ is singular through
-a nilpotent in degree zero. The zero equation has an ordinary truncation but a
-nontrivial class in degree one. The Koszul presentation detects both
-phenomena, but distinguishes them.
-
-\section{Vector-bundle zero loci and the next question}
-\label[section]{sec:Vector_Bundle_Zero_Loci_And_Handoff}
-
-\subsection{From functions to sections}
-\label[subsection]{sec:From_Functions_To_Vector_Bundle_Sections}
-
-Most geometric moduli problems are not presented by a single map to
-$\R^k$. They are presented as the zero locus of a section
-\[
-  s\colon U\longrightarrow E
-\]
-of a finite-rank vector bundle $q\colon E\to U$. The correct pullback is
-\[
-\begin{tikzcd}
-  Z^{\mathrm{der}}(s) \rar \dar \drar[pullback]
-    & U \dar["0"] \\
-  U \rar["s"'] & E,
-\end{tikzcd}
-\]
-where the right-hand map is the zero section. Consequently,
-\begin{equation}
-  \label{eq:Vector_Bundle_Derived_Zero_Locus_Pushout}
-  \mathcal O\bigl(Z^{\mathrm{der}}(s)\bigr)
-  \simeq
-  \Cinfty(U)
-  \mathbin{\mathop{\otimes}^{\mathbb L}_{\Cinfty(E)}}
-  \Cinfty(U),
-\end{equation}
-where the two structure maps are $s^*$ and $0^*$.
-
-After choosing a local frame for $E$, the section is given by a tuple of
-smooth functions and the previous Koszul presentation applies. There is also
-a coordinate-free global form.
-
-\begin{proposition}[Vector-bundle Koszul presentation]
-  \label[proposition]{prop:Vector_Bundle_Koszul_Presentation}
-  The animated function algebra of $Z^{\mathrm{der}}(s)$ is represented by
-  \[
-    \bigl(
-      \Gamma(U,\Lambda^\bullet E^\vee),
-      \partial_s
-    \bigr),
-  \]
-  where $\partial_s$ is contraction with $s$. In degree one,
-  \[
-    \partial_s(t)=t(s)
-  \]
-  for $t\in\Gamma(U,E^\vee)$.
-\end{proposition}
-
-In a local frame $e_1,\ldots,e_k$ of $E^\vee$, write
-\[
-  s=(s_1,\ldots,s_k).
-\]
-Then contraction with $s$ sends $e_i$ to $s_i$, so the proposition reduces
-locally to
-\[
-  \bigl(
-    \Cinfty(U)\otimes\Lambda(e_1,\ldots,e_k),
-    \partial e_i=s_i
-  \bigr).
-\]
-The coordinate-free notation makes clear that a change of frame changes the
-presentation but not the derived zero locus. A proof of the global statement
-is given in
-\Cref{sec:Supplement_Vector_Bundle_Koszul_Formula}.
-
-\subsection{The derived object versus a transverse perturbation}
-\label[subsection]{sec:Derived_Object_Versus_Transverse_Perturbation}
-
-The Koszul algebra contains the full section $s$, not only its derivative at
-a zero. For example, the functions $x^2$ and $x^3$ have the same derivative
-at the origin, but their classical zero-locus algebras
-\[
-  \Cinfty(\R)/(x^2)
-  \qquad\text{and}\qquad
-  \Cinfty(\R)/(x^3)
-\]
-are different. No construction using only the first derivative can recover
-this distinction.
-
-Suppose now that $U$ is compact. A small perturbation of $s$ may be chosen
-transverse to the zero section, and its zero locus is then an ordinary smooth
-manifold. Perturbation has simplified the geometry, but it has also discarded
-some of the information visible in the Koszul algebra. In particular, there
-is no reason for the unperturbed derived zero locus to be equivalent to the
-ordinary zero locus of the perturbation.
-
-This leads to the next problem:
-
-\begin{question}
-  \label[question]{question:Derived_Zero_Locus_Transverse_Perturbation}
-  Does a compact derived zero locus determine the same bordism class as the
-  ordinary manifold obtained from a transverse perturbation?
-\end{question}
-
-The next chapter answers this question by regarding a homotopy from $s$ to a
-transverse perturbation as a derived cobordism. This will extract a classical
-intersection-theoretic class while retaining the unperturbed derived zero
-locus as the canonical geometric representative. Stable linearization comes
-one chapter later and recovers finer deformation and obstruction information
-which bordism forgets.
-
-\section{Summary and supplementary materials}
-\label[section]{sec:Derived_Zero_Loci_Summary_And_Supplement}
-
-\subsection{Takeaways}
-\label[subsection]{sec:Derived_Zero_Loci_Takeaways}
-
-The live route through the chapter can be compressed into six statements.
-
-\begin{enumerate}
-  \item A derived zero locus is a pullback in $\mathrm{DMfd}$ and hence a
-    pushout of animated $\Cinfty$-rings after passing to functions.
-  \item The Koszul algebra
-    \[
-      \bigl(
-        \Cinfty(U)\otimes\Lambda(e_1,\ldots,e_k),
-        \partial e_i=f_i
-      \bigr)
-    \]
-    is a concrete chain presentation of that animated pushout.
-  \item The underlying zero set, the classical truncation, and the full
-    animated algebra are three different levels of information.
-  \item The equations $x$ and $x^2$ have the same zero set but different
-    classical truncations. In particular, singularity does not require
-    positive homotopy.
-  \item The derived zero locus of the zero function has the same classical
-    truncation as $U$ but a nonzero degree-one homotopy group.
-  \item A vector-bundle section has a coordinate-free Koszul presentation by
-    exterior powers of its dual bundle. For compact zero loci, the next
-    chapter compares this derived object with a transverse perturbation in
-    bordism.
-\end{enumerate}
-
-The remaining subsections record proofs, grading conventions, and references.
-They are not part of the default live route.
-
-\subsection{Supplement: why the Koszul presentation computes the pushout}
-\label[subsection]{sec:Supplement_Koszul_Calculation}
-
-We prove the calculation quoted in
-\Cref{thm:Koszul_Presentation_Derived_Zero_Locus}. Let
-$x_1,\ldots,x_k$ be the coordinate functions on $\R^k$ and define
-\[
-  Q_k
-  =
-  \bigl(
-    \Cinfty(\R^k)\otimes\Lambda(e_1,\ldots,e_k),
-    \partial e_i=x_i
-  \bigr).
-\]
-Evaluation at the origin extends to an augmentation
-\[
-  Q_k\longrightarrow\R
-\]
-which sends every $e_i$ to zero.
-
-\begin{lemma}
-  \label[lemma]{lem:Coordinate_Koszul_Resolution_Origin}
-  The augmentation $Q_k\to\R$ is a quasi-isomorphism.
-\end{lemma}
+\end{theorem}
 
 \begin{proof}
-  We verify the regularity needed for the Koszul calculation. Hadamard's lemma
-  says that every smooth function $g$ which vanishes on the hyperplane
-  $x_1=0$ can be written as $g=x_1h$ for a smooth function $h$. Hence
-  restriction to that hyperplane induces an isomorphism
-  \[
-    \frac{\Cinfty(\R^k)}{(x_1)}
-    \iso
-    \Cinfty(\R^{k-1}).
-  \]
-  Multiplication by $x_1$ is injective. Repeating the argument after
-  restriction shows that multiplication by $x_i$ is injective modulo
-  $(x_1,\ldots,x_{i-1})$ and that
-  \[
-    \frac{\Cinfty(\R^k)}{(x_1,\ldots,x_i)}
-    \iso
-    \Cinfty(\R^{k-i}).
-  \]
-  Thus $x_1,\ldots,x_k$ is a regular sequence in the order displayed. The
-  usual inductive proof of exactness of its Koszul complex applies. The
-  degree-zero homology is
-  \[
-    \frac{\Cinfty(\R^k)}{(x_1,\ldots,x_k)}
-    \cong
-    \R,
-  \]
-  and the positive homology vanishes.
+Replace the evaluation map $B\to\R$ in
+\Cref{eq:Derived_Zero_Locus_Animated_Pushout} by the relative free
+resolution $B\to K_B(t)$. Its strict pushout along $B\to A$ computes
+the derived pushout and is exactly \Cref{eq:Koszul_Algebra_Function}.
+Apply the smooth Dold--Kan correspondence.
 \end{proof}
 
-The lemma makes $Q_k$ a chain-algebra resolution of the evaluation algebra
-$\R$. Extend scalars along
+The construction resolves the coordinates on $\R^r$, which are a regular
+sequence, before substituting the possibly singular functions $f_i$.
+No regular-sequence assumption on the $f_i$ is needed. The
+positive-degree homology can retain additional relations among them.
+
+In particular,
 \[
-  f^*\colon\Cinfty(\R^k)\longrightarrow\Cinfty(U).
+ H_0(K_A(f))=A/(f_1,\ldots,f_r).
 \]
-The result is
-\begin{align*}
-  \Cinfty(U)\otimes_{\Cinfty(\R^k)}Q_k
-  &\cong
-  \Cinfty(U)\otimes\Lambda(e_1,\ldots,e_k),\\
-  \partial e_i&=f_i.
-\end{align*}
-This is $K(f)$. By the smooth Dold--Kan comparison, it represents the
-animated pushout in
-\Cref{eq:Derived_Zero_Locus_Animated_Pushout}.
+In degree $1$, a cycle $\sum_i a_i\varepsilon_i$ is a relation
+$\sum_i a_if_i=0$. Boundaries include the relations
+$f_i\varepsilon_j-f_j\varepsilon_i$. Thus higher homology measures
+relations that survive after these elementary ones have been identified.
+The algebra also retains the multiplication between such classes.
 
-The resolution is only a calculation device. The resulting animated
-$\Cinfty$-ring is characterized intrinsically by the pushout, independently
-of the chosen presentation.
+\section{Equations with the same zero set}
 
-\subsection{Supplement: the coordinate-free vector-bundle formula}
-\label[subsection]{sec:Supplement_Vector_Bundle_Koszul_Formula}
+The preceding chapters computed ordinary quotient rings. We now return
+to those equations to ask what survives in the positive degrees of the
+Koszul model. In particular, a multiple zero need not have higher
+homotopy of functions, whereas an excess equation can produce it.
 
-We prove \Cref{prop:Vector_Bundle_Koszul_Presentation}. Let
-$q\colon E\to U$ be the bundle projection and let
+\begin{example}[A transverse equation]
+For $f(x)=x$, the model is
 \[
-  \tau\in\Gamma(E,q^*E)
+ \Cinfty(\R)[\varepsilon],\qquad d\varepsilon=x.
 \]
-be the tautological section, given by
+The resolution calculation shows that it is quasi-isomorphic to $\R$.
+Thus the derived zero locus is the ordinary point.
+
+More generally, if $f\colon U\to\R^r$ is transverse to zero, its components
+can be completed locally to coordinates along the zero set. The same
+Koszul calculation shows that the derived zero locus is the ordinary
+manifold $f^{-1}(0)$. Away from the zero set, one of the functions is
+invertible, and the Koszul complex is contractible. These local statements
+recover the transverse-pullback property of derived manifolds.
+\end{example}
+
+\begin{example}[A multiple zero]
+For $f(x)=x^2$, multiplication by $x^2$ is still injective on $\Cinfty(\R)$.
+Hence the Koszul algebra has no positive homology, but
 \[
-  \tau(e)=e\in E_{q(e)}.
+ H_0(K(x^2))=\Cinfty(\R)/(x^2)\cong\R[\delta]/(\delta^2).
 \]
-Consider the chain $\Cinfty(E)$-algebra
+The last identification follows from Taylor's formula:
 \[
-  Q_E
-  =
-  \Cinfty(E)
-  \otimes_{\Cinfty(U)}
-  \Gamma(U,\Lambda^\bullet E^\vee),
+ g(x)=g(0)+xg'(0)+x^2r(x),
 \]
-with differential given by contraction with $\tau$. For
-$t\in\Gamma(U,E^\vee)$, the function $\partial t\in\Cinfty(E)$ is
+with $r$ smooth. The smooth operations on the quotient are given by the
+first-order Taylor formula. For instance,
+$\varphi(a+b\delta)=\varphi(a)+\varphi'(a)b\delta$.
+
+Thus $Z^{\mathrm{der}}(x^2)$ is not the ordinary point, even though its
+animated ring is discrete. Nilpotents in $\pi_0$ can already distinguish
+it. The same argument gives
+$\Cinfty(\R)/(x^m)\cong\R[\delta]/(\delta^m)$ for $m\geq1$.
+\end{example}
+
+\begin{example}[A zero equation]
+For the zero function on $\R$, the differential vanishes:
 \[
-  (\partial t)(e)=t_{q(e)}(e).
+ K(0)=\Cinfty(\R)[\varepsilon],\qquad d\varepsilon=0.
 \]
-Evaluation along the zero section gives an augmentation
+Its degree-zero homology is $\Cinfty(\R)$, and its degree $1$
+homology is another copy of $\Cinfty(\R)$. The classical truncation is
+the line, while the derived object remembers that an equation was imposed
+which vanishes identically.
+
+Similarly, the self-intersection of $\{0\}\subset\R$ has function algebra
+$\R[\varepsilon]$ with $d\varepsilon=0$. Its underlying topological space
+is a point and its classical function ring is $\R$, but $\pi_1=\R$.
+This is a local instance of the excess-intersection phenomena in
+\citet[Example~2.7]{Spivak_Derived_Smooth_Manifolds}.
+\end{example}
+
+\begin{example}[A repeated equation]
+The maps $x\mapsto x$ and $x\mapsto(x,x)$ have the same zero set and
+the same ordinary quotient ring. For the second map the Koszul algebra is
 \[
-  Q_E\longrightarrow\Cinfty(U).
+ \Cinfty(\R)[\varepsilon_1,\varepsilon_2],
+ \qquad d\varepsilon_1=d\varepsilon_2=x.
 \]
+Set $\eta=\varepsilon_2-\varepsilon_1$. Then $d\eta=0$, and the algebra
+becomes $K(x)\otimes_\R\Lambda(\eta)$. It is quasi-isomorphic to
+$\R[\eta]$ with zero differential. The repeated equation produces a
+nonzero $\pi_1$.
+\end{example}
 
-The factorization
+These examples separate three comparisons. A point and a multiple point
+differ in their classical function rings. An ordinary point and a derived
+self-intersection differ in higher homotopy. Different lists generating
+the same ordinary ideal can define different derived zero loci, because
+the derived construction remembers the chosen map to the space of equations.
+
+\section{Families of equations}
+
+The model also lets us follow an equation as its parameters vary.
+Even when the total zero locus is a manifold, its fibres can acquire
+multiplicity or higher homotopy.
+
+Let $S$ be a parameter manifold and let
+$f\colon S\times U\to\R^r$ be smooth. The relative equation defines a
+derived object over $S$:
 \[
-  \Cinfty(E)
-  \longrightarrow
-  Q_E
-  \longrightarrow
-  \Cinfty(U)
+ X=(S\times U)\times_{S\times\R^r}(S\times\{0\}).
 \]
-is a resolution suitable for calculating the animated pushout along the zero
-section. For a trivial rank-$k$ bundle, it is the coordinate Koszul
-resolution with differential $\partial e_i=y_i$ in the fiber coordinates.
-For a general vector bundle, the assertion follows by functoriality and the
-fact that a vector bundle is a retract of a trivial bundle. This is the global
-resolution constructed in Steffens, Example~4.1.5.11
-\cite[Example~4.1.5.11]{Steffens_Derived_Differential_Geometry}.
+Its Koszul model has coefficients in $\Cinfty(S\times U)$ and
+differential $d\varepsilon_i=f_i(s,x)$.
 
-Extend scalars along
+For a smooth map $g\colon T\to S$, pullback gives the same construction
+with $f(g(t),x)$. This follows by pasting the defining pullback squares.
+In particular, the fibre at $s\in S$ is the derived zero locus of $f_s$.
+The fibre is a derived pullback even when the total object is an ordinary
+manifold.
+
+For example, consider $f(s,x)=x^2-s$. The total zero locus is the ordinary
+parabola $s=x^2$, since the derivative in the $s$-direction is $-1$.
+Over $s>0$ its fibre consists of two points; over $s<0$ it is empty.
+The derived fibre at $s=0$ has function ring $\R[\delta]/(\delta^2)$.
+The parameter map from the parabola to $S$ has a critical point there.
+
+A second family, $f(s,x)=sx$, illustrates the appearance of higher
+homotopy in a fibre. For $s\neq0$, the fibre is an ordinary point.
+For $s=0$, its Koszul model is
+$\Cinfty(\R)[\varepsilon]$ with zero differential. Although multiplication
+by $sx$ on $\Cinfty(\R^2)$ is injective, substitution $s=0$ destroys
+injectivity. Derived base change retains this change in the equation.
+
+\section{Zero loci of vector bundle sections}
+\label[section]{sec:Supplement_Vector_Bundle_Koszul_Formula}
+
+The same model works without a chosen list of global equations. Let
+$p\colon E\to U$ be a vector bundle of rank $r$, and let $s$ be a section.
+Its derived zero locus is the pullback of $s$ and the zero section as maps
+from $U$ to $E$. Define a sheaf of smooth dg-algebras on $U$ by
 \[
-  s^*\colon\Cinfty(E)\longrightarrow\Cinfty(U).
+ \mathcal K(s)_q
+   =\Gamma(-,\Lambda^qE^\vee),\qquad d=\iota_s.
 \]
-The resulting chain algebra is
-\begin{align*}
-  \Cinfty(U)\otimes_{\Cinfty(E)}Q_E
-  &\cong
-  \Gamma(U,\Lambda^\bullet E^\vee),\\
-  \partial_s(t)&=t(s).
-\end{align*}
-By the smooth Dold--Kan comparison, it represents the animated pushout in
-\Cref{eq:Vector_Bundle_Derived_Zero_Locus_Pushout}.
+Here $\iota_s$ contracts an alternating form with $s$. In a local frame,
+this is the Koszul algebra already calculated. Changes of frame respect
+contraction, so the local algebras glue.
 
-\subsection{Supplement: grading conventions}
-\label[subsection]{sec:Derived_Zero_Loci_Grading_Conventions}
+\begin{proposition}
+\label[proposition]{prop:Vector_Bundle_Koszul_Presentation}
+The sheaf $\mathcal K(s)$ presents the functions of the derived zero locus
+of $s$, supported on its ordinary zero set. In particular, for the zero
+section its differential vanishes and its homotopy sheaves are
+$\Lambda^qE^\vee$ in degree $q$.
+\end{proposition}
 
-The Koszul presentation is a nonnegatively graded chain algebra whose
-differential lowers degree. Its homology $H_i$ presents the homotopy group
-$\pi_i$ of the animated function algebra. Thus the exterior generator in the
-zero-function example occupies homological degree one and represents a class
-in $\pi_1$.
+\begin{proof}
+Trivialize $E$ on an open cover and apply the Koszul model theorem.
+On the complement of the zero set, contraction has a local contracting
+homotopy: choose $\lambda\in E^\vee$ with $\lambda(s)=1$ and use exterior
+multiplication by $\lambda$. The frame-independent contraction formula
+identifies the models on overlaps, giving the stated sheaf.
+\end{proof}
 
-The next chapter will write cotangent and tangent complexes
-cohomologically. A quasi-smooth cotangent complex occupies degrees $-1$ and
-$0$, while its dual tangent complex occupies degrees $0$ and $1$. The
-degree-one Koszul class of the zero function and the degree-one obstruction
-space of its tangent complex therefore belong to different objects and have
-different meanings.
+This is the bundle form of the calculation in
+\cite[Example~3.3.17]{Steffens_Derived_Cinfty_Geometry_I}.
+It explains how the local excess directions of a self-intersection fit
+into a vector bundle rather than a fixed vector space.
 
-Steffens uses homological conventions for chain presentations. Spivak also
-uses conventions which require translation when passing between function
-algebras and deformation complexes. Every displayed tangent complex in this
-manuscript follows the cohomological convention stated above.
+\section{Further reading}
 
-\subsection{Related literature}
-\label[subsection]{sec:Derived_Zero_Loci_Related_Literature}
+The following observations explain the role of regular sequences in the
+examples and the effect of allowing generators in higher degrees.
+The exercises give further comparisons between presentations of zero loci.
 
-The smooth Dold--Kan comparison which permits connective chain
-$\Cinfty$-algebras to be used as presentations of animated
-$\Cinfty$-rings is Steffens, Theorem~4.1.5.7
-\cite[Theorem~4.1.5.7]{Steffens_Derived_Differential_Geometry}. His
-Examples~4.1.5.10--4.1.5.11 give the explicit Koszul presentations for a
-smooth function and a vector-bundle section
-\cite[Examples~4.1.5.10--4.1.5.11]{Steffens_Derived_Differential_Geometry}.
+A regular sequence $f_1,\ldots,f_r$ in an ordinary
+smooth ring has Koszul homology concentrated in degree zero. One proves
+this inductively: adjoining the last generator forms the cone of
+multiplication by $f_r$ on the preceding Koszul complex. If the preceding
+homology is $A/(f_1,\ldots,f_{r-1})$ and $f_r$ is a non-zero-divisor
+there, the cone has only the desired quotient as its degree-zero
+homology. This explains both the transverse case and the multiple-zero
+example. Concentration in degree zero is weaker than smoothness of the
+resulting ordinary ring.
 
-The universal algebraic presentation of derived manifolds used at the start
-of the chapter is Carchedi--Steffens, Corollary~5.4
-\cite[Corollary~5.4]{Carchedi_Steffens_Universal_Derived_Manifolds}. Their
-universal-property theorem explains why the animated pushouts calculated here
-are intrinsic derived manifolds rather than a separate class of differential
-graded objects.
+The smooth dg-algebra model also permits generators in degrees above $1$.
+For example, a free generator $z$ in degree $2$ with $dz=0$ gives
+$\R[z]$. Since $z$ has even degree, its powers need not vanish:
+$H_{2j}(\R[z])=\R z^j$ for every $j\geq0$.
+A finite list of dg-generators therefore does not imply that the
+function algebra has only finitely many nonzero homotopy groups.
+The boundedness of a tangent complex is a separate issue, treated next.
 
-Spivak develops derived zero loci and their geometric intersection theory in
-an earlier axiomatic construction of derived smooth manifolds
-\cite[Sections~1--3]{Spivak_Derived_Smooth_Manifolds}. The present chapter
-uses the Carchedi--Steffens universal presentation for the intrinsic object
-and Steffens's smooth Dold--Kan comparison for the calculation.
+\begin{exercise}
+Compute the Koszul homology of $(x,0)\colon\R\to\R^2$ and compare it
+with the repeated-equation example.
+\end{exercise}
+
+\begin{exercise}
+For $f=(x_1,\ldots,x_q,0,\ldots,0)\colon\R^n\to\R^r$, show that the
+Koszul algebra is quasi-isomorphic to
+$\Cinfty(\R^{n-q})[\eta_1,\ldots,\eta_{r-q}]$ with zero differential.
+Interpret the surviving generators as excess equations.
+\end{exercise}
+
+\begin{exercise}
+Show directly that adjoining a new coordinate $y$ and the equation $y=0$
+does not change the derived zero locus. Compare this with adjoining the
+identically zero equation.
+\end{exercise}

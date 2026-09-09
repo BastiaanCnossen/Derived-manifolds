@@ -1,1091 +1,402 @@
 % !TEX root = ../main.tex
 
-% This chapter is the complete working manuscript for the seventh seminar
-% talk. The final section contains supplementary material outside the default
-% live route.
+\chapter{Quasi-smooth derived geometry and Kuranishi charts}
+\label[chapter]{chap:Local_Derived_Geometry_Kuranishi_Charts}
 
-\chapter{Stable linearization and tangent complexes}
-\label[chapter]{chap:Stable_Linearization_And_Tangent_Complexes}
+The preceding chapters described the functions and tangent complexes of
+derived zero loci. We now ask when a derived object admits such a
+presentation locally. The answer is detected by its cotangent complex:
+the quasi-smooth objects are precisely those locally presented as zero
+loci of sections of finite-rank vector bundles.
 
-Talk 5 studied a derived zero locus as a nonlinear animated algebra. For a
-smooth function $f\colon U\to\R$, the Koszul presentation remembers the
-function itself:
+To make this local statement precise, we first pass from animated smooth
+rings to their spectra and structure sheaves. Smooth localization supplies
+the restriction maps, and gluing affine objects leads to derived
+$\Cinfty$-schemes. We then state the local zero-locus theorem and study
+its presentations, called Kuranishi charts. Stabilization and changes of
+bundle frame illustrate how different equations can describe the same
+derived object. These comparisons will be used later in the finite-dimensional
+reduction of elliptic equations.
+
+\section{Smooth localization}
+\label[section]{sec:Localization_To_Derived_Spectra}
+
+For a smooth function $a$ on a manifold $M$, put
+$D(a)=\{x\in M:a(x)\neq0\}$. The smooth localization satisfies
 \[
-  K(f)=\bigl(\Cinfty(U)\otimes\Lambda(e),\partial e=f\bigr).
+ \Cinfty(M)[a^{-1}]\cong\Cinfty(D(a)).
 \]
-Talk 6 then showed that derived bordism deliberately forgets much of this
-nonlinear information. A derived zero locus may be replaced, within its
-bordism class, by a transverse perturbation.
+One way to see this is to identify $D(a)$ with the graph of $1/a$ in
+$M\times\R$. This graph is the transverse zero locus of
+$ya(x)-1$, so adjoining a smooth inverse to $a$ gives precisely its
+function ring.
 
-This chapter asks for something between those two extremes. We want an
-intrinsic first-order approximation which remembers both infinitesimal
-solutions and the failure of transversality. The ordinary tangent space gives
-only
-\[
-  \ker(D_xf).
-\]
-At a nontransverse zero this is not enough: it forgets the unused equation
-directions in $\operatorname{coker}(D_xf)$. Moreover, kernels and cokernels
-can jump separately in families even when the morphism $D_xf$ varies
-smoothly. The better object is the morphism itself, regarded as a two-term
-complex:
-\[
-  [T_xU\xrightarrow{D_xf}\R].
-\]
+Smooth localization is larger than algebraic localization of the underlying
+ring. For instance, $\Cinfty(\R)[x^{-1}]$ contains the smooth function
+$\exp(1/x^2)$ on the punctured line. It is not a fraction $g(x)/x^n$
+with $g$ smooth on all of $\R$: multiplication by any power of $x$
+leaves its divergence at zero. Smooth functional calculus is part of
+the localization.
 
-Our task is to explain why this complex arises intrinsically from the derived
-zero locus. The route has four steps. Ordinary smooth derivations identify
-the classical notion of linearization. Stable modules provide a setting in
-which morphisms, fibers, cofibers, and shifts remain part of one linear
-object. The cotangent complex is then characterized as the universal stable
-linearization. Finally, its behavior on derived pullbacks produces the
-two-term tangent complex of a derived zero locus.
+Let now $A$ be an animated $\Cinfty$-ring and $a\in\pi_0A$.
 
-\section{From tangent spaces to stable linearization}
-\label[section]{sec:From_Tangent_Spaces_To_Stable_Linearization}
-
-\subsection{Ordinary smooth derivations}
-\label[subsection]{sec:Smooth_Derivations}
-
-Let $A$ be an ordinary $\Cinfty$-ring and let $M$ be an ordinary
-$A$-module. A map of sets
-\[
-  D\colon A\longrightarrow M
-\]
-is a \emph{$\Cinfty$-derivation} if, for every smooth function
-$\varphi\colon\R^n\to\R$, it satisfies the smooth chain rule
-\begin{equation}
-  \label{eq:Cinfty_Derivation_Chain_Rule}
-  D\bigl(\varphi(a_1,\ldots,a_n)\bigr)
-  =
-  \sum_{i=1}^n
-  (\partial_i\varphi)(a_1,\ldots,a_n)D(a_i).
-\end{equation}
-Taking $\varphi$ to be addition or multiplication recovers additivity and
-the Leibniz rule. Requiring the formula for every smooth $\varphi$ records
-the additional operations which distinguish $\Cinfty$-rings from ordinary
-commutative $\R$-algebras.
-
-\begin{definition}[Smooth K\"ahler differentials]
-  \label[definition]{def:Smooth_Kahler_Differentials}
-  The module of \emph{smooth K\"ahler differentials} of $A$ is an
-  $A$-module $\Omega_A^1$ equipped with a universal $\Cinfty$-derivation
-  \[
-    d\colon A\longrightarrow\Omega_A^1.
-  \]
-  Thus composition with $d$ induces a natural isomorphism
-  \[
-    \Hom_A(\Omega_A^1,M)
-    \cong
-    \operatorname{Der}_{\Cinfty}(A,M).
-  \]
+\begin{definition}
+\label[definition]{def:Derived_Localization}
+The smooth localization $A[a^{-1}]$ is initial among animated smooth
+rings under $A$ in which the image of $a$ is invertible in $\pi_0$.
 \end{definition}
 
-The universal property turns a possibly nonlinear algebra into a linear
-object. For a free $\Cinfty$-ring, the answer is the familiar module of
-differential forms.
-
-\begin{proposition}
-  \label[proposition]{prop:Differentials_Free_Cinfty_Ring}
-  There is an isomorphism of $\Cinfty(\R^n)$-modules
-  \[
-    \Omega^1_{\Cinfty(\R^n)}
-    \cong
-    \bigoplus_{i=1}^n\Cinfty(\R^n)\,dx_i,
-  \]
-  under which
-  \[
-    dg
-    =
-    \sum_{i=1}^n\frac{\partial g}{\partial x_i}\,dx_i.
-  \]
-\end{proposition}
-
-\begin{proof}
-  Given $(m_1,\ldots,m_n)\in M^n$, define
-  \[
-    D(g)=\sum_i\frac{\partial g}{\partial x_i}m_i.
-  \]
-  The ordinary chain rule shows that this is a $\Cinfty$-derivation.
-  Conversely, \Cref{eq:Cinfty_Derivation_Chain_Rule} forces every derivation
-  to have this form, with $m_i=D(x_i)$. Hence derivations into $M$ are
-  naturally identified with $M^n$, represented by the displayed free
-  module.
-\end{proof}
-
-For a manifold $U$, this becomes
+Choose a representative of $a$, hence a map $\Cinfty(\R)\to A$.
+The localization is the pushout
 \[
-  \Omega^1_{\Cinfty(U)}\cong\Gamma(U,T^*U).
+ \begin{tikzcd}
+ \Cinfty(\R)\rar\dar\drar[pushout]&A\dar\\
+ \Cinfty(\R\setminus\{0\})\rar&A[a^{-1}].
+ \end{tikzcd}
 \]
-Ordinary smooth differentials therefore recover the ordinary cotangent
-bundle. At a point $x\in U$, dualizing its fiber recovers $T_xU$.
+The universal property makes the result independent of this choice.
 
-\subsection{Why ordinary modules are insufficient}
-\label[subsection]{sec:Why_Ordinary_Modules_Are_Insufficient}
-
-Now suppose that an ordinary $\Cinfty$-ring has a presentation
+\begin{theorem}[Flatness of smooth localization]
+\label[theorem]{thm:Homotopy_Groups_Smooth_Localization}
+There are natural isomorphisms
 \[
-  A=B/I,
-  \qquad
-  B=\Cinfty(\R^n).
+ \pi_0(A[a^{-1}])\cong(\pi_0A)[a^{-1}],\qquad
+ \pi_i(A[a^{-1}])
+ \cong\pi_i(A)\otimes_{\pi_0A}(\pi_0A)[a^{-1}].
 \]
-The relations contribute their own first-order information. Differentiating
-them gives a morphism
-\begin{equation}
-  \label{eq:Conormal_Complex_Heuristic}
-  I/I^2
-  \longrightarrow
-  \Omega_B^1\otimes_BA.
-\end{equation}
-For a complete-intersection presentation, the correct linearization is the
-two-term complex in \Cref{eq:Conormal_Complex_Heuristic}, not merely its
-cokernel $\Omega_A^1$. For more complicated presentations, further degrees
-can occur.
-
-There is a complementary geometric warning. Consider the family of linear
-maps
-\[
-  \R\xrightarrow{t}\R,
-  \qquad t\in\R.
-\]
-For $t\neq0$, both kernel and cokernel vanish. At $t=0$, both are
-one-dimensional. Neither the kernels nor the cokernels form a vector bundle
-over the parameter line. The family of morphisms itself, however, varies
-perfectly well.
-
-This is exactly what happens for a family of equations. At a zero $x$ of a
-section $s\colon U\to E$, taking only $\ker(D_xs)$ retains infinitesimal
-solutions but discards the unused equation directions
-$\operatorname{coker}(D_xs)$. Taking kernel and cokernel as two unrelated
-vector spaces loses the differential which connects them. We therefore seek
-a linear category in which
-\[
-  [T_xU\xrightarrow{D_xs}E_x]
-\]
-is one object.
-
-\subsection{The stable linear world}
-\label[subsection]{sec:Stable_Linear_World}
-
-The guiding analogy is
-\[
-  \text{ordinary module}
-  \quad\rightsquigarrow\quad
-  \text{complex of modules}.
-\]
-Stable homotopy theory provides a homotopy-coherent version of this passage.
-We need only its linear formalism, not a construction of its objects.
-
-Write $\mathbb S$ for the sphere, the universal coefficient object of stable
-homotopy theory. Stable $\mathbb S$-modules form a stable $\infty$-category.
-Its connective objects may be thought of heuristically as
-homotopy-coherent abelian groups. Allowing arbitrary shifts gives all stable
-$\mathbb S$-modules.
-
-Classical homological algebra lies inside this setting. There is a morphism
-of commutative ring spectra
-\[
-  \mathbb S\longrightarrow H\Z,
-\]
-and stable $H\Z$-modules are the same as chain complexes of abelian groups,
-considered up to quasi-isomorphism. An ordinary abelian group is the special
-case concentrated in degree zero.
-
-The distinction between $\mathbb S$ and $H\Z$ is genuine. The positive
-homotopy groups of $H\Z$ vanish, while $\mathbb S$ has nontrivial positive
-stable homotopy groups. We will not calculate any of them. The point of the
-comparison is only that stable linear algebra contains ordinary homological
-algebra but is not defined by choosing chain complexes.
-
-For us, four operational properties matter:
-
-\begin{enumerate}
-  \item There is a zero object and a direct sum, which is simultaneously a
-    product and a coproduct.
-  \item Every object has shifts $M[n]$ for all integers $n$.
-  \item Every morphism has a fiber and a cofiber, and fiber sequences agree
-    with cofiber sequences after shifting.
-  \item Tensor products are already derived and preserve cofiber sequences
-    in each variable.
-\end{enumerate}
-
-These are precisely the operations needed to keep
-\Cref{eq:Conormal_Complex_Heuristic} intact and to turn the linearization of a
-pushout into an exact triangle.
-
-Let $A$ now be an animated $\Cinfty$-ring. Forgetting the nonpolynomial
-smooth operations gives an underlying connective commutative
-$\R$-algebra spectrum, which we denote by $A_{\mathrm{alg}}$.
-
-\begin{definition}[Stable module]
-  \label[definition]{def:Stable_Module_Animated_Cinfty_Ring}
-  A \emph{stable $A$-module} is a module over $A_{\mathrm{alg}}$. We write
-  \[
-    \operatorname{Mod}_A
-    :=
-    \operatorname{Mod}_{A_{\mathrm{alg}}}
-  \]
-  for their stable $\infty$-category.
-\end{definition}
-
-If $A$ is an ordinary $\Cinfty$-ring, then
-\[
-  \operatorname{Mod}_A\simeq D(A),
-\]
-the derived $\infty$-category of ordinary $A$-modules. Thus an ordinary
-$A$-module gives a stable $A$-module concentrated in degree zero. A general
-stable $A$-module may occupy several degrees.
-
-For a morphism $A\to B$, extension of scalars is written
-\[
-  M\longmapsto M\otimes_AB.
-\]
-This tensor product is formed in stable module categories and is already
-derived. The notation
-\[
-  \Hom_{\operatorname{Mod}_A}(M,N)
-\]
-denotes the mapping anima.
-
-The direct definition above is intentionally close to the familiar notion
-of a module over a ring. There is also an intrinsic construction which starts
-only from animated smooth algebras.
-
-\begin{theorem}[Stable-module comparison]
-  \label[theorem]{thm:Stable_Module_Comparison}
-  There is a natural equivalence of stable $\infty$-categories
-  \begin{equation}
-    \label{eq:Stable_Module_Comparison_Main}
-    \operatorname{Mod}_{A_{\mathrm{alg}}}
-    \simeq
-    \operatorname{Stab}
-    \bigl(
-      \operatorname{Alg}_{\Cinfty}(\An)_{/A}
-    \bigr).
-  \end{equation}
+The smooth localization of the ordinary ring $\pi_0A$ is flat as
+a module over its underlying ring.
 \end{theorem}
 
-Here the stabilization on the right is formed from pointed objects in the
-slice. Such a pointed object is a retractive diagram
+We use this result without proof
+\cite[Proposition~4.1.3.13]{Steffens_Derived_Differential_Geometry}.
+The tensor product in its second formula is an ordinary module tensor
+product. Flatness explains why restricting functions creates no
+additional higher homotopy from a derived tensor product.
+It restricts each existing homotopy module.
+
+The corresponding relative cotangent complex vanishes:
 \[
-  A\longrightarrow B\longrightarrow A
+ \mathbb L_{A[a^{-1}]/A}\cong0.
 \]
-whose composite is the identity. Under
-\Cref{eq:Stable_Module_Comparison_Main}, a stable $A$-module gives a smooth
-square-zero extension of $A$. We return to this intrinsic construction in
-\Cref{sec:Supplement_Intrinsic_Stable_Modules}. For the live argument, the
-important conclusion is simpler: stable $A$-modules are the correct targets
-for smooth derivations once relations and higher information are present.
-
-\section{Square-zero extensions and cotangent complexes}
-\label[section]{sec:Square_Zero_Extensions_And_Cotangent_Complexes}
-
-\subsection{Smooth square-zero extensions}
-\label[subsection]{sec:Smooth_Square_Zero_Extensions}
-
-We first recall the ordinary construction. Let $A$ be an ordinary
-$\Cinfty$-ring and let $M$ be an ordinary $A$-module. The set $A\oplus M$
-becomes a $\Cinfty$-ring with square-zero ideal $M$ by the first-order Taylor
-formula
-\begin{equation}
-  \label{eq:Smooth_Square_Zero_Formula}
-  \varphi_{A\oplus M}
-  \bigl((a_1,m_1),\ldots,(a_n,m_n)\bigr)
-  =
-  \left(
-    \varphi_A(a_1,\ldots,a_n),
-    \sum_i(\partial_i\varphi)_A(a_1,\ldots,a_n)m_i
-  \right).
+By transitivity,
+\begin{equation}\label{eq:Cotangent_Complex_Localizes}
+ \mathbb L_{A[a^{-1}]}\cong\mathbb L_A\otimes_A A[a^{-1}].
 \end{equation}
-The projection $A\oplus M\to A$ is a morphism of $\Cinfty$-rings. A section
-of it has the form
-\[
-  a\longmapsto(a,D(a)).
-\]
-Formula \Cref{eq:Smooth_Square_Zero_Formula} says precisely that this section
-is a morphism of $\Cinfty$-rings if and only if $D$ is a
-$\Cinfty$-derivation.
+This is the compatibility needed to regard cotangent complexes as local
+geometric objects.
 
-For an animated $\Cinfty$-ring $A$ and a stable $A$-module $M$, the
-stable-module comparison supplies a smooth square-zero extension
-\[
-  A\oplus M\longrightarrow A.
-\]
-Its underlying animated commutative algebra is the square-zero extension by
-the connective cover of $M$:
-\begin{equation}
-  \label{eq:Underlying_Module_Smooth_Square_Zero_Extension}
-  (A\oplus M)_{\mathrm{alg}}
-  \simeq
-  A_{\mathrm{alg}}\oplus\tau_{\geq0}M.
-\end{equation}
-The connective cover appears because an animated algebra is connective,
-whereas its stable module category contains arbitrary shifts.
+\section{The spectrum and its structure sheaf}
 
-\begin{definition}[Derived smooth derivation]
-  \label[definition]{def:Derived_Smooth_Derivation}
-  Let $A$ be an animated $\Cinfty$-ring and let $M$ be a stable
-  $A$-module. The anima of \emph{smooth derivations} of $A$ with values in
-  $M$ is the anima of sections of the square-zero extension:
-  \[
-    \operatorname{Der}_{\Cinfty}(A,M)
-    :=
-    \Hom_{
-      \operatorname{Alg}_{\Cinfty}(\An)_{/A}}
-    (A,A\oplus M).
-  \]
+Assume $A$ is finitely presented as an animated smooth ring.
+Its spectrum has underlying set
+\[
+ |\Spec A|=\Hom_{\Cinfty\text{-rings}}(\pi_0A,\R).
+\]
+These are real points, not arbitrary prime ideals of an underlying
+commutative ring. A point determines a maximal ideal with residue field
+$\R$, namely the kernel of its evaluation map. The evaluation map
+is the useful datum in smooth geometry.
+
+For $a\in\pi_0A$, the subsets
+\[
+ D(a)=\{x:x(a)\neq0\}
+\]
+form a basis for a topology, since $D(a)\cap D(b)=D(ab)$.
+If $\pi_0A=\Cinfty(\R^n)/I$, evaluation identifies this topological
+space with the common zero set $Z(I)\subseteq\R^n$, with its subspace
+topology. To check the topology, bump functions give basic
+neighbourhoods inside any prescribed Euclidean open set.
+
+\begin{construction}[Derived spectrum]
+\label[construction]{con:Derived_Spectrum}
+The derived spectrum is
+\[
+ \Spec A=(|\Spec A|,\mathcal O_{\Spec A}),
+\]
+where the sheaf of animated smooth rings is obtained from smooth
+localizations. In the finite-presentation setting,
+\[
+ \mathcal O_{\Spec A}(D(a))\cong A[a^{-1}].
+\]
+The local ring at $x$ is the filtered colimit of these localizations
+over basic neighbourhoods of $x$.
+\end{construction}
+
+The assertion that these assignments have the required sheaf and
+reconstruction properties is a theorem about smooth rings.
+It is part of the affine comparison
+\cite[Section~4.1.3, especially Corollary~4.1.3.34]
+{Steffens_Derived_Differential_Geometry}.
+For unrestricted smooth rings one must take care with sheafification
+and reconstruction; finite presentation is the class used here.
+
+The term \emph{locally animated $\Cinfty$-ringed space} means that
+$\pi_0$ of every stalk is a local smooth ring. At $x$ its residue map
+is evaluation in $\R$. The higher homotopy modules remain in the stalk.
+A stalk belongs to a point; the values on basic opens are the
+localizations before taking that colimit.
+
+For an ordinary manifold, the construction recovers its familiar
+ringed space:
+\[
+ \Spec\Cinfty(M)\cong(M,\Cinfty_M).
+\]
+Real homomorphisms are evaluations at points, the basic opens give
+the manifold topology, and the localization formula identifies the
+structure sheaf with smooth functions.
+
+The examples from \Cref{chap:Derived_Zero_Loci_And_Tangent_Complexes} now have an explicit topological meaning.
+The spectra of $\R$, $\R[\delta]/(\delta^2)$, and
+$\R[\varepsilon]$ with $|\varepsilon|=1$, $d=0$, all have one point.
+Their structure sheaves differ. The second has nilpotents in degree zero;
+the third has a nonzero homotopy group in degree one.
+
+\section{Derived schemes and quasi-smoothness}
+
+The spectrum construction supplies affine objects and their open subsets.
+We can therefore define locally affine objects, then use the cotangent
+complex to single out those that should admit local presentations by
+vector bundle sections.
+
+An open subset $V\subseteq|X|$ of a locally ringed object defines
+an open subobject $(V,\mathcal O_X|_V)$. In particular,
+\[
+ \Spec A[a^{-1}]
+ \cong(D(a),\mathcal O_{\Spec A}|_{D(a)}).
+\]
+Thus algebraic localization becomes geometric open restriction.
+
+\begin{definition}
+\label[definition]{def:Derived_Cinfty_Scheme}
+A derived $\Cinfty$-scheme locally of finite presentation is a locally
+animated $\Cinfty$-ringed space with an open cover by spectra of
+finitely presented animated $\Cinfty$-rings.
 \end{definition}
 
-This is the derived version of the elementary correspondence between
-derivations and sections. The use of an anima, rather than a set, remembers
-homotopies between derivations and all higher coherences.
+The affine objects in this definition are exactly the derived manifolds
+of the universal-property convention in \Cref{chap:From_Smooth_Algebra_To_Derived_Manifolds}:
+\[
+ \mathrm{DMfd}\simeq
+ \bigl(\operatorname{Alg}_{\Cinfty}(\An)^{\mathrm{fp}}\bigr)^{\mathrm{op}}.
+\]
+In particular, an ordinary manifold is affine in this sense.
+Affineness does not mean that it is a single Euclidean coordinate chart.
+For example, $S^1=\Spec\Cinfty(S^1)$ is affine.
+Allowing locally affine objects supplies the category in which
+open gluing can be performed.
 
-\subsection{The universal derived cotangent complex}
-\label[subsection]{sec:Universal_Derived_Cotangent_Complex}
+The classical truncation is
+\[
+ t_0X=(|X|,\pi_0\mathcal O_X).
+\]
+It keeps the topology and removes higher homotopy from the structure
+sheaf. It can still contain nilpotents. Thus classical truncation and
+the underlying zero set are different operations.
 
-We can now retain the classical universal property and enlarge only its
-linear target category.
+Cotangent complexes restrict by
+\Cref{eq:Cotangent_Complex_Localizes}, so they glue over affine opens.
+A module over an animated ring $A$ is \emph{perfect} if it is a retract
+of a finite construction by cofibers from shifts of finite sums of $A$.
+For an ordinary ring this is equivalent to having a bounded complex
+of finitely generated projective modules as a presentation. Perfection
+on a derived scheme is checked on its affine opens. A module has Tor-amplitude
+in $[a,b]$ if tensoring with any discrete module produces homology
+only in degrees $a,\ldots,b$.
+This condition concerns derived tensor products; it is stronger than
+merely locating the homology of the original complex.
 
-\begin{definition}[Cotangent complex]
-  \label[definition]{def:Cotangent_Complex_Animated_Cinfty_Ring}
-  The \emph{cotangent complex} of an animated $\Cinfty$-ring $A$ is the
-  stable $A$-module $\mathbb L_A$ representing smooth derivations. Thus
-  there is a natural equivalence of animae
-  \begin{equation}
-    \label{eq:Cotangent_Complex_Universal_Property}
-    \Hom_{\operatorname{Mod}_A}(\mathbb L_A,M)
-    \simeq
-    \operatorname{Der}_{\Cinfty}(A,M).
-  \end{equation}
+\begin{definition}[Quasi-smoothness]
+\label[definition]{def:Quasi_Smooth_Derived_Cinfty_Scheme}
+A derived $\Cinfty$-scheme locally of finite presentation is
+\emph{quasi-smooth} if its cotangent complex is perfect of
+Tor-amplitude contained in $[0,1]$.
+For a morphism, the same definition uses the relative cotangent complex.
 \end{definition}
 
-For a morphism $A\to B$, the \emph{relative cotangent complex}
-$\mathbb L_{B/A}$ similarly represents $A$-linear smooth derivations of $B$.
+Perfection and Tor-amplitude can be checked locally.
+A two-term complex of finite-rank vector bundles in degrees $1,0$
+has this amplitude. The cotangent calculation of \Cref{chap:Stable_Linearization_And_Tangent_Complexes} therefore
+proves that every derived zero locus of a section of a finite-rank
+bundle is quasi-smooth.
 
-The definition is worth reading from right to left. A square-zero extension
-asks how $A$ may move in an infinitesimal stable direction $M$. The
-cotangent complex is the one stable $A$-module from which all such motions
-are obtained by mapping out. It is therefore the universal stable
-linearization of $A$.
+For a perfect complex the amplitude condition can also be tested on
+residue fields. Consequently, at each real point of a quasi-smooth
+object its tangent complex has homology only in degrees $0,-1$.
+The bundle presentation of the cotangent complex, rather than just
+a dimension count at individual points, is the local structure behind
+this assertion.
 
-Two adjectives in that sentence matter. The word \emph{stable} allows
-relations, relations among relations, and their shifts. The word
-\emph{smooth} says that the derivations respect every smooth operation, not
-only the polynomial operations in the underlying commutative
-$\R$-algebra.
+\section{Local presentations by Kuranishi charts}
+\label[section]{sec:Kuranishi_Charts_As_Presentations}
 
-For an ordinary smooth manifold, no higher correction is needed.
+The cotangent calculation already shows that a vector bundle zero locus
+is quasi-smooth. The local normal-form theorem supplies the converse.
+We first specify what data is included in a chart.
 
-For a manifold $U$, we write $\mathbb L_U|_x$ for the fiber at $x$ of the
-cotangent complex of its animated function algebra.
-
-\begin{proposition}[Cotangent complex of a manifold]
-  \label[proposition]{prop:Cotangent_Complex_Manifold}
-  Let $U$ be a manifold and let $x\in U$. Then
-  \[
-    \mathbb L_U|_x\simeq T_x^*U
-  \]
-  concentrated in cohomological degree $0$.
-\end{proposition}
-
-\begin{proof}[Idea of proof]
-  For $U=\R^n$, the assertion is
-  \Cref{prop:Differentials_Free_Cinfty_Ring}. The passage to an open subset
-  uses the fact that a smooth localization has vanishing relative cotangent
-  complex. The general assertion then follows by locality. We quote that
-  localization theorem rather than proving it.
-\end{proof}
-
-The proposition recovers the familiar picture at a smooth point. Its value
-is that the same universal property also applies to an animated algebra and
-can produce a complex with more than one nonzero degree.
-
-\begin{convention}
-  \label[convention]{con:Cotangent_Tangent_Cohomological_Grading}
-  Cotangent and tangent complexes are indexed cohomologically. A
-  quasi-smooth cotangent complex occupies degrees $-1$ and $0$. Its dual
-  tangent complex occupies degrees $0$ and $1$.
-\end{convention}
-
-The Koszul chain algebras of Talk 5 used a homological grading with
-differential lowering degree. These are different presentations of different
-objects. A reminder is included in
-\Cref{sec:Stable_Linearization_Grading_Conventions}.
-
-\section{Linearizing derived pullbacks}
-\label[section]{sec:Linearizing_Derived_Pullbacks}
-
-The cotangent complex becomes calculationally useful because it sends
-nonlinear pushout constructions to exact triangles. We use two formal
-properties.
-
-\subsection{Base change and transitivity}
-\label[subsection]{sec:Cotangent_Base_Change_Transitivity}
-
-\begin{theorem}[Base change]
-  \label[theorem]{thm:Cotangent_Complex_Base_Change}
-  Suppose that
-  \[
-  \begin{tikzcd}
-    A \rar \dar \drar[pushout] & B \dar \\
-    A' \rar & B'
-  \end{tikzcd}
-  \]
-  is a pushout square of animated $\Cinfty$-rings. Then there is a natural
-  equivalence of stable $B'$-modules
-  \[
-    \mathbb L_{B/A}\otimes_BB'
-    \simeq
-    \mathbb L_{B'/A'}.
-  \]
-\end{theorem}
-
-Thus relative linearization commutes with extension of scalars across a
-pushout.
-
-\begin{theorem}[Transitivity]
-  \label[theorem]{thm:Cotangent_Complex_Transitivity}
-  For composable morphisms of animated $\Cinfty$-rings
-  \[
-    A\longrightarrow B\longrightarrow C,
-  \]
-  there is a natural cofiber sequence of stable $C$-modules
-  \[
-    \mathbb L_{B/A}\otimes_BC
-    \longrightarrow
-    \mathbb L_{C/A}
-    \longrightarrow
-    \mathbb L_{C/B}.
-  \]
-\end{theorem}
-
-The first term records the linear variation already present in $B$ over
-$A$. The last records the new variation introduced by $C$ over $B$.
-Transitivity assembles them into the total linearization. The use of a
-cofiber sequence, rather than a short exact sequence, is exactly why stable
-modules were introduced.
-
-We quote both theorems. Their proofs follow formally from the universal
-property of relative cotangent complexes. The rest of the main argument is a
-calculation with these two results.
-
-\subsection{The tangent complex of a derived pullback}
-\label[subsection]{sec:Linearizing_Derived_Fiber_Product}
-
-Consider smooth maps of manifolds
-\[
-  X\xrightarrow{f}Z\xleftarrow{g}Y
-\]
-and form their pullback
-\[
-  P=X\times_ZY
-\]
-in the $\infty$-category of derived manifolds. Let $p\in P$ correspond to
-$x\in X$ and $y\in Y$ with common image $z\in Z$.
-
-The defining pullback becomes a pushout of animated $\Cinfty$-rings. Base
-change and transitivity give a cofiber sequence at $p$:
-\begin{equation}
-  \label{eq:Cotangent_Triangle_Derived_Pullback}
-  T_z^*Z
-  \xrightarrow{((D_xf)^*,-(D_yg)^*)}
-  T_x^*X\oplus T_y^*Y
-  \longrightarrow
-  \mathbb L_P|_p.
-\end{equation}
-The algebraic derivation of this sequence is recorded in
-\Cref{sec:Supplement_Pullback_Cotangent_Triangle}.
-
-The first two terms lie in degree $0$. Their cofiber can therefore be
-displayed as
-\[
-  \mathbb L_P|_p
-  \simeq
-  [T_z^*Z\longrightarrow T_x^*X\oplus T_y^*Y]
-\]
-in cohomological degrees $-1$ and $0$. These vector spaces are
-finite-dimensional, so the complex is dualizable.
-
-\begin{definition}[Tangent complex at a point]
-  \label[definition]{def:Tangent_Complex_At_A_Point}
-  If the fiber $\mathbb L_P|_p$ is dualizable, the \emph{tangent complex} of
-  $P$ at $p$ is
-  \[
-    \mathbb T_pP
-    :=
-    (\mathbb L_P|_p)^\vee.
-  \]
+\begin{definition}[Kuranishi chart]
+\label[definition]{def:Kuranishi_Chart}
+A Kuranishi presentation is a triple $(U,E,s)$ consisting of a
+finite-dimensional manifold, a finite-rank vector bundle on it,
+and a smooth section. Its associated derived object is
+$Z^{\mathrm{der}}(s)$.
+A Kuranishi chart for $X$ also includes an identification of this
+derived zero locus with an open subobject of $X$.
 \end{definition}
 
-\begin{theorem}[Tangent complex of a derived pullback]
-  \label[theorem]{thm:Tangent_Complex_Derived_Pullback}
-  With the notation above,
-  \[
-    \mathbb T_pP
-    \simeq
-    [
-      T_xX\oplus T_yY
-      \xrightarrow{D_xf-D_yg}
-      T_zZ
-    ]
-  \]
-  in cohomological degrees $0$ and $1$.
-\end{theorem}
-
-\begin{proof}
-  Dualizing \Cref{eq:Cotangent_Triangle_Derived_Pullback} turns its cofiber
-  sequence into a fiber sequence. The resulting fiber is represented by the
-  displayed two-term cochain complex.
-\end{proof}
-
-This is the promised connection between derived pullbacks and
-deformation-obstruction complexes. The pullback is first formed as a
-nonlinear derived object. The cotangent complex linearizes that same
-construction into a cofiber sequence of stable modules. Dualization retains
-the linearized matching map as a complex instead of replacing it by its
-kernel.
-
-Notice what has not happened. We did not decide in advance that a derived
-intersection should carry a two-term complex and attach one by hand. The
-complex is forced by the universal linearization of the pullback which
-already defined the derived intersection.
-
-\subsection{The vertical derivative of a section}
-\label[subsection]{sec:Vertical_Derivative_Section}
-
-Let $q\colon E\to U$ be a finite-rank vector bundle and let
-\[
-  s\colon U\longrightarrow E
-\]
-be a section. Its derived zero locus is the pullback
-\[
-\begin{tikzcd}
-  Z^{\mathrm{der}}(s) \rar \dar \drar[pullback]
-    & U \dar["s"] \\
-  U \rar["0"'] & E.
-\end{tikzcd}
-\]
-We have ordered the two copies of $U$ so that the copy carrying $s$ occurs
-first. At a zero $x$, both sections take the value $0_x\in E$. Applying
-\Cref{thm:Tangent_Complex_Derived_Pullback} gives
-\begin{equation}
-  \label{eq:Unreduced_Tangent_Complex_Section}
-  \mathbb T_xZ^{\mathrm{der}}(s)
-  \simeq
-  [T_xU\oplus T_xU
-    \xrightarrow{d_xs-d_x0}
-    T_{0_x}E].
-\end{equation}
-
-Along the zero section there is a canonical splitting
-\[
-  T_{0_x}E\cong T_xU\oplus E_x.
-\]
-Since $q\circ s=q\circ0=\operatorname{id}_U$, the difference
-$d_xs-d_x0$ is vertical.
-
-\begin{definition}[Vertical linearization]
-  \label[definition]{def:Vertical_Linearization_Section}
-  The \emph{vertical linearization} of $s$ at a zero $x$ is the morphism
-  \[
-    D_xs\colon T_xU\longrightarrow E_x
-  \]
-  corresponding to $d_xs-d_x0$ under the identification of $E_x$ with the
-  vertical tangent space at $0_x$.
-\end{definition}
-
-No connection is needed. At a zero, the difference of the derivatives of
-the two sections is canonically vertical. In a local trivialization
-$E|_V\cong V\times\R^k$, this is the ordinary derivative of the function
-representing $s$.
-
-Under the canonical splitting, the differential in
-\Cref{eq:Unreduced_Tangent_Complex_Section} sends
-\[
-  (v,w)\longmapsto(v-w,D_xs(v)).
-\]
-After the change of variables $a=v$ and $b=v-w$, the complex becomes the
-direct sum of
-\[
-  [T_xU\xrightarrow{\operatorname{id}}T_xU]
-\]
-and
-\[
-  [T_xU\xrightarrow{D_xs}E_x].
-\]
-The first summand is zero as an object of the stable module category. We have
-proved the principal formula of the chapter.
-
-\begin{theorem}[Tangent complex of a derived zero locus]
-  \label[theorem]{thm:Tangent_Complex_Derived_Zero_Locus}
-  Let $s\colon U\to E$ be a section of a finite-rank vector bundle and let
-  $x\in U$ be a zero. Then
-  \[
-    \mathbb T_xZ^{\mathrm{der}}(s)
-    \simeq
-    [T_xU\xrightarrow{D_xs}E_x]
-  \]
-  in cohomological degrees $0$ and $1$.
-\end{theorem}
-
-The two terms and their differential have arisen by linearizing the pullback
-which defines the derived zero locus. In particular, the tangent complex is
-not an auxiliary complex attached after the fact.
-
-\section{Deformations, obstructions, and quasi-smoothness}
-\label[section]{sec:Deformations_Obstructions_Quasi_Smoothness}
-
-\subsection{Reading the two-term complex}
-\label[subsection]{sec:Deformations_And_Obstructions_Zero_Locus}
-
-The cohomology of the tangent complex has an immediate interpretation.
-
-\begin{definition}[Deformation and obstruction spaces]
-  \label[definition]{def:Deformation_Obstruction_Spaces}
-  Let $x$ be a zero of $s$. Its \emph{deformation space} and
-  \emph{obstruction space} are
-  \begin{align*}
-    \operatorname{Def}_x(s)
-    &=H^0\bigl(\mathbb T_xZ^{\mathrm{der}}(s)\bigr)
-      =\ker(D_xs),\\
-    \operatorname{Obs}_x(s)
-    &=H^1\bigl(\mathbb T_xZ^{\mathrm{der}}(s)\bigr)
-      =\operatorname{coker}(D_xs).
-  \end{align*}
-\end{definition}
-
-A tangent vector $v\in T_xU$ is an infinitesimal deformation through
-solutions only if the linearized equation vanishes:
-\[
-  D_xs(v)=0.
-\]
-The cokernel measures the equation directions which cannot be produced by
-linearizing a variation of $x$. It is the first obstruction space.
-
-The terminology should not be overinterpreted. The tangent complex is the
-first-order approximation to the full derived object. An element of
-$\ker(D_xs)$ need not integrate to an actual curve of solutions, and a
-vanishing first obstruction does not by itself solve every nonlinear
-extension problem. What the complex does provide is the intrinsic linear
-home for both kinds of information.
-
-We now revisit the three calculations from Talk 5.
-
-\begin{example}[A transverse equation]
-  \label[example]{ex:Tangent_Complex_Transverse_Equation}
-  For $f(x)=x$, the derivative at zero is the identity, so
-  \[
-    \mathbb T_0Z^{\mathrm{der}}(x)
-    \simeq
-    [\R\xrightarrow{1}\R].
-  \]
-  This complex is zero in the stable module category. There are no nonzero
-  infinitesimal deformations and no obstructions, as expected for an
-  isolated transverse zero.
-\end{example}
-
-\begin{example}[A singular but discrete equation]
-  \label[example]{ex:Tangent_Complex_Square_Equation}
-  For $f(x)=x^2$, the derivative at zero vanishes. Hence
-  \[
-    \mathbb T_0Z^{\mathrm{der}}(x^2)
-    \simeq
-    [\R\xrightarrow{0}\R],
-  \]
-  and
-  \[
-    \operatorname{Def}_0(x^2)\cong\R,
-    \qquad
-    \operatorname{Obs}_0(x^2)\cong\R.
-  \]
-  Talk 5 found that the animated function algebra of this zero locus is
-  discrete. This is not a contradiction. Positive homotopy of the function
-  algebra and positive-degree cohomology of the tangent complex are distinct
-  invariants. A discrete singular ring can have a nontrivial cotangent
-  complex.
-\end{example}
-
-\begin{example}[A derived self-intersection]
-  \label[example]{ex:Tangent_Complex_Zero_Section}
-  For the zero section of $U\times\R\to U$, the vertical linearization
-  vanishes. Therefore
-  \[
-    \mathbb T_xZ^{\mathrm{der}}(0)
-    \simeq
-    [T_xU\xrightarrow{0}\R].
-  \]
-  Its deformation space is $T_xU$, and its obstruction space is $\R$.
-  This time Talk 5 also found a nonzero degree-one homotopy group in the
-  animated function algebra. The two phenomena coexist, but they remain
-  conceptually different.
-\end{example}
-
-The tangent complex is not a complete invariant. The equations $x^2$ and
-$x^3$ have the same derivative at zero and hence the same tangent complex,
-but their classical truncations are different:
-\[
-  \frac{\Cinfty(\R)}{(x^2)}
-  \not\cong
-  \frac{\Cinfty(\R)}{(x^3)}.
-\]
-Stable linearization retains more than an ordinary tangent space, but less
-than the full nonlinear derived zero locus.
-
-\subsection{Transversality and virtual dimension}
-\label[subsection]{sec:Transversality_Virtual_Dimension}
-
-For a section $s\colon U\to E$, transversality to the zero section at $x$
-means that
-\[
-  D_xs\colon T_xU\longrightarrow E_x
-\]
-is surjective. By
-\Cref{thm:Tangent_Complex_Derived_Zero_Locus}, this is equivalent to
-\[
-  H^1\bigl(\mathbb T_xZ^{\mathrm{der}}(s)\bigr)=0.
-\]
-In that case the tangent complex is concentrated in degree zero and is
-equivalent to $\ker(D_xs)$, the ordinary tangent space of the zero manifold.
-
-The same statement holds for a cospan $X\to Z\leftarrow Y$.
-Transversality is the surjectivity of
-\[
-  T_xX\oplus T_yY\longrightarrow T_zZ,
-\]
-which is precisely the vanishing of the degree-one cohomology of
-\Cref{thm:Tangent_Complex_Derived_Pullback}.
-
-This infinitesimal calculation explains the tangent-space part of the
-transverse pullback theorem. It does not replace that theorem. Agreement of
-the full derived pullback with the ordinary manifold pullback follows from
-the universal property studied in Talk 4.
-
-Although the dimensions of deformation and obstruction spaces may jump in a
-family, their alternating difference is stable.
-
-\begin{definition}[Virtual dimension]
-  \label[definition]{def:Virtual_Dimension_Zero_Locus}
-  The \emph{virtual dimension} of a derived zero locus at $x$ is
-  \[
-    \operatorname{vdim}_xZ^{\mathrm{der}}(s)
-    =
-    \dim H^0(\mathbb T_xZ^{\mathrm{der}}(s))
-    -
-    \dim H^1(\mathbb T_xZ^{\mathrm{der}}(s)).
-  \]
-\end{definition}
-
-\begin{proposition}
-  \label[proposition]{prop:Virtual_Dimension_Derived_Zero_Locus}
-  If $s\colon U\to E$ is a section of a finite-rank vector bundle, then
-  \[
-    \operatorname{vdim}_xZ^{\mathrm{der}}(s)
-    =
-    \dim U-\operatorname{rank}E
-  \]
-  at every zero $x$.
-\end{proposition}
-
-\begin{proof}
-  The tangent complex is $[T_xU\to E_x]$. Rank-nullity gives
-  \begin{align*}
-    \dim\ker(D_xs)-\dim\operatorname{coker}(D_xs)
-    &=\dim T_xU-\dim E_x\\
-    &=\dim U-\operatorname{rank}E.
-  \end{align*}
-\end{proof}
-
-For a derived intersection of manifolds, the same argument gives
-\[
-  \operatorname{vdim}_p(X\times_ZY)
-  =
-  \dim X+\dim Y-\dim Z.
-\]
-
-The virtual dimension need not equal the dimension of the underlying zero
-set. For the zero section of $U\times\R\to U$, the underlying zero set is
-$U$, while
-\[
-  \operatorname{vdim}Z^{\mathrm{der}}(0)=\dim U-1.
-\]
-The excess normal direction appears as an obstruction direction.
-
-\subsection{The quasi-smooth class}
-\label[subsection]{sec:Quasi_Smooth_Affine_Derived_Manifolds}
-
-Derived zero loci of finite-rank vector-bundle sections have perfect
-cotangent complexes in degrees $-1$ and $0$. This motivates the finiteness
-class which will govern the rest of the seminar.
-
-\begin{definition}[Affine quasi-smoothness]
-  \label[definition]{def:Affine_Quasi_Smoothness}
-  An affine derived $\Cinfty$-object of finite presentation is
-  \emph{quasi-smooth} if its cotangent complex is perfect of Tor-amplitude
-  contained in $[-1,0]$.
-\end{definition}
-
-Perfection is the finiteness condition which permits dualization and gives
-finite-dimensional fibers. The amplitude condition says that the tangent
-complex has only a deformation term and a first obstruction term. It does
-not say that the object is smooth.
-
-The algebraic definition has a geometric normal form.
+This usage concerns charts without isotropy, boundary, or corners.
+It is the local presentation needed in the representability proof.
+A choice of charts alone does not specify any of the more elaborate
+global notions called Kuranishi structures in the literature.
 
 \begin{theorem}[Local zero-locus form]
-  \label[theorem]{thm:Quasi_Smooth_Local_Zero_Locus_Form}
-  Let $X$ be an affine derived $\Cinfty$-object of finite presentation. Then
-  $X$ is quasi-smooth if and only if, near every point of its classical
-  truncation, it is equivalent to the derived zero locus of a section of a
-  finite-rank vector bundle on a manifold.
+\label[theorem]{thm:Local_Zero_Locus_Form}
+A derived $\Cinfty$-scheme locally of finite presentation is
+quasi-smooth if and only if it admits an open cover by Kuranishi charts.
 \end{theorem}
 
-One direction is the tangent-complex calculation of this chapter. The
-converse is a derived inverse-function and normal-form theorem, which we do
-not prove. It is this converse which turns the amplitude condition from an
-abstract homological property into a supply of finite-dimensional local
-models.
+The forward implication is the substantive normal-form theorem.
+The affine statement is proved in
+\citet[Proposition~5.1.1.11 and Corollary~5.1.1.13]
+{Steffens_Derived_Differential_Geometry}.
+In that statement, a finitely presented quasi-smooth affine object
+can be expressed as the zero locus of a bundle section over an open
+subset of a Euclidean space. Applying it on affine opens proves the
+displayed local form. The reverse implication is the cotangent calculation.
 
-The theorem also marks the limit of the present affine discussion. To compare
-different local zero-locus presentations and glue them into global derived
-manifolds, we need a geometric notion of locality. That is the task of the
-next talk.
+The proof begins by choosing generators for the ring, giving an
+ambient smooth affine object. The relative cotangent complex describes
+its equations. The amplitude assumption implies that the shifted
+relative cotangent complex is a finite projective module, which can
+be extended to a vector bundle on an ambient neighbourhood.
+Lifting the relations then produces a section of that bundle.
+A cotangent criterion identifies its derived zero locus with the
+original object. This explains the role of the amplitude assumption;
+the extension and comparison theorems in this argument are quoted.
 
-\section{Summary and supplementary materials}
-\label[section]{sec:Stable_Linearization_Summary_And_Supplements}
+At a point of a chart, the tangent complex is
+$[T_xU\to E_x]$, and the virtual dimension is
+$\dim U-\operatorname{rank}E$. Quasi-smoothness permits both singular
+classical truncations and nonzero higher homotopy. The zero locus of
+$x^2$ illustrates the first, and a zero equation illustrates the second.
 
-\subsection{Takeaways and next step}
-\label[subsection]{sec:Stable_Linearization_Takeaways}
+\section{Changing a presentation}
 
-The live route through the chapter can be compressed into seven statements.
+The quotient rings, Koszul algebras, and tangent complexes calculated
+earlier distinguish different geometric objects. We now use those
+calculations to recognize changes of equations that preserve an object.
 
-\begin{enumerate}
-  \item Ordinary smooth differentials represent derivations into ordinary
-    modules and recover the cotangent bundle of a manifold.
-  \item Relations naturally produce complexes, while kernels and cokernels
-    separately behave poorly in families.
-  \item A stable $A$-module is a module over the underlying commutative ring
-    spectrum $A_{\mathrm{alg}}$. Stable modules retain morphisms, shifts,
-    fibers, and cofibers as linear data.
-  \item The cotangent complex $\mathbb L_A$ represents smooth derivations into
-    stable $A$-modules.
-  \item Base change and transitivity turn a derived pullback into the tangent
-    complex
-    \[
-      [T_xX\oplus T_yY\longrightarrow T_zZ].
-    \]
-  \item A vector-bundle zero locus has tangent complex
-    \[
-      [T_xU\xrightarrow{D_xs}E_x],
-    \]
-    whose cohomology gives deformation and obstruction spaces.
-  \item Quasi-smooth derived objects are the finite-presentation objects
-    locally governed by these two-term complexes and zero-locus
-    presentations.
-\end{enumerate}
-
-We have reached an intrinsic answer to the first-order question. What remains
-is to understand the word ``locally'' and the nonuniqueness of the resulting
-finite-dimensional presentations.
-
-\begin{question}
-  \label[question]{question:From_Affine_Linearization_To_Kuranishi_Charts}
-  How does an affine derived calculation acquire open restrictions and a
-  structure sheaf, and when do two triples $(U,E,s)$ present the same local
-  derived manifold?
-\end{question}
-
-Talk 8 answers this by passing from affine animated algebras to local derived
-geometry and then interpreting Kuranishi charts as presentations rather than
-as intrinsic objects.
-
-\subsection{Supplement: the intrinsic stabilization}
-\label[subsection]{sec:Supplement_Intrinsic_Stable_Modules}
-
-This subsection gives a more formal account of stable modules and square-zero
-extensions. It is not part of the default live route.
-
-The stable $\infty$-category of stable $\mathbb S$-modules is usually denoted
-$\operatorname{Sp}$. The sphere is its tensor unit, so
+Let $f\colon U\to\R^r$, and define
 \[
-  \operatorname{Mod}_{\mathbb S}\simeq\operatorname{Sp}.
+ f'\colon U\times\R^q\longrightarrow\R^r\times\R^q,
+ \qquad f'(x,y)=(f(x),y).
 \]
-For an ordinary commutative ring $R$, the Eilenberg--MacLane construction
-gives a commutative ring spectrum $HR$ and an equivalence
+The additional equation forces the additional variable to zero.
+
+\begin{proposition}[Stabilization]
+\label[proposition]{prop:Stabilization_Kuranishi_Chart}
+Projection onto $U$ induces an isomorphism
+$Z^{\mathrm{der}}(f')\cong Z^{\mathrm{der}}(f)$.
+\end{proposition}
+
+\begin{proof}
+The second factor is the derived zero locus of the identity of $\R^q$.
+That map is transverse to zero, so its zero locus is the ordinary point.
+Pasting pullbacks gives the stated isomorphism.
+Equivalently, the new Koszul variables satisfy $d\eta_j=y_j$.
+Evaluation at $y=\eta=0$ removes an acyclic Koszul resolution.
+\end{proof}
+
+For example, $x^2$ and $(x^2,y)$ give the same derived object.
+Their tangent presentations differ by
+$[\R\xrightarrow1\R]$, an acyclic summand.
+Both ambient dimension and the number of equations increase by one,
+leaving virtual dimension unchanged.
+
+Changing a bundle frame likewise changes the list of equations
+without changing the object. If $g(x)$ is an invertible matrix of
+smooth functions, then $f$ and $g f$ present isomorphic derived zero loci.
+Explicitly, the map from the Koszul algebra for $gf$ to that for $f$
+sends its generator $\varepsilon'_i$ to $\sum_jg_{ij}\varepsilon_j$.
+The inverse matrix gives the inverse dg-algebra map.
+The intrinsic bundle model with differential $\iota_s$ makes this
+independence immediate.
+
+In contrast, $x$ and $(x,0)$ have the same ordinary zero set but
+different derived zero loci. The extra zero equation contributes a
+degree-minus-one tangent direction and a degree-one homotopy class of functions.
+Nor does equality of tangent complexes suffice: $x^2$ and $x^3$
+have the same tangent complex at zero but distinct classical
+function rings. Comparisons of charts must respect their equations.
+
+\section{Further reading}
+
+Two refinements of the chart description will recur later: removing
+transverse directions makes a chart minimal at a point, while a
+nontrivial obstruction bundle shows what local frames can conceal.
+
+A useful refinement makes a chart minimal at a chosen point.
+Suppose $f\colon U\subseteq\R^n\to\R^r$ vanishes at $x$ and $d_xf$
+has rank $q$. After linear changes of coordinates, $q$ components
+of $f$ have independent differentials. The inverse function theorem
+allows these components to be used as coordinates $y\in\R^q$.
+Writing the remaining coordinates as $z$, the map becomes
 \[
-  \operatorname{Mod}_{HR}\simeq D(R).
+ (y,z)\longmapsto(y,g(y,z)).
 \]
-Consequently,
+Hadamard's lemma gives a smooth matrix $H$ with
+$g(y,z)=g(0,z)+H(y,z)y$.
+An invertible change of equation generators subtracts $H(y,z)y$,
+giving $(y,g(0,z))$. Stabilization now removes the coordinates $y$.
+
+The resulting local chart is the zero locus of
 \[
-  \operatorname{Mod}_{H\Z}\simeq D(\Z).
+ \kappa\colon\R^{n-q}\supseteq V\longrightarrow\R^{r-q},
+ \qquad\kappa(z)=g(0,z),
 \]
-This distinguishes three levels:
+with $d\kappa$ zero at the chosen point.
+Its source tangent and target identify with
+$\ker d_xf$ and $\operatorname{coker}d_xf$.
+These identifications use choices; the derived object they present is
+the original open neighbourhood. The analytic reduction of an elliptic
+equation will produce a chart of this kind from an initially
+infinite-dimensional problem.
 
-\begin{enumerate}
-  \item An ordinary abelian group is an object of $\operatorname{Ab}$.
-  \item A chain complex of abelian groups determines an object of
-    $D(\Z)\simeq\operatorname{Mod}_{H\Z}$.
-  \item A stable $\mathbb S$-module is an object of $\operatorname{Sp}$ and
-    need not admit an $H\Z$-module structure.
-\end{enumerate}
-
-Now let $A$ be an animated $\Cinfty$-ring. Forgetting the nonpolynomial
-smooth operations gives the connective commutative $\R$-algebra spectrum
-$A_{\mathrm{alg}}$. Our direct definition was
+\begin{example}[An obstruction bundle with no global frame]
+Let $L\to S^1$ be the M\"obius line bundle and form
+$X=S^1\times_L S^1$ using two zero sections.
+The intrinsic Koszul algebra is the exterior algebra of $L^\vee$
+with zero differential. Therefore
 \[
-  \operatorname{Mod}_A
-  =
-  \operatorname{Mod}_{A_{\mathrm{alg}}}.
+ \pi_0\mathcal O_X=\Cinfty_{S^1},\qquad
+ \pi_1\mathcal O_X=\Gamma(-,L^\vee).
 \]
+Each trivializing open gives a single zero equation. On overlaps the
+generator changes by the transition function of $L^\vee$.
+There is no globally nonvanishing generator, although the derived
+self-intersection is defined globally.
 
-There is an intrinsic route to the same linear category. Start with the slice
-\[
-  \operatorname{Alg}_{\Cinfty}(\An)_{/A}.
-\]
-Its pointed objects are the retractive diagrams
-\[
-  A\longrightarrow B\longrightarrow A
-\]
-whose composite is the identity. Stabilizing means taking coherently
-deloopable objects in this pointed setting. Informally, these are the
-additive infinitesimal directions at $A$ inside animated smooth algebra.
+After restriction to the classical circle, the tangent complex is
+$[TS^1\xrightarrow0 L]$. Its obstruction sheaf remembers the
+nontrivial line bundle. This shows why vector bundles, rather than only
+fixed vector spaces of equations, naturally occur in Kuranishi charts.
+\end{example}
 
-The stable-module comparison identifies this intrinsic stabilization with
-modules over the underlying algebra:
-\[
-  \operatorname{Stab}
-  \bigl(
-    \operatorname{Alg}_{\Cinfty}(\An)_{/A}
-  \bigr)
-  \simeq
-  \operatorname{Mod}_{A_{\mathrm{alg}}}.
-\]
-Under this equivalence, the infinite-loop-object functor gives the smooth
-square-zero extension $A\oplus M\to A$. The underlying connective algebra
-sees $A_{\mathrm{alg}}\oplus\tau_{\geq0}M$, as in
-\Cref{eq:Underlying_Module_Smooth_Square_Zero_Extension}.
+\begin{exercise}
+Show that the derived zero locus of $(x,xy)\colon\R^2\to\R^2$
+is locally, and in this case globally, the product of a line and
+the derived zero locus of the zero map from a point to $\R$.
+\end{exercise}
 
-This comparison explains why the direct module definition does not discard
-the smooth operations. Those operations determine the square-zero extension
-inside animated $\Cinfty$-rings and hence determine which sections count as
-smooth derivations. The underlying stable module category and the smooth
-derivation functor play different roles.
+\begin{exercise}
+For $f(x,y)=x^2+y^2$, calculate the tangent complex at the origin
+and compare its virtual dimension with the dimension of its zero set.
+Explain why the zero set alone cannot carry this information.
+\end{exercise}
 
-\subsection{Supplement: the pullback cotangent sequence}
-\label[subsection]{sec:Supplement_Pullback_Cotangent_Triangle}
-
-We spell out the algebra behind
-\Cref{eq:Cotangent_Triangle_Derived_Pullback}. Set
-\[
-  A=\Cinfty(Z),
-  \qquad
-  B=\Cinfty(X),
-  \qquad
-  C=\Cinfty(Y),
-\]
-and
-\[
-  D=B\mathbin{\mathop{\otimes}^{\mathbb L}_A}C.
-\]
-There is a natural cofiber sequence of stable $D$-modules
-\begin{equation}
-  \label{eq:Algebraic_Pushout_Cotangent_Sequence}
-  \mathbb L_A\otimes_AD
-  \longrightarrow
-  (\mathbb L_B\otimes_BD)
-  \oplus
-  (\mathbb L_C\otimes_CD)
-  \longrightarrow
-  \mathbb L_D.
-\end{equation}
-The first morphism is induced by the two structure morphisms from $A$, with a
-sign on one component.
-
-To obtain \Cref{eq:Algebraic_Pushout_Cotangent_Sequence}, apply transitivity
-to $A\to B\to D$ and $A\to C\to D$. Base change identifies
-\[
-  \mathbb L_{D/B}
-  \simeq
-  \mathbb L_{C/A}\otimes_CD,
-  \qquad
-  \mathbb L_{D/C}
-  \simeq
-  \mathbb L_{B/A}\otimes_BD.
-\]
-Comparing the two resulting cofiber sequences gives the displayed sequence.
-
-Now extend scalars along the point $p\colon D\to\R$. By
-\Cref{prop:Cotangent_Complex_Manifold}, the first two terms become
-\[
-  T_z^*Z
-  \longrightarrow
-  T_x^*X\oplus T_y^*Y.
-\]
-Functoriality identifies the morphism as
-$((D_xf)^*,-(D_yg)^*)$. This recovers
-\Cref{eq:Cotangent_Triangle_Derived_Pullback}.
-
-\subsection{Supplement: grading conventions}
-\label[subsection]{sec:Stable_Linearization_Grading_Conventions}
-
-Two grading conventions occur in the manuscript.
-
-\begin{enumerate}
-  \item The Koszul presentations in Talk 5 are nonnegatively graded chain
-    algebras whose differentials lower degree. Their homology groups $H_i$
-    present the homotopy groups $\pi_i$ of animated function algebras.
-  \item Cotangent and tangent complexes are written cohomologically. A
-    quasi-smooth cotangent complex occupies degrees $-1$ and $0$, while its
-    dual tangent complex occupies degrees $0$ and $1$.
-\end{enumerate}
-
-The degree-one Koszul class of a zero section and the degree-one obstruction
-space of its tangent complex therefore belong to different objects and have
-different meanings. The first is nonlinear function-algebra data. The second
-is cohomology of the stable linearization at a point.
-
-Different references make different choices. Spivak writes cotangent
-complexes homologically. Steffens and Pascarella also require care when
-moving between chain presentations, stable modules, and deformation
-complexes. Every displayed tangent complex in this manuscript follows
-\Cref{con:Cotangent_Tangent_Cohomological_Grading}.
-
-\subsection{Related literature}
-\label[subsection]{sec:Stable_Linearization_Related_Literature}
-
-Steffens develops stable modules by parametrized stabilization and compares
-them with modules over the underlying commutative algebra in Section~4.3
-\cite[Section~4.3]{Steffens_Derived_Differential_Geometry}. His
-Construction~5.1.0.1, Definition~5.1.0.2, and Remark~5.1.0.4 construct the
-cotangent complex and record base change and transitivity
-\cite[Construction~5.1.0.1, Definition~5.1.0.2, and
-Remark~5.1.0.4]{Steffens_Derived_Differential_Geometry}. The manifold
-calculation uses his localization results in Corollaries~5.1.1.17--5.1.1.19
-\cite[Corollaries~5.1.1.17--5.1.1.19]{Steffens_Derived_Differential_Geometry}.
-
-The affine zero-locus normal form is Steffens,
-Proposition~5.1.1.11 and Corollary~5.1.1.13, while virtual dimension is
-treated in Definition~5.1.1.20 and Proposition~5.1.1.21
-\cite[Proposition~5.1.1.11, Corollary~5.1.1.13,
-Definition~5.1.1.20, and
-Proposition~5.1.1.21]{Steffens_Derived_Differential_Geometry}.
-
-Pascarella gives a concise account of stable modules, square-zero
-extensions, cotangent complexes, and the comparison between the algebraic
-and intrinsic viewpoints
-\cite[Sections~3.2--3.3 and Appendix~D.3]{Pascarella_Cotangent_Complex_Derived_Differential_Geometry}.
-His thesis is especially useful as supplementary reading because it isolates
-the precise formalism needed here without requiring the whole theory of
-derived manifolds.
-
-The general theory of stable $\infty$-categories, modules over commutative
-ring spectra, and tangent categories is developed in Lurie,
-\emph{Higher algebra}, especially Sections~1.4 and~7.3
-\cite[Sections~1.4 and~7.3]{lurie2016HA}.
-
-Spivak's Section~7 gives an earlier construction and calculation of cotangent
-complexes for derived smooth manifolds. Corollaries~7.3--7.6 identify the
-cotangent complex of a manifold, establish its two-term amplitude for derived
-zero loci, and define virtual dimension
-\cite[Section~7, especially Corollaries~7.3--7.6]{Spivak_Derived_Smooth_Manifolds}.
-The foundational presentation differs from the one used here, but the
-geometric calculation is the same.
+For ordinary smooth spectra and their structure sheaves, see
+\cite[Sections~2.2 and~3.1]{Joyce_Introduction_Cinfty_Schemes}.
+The localization and normal-form statements used here are in
+\cite[Sections~4.1.3 and~5.1.1]{Steffens_Derived_Differential_Geometry}.
+They provide the passage from the affine universal theory to the
+local charts used in geometric moduli problems.

@@ -1,11 +1,7 @@
-% The title and chapter boundary remain provisional. This chapter is the
-% complete working manuscript for the third seminar talk.
+% !TEX root = ../main.tex
 
-\chapter{\texorpdfstring{Manifolds as $C^\infty$-rings}{Manifolds as C-infinity-rings}}
+\chapter{Geometric constructions in \texorpdfstring{$\Cinfty$}{C-infinity}-rings}
 \label[chapter]{chap:Manifolds_As_Cinfty_Rings}
-
-\section{Equations and coproducts}
-\label[section]{sec:Equations_And_Coproducts}
 
 The preceding chapter showed that a smooth manifold and all of its smooth maps
 are encoded by its ring of smooth functions. We now ask whether geometric
@@ -19,40 +15,34 @@ constructions are encoded as well. Since the functor
 is contravariant, the first test is whether a pullback of manifolds becomes a
 pushout of $\Cinfty$-rings.
 
-Return to the two intersections in \Cref{fig:Two_Intersections}, and set
-\[
-  A=\Cinfty(\R^2).
-\]
-For the two coordinate axes, the function rings are $A/(x)$ and $A/(y)$.
-Imposing both equations gives
-\[
-  A/(x)\mathbin{\amalg_A}A/(y)
-  \cong A/(x,y)
-  \cong \R.
-\]
-This is the function ring of their intersection point. For the $x$-axis and
-the parabola $y=x^2$, the analogous calculation begins
-\[
-  A/(y)\mathbin{\amalg_A}A/(y-x^2)
-  \cong A/(y,y-x^2).
-\]
-We leave the last ring unsimplified for now. The two set-theoretic
-intersections are equal, but the two algebraic pushouts need not be.
-
-The chapter is organized around the following question.
-
 \begin{question}
   \label[question]{question:When_Pushout_Is_Manifold}
   When is the algebraic pushout of smooth function rings again the function
   ring of the geometric pullback?
 \end{question}
 
-A robust sufficient condition is transversality. The mechanism behind this
-answer is the regular-equation theorem: independent smooth equations generate
-the full ideal of functions vanishing on their common zero locus. We will
-prove this mechanism first, use it to understand finite presentation and
-products, and then return to pullbacks. We do not claim that transversality is
-necessary for every individual square to have the desired algebraic property.
+Transversality is a sufficient condition. To understand why, we first show
+that independent smooth equations generate the full ideal of functions
+vanishing on their common zero locus. This lets us translate geometric
+constructions into presentations of smooth rings.
+
+Two intermediate results prepare the general pullback theorem. Every
+manifold has a finitely presented function ring, and products and open
+restrictions have the expected algebraic descriptions. We then prove the
+transverse-pullback theorem locally and explain its consequences. The final
+proof section supplies the globalization argument. Together with the full
+faithfulness proved in the preceding chapter, these results identify
+manifolds inside smooth algebra and explain which intersections that
+embedding preserves.
+
+\section{Equations and zero loci}
+\label[section]{sec:Equations_And_Coproducts}
+
+Return to the intersections in \Cref{fig:Two_Intersections}. Both the
+transverse axes and the tangent line and parabola intersect in a single
+point. Their equations nevertheless give different algebraic pushouts.
+We begin by making this calculation precise, then ask when a quotient by
+equations is the function ring of their zero locus.
 
 \subsection{Coproducts impose simultaneous equations}
 \label[subsection]{sec:Coproducts_Impose_Equations}
@@ -106,9 +96,29 @@ product of the underlying commutative $\R$-algebras.
   $B/J$ is a map from $B$ killing both ideals.
 \end{proof}
 
-The calculation for the transverse axes is therefore formal. The remaining
-geometric question is when a quotient by chosen equations is the function
-ring of their common zero locus.
+Set
+\[
+  A=\Cinfty(\R^2).
+\]
+For the two coordinate axes, the function rings are $A/(x)$ and $A/(y)$.
+Imposing both equations gives
+\[
+  A/(x)\mathbin{\amalg_A}A/(y)
+  \cong A/(x,y)
+  \cong \R.
+\]
+This is the function ring of their intersection point. For the $x$-axis and
+the parabola $y=x^2$, the analogous calculation begins
+\[
+  A/(y)\mathbin{\amalg_A}A/(y-x^2)
+  \cong A/(y,y-x^2).
+\]
+Eliminating $y$ gives $\Cinfty(\R)/(x^2)$, the dual-number ring.
+
+The first calculation recovers the function ring of the geometric
+intersection; the second retains a nonzero nilpotent element. The
+regular-equation theorem below explains why independent equations
+recover the function ring of the zero locus.
 
 \subsection{Regular equations}
 \label[subsection]{sec:Regular_Equations}
@@ -172,8 +182,7 @@ We first isolate the globalization argument which will occur several times.
   \]
 \end{theorem}
 
-This is Moerdijk--Reyes, Lemma~2.1
-\cite[Chapter~I, Lemma~2.1]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+This is \citet[Chapter~I, Lemma~2.1]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
 
 \begin{proof}
   Let $h\in\mathfrak m_Z$. We prove ideal membership locally and apply
@@ -234,18 +243,33 @@ Consequently,
 \[
   \Cinfty(\R)/(t^2)\not\cong\Cinfty(\{0\}).
 \]
-This is exactly the defect which will reappear in the tangent
+This is exactly the defect seen in the tangent
 line--parabola intersection.
 
-\section{Finite presentation and products}
+\section{Manifold function rings are finitely presented}
 \label[section]{sec:Finite_Presentation_And_Products}
 
-\subsection{Open subsets and finite presentation}
-\label[subsection]{sec:Open_Subsets_And_Finite_Presentation}
+Our first application is a finiteness theorem: every manifold function ring
+can be described by finitely many generators and smooth relations. Here
+finite presentation is understood in the sense of
+\Cref{def:Cinfty_Finiteness}.
 
-The first application of regular equations is unexpectedly strong. An
-arbitrary open subset of Euclidean space, however complicated its shape, has
-a presentation with one extra generator and one relation.
+\begin{example}[The circle]
+  \label[example]{ex:Circle_Finite_Presentation}
+  The circle has the finite presentation
+  \[
+    \Cinfty(S^1)\cong\Cinfty(\R^2)/(x^2+y^2-1).
+  \]
+  The gradient $(2x,2y)$ is nonzero on the circle, so this follows from
+  the regular-equation theorem.
+\end{example}
+
+For a general manifold, a short global list of regular equations need not
+be available. We will instead use a tubular neighborhood and a retraction.
+
+The first step is to present the function ring of an arbitrary open subset
+of Euclidean space. One extra generator and one relation suffice,
+regardless of the shape of the open subset.
 
 \begin{proposition}[One-relation presentation of an open subset]
   \label[proposition]{prop:Open_Subset_One_Relation}
@@ -258,8 +282,7 @@ a presentation with one extra generator and one relation.
   \]
 \end{proposition}
 
-This is Moerdijk--Reyes, Corollary~2.2
-\cite[Chapter~I, Corollary~2.2]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+This is \citet[Chapter~I, Corollary~2.2]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
 
 \begin{proof}
   The map
@@ -281,41 +304,9 @@ This is Moerdijk--Reyes, Corollary~2.2
   \]
 \end{proof}
 
-\begin{proposition}[Smooth localization]
-  \label[proposition]{prop:Smooth_Localization}
-  Let $M$ be a manifold, let $a\in\Cinfty(M)$, and put
-  $U=\{a\neq0\}$. Restriction exhibits $\Cinfty(U)$ as the universal
-  $\Cinfty$-ring under $\Cinfty(M)$ in which $a$ becomes invertible.
-\end{proposition}
-
-\begin{proof}
-  For $M=\R^n$, \Cref{prop:Open_Subset_One_Relation} identifies
-  $\Cinfty(U)$ with
-  \[
-    \Cinfty(\R^{n+1})/(ya(x)-1).
-  \]
-  A homomorphism from this quotient to a $\Cinfty$-ring $D$ is precisely a
-  homomorphism $\Cinfty(\R^n)\to D$ together with an element inverse to the
-  image of $a$. The inverse, if it exists, is unique. This proves the universal
-  property in the Euclidean case.
-
-  For a general manifold, embed $M$ as a closed submanifold of a Euclidean
-  space and extend $a$ to an ambient smooth function. Apply the Euclidean
-  statement and then pass to the quotient defining $\Cinfty(M)$. Adjoining an
-  inverse commutes with quotients, and restriction identifies the resulting
-  quotient with $\Cinfty(U)$. The latter identification can also be checked
-  directly by extending functions from the closed subset $U$ of the ambient
-  cozero locus and using a partition of unity.
-\end{proof}
-
-The Euclidean case is Moerdijk--Reyes, Proposition~1.6; the proof above uses
-their Corollary~2.2
-\cite[Chapter~I, Proposition~1.6 and Corollary~2.2]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
-
-We next record the categorical finiteness fact used to pass from open subsets
-to manifolds. Recall from \Cref{def:Cinfty_Finiteness} that a finitely
-presented $\Cinfty$-ring has finitely many generators and finitely many
-relations in the theory of all smooth operations.
+A properly embedded manifold is a retract of an open tubular neighborhood
+in Euclidean space. On function rings, it is therefore enough to know that
+finite presentation passes to retracts.
 
 \begin{lemma}[Retracts of finitely presented rings]
   \label[lemma]{lem:Retracts_Finitely_Presented_Cinfty_Rings}
@@ -344,51 +335,13 @@ relations in the theory of all smooth operations.
   $A$.
 \end{proof}
 
-For later use, we also give the intrinsic characterization of finite
-presentation.
-
-\begin{proposition}[Filtered-colimit criterion]
-  \label[proposition]{prop:Filtered_Colimit_Criterion}
-  A $\Cinfty$-ring $A$ is finitely presented if and only if
-  \[
-    \Hom_{\Cinfty\text{-}\mathrm{Ring}}(A,-)
-  \]
-  preserves filtered colimits.
-\end{proposition}
-
-\begin{proof}
-  Suppose first that
-  $A=\Cinfty(\R^n)/(r_1,\ldots,r_k)$. For every $\Cinfty$-ring $B$,
-  \[
-    \Hom(A,B)
-    \cong
-    \bigl\{b\in B^n\mid
-      \Phi_{r_1}(b)=\cdots=\Phi_{r_k}(b)=0\bigr\}.
-  \]
-  Filtered colimits of $\Cinfty$-rings are computed on underlying sets, and
-  filtered colimits of sets commute with finite limits. The displayed functor
-  therefore preserves filtered colimits.
-
-  Conversely, every $\Cinfty$-ring is a filtered colimit of finitely presented
-  ones mapping to it. Concretely, finite sets of elements give maps from
-  finitely generated free rings, finite sets of relations give finitely
-  presented quotients, two such stages admit a common refinement by combining
-  their generators and relations, and parallel maps become equal after adding
-  finitely many relations on a finite set of generators. Apply this canonical
-  filtered presentation to $A$. If $\Hom(A,-)$ preserves its colimit, then
-  $\operatorname{id}_A$ factors through one finitely presented stage
-  $P\to A$. Thus $A$ is a retract of $P$, and
-  \Cref{lem:Retracts_Finitely_Presented_Cinfty_Rings} completes the proof.
-\end{proof}
-
 \begin{theorem}[Finite presentation for manifolds]
   \label[theorem]{thm:Manifold_Function_Ring_Finitely_Presented}
   If $M$ is a finite-dimensional, second-countable smooth manifold without
   boundary, then $\Cinfty(M)$ is a finitely presented $\Cinfty$-ring.
 \end{theorem}
 
-This is Moerdijk--Reyes, Theorem~2.3
-\cite[Chapter~I, Theorem~2.3]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+This is \citet[Chapter~I, Theorem~2.3]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
 
 \begin{proof}
   Choose a proper smooth embedding $i\colon M\hookrightarrow\R^N$. Its image
@@ -411,8 +364,14 @@ The theorem does not say that the underlying commutative $\R$-algebra
 $\Cinfty(M)$ is finitely presented. All finiteness statements take place in
 the algebraic theory whose operations are arbitrary smooth functions.
 
-\subsection{Products become coproducts}
-\label[subsection]{sec:Products_Become_Coproducts}
+\section{Products and open restrictions}
+\label[section]{sec:Products_Become_Coproducts}
+
+The same passage from open subsets to manifolds also computes products.
+Once products are understood, the equation $ya=1$ identifies restriction
+to the open subset $\{a\neq0\}$ with adjoining an inverse to $a$. These
+two constructions will let us reduce transverse pullbacks to local
+equations and then compare the calculations on overlapping charts.
 
 For manifolds $M$ and $P$, pullback along the two projections determines a
 natural comparison homomorphism
@@ -429,8 +388,7 @@ natural comparison homomorphism
   $\theta_{U,V}$ is an isomorphism.
 \end{lemma}
 
-This is Moerdijk--Reyes, Lemma~2.4
-\cite[Chapter~I, Lemma~2.4]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+This is \citet[Chapter~I, Lemma~2.4]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
 
 \begin{proof}
   Choose smooth functions $a$ and $b$ with
@@ -465,8 +423,7 @@ This is Moerdijk--Reyes, Lemma~2.4
   is an isomorphism.
 \end{proposition}
 
-This is Moerdijk--Reyes, Proposition~2.5
-\cite[Chapter~I, Proposition~2.5]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+This is \citet[Chapter~I, Proposition~2.5]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
 
 \begin{proof}
   Choose proper embeddings of $M$ and $P$, open tubular neighborhoods
@@ -482,31 +439,60 @@ This result is the first complete answer to
 \Cref{question:When_Pushout_Is_Manifold}: a product is a pullback over a point,
 and its function ring is always the corresponding coproduct.
 
-\section{Transverse inverse images}
-\label[section]{sec:Transverse_Inverse_Images}
+Every open subset of a manifold can be written as $\{a\neq0\}$ for some
+smooth function $a$. We now extend the one-relation presentation of an
+open subset of Euclidean space to this setting.
 
-\subsection{The local model}
-\label[subsection]{sec:Transverse_Inverse_Images_Local_Model}
+\begin{proposition}[Smooth localization]
+\label[proposition]{prop:Smooth_Localization}
+Let $M$ be a manifold, let $a\in\Cinfty(M)$, and put $U=\{a\neq0\}$.
+Restriction exhibits $\Cinfty(U)$ as the universal $\Cinfty$-ring under
+$\Cinfty(M)$ in which $a$ becomes invertible.
+\end{proposition}
 
-Let $i\colon Z\hookrightarrow N$ be an embedded submanifold and let
-$f\colon M\to N$ be transverse to $Z$. Then $P=f^{-1}(Z)$ is a manifold, and
-we have a pullback square
+\begin{proof}
+By the product theorem, adjoining one free smooth generator $y$ gives
 \[
-  \begin{tikzcd}
-    P \rar[hook,"j"] \dar \drar[pullback] & M \dar["f"] \\
-    Z \rar[hook,"i"'] & N.
-  \end{tikzcd}
+ \Cinfty(M)\otimes_\infty\Cinfty(\R)\cong\Cinfty(M\times\R).
 \]
-Contravariance gives a commutative square
-\begin{equation}
-  \label{eq:Inverse_Image_Function_Rings}
-  \begin{tikzcd}
-    \Cinfty(N) \rar["f^*"] \dar["i^*"']
-      & \Cinfty(M) \dar["j^*"] \\
-    \Cinfty(Z) \rar & \Cinfty(P).
-  \end{tikzcd}
-\end{equation}
-We want to prove that \Cref{eq:Inverse_Image_Function_Rings} is a pushout.
+The quotient by $ya-1$ therefore universally makes $a$ invertible.
+The function $(m,y)\mapsto ya(m)-1$ is regular along its zero set, since its
+derivative in $y$ is the nonzero number $a(m)$. That zero manifold is the
+graph $m\mapsto(m,1/a(m))$ over $U$. The regular-equation theorem identifies
+the quotient with $\Cinfty(U)$, and its structure map with restriction.
+\end{proof}
+
+For $M=\R^n$, this is
+\citet[Chapter~I, Proposition~1.6 and Corollary~2.2]
+{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+The argument extends it to manifolds using the product calculation in
+\Cref{prop:Products_Manifolds_Coproducts}.
+
+\section{Transverse pullbacks}
+\label[section]{sec:Fiber_Products_And_The_Boundary_Of_Transversality}
+
+We now return to \Cref{question:When_Pushout_Is_Manifold}. The essential
+case is the inverse image of an embedded submanifold: transversality
+ensures that its local defining equations remain independent after
+pullback. General transverse fiber products reduce to this case by
+using the diagonal.
+
+\begin{theorem}[Transverse inverse images become pushouts]
+  \label[theorem]{thm:Transverse_Inverse_Images_Pushouts}
+  Let $f\colon M\to N$ be transverse to an embedded submanifold
+  $i\colon Z\hookrightarrow N$, and put $P=f^{-1}(Z)$. Then
+  \[
+    \begin{tikzcd}
+      \Cinfty(N) \rar["f^*"] \dar["i^*"'] \drar[pushout]
+        & \Cinfty(M) \dar \\
+      \Cinfty(Z) \rar
+        & \Cinfty(P)
+    \end{tikzcd}
+  \]
+  is a pushout of $\Cinfty$-rings.
+\end{theorem}
+
+This is \citet[Chapter~I, Proposition~2.6]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
 
 The local calculation contains the geometric content. Suppose
 $U\subseteq N$ is an open set on which $Z$ is defined by functions
@@ -543,12 +529,142 @@ This calculation also identifies the exact use of transversality. It ensures
 that the pulled-back equations remain regular, so that their algebraic
 quotient is the function ring of the geometric inverse image.
 
-The rest of the proof is globalization. It is included in full because the
-result will be used later, but the next two lemmas are supplementary to the
-default live route through the chapter.
+The local calculation proves the theorem on coordinate neighbourhoods.
+Globalization uses partitions of unity and descent for functions modulo
+finitely many equations. We give that argument in
+\Cref{sec:Further_Transverse_Proof}; first we explain the consequence
+for arbitrary transverse fibre products.
 
-\subsection{Supplement: descent for functions modulo equations}
-\label[subsection]{sec:Supplement_Cech_Descent}
+We can now answer \Cref{question:When_Pushout_Is_Manifold} for general fiber
+products. Let $f\colon M\to N$ and $g\colon P\to N$ be transverse. Then
+\[
+  f\times g\colon M\times P\longrightarrow N\times N
+\]
+is transverse to the diagonal $\Delta_N$, and
+\[
+  (f\times g)^{-1}(\Delta_N)=M\times_NP.
+\]
+
+\begin{theorem}[Transverse pullbacks become pushouts]
+  \label[theorem]{thm:Transverse_Pullbacks_Pushouts}
+  For transverse smooth maps $f\colon M\to N$ and $g\colon P\to N$, the two
+  squares
+  \[
+    \begin{tikzcd}
+      M\times_NP \rar \dar \drar[pullback]
+        & P \dar["g"] \\
+      M \rar["f"'] & N
+    \end{tikzcd}
+    \qquad
+    \begin{tikzcd}
+      \Cinfty(N) \rar["g^*"] \dar["f^*"'] \drar[pushout]
+        & \Cinfty(P) \dar \\
+      \Cinfty(M) \rar
+        & \Cinfty(M\times_NP)
+    \end{tikzcd}
+  \]
+  are respectively a pullback of manifolds and a pushout of $\Cinfty$-rings.
+\end{theorem}
+
+\begin{proof}
+  Apply \Cref{thm:Transverse_Inverse_Images_Pushouts} to
+  $f\times g$ and $\Delta_N\subseteq N\times N$. Then use
+  \Cref{prop:Products_Manifolds_Coproducts} to identify the function rings of
+  $M\times P$ and $N\times N$ with the corresponding coproducts. The resulting
+  universal property says precisely that a map out of
+  $\Cinfty(M\times_NP)$ is a pair of maps out of $\Cinfty(M)$ and
+  $\Cinfty(P)$ whose restrictions along $f^*$ and $g^*$ agree. This is the
+  pushout property of the square displayed above.
+\end{proof}
+
+Combining \Cref{cor:Recovering_Manifolds,thm:Manifold_Function_Ring_Finitely_Presented,thm:Transverse_Pullbacks_Pushouts}
+gives the classical structural theorem.
+
+\begin{theorem}[Manifolds inside smooth algebra]
+  \label[theorem]{thm:Manifolds_Inside_Smooth_Algebra}
+  The contravariant functor
+  \[
+    \Cinfty(-)\colon
+    (\text{smooth manifolds})\catop
+    \longrightarrow
+    \Cinfty\text{-}\mathrm{Ring}
+  \]
+  is fully faithful, takes values in finitely presented $\Cinfty$-rings, and
+  sends transverse pullback squares to pushout squares.
+\end{theorem}
+
+This is \citet[Chapter~I, Theorem~2.8]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+
+The tangency calculation in \Cref{sec:Coproducts_Impose_Equations} shows
+why the transversality hypothesis cannot simply be dropped. The geometric
+intersection is a point, with function ring $\R$, while the pushout is
+$\Cinfty(\R)/(x^2)\cong\R[\varepsilon]/(\varepsilon^2)$.
+The comparison homomorphism kills $\varepsilon$: it forgets the
+infinitesimal information retained by the equations.
+
+This pushout shows that ordinary smooth algebra already contains
+intersections which are not manifolds. It does not retain all intersection
+data, however: the ordinary pushout for the self-intersection
+$*\to\R\leftarrow *$ is just $\R$. The excess direction seen in
+\Cref{ex:Excess_Self_Intersection}
+requires a derived construction. The final exercise asks us to compare
+these two descriptions.
+The transverse-pullback theorem proved here is the compatibility
+condition for both the ordinary and the derived universal constructions
+in the next chapter.
+
+\section{Further proofs: globalizing the pushout}
+\label[section]{sec:Further_Transverse_Proof}
+
+We supply the globalization used in
+\Cref{thm:Transverse_Inverse_Images_Pushouts}. The local regular-equation
+calculation is already established. The remaining task is to glue maps
+into a test ring, which may contain infinitesimal elements invisible
+on its real points.
+
+\subsection{Test rings and descent}
+\label[subsection]{sec:Finite_Presentation_And_Test_Rings}
+
+To verify a pushout, we must test maps into arbitrary smooth rings. The
+following criterion will let us restrict to finitely presented test rings,
+where we can glue functions modulo a finite list of equations.
+
+\begin{proposition}[Filtered-colimit criterion]
+  \label[proposition]{prop:Filtered_Colimit_Criterion}
+  A $\Cinfty$-ring $A$ is finitely presented if and only if
+  \[
+    \Hom_{\Cinfty\text{-}\mathrm{Ring}}(A,-)
+  \]
+  preserves filtered colimits.
+\end{proposition}
+
+\begin{proof}
+  Suppose first that
+  $A=\Cinfty(\R^n)/(r_1,\ldots,r_k)$. For every $\Cinfty$-ring $B$,
+  \[
+    \Hom(A,B)
+    \cong
+    \bigl\{b\in B^n\mid
+      \Phi_{r_1}(b)=\cdots=\Phi_{r_k}(b)=0\bigr\}.
+  \]
+  Filtered colimits of $\Cinfty$-rings are computed on underlying sets, and
+  filtered colimits of sets commute with finite limits. The displayed functor
+  therefore preserves filtered colimits.
+
+  Conversely, every $\Cinfty$-ring is a filtered colimit of finitely presented
+  ones mapping to it. Concretely, finite sets of elements give maps from
+  finitely generated free rings, finite sets of relations give finitely
+  presented quotients, two such stages admit a common refinement by combining
+  their generators and relations, and parallel maps become equal after adding
+  finitely many relations on a finite set of generators. Apply this canonical
+  filtered presentation to $A$. If $\Hom(A,-)$ preserves its colimit, then
+  $\operatorname{id}_A$ factors through one finitely presented stage
+  $P\to A$. Thus $A$ is a retract of $P$, and
+  \Cref{lem:Retracts_Finitely_Presented_Cinfty_Rings} completes the proof.
+\end{proof}
+
+For a finitely presented test ring, the following descent statement
+lets us glue the local maps constructed by imposing regular equations.
 
 \begin{lemma}[Cech descent]
   \label[lemma]{lem:Cech_Descent_Finitely_Presented_Cinfty_Ring}
@@ -574,8 +690,7 @@ default live route through the chapter.
   intersections.
 \end{lemma}
 
-This is Moerdijk--Reyes, Lemma~2.7
-\cite[Chapter~I, Lemma~2.7]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+This is \citet[Chapter~I, Lemma~2.7]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
 
 \begin{proof}
   It is enough to prove the usual gluing statement. Suppose that we have
@@ -656,34 +771,19 @@ and \Cref{lem:Cech_Descent_Finitely_Presented_Cinfty_Ring}.
   compatible under restriction.
 \end{proof}
 
-\subsection{The transverse inverse-image theorem}
+\subsection{Globalizing the local calculation}
 \label[subsection]{sec:Transverse_Inverse_Image_Theorem}
 
-\begin{theorem}[Transverse inverse images become pushouts]
-  \label[theorem]{thm:Transverse_Inverse_Images_Pushouts}
-  Let $f\colon M\to N$ be transverse to an embedded submanifold
-  $i\colon Z\hookrightarrow N$, and put $P=f^{-1}(Z)$. Then
-  \[
-    \begin{tikzcd}
-      \Cinfty(N) \rar["f^*"] \dar["i^*"'] \drar[pushout]
-        & \Cinfty(M) \dar \\
-      \Cinfty(Z) \rar
-        & \Cinfty(P)
-    \end{tikzcd}
-  \]
-  is a pushout of $\Cinfty$-rings.
-\end{theorem}
+\begin{proof}[Proof of \Cref{thm:Transverse_Inverse_Images_Pushouts}]
+  We first reduce to a closed embedding. An embedded submanifold $Z$
+  is locally closed in $N$, so it is closed in some open neighbourhood
+  $N'\subseteq N$. The inclusions $N'\to N$ and $f^{-1}(N')\to M$
+  give smooth localizations. Their function-ring square is a pushout
+  by the universal property of localization. Pasting with the square
+  over $N'$ therefore reduces the assertion to the case where $Z$
+  is closed in $N$.
 
-This is Moerdijk--Reyes, Proposition~2.6
-\cite[Chapter~I, Proposition~2.6]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
 
-For the live talk, the local regular-equation calculation is the proof to
-remember. We state the Cech descent lemma, explain its partition-of-unity
-role, and quote the global universal-property argument. The complete proof
-below is retained as supplementary manuscript material because the theorem is
-a genuine dependency of Talk 4.
-
-\begin{proof}
   For a $\Cinfty$-ring $B$, consider the natural map
   \begin{align*}
     \Hom(\Cinfty(P),B)
@@ -712,7 +812,7 @@ a genuine dependency of Talk 4.
   agree after restriction from $\Cinfty(N)$. Choose an open cover
   $\{U_\alpha\}$ of $N$ such that $U_\alpha\cap Z$ is cut out in $U_\alpha$
   by independent functions. Put $V_\alpha=f^{-1}(U_\alpha)$. The local
-  calculation in \Cref{sec:Transverse_Inverse_Images} shows that the
+  calculation in \Cref{sec:Fiber_Products_And_The_Boundary_Of_Transversality} shows that the
   function-ring square over every nonempty finite intersection $U_S$ is a
   pushout.
 
@@ -750,168 +850,43 @@ a genuine dependency of Talk 4.
   shows uniqueness. Thus the displayed map of Hom-sets is a bijection.
 \end{proof}
 
-The proof has a simple geometric core and a technical global shell. Locally,
-transversality turns the inverse image into the quotient by pulled-back regular
-equations. The finite-presentation and Cech arguments only ensure that these
-local universal properties glue for arbitrary test $\Cinfty$-rings.
-
-\section{Fiber products and the boundary of transversality}
-\label[section]{sec:Fiber_Products_And_The_Boundary_Of_Transversality}
-
-\subsection{Transverse fiber products}
-\label[subsection]{sec:Cinfty_Transverse_Fiber_Products}
-
-We can now answer \Cref{question:When_Pushout_Is_Manifold} for general fiber
-products. Let $f\colon M\to N$ and $g\colon P\to N$ be transverse. Then
-\[
-  f\times g\colon M\times P\longrightarrow N\times N
-\]
-is transverse to the diagonal $\Delta_N$, and
-\[
-  (f\times g)^{-1}(\Delta_N)=M\times_NP.
-\]
-
-\begin{theorem}[Transverse pullbacks become pushouts]
-  \label[theorem]{thm:Transverse_Pullbacks_Pushouts}
-  For transverse smooth maps $f\colon M\to N$ and $g\colon P\to N$, the two
-  squares
-  \[
-    \begin{tikzcd}
-      M\times_NP \rar \dar \drar[pullback]
-        & P \dar["g"] \\
-      M \rar["f"'] & N
-    \end{tikzcd}
-    \qquad
-    \begin{tikzcd}
-      \Cinfty(N) \rar["g^*"] \dar["f^*"'] \drar[pushout]
-        & \Cinfty(P) \dar \\
-      \Cinfty(M) \rar
-        & \Cinfty(M\times_NP)
-    \end{tikzcd}
-  \]
-  are respectively a pullback of manifolds and a pushout of $\Cinfty$-rings.
-\end{theorem}
-
-\begin{proof}
-  Apply \Cref{thm:Transverse_Inverse_Images_Pushouts} to
-  $f\times g$ and $\Delta_N\subseteq N\times N$. Then use
-  \Cref{prop:Products_Manifolds_Coproducts} to identify the function rings of
-  $M\times P$ and $N\times N$ with the corresponding coproducts. The resulting
-  universal property says precisely that a map out of
-  $\Cinfty(M\times_NP)$ is a pair of maps out of $\Cinfty(M)$ and
-  $\Cinfty(P)$ whose restrictions along $f^*$ and $g^*$ agree. This is the
-  pushout property of the square displayed above.
-\end{proof}
-
-Combining \Cref{cor:Recovering_Manifolds,thm:Manifold_Function_Ring_Finitely_Presented,thm:Transverse_Pullbacks_Pushouts}
-gives the classical structural theorem.
-
-\begin{theorem}[Manifolds inside smooth algebra]
-  \label[theorem]{thm:Manifolds_Inside_Smooth_Algebra}
-  The contravariant functor
-  \[
-    \Cinfty(-)\colon
-    (\text{smooth manifolds})\catop
-    \longrightarrow
-    \Cinfty\text{-}\mathrm{Ring}
-  \]
-  is fully faithful, takes values in finitely presented $\Cinfty$-rings, and
-  sends transverse pullback squares to pushout squares.
-\end{theorem}
-
-This is Moerdijk--Reyes, Theorem~2.8
-\cite[Chapter~I, Theorem~2.8]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
-
-\subsection{The boundary of the classical theorem}
-\label[subsection]{sec:Boundary_Classical_Theorem}
-
-We finish the calculation left open at the beginning. Let
-$A=\Cinfty(\R^2)$. By \Cref{prop:Cinfty_Coproduct_Formulas},
-\begin{align*}
-  A/(y)\mathbin{\amalg_A}A/(y-x^2)
-  &\cong A/(y,y-x^2)\\
-  &\cong A/(y,x^2)\\
-  &\cong \Cinfty(\R)/(x^2)\\
-  &\cong \R[\varepsilon]/(\varepsilon^2).
-\end{align*}
-The first two quotients impose the equations of the line and the parabola.
-After imposing $y=0$, their remaining difference is the equation $x^2=0$.
-The result is the dual-number $\Cinfty$-ring from Talk 2, not the function ring
-$\R$ of the set-theoretic intersection point.
-
-We have therefore located the precise boundary of the classical theorem.
-
-\begin{enumerate}
-  \item Transverse pullbacks of manifolds remain manifolds, and their function
-    rings are ordinary pushouts.
-  \item A nontransverse algebraic pushout can leave the essential image of
-    manifolds, even when its set of real points is an ordinary manifold.
-  \item The resulting singular quotient is still an ordinary $\Cinfty$-ring.
-    It is not yet a derived $\Cinfty$-ring or a homotopy pushout.
-\end{enumerate}
-
-The next chapter does not yet introduce spectra or structure sheaves. Instead,
-it asks for the universal finite-limit completion in which arbitrary
-pullbacks exist while the transverse pullbacks proved here remain unchanged.
-Talk 5 will calculate the resulting derived zero loci, Talk 6 will extract
-their stable linearization, and Talk 7 will give their locally affine
-geometric realization as derived $\Cinfty$-schemes. The transverse theorem
-proved here is the required compatibility condition: any derived extension of
-manifolds should agree with ordinary differential geometry whenever the
-classical pullback is already transverse.
-
-\section{Summary and supplementary materials}
+\section{Further calculations}
 \label[section]{sec:Manifolds_As_Cinfty_Summary_And_Further_Reading}
 
-\subsection{The live route}
-\label[subsection]{sec:Manifolds_As_Cinfty_Live_Route}
+\begin{example}[Smooth coproducts versus algebraic tensor products]
+The difference between a smooth coproduct and an algebraic tensor product
+is visible in one function. The image of
+\[
+ \Cinfty(\R)\otimes_\R\Cinfty(\R)\longrightarrow\Cinfty(\R^2)
+\]
+consists of finite sums $\sum_jf_j(x)g_j(y)$. The function $e^{xy}$
+cannot be written in this form.
 
-The default live route occupies 72 minutes. The regular-equation lemma is the
-engine and the local transverse inverse-image calculation is its principal
-application. Finite presentation and products are structural inputs. The
-Cech lemma is stated with its geometric mechanism, while its proof and the
-full global test-ring argument remain supplementary. The tangent
-line--parabola pushout is the final boundary example and the handoff to the
-ordinary finite-limit envelope.
+Indeed, if it were a sum of $r$ such terms, choose $r+1$ distinct real
+numbers $x_0,\ldots,x_r$. All functions $e^{x_i y}$ would lie in the
+span of $g_1,\ldots,g_r$ and hence be linearly dependent.
+But differentiating a linear relation at $y=0$ in orders $0,\ldots,r$
+gives a Vandermonde system with invertible matrix $(x_i^j)$.
+The functions are therefore linearly independent, a contradiction.
+The smooth coproduct includes $e^{xy}$ because it permits smooth
+substitution involving variables from both factors.
+\end{example}
 
-\subsection{Takeaways}
-\label[subsection]{sec:Manifolds_As_Cinfty_Takeaways}
+\begin{exercise}
+Give a finite presentation of $\Cinfty(\R\setminus\{0\})$ and use
+it to calculate its coproduct with $\Cinfty(S^1)$.
+\end{exercise}
 
-The main route through the chapter can be compressed into five statements.
+\begin{exercise}
+Show that the pushout for the self-intersection $*\to\R\leftarrow*$
+in ordinary smooth rings is $\R$. Compare the result with the
+linearized matching complex $[0\to\R]$ of \Cref{chap:Why_Derived_Manifolds}.
+\end{exercise}
 
-\begin{enumerate}
-  \item Independent equations generate the full ideal of functions vanishing
-    on their common zero locus.
-  \item Every open Euclidean subset has a one-relation function ring, and the
-    function ring of every manifold is finitely presented as a
-    $\Cinfty$-ring.
-  \item Products of manifolds become coproducts of function rings.
-  \item Transverse inverse images, and hence all transverse fiber products,
-    become pushouts of function rings.
-  \item The tangent line--parabola pushout is the dual-number ring. It marks
-    the point where ordinary manifolds cease to be closed under algebraic
-    pushouts.
-\end{enumerate}
-
-\subsection{Related literature}
-\label[subsection]{sec:Manifolds_As_Cinfty_Related_Literature}
-
-The primary source for this chapter is Moerdijk--Reyes, Chapter~I, Section~2
+The proofs follow
 \cite[Chapter~I, Section~2]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
-Our organization follows their dependency chain, but makes the
-regular-equation theorem the explicit engine and separates the Cech
-globalization from the default live route. Standard differential-topological
-inputs, including the submersion theorem, proper Whitney embeddings, tubular
-neighborhoods, and partitions of unity, may be found in Lee
+The differential-topological ingredients are standard tubular
+neighbourhood, partition-of-unity, and submersion results; see
 \cite{lee2000smooth}.
-
-Spivak uses preservation of transverse intersections as one of the basic
-compatibility requirements for derived smooth manifolds
-\cite[Sections~1--3]{Spivak_Derived_Smooth_Manifolds}. Carchedi and Steffens
-make this requirement universal: their $\infty$-category of derived manifolds
-is the universal idempotent-complete $\infty$-category with finite limits
-receiving manifolds in a way that preserves transverse pullbacks and the
-terminal object
-\cite[Introduction]{Carchedi_Steffens_Universal_Derived_Manifolds}. Thus the
-classical theorem proved here is not merely a consistency check. It is one of
-the structural inputs from which the later derived category is characterized.
+The transverse compatibility becomes part of the universal property in
+\cite{Carchedi_Steffens_Universal_Derived_Manifolds}.

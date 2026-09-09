@@ -1,12 +1,7 @@
-% The title and chapter boundary remain provisional. This chapter is the
-% complete working manuscript for the fourth seminar talk. The final subsection
-% contains supplementary material outside the default live route.
+% !TEX root = ../main.tex
 
-\chapter{From ordinary to derived smooth objects}
+\chapter{Derived manifolds}
 \label[chapter]{chap:From_Smooth_Algebra_To_Derived_Manifolds}
-
-\section{The ordinary finite-limit envelope}
-\label[section]{sec:Ordinary_Finite_Limit_Envelope}
 
 The preceding chapter established the structural theorem
 \[
@@ -25,48 +20,51 @@ ring
 \]
 which is not the function ring of a manifold.
 
-The natural next question is not yet how to calculate a derived intersection.
-It is a universal question.
+These examples suggest a universal enlargement of the category of manifolds.
 
 \begin{question}
   \label[question]{question:Universal_Finite_Limit_Completion}
-  What is the universal way to enlarge manifolds so that arbitrary finite
-  pullbacks exist, while preserving the transverse pullbacks that are already
-  correct?
+  What is the universal way to enlarge manifolds so that all finite limits
+  exist, while preserving transverse pullbacks and the terminal object?
 \end{question}
 
-There is already an answer if we ask this question only among ordinary
-categories. Understanding that answer will show both why ordinary
-$\Cinfty$-rings are useful and why they do not yet give derived manifolds.
+The answer depends on the categories in which we ask the question.
+Ordinary smooth rings retain nilpotent thickenings, but their pushouts
+collapse the excess self-intersections seen in
+\Cref{ex:Excess_Self_Intersection}. To retain that information, we pass
+to $\infty$-categories, where morphisms carry identifications between them,
+identifications between those identifications, and so on. Pullbacks can
+then retain this higher information.
 
-\subsection{The algebraic theory of smooth functions}
-\label[subsection]{sec:Algebraic_Theory_Smooth_Functions}
+We first describe the universal construction for ordinary smooth rings
+and locate its limitation in a self-intersection calculation. We then
+introduce the pullback formalism in $\infty$-categories and extend smooth
+algebra to this setting. The final step relates the resulting animated smooth rings
+to a universal category of derived manifolds. We quote the algebraic
+and geometric extension theorems, explaining their content through
+presentations and examples. The next chapter will calculate the resulting
+derived intersections.
 
-Let $\mathrm{Euc}$ denote the category whose objects are the Euclidean spaces
-$\R^n$, for $n\geq0$, and whose morphisms are smooth maps. Its finite products
-are the usual products
-\[
-  \R^n\times\R^m\cong\R^{n+m}.
-\]
-Talk 2 defined a $\Cinfty$-ring as a finite-product-preserving functor
-\[
-  A\colon\mathrm{Euc}\longrightarrow\mathrm{Set}.
-\]
-The underlying set of the ring is $A(\R)$. A smooth map
-\[
-  f\colon\R^n\longrightarrow\R^m
-\]
-induces an operation
-\[
-  A(f)\colon A(\R)^n\longrightarrow A(\R)^m.
-\]
+\section{The ordinary finite-limit envelope}
+\label[section]{sec:Ordinary_Finite_Limit_Envelope}
 
-Nothing in this definition depends essentially on sets. It only uses finite
-products.
+We begin with Euclidean spaces and freely adjoin finite limits while
+preserving their finite products. The
+result is the opposite category of finitely presented smooth rings:
+generators specify coordinates, and relations specify equations.
+Its universal property says that a finite-limit-preserving functor out
+of this category is determined by an interpretation of smooth operations
+in its target.
+
+Recall that $\mathrm{Euc}$ consists of Euclidean spaces and smooth
+maps. In \Cref{prop:Cinfty_Ring_Functor_Formulation}, an ordinary
+$\Cinfty$-ring was a finite-product-preserving functor
+$\mathrm{Euc}\to\mathrm{Set}$. The same definition works in any ordinary
+category with finite products.
 
 \begin{definition}[$\Cinfty$-ring object]
   \label[definition]{def:Internal_Cinfty_Ring}
-  Let $C$ be a category with finite products. A \emph{$\Cinfty$-ring object in
+  Let $C$ be an ordinary category with finite products. A \emph{$\Cinfty$-ring object in
   $C$} is a finite-product-preserving functor
   \[
     R\colon\mathrm{Euc}\longrightarrow C.
@@ -80,39 +78,20 @@ Euclidean spaces. Since $R(\R^n)\cong R(\R)^n$, the functor is determined by
 this one object together with its smooth operations. For $C=\mathrm{Set}$ we
 recover ordinary $\Cinfty$-rings.
 
-The definition is useful because a finite-limit-preserving functor transports
-internal algebraic structure.
+A finite-limit-preserving functor transports such a ring object,
+because it preserves finite products and the identities between the
+smooth operations. We will use this to characterize an extension
+from Euclidean spaces by its value on the smooth line.
 
-\begin{proposition}
-  \label[proposition]{prop:Left_Exact_Transports_Cinfty_Rings}
-  Let $F\colon C\to D$ preserve finite limits. If $R$ is a $\Cinfty$-ring
-  object in $C$, then $F\circ R$ is a $\Cinfty$-ring object in $D$.
-\end{proposition}
-
-\begin{proof}
-  A finite-limit-preserving functor preserves finite products. Therefore
-  \[
-    F(R(\R^n))
-    \cong
-    F(R(\R)^n)
-    \cong
-    F(R(\R))^n.
-  \]
-  The smooth operations and their identities are transported by functoriality.
-\end{proof}
-
-\subsection{Formal affine smooth objects}
-\label[subsection]{sec:Formal_Affine_Smooth_Objects}
-
-Set
+To describe the universal target for these operations, set
 \[
   \operatorname{Aff}_{\Cinfty}^{\mathrm{fp}}
   =
   (\Cinfty\text{-}\mathrm{Ring}^{\mathrm{fp}})\catop.
 \]
-For this chapter, an object of this opposite category will be called a
-\emph{formal affine smooth object}. This is only a variance convention. We are
-not constructing a topological space, a spectrum, or a structure sheaf.
+An object of this opposite category is an affine smooth object described
+by its function ring. Its spectrum and structure sheaf will be constructed
+in \Cref{chap:Local_Derived_Geometry_Kuranishi_Charts}.
 
 There is a functor
 \[
@@ -147,36 +126,32 @@ property.
 This is the $0$-truncated case of the finite-limit-envelope theorem for an
 algebraic theory
 \cite[Theorem~3.22 and Remark~3.26]{Carchedi_Steffens_Universal_Derived_Manifolds}.
-In the live route we state the theorem and unpack one finite presentation.
-The presentation-independence and retract argument are retained here as the
-proof architecture, but they are not a second live proof. Let us first unpack
-what the theorem says.
 
-A finitely presented $\Cinfty$-ring can be written
+The universal property has an explicit consequence: a functor preserving
+finite limits must send a presentation by equations to the corresponding
+zero locus in its target. A finitely presented $\Cinfty$-ring can be written
 \[
   A=
   \frac{\Cinfty(\R^n)}{(f_1,\ldots,f_k)}.
 \]
 Equivalently, $A$ is the coequalizer
 \[
-  \Cinfty(\R^k)
-  \mathrel{
-    \substack{
-      \xrightarrow{\ (f_1,\ldots,f_k)^*\ }\\[-.4ex]
-      \xrightarrow[\ 0^*\ ]{}
-    }
-  }
-  \Cinfty(\R^n)
-  \longrightarrow A,
+  \begin{tikzcd}[column sep=large]
+    \Cinfty(\R^k)
+      \ar[r,shift left=.6ex,"{(f_1,\ldots,f_k)^*}"]
+      \ar[r,shift right=.6ex,"0^*"']
+      & \Cinfty(\R^n) \rar & A,
+  \end{tikzcd}
 \]
 where the $i$th coordinate function on $\R^k$ is sent respectively to $f_i$
 and to zero. In the opposite category, this becomes an equalizer diagram
 \[
-  A
-  \longrightarrow
-  \Cinfty(\R^n)
-  \mathrel{\substack{\longrightarrow\\[-.4ex]\longrightarrow}}
-  \Cinfty(\R^k).
+  \begin{tikzcd}[column sep=large]
+    A \rar & \Cinfty(\R^n)
+      \ar[r,shift left=.6ex]
+      \ar[r,shift right=.6ex]
+      & \Cinfty(\R^k).
+  \end{tikzcd}
 \]
 Consequently, if $F$ preserves finite limits and
 \[
@@ -188,10 +163,12 @@ then $F(A)$ is forced to be the internal zero locus
   \cong
   \operatorname{Eq}
   \left(
-    R(\R)^n
-    \substack{\xrightarrow{(f_1,\ldots,f_k)}\\[-.6ex]
-              \xrightarrow[0]{}}
-    R(\R)^k
+    \begin{tikzcd}[column sep=large]
+      R(\R)^n
+        \ar[r,shift left=.6ex,"{(f_1,\ldots,f_k)}"]
+        \ar[r,shift right=.6ex,"0"']
+        & R(\R)^k
+    \end{tikzcd}
   \right).
 \]
 Thus the chosen $\Cinfty$-ring object determines the value of $F$ on every
@@ -202,24 +179,20 @@ show that the construction is independent of the chosen presentation,
 functorial in $A$, and compatible with natural transformations. The general
 proof observes that finitely presented algebras are generated from finitely
 generated free algebras by finite colimits and retracts. Taking opposites
-turns those operations into finite limits and retracts. This proof architecture
-will return in the animated setting.
+turns those operations into finite limits and retracts. The same generation
+statements underlie the animated version of the theorem. Extending from
+Euclidean spaces to all manifolds requires a geometric theorem, which we
+will state in \Cref{sec:Universal_Property_Derived_Manifolds}.
 
-The theorem says that
-\[
-  \operatorname{Aff}_{\Cinfty}^{\mathrm{fp}}
-\]
-is not merely a convenient enlargement of Euclidean spaces. It is the
-universal enlargement appropriate to ordinary finite-limit problems.
-
-\section{What the ordinary envelope forgets}
+\section{Why ordinary intersections are not enough}
 \label[section]{sec:What_Ordinary_Envelope_Forgets}
 
-The ordinary finite-limit envelope already computes zero loci. We now examine
-exactly what it remembers.
-
-\subsection{Zero loci as pullbacks}
-\label[subsection]{sec:Ordinary_Formal_Zero_Loci}
+The ordinary envelope gives a formal zero locus for every smooth map,
+even when the geometric zero set is singular. Quotients retain the
+equations and can therefore distinguish nilpotent thickenings. They do
+not, however, distinguish a closed subobject from its self-intersection.
+This calculation will explain what needs to change in the universal
+problem.
 
 Let $M$ be a manifold and let
 \[
@@ -248,34 +221,19 @@ This construction makes sense without a spectrum or a structure sheaf.
 
 \begin{example}[A transverse zero]
   \label[example]{ex:Ordinary_Envelope_Transverse_Zero}
-  For $f(x)=x$, we obtain
-  \[
-    \Cinfty(\R)/(x)\cong\R.
-  \]
-  The formal zero locus is the ordinary point, as required by the transverse
-  theorem.
+  The quotient $\Cinfty(\R)/(x)\cong\R$ says that the formal zero locus
+  of $x$ is the ordinary point, as required by transverse compatibility.
 \end{example}
 
 \begin{example}[A singular zero]
   \label[example]{ex:Ordinary_Envelope_Singular_Zero}
-  For $f(x)=x^2$, we obtain
-  \[
-    \Cinfty(\R)/(x^2)
-    \cong
-    \R[\varepsilon]/(\varepsilon^2).
-  \]
-  The ordinary envelope therefore retains the nilpotent thickening found in
-  Talk 3. Passing beyond manifolds did not yet require derived algebra.
+  The dual-number quotient $\Cinfty(\R)/(x^2)$ from the preceding
+  chapters is the formal zero locus of $x^2$. Thus the ordinary envelope
+  already retains its nilpotent thickening.
 \end{example}
 
-These examples prevent one possible misconception. The existence of a
-singular or nonreduced zero locus is not what distinguishes derived geometry
-from ordinary smooth algebra.
-
-\subsection{A self-intersection collapses}
-\label[subsection]{sec:Ordinary_Self_Intersection_Collapses}
-
-Let $A$ be a $\Cinfty$-ring, let $I\subseteq A$ be an ideal, and put
+Now consider the self-intersection of a closed subobject. Let $A$ be a
+$\Cinfty$-ring, let $I\subseteq A$ be an ideal, and put
 \[
   B=A/I.
 \]
@@ -310,16 +268,7 @@ $x$-axis. Its ordinary self-intersection inside the plane is again represented
 by $B$. The quotient remembers that $y$ vanishes, but it has no record that
 the relation $y=0$ was imposed twice.
 
-The conclusion must be stated carefully.
-
-\begin{observation}
-  \label[observation]{obs:Ordinary_Envelope_Is_Not_Wrong}
-  The category $\operatorname{Aff}_{\Cinfty}^{\mathrm{fp}}$ is not failing its
-  universal property. It is the correct finite-limit envelope among ordinary
-  categories. The self-intersection calculation exposes a limitation of the
-  ambient categorical language, not an error in the construction.
-\end{observation}
-
+The collapse reflects how pullbacks work in an ordinary category.
 An ordinary pullback is characterized by an isomorphism of sets
 \[
   \Hom_C(T,X\times_ZY)
@@ -333,61 +282,71 @@ In a set, equality is a property. Once the equality holds, there is no further
 datum recording how it holds. In particular, imposing the same relation twice
 cannot create new equality data.
 
-This identifies the boundary of the ordinary construction:
-
-\[
-  \text{ordinary finite limits retain solutions and quotient relations,}
-\]
-but
-\[
-  \text{they cannot retain higher structure among those relations.}
-\]
-
-\section{Equality as structure}
+\section{Pullbacks with higher identifications}
 \label[section]{sec:Equality_As_Structure}
 
-We now introduce only the part of higher category theory needed to formulate a
-better universal problem. The guiding principle is:
+We want a pullback to record how two composites are identified. For this,
+we first introduce animae, whose elements admit identifications and
+higher identifications. The based loops in a circle will illustrate
+what a self-pullback can retain. We then formulate pullbacks in
+$\infty$-categories before returning to smooth algebra.
 
-\begin{quote}
-  When expressing that two entities are equal, specify how they are equal.
-\end{quote}
-
-This principle changes the primitive notion of a collection.
-
-\subsection{From sets to animae}
-\label[subsection]{sec:From_Sets_To_Animae}
-
-\begin{definition}[Anima]
-  \label[definition]{def:Anima_Conceptual}
-  An \emph{anima} is a collection in which equality between elements is
-  structure rather than a property. For elements $x,y$ of an anima $X$, the
-  equalities from $x$ to $y$ form an anima $X(x,y)$. Equalities between such
-  equalities again form animae, and this continues coherently.
+\begin{definition}[Anima, informal description]
+\label[definition]{def:Anima_Conceptual}
+An \emph{anima} behaves like a set in which the identifications between
+any two elements themselves form an anima. Identifications can be composed
+and inverted, with the usual identities holding through coherent higher
+identifications.
 \end{definition}
 
-Every set determines an anima in which each equality anima is either empty or
-contractible. These are the $0$-truncated animae. A topological space also has
-an underlying anima: points are elements, paths are equalities, homotopies are
-equalities between equalities, and so on.
+For the purposes of this seminar, we take the notion of an anima as a
+foundational concept, much as we take the notion of a set in ordinary
+mathematics. It is possible to construct explicit models using, for example,
+simplicial sets. Such constructions require substantial setup and do not
+by themselves convey the intended intuition. We will instead work with
+the heuristic picture above: an anima behaves like a set, except that its
+identifications themselves form animae.
 
-We write $\An$ for the $\infty$-category of animae. The notation is meant to
-emphasize that animae play the foundational role that sets play in ordinary
-category theory. No particular model for animae will be used.
+The following examples give different meanings to these identifications.
+\begin{itemize}
+  \item Every set $X$ determines an anima. For $x,y\in X$, the anima of
+    identifications between $x$ and $y$ is a point if $x=y$, and empty
+    otherwise. These are the $0$-truncated animae.
+  \item Every ordinary category $C$ determines an anima $C^{\simeq}$,
+    its \emph{groupoid core}. Its points are the objects of $C$, and its
+    identifications are isomorphisms in $C$. For example, there is an
+    anima of manifolds whose identifications are diffeomorphisms.
+  \item Every topological space $X$ determines an anima $\Pi_\infty(X)$.
+    Its points are points of $X$, and its identifications are paths in $X$.
+    Here the anima of identifications can itself be interesting:
+    identifications between paths are homotopies relative to their
+    endpoints, and continuing in this way gives iterated homotopies.
+\end{itemize}
 
-The corresponding replacement for an ordinary category is an
-$\infty$-category. Its morphisms from $X$ to $Y$ form an anima
+An ordinary category can be described by a set of objects and a set of
+morphisms between each pair of objects. In an $\infty$-category $C$, we
+instead have an anima of objects and, for every two objects $X,Y$, an anima
 \[
   \Hom_C(X,Y)
 \]
-rather than merely a set. Composition preserves all the equality data. We
-will use the ordinary categorical operations of products, pullbacks, functor
-categories, and equivalences in this setting without choosing a model.
+of morphisms. An identification in $\Hom_C(X,Y)$ is called a
+\emph{homotopy} between morphisms. Composition is associative and unital
+with coherent higher identifications. Universal properties that are
+ordinarily phrased using equalities between morphisms are now phrased
+using homotopies between morphisms, together with their higher coherence.
 
-\subsection{A self-pullback remembers self-equalities}
-\label[subsection]{sec:Self_Pullback_Remembers_Equalities}
+Ordinary categories are the special case in which every mapping anima is
+a set, so there are no nontrivial homotopies between morphisms. When an
+ordinary category $C$ is viewed in this way, its anima of objects is its
+core $C^{\simeq}$; isomorphisms between objects are still retained.
 
-Let $X$ be an anima and let $x\colon *\to X$ be a point. Form the pullback
+We can now write $\An$ for the $\infty$-category of animae. We will use
+products, pullbacks, functor categories, and equivalences in this setting
+without choosing a model.
+
+The effect of retaining identifications is already visible in a
+self-pullback of animae. Let $X$ be an anima and let $x\colon *\to X$
+be a point. Form the pullback
 \[
 \begin{tikzcd}
   *\times_X* \rar \dar \drar[pullback]
@@ -395,9 +354,10 @@ Let $X$ be an anima and let $x\colon *\to X$ be a point. Form the pullback
   * \rar["x"'] & X.
 \end{tikzcd}
 \]
-An element of this pullback consists of the two chosen points together with an
-equality between their images in $X$. Since both images are $x$, we obtain an
-equivalence
+An element of this pullback consists of the two chosen points together with
+an identification between their images in $X$. Both images are $x$.
+Writing $X(x,x)$ for the anima of identifications of $x$ with itself,
+including all higher identifications, we obtain an isomorphism
 \[
   *\times_X*
   \simeq
@@ -409,7 +369,16 @@ nontrivial. If
 \[
   X=\Pi_\infty(S^1)
 \]
-is the underlying anima of the circle and $x$ is its base point, then
+is the underlying anima of the circle with base point $x$, an identification
+of $x$ with itself is represented by a continuous path
+\[
+  \gamma\colon[0,1]\longrightarrow S^1,
+  \qquad \gamma(0)=\gamma(1)=x.
+\]
+The endpoint condition is a strict equality of points, but the datum in the
+pullback is the entire path $\gamma$. It may travel around the circle any
+number of times. Paths between these choices are homotopies of loops that
+keep the base point fixed. Thus
 \[
   X(x,x)
   \simeq
@@ -417,22 +386,21 @@ is the underlying anima of the circle and $x$ is its base point, then
   \simeq
   \Z.
 \]
-The integers record the winding numbers of loops.
+The integers record the winding numbers of loops. Each winding-number
+component is contractible, which gives the last isomorphism with the
+discrete anima $\Z$.
 
-This example is the categorical prototype of a derived self-intersection. It
-does not yet calculate the self-intersection of a smooth submanifold. It shows
-what becomes possible once a pullback is allowed to retain the ways in which
-two maps agree.
+The loop anima is a prototype for the information a homotopy pullback
+can retain. A geometric derived self-intersection uses the same
+pullback formalism in a different category.
 
-\subsection{Pullbacks in an \texorpdfstring{$\infty$}{infinity}-category}
-\label[subsection]{sec:Pullbacks_In_An_Infinity_Category}
-
+The same description of pullbacks applies in any $\infty$-category.
 Let
 \[
   X\xrightarrow{f}Z\xleftarrow{g}Y
 \]
 be a diagram in an $\infty$-category $C$. Its pullback is characterized by
-natural equivalences of animae
+natural isomorphisms of animae
 \[
   \Hom_C(T,X\times_ZY)
   \simeq
@@ -464,11 +432,20 @@ The passage from hom sets to hom animae now gives a precise reason to reconsider
 universal finite-limit envelope among $\infty$-categories, not merely among
 ordinary categories.
 
-\section{The animated finite-limit envelope}
+\section{Animated smooth rings and finite limits}
 \label[section]{sec:Animated_Finite_Limit_Envelope}
 
-The algebraic theory of smooth functions can be interpreted in animae just as
-it was interpreted in sets.
+We now apply the preceding pullback formalism to smooth algebra. The
+operations are still indexed by smooth maps between Euclidean spaces,
+but their values are animae. The finite-limit-envelope theorem has a
+corresponding animated form, with compactness replacing ordinary finite
+presentation and with retracts included explicitly.
+
+The definition in \Cref{def:Internal_Cinfty_Ring} extends to an $\infty$-category $C$
+with finite products: a smooth ring object is a finite-product-preserving
+functor $\mathrm{Euc}\to C$, with $\mathrm{Euc}$ regarded as an
+$\infty$-category. We retain the notation $\operatorname{Alg}_{\Cinfty}(C)$.
+Taking $C=\An$ gives the following definition.
 
 \begin{definition}[Animated $\Cinfty$-ring]
   \label[definition]{def:Animated_Cinfty_Ring}
@@ -488,7 +465,9 @@ An ordinary $\Cinfty$-ring is the special case in which every value $A(\R^n)$
 is a set, regarded as a $0$-truncated anima. Animated rings allow the smooth
 operations themselves to interact with higher equality data.
 
-We need a homotopical version of finite presentation.
+For ordinary smooth rings, \Cref{prop:Filtered_Colimit_Criterion} expresses
+finite presentation by preservation of filtered colimits. We use the same
+criterion here, applied to the whole mapping anima.
 
 \begin{definition}[Homotopical finite presentation]
   \label[definition]{def:Homotopically_Finitely_Presented_Cinfty_Ring}
@@ -508,8 +487,9 @@ We use the subscript $\mathrm{fp}$ for the full subcategory of such objects.
 The word \emph{homotopically} matters: finite presentation is now a statement
 about the entire hom anima, not only its set of connected components.
 
-The central theorem applies to every algebraic theory. We state only its
-$\Cinfty$ instance.
+The next theorem identifies the universal target for Euclidean smooth
+operations when finite limits and retracts are required. It applies to
+every algebraic theory; we state only its $\Cinfty$ instance.
 
 \begin{theorem}[Animated finite-limit envelope]
   \label[theorem]{thm:Animated_Cinfty_Finite_Limit_Envelope}
@@ -527,8 +507,7 @@ $\Cinfty$ instance.
   \]
 \end{theorem}
 
-This is Carchedi--Steffens, Theorem~3.22
-\cite[Theorem~3.22]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+This is \citet[Theorem~3.22]{Carchedi_Steffens_Universal_Derived_Manifolds}.
 The ordinary \Cref{thm:Ordinary_Cinfty_Finite_Limit_Envelope} is its
 $0$-truncated counterpart.
 
@@ -538,14 +517,8 @@ categories with finite limits are automatically idempotent-complete. This is
 not automatic for $\infty$-categories, which is why the condition appears in
 the theorem.
 
-\subsection{Why the theorem is plausible}
-\label[subsection]{sec:Why_Animated_Envelope_Theorem_Plausible}
-
-This subsection is supplementary to the default live route. The talk uses the
-theorem through its universal property; the compact-generation argument is
-included for readers who want to know why the statement has this form.
-
-The proof has four load-bearing steps.
+We sketch the ingredients of the quoted theorem. The starting point is
+compact generation by free algebras.
 
 \begin{enumerate}
   \item The free $\Cinfty$-ring on $n$ generators is compact. Mapping out of
@@ -559,46 +532,21 @@ The proof has four load-bearing steps.
   \item After taking opposites, the preceding statement says that every object
     of
     $\operatorname{Alg}_{\Cinfty}(\An)_{\mathrm{fp}}\catop$
-    is a retract of a finite limit of Euclidean objects. A
-    finite-product-preserving functor on $\mathrm{Euc}$ therefore has a unique
-    left exact extension.
+    is a retract of a finite limit of Euclidean objects. This describes the values forced on any finite-limit-preserving
+    extension from $\mathrm{Euc}$.
 \end{enumerate}
 
 The complete argument constructs the extension by right Kan extension and
 checks that it takes values in the chosen target $C$. The compactness and
 idempotent-completeness hypotheses are precisely what make that last step
-work. The important point for this seminar is the architecture:
-\[
-  \text{free algebras}
-  \longrightarrow
-  \text{finite colimits and retracts}
-  \longrightarrow
-  \text{finite limits after taking opposites}.
-\]
+work. Finite colimits and retracts of free algebras explain the form of the
+universal property; the Kan-extension argument supplies existence and
+compatibility with all presentations.
 
-\subsection{Comparison with the ordinary envelope}
-\label[subsection]{sec:Compare_Ordinary_Animated_Envelopes}
-
-The two envelope theorems have the same form:
-\[
-\begin{array}{c|c}
-\text{ordinary} & \text{animated}\\
-\hline
-\mathrm{Set} & \An\\
-\Cinfty\text{-rings} & \text{animated }\Cinfty\text{-rings}\\
-(\Cinfty\text{-}\mathrm{Ring}^{\mathrm{fp}})\catop
-& \operatorname{Alg}_{\Cinfty}(\An)_{\mathrm{fp}}\catop\\
-\text{finite limits in ordinary categories}
-& \text{finite limits in }\infty\text{-categories}.
-\end{array}
-\]
-
-This comparison gives the conceptual transition. Derived smooth geometry is
-not obtained by adding an arbitrary decoration to an ordinary zero locus. It
-arises by asking the same universal algebraic question in a setting where
-equalities and their coherences remain visible.
-
-There is one technical warning.
+Replacing sets by animae changes both the limits in the universal
+problem and the finiteness condition on its algebraic objects.
+The new pullbacks retain homotopies and their coherence. Compactness
+must likewise control the whole mapping anima.
 
 \begin{warning}
   \label[warning]{warn:Ordinary_Fp_Not_Necessarily_Animated_Fp}
@@ -608,22 +556,72 @@ There is one technical warning.
   by declaring every ordinary object discrete.
 \end{warning}
 
-Carchedi and Steffens record the analogous warning for an arbitrary algebraic
-theory
-\cite[Warning~3.28]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+The analogous warning for an arbitrary algebraic theory is recorded in
+\citet[Warning~3.28]{Carchedi_Steffens_Universal_Derived_Manifolds}.
 The truncation functor $\pi_0$ does send homotopically finitely presented
 animated rings to finitely presented ordinary rings, but the reverse passage
 can require retaining higher relation data.
 
-In particular, the animated pushout associated with a self-intersection need
-not collapse to the ordinary quotient. The next chapter will calculate this
-phenomenon. No such calculation is needed to formulate the universal category.
+In particular, the animated pushout associated with a self-intersection
+can retain higher homotopy groups beyond its ordinary quotient.
 
 \section{The universal property of derived manifolds}
 \label[section]{sec:Universal_Property_Derived_Manifolds}
 
-We can now return to the category of manifolds rather than only its Euclidean
-subcategory.
+The animated envelope was constructed from Euclidean spaces. To answer
+the chapter's question, we must relate its universal property to functors
+on all manifolds that preserve transverse pullbacks. A geometric extension
+theorem provides this link. We first state that theorem, then define the
+universal category of derived manifolds and identify it with the opposite
+category of compact animated smooth rings.
+
+\Cref{chap:Manifolds_As_Cinfty_Rings} showed that the function-ring functor
+preserves transverse pullbacks. We need a stronger statement: any
+interpretation of Euclidean smooth operations extends uniquely to
+manifolds while preserving transverse pullbacks and the terminal object.
+We quote this geometric extension theorem.
+
+Let
+\[
+  q\colon\mathrm{Euc}\longrightarrow\mathrm{Mfd}
+\]
+be the inclusion. For every
+idempotent-complete $\infty$-category $C$ with finite limits, restriction along
+$q$ induces an equivalence
+\[
+  \Fun^{\pitchfork}(\mathrm{Mfd},C)
+  \simeq
+  \Fun^\times(\mathrm{Euc},C)
+  =
+  \operatorname{Alg}_{\Cinfty}(C).
+\]
+Here $\Fun^\pitchfork$ denotes the functors preserving transverse
+pullbacks and the terminal object. This is
+\citet[Lemma~5.1 and Corollary~5.2]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+
+The geometric idea comes from the presentations in
+\Cref{chap:Manifolds_As_Cinfty_Rings}. An open Euclidean subset is a
+transverse zero locus of $ya(x)-1$, and every manifold is a retract of
+an open tubular neighborhood in Euclidean space. A product-preserving
+functor on $\mathrm{Euc}$ can therefore assign an object to each such
+presentation using finite limits and retracts. This explains the candidate
+extension. Proving its independence of choices, functoriality, and
+preservation of transverse pullbacks is the substantive part of the
+theorem; the proof uses right Kan extension.
+
+The earlier transverse-pullback theorem concerned the actual function-ring
+functor. This extension theorem applies to any internal $\Cinfty$-ring:
+it determines a unique transverse-pullback-preserving functor on manifolds.
+
+For an ordinary category $C$ with finite limits, combining this extension
+theorem with \Cref{thm:Ordinary_Cinfty_Finite_Limit_Envelope} gives
+\[
+  \Fun^{\mathrm{lex}}(\operatorname{Aff}_{\Cinfty}^{\mathrm{fp}},C)
+  \simeq\Fun^\pitchfork(\mathrm{Mfd},C).
+\]
+Thus ordinary finitely presented smooth rings solve the ordinary version
+of the chapter's universal problem. We now formulate the version for
+$\infty$-categories.
 
 \begin{definition}[Universal $\infty$-category of derived manifolds]
   \label[definition]{def:Universal_Infinity_Category_Derived_Manifolds}
@@ -650,73 +648,15 @@ subcategory.
   \end{enumerate}
 \end{definition}
 
-This is Carchedi--Steffens, Definition~2.1
-\cite[Definition~2.1]{Carchedi_Steffens_Universal_Derived_Manifolds}.
-As usual, the universal property determines $\mathrm{DMfd}$ uniquely. It also
-makes the intended division of labor transparent:
+This is \citet[Definition~2.1]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+The universal property determines $\mathrm{DMfd}$ uniquely.
+It fixes the existing transverse pullbacks, adjoins all finite
+homotopy limits, and includes their retracts.
 
-\begin{enumerate}
-  \item Differential topology determines which existing pullbacks must remain
-    unchanged, namely the transverse ones.
-  \item Finite-limit completion adjoins the missing intersections.
-  \item $\infty$-categorical universality retains all equality and coherence
-    data needed to compare and iterate those intersections.
-  \item Idempotent completion adds the retracts forced by the universal
-    problem.
-\end{enumerate}
-
-The definition does not say what a derived manifold looks like in coordinates.
-That is a feature at this stage. It separates the intrinsic theory from any
-particular construction.
-
-\subsection{From Euclidean operations to manifolds}
-\label[subsection]{sec:From_Euclidean_Operations_To_Manifolds}
-
-The connection between \Cref{def:Universal_Infinity_Category_Derived_Manifolds}
-and $\Cinfty$-rings requires an additional geometric theorem. It does not
-follow merely from the result of Talk 3.
-
-This extension theorem is quoted in the live talk. Its role is essential, but
-the right Kan extension and independence-of-presentation proof are not part of
-the 70-minute route.
-
-Let
-\[
-  q\colon\mathrm{Euc}\longrightarrow\mathrm{Mfd}
-\]
-be the inclusion. Carchedi and Steffens prove that, for every
-idempotent-complete $\infty$-category $C$ with finite limits, restriction along
-$q$ induces an equivalence
-\[
-  \Fun^{\pitchfork}(\mathrm{Mfd},C)
-  \simeq
-  \Fun^\times(\mathrm{Euc},C)
-  =
-  \operatorname{Alg}_{\Cinfty}(C).
-\]
-See Lemma~5.1 and Corollary~5.2 of their paper
-\cite[Lemma~5.1 and Corollary~5.2]{Carchedi_Steffens_Universal_Derived_Manifolds}.
-
-Here is the geometric reason. A product-preserving functor on Euclidean spaces
-already knows how to interpret every smooth operation. Every manifold can be
-exhibited as a retract of a transverse pullback built from Euclidean
-manifolds. Since the target has finite limits and retracts, the functor extends
-to that presentation. Preservation of transverse pullbacks makes the extension
-independent of the geometric presentation. The proof organizes this extension
-as a right Kan extension.
-
-This theorem upgrades the result of Talk 3. Talk 3 proved that the actual
-function-ring functor has the required compatibility. The extension theorem
-says that this compatibility is universal: any internal $\Cinfty$-ring
-determines, uniquely, a transverse-pullback-preserving functor on all
-manifolds.
-
-\subsection{The two universal properties agree}
-\label[subsection]{sec:Two_Universal_Properties_Agree}
-
-Combining the geometric extension theorem with
-\Cref{def:Universal_Infinity_Category_Derived_Manifolds} gives the main result
-of the chapter.
+The geometric extension theorem turns the defining universal property
+under manifolds into a universal property in terms of smooth ring objects.
+Comparing this with the animated envelope will both establish existence
+and give an algebraic description of $\mathrm{DMfd}$.
 
 \begin{theorem}[Universal property through $\Cinfty$-rings]
   \label[theorem]{thm:Universal_Property_Derived_Manifolds_Cinfty_Rings}
@@ -747,8 +687,7 @@ of the chapter.
   Composing these equivalences proves the claim.
 \end{proof}
 
-This is Carchedi--Steffens, Theorem~5.3
-\cite[Theorem~5.3]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+This is \citet[Theorem~5.3]{Carchedi_Steffens_Universal_Derived_Manifolds}.
 
 The animated finite-limit envelope has exactly the same universal property.
 We therefore obtain the promised algebraic presentation.
@@ -771,134 +710,27 @@ We therefore obtain the promised algebraic presentation.
   unique, so the two $\infty$-categories are equivalent.
 \end{proof}
 
-This is Carchedi--Steffens, Corollary~5.4
-\cite[Corollary~5.4]{Carchedi_Steffens_Universal_Derived_Manifolds}.
-It is important to keep the logical order straight:
+This is \citet[Corollary~5.4]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+This identifies the universal category with an algebraic construction.
+In particular, manifolds embed fully faithfully, transverse pullbacks
+are preserved, and all finite pullbacks exist.
 
-\begin{enumerate}
-  \item The universal property characterizes derived manifolds intrinsically.
-  \item The corollary identifies that intrinsic $\infty$-category with an
-    algebraic presentation.
-  \item A particular computational model for animated $\Cinfty$-rings is not
-    part of the definition.
-\end{enumerate}
+For a smooth map $f\colon U\to\R^r$, the function ring of its derived
+zero locus is consequently the pushout
+\[
+ \Cinfty(U)\otimes^{\mathbb L}_{\infty,\Cinfty(\R^r)}\R
+\]
+in animated smooth rings. \Cref{chap:Derived_Zero_Loci_And_Tangent_Complexes} computes it by a differential
+graded resolution. The category of derived schemes introduced in
+\Cref{chap:Local_Derived_Geometry_Kuranishi_Charts} allows these affine objects to be described locally and glued.
 
-There is also a terminological boundary to keep visible. The symbol
-$\mathrm{DMfd}$ here denotes the Carchedi--Steffens universal finite-limit
-envelope. The derived $\Cinfty$-schemes appearing in the later elliptic
-representability theorem belong to a spectrum-and-structure-sheaf formalism.
-Talk 7 will construct the bridge from animated affine algebra to locally
-affine derived smooth geometry. At this stage, we should not silently use the
-two descriptions as definitions of one another.
-
-\subsection{Consequences and the next question}
-\label[subsection]{sec:Universal_Property_Consequences_Next_Question}
-
-The universal property and its algebraic presentation have several immediate
-consequences.
-
-\begin{enumerate}
-  \item Manifolds embed fully faithfully into $\mathrm{DMfd}$.
-  \item The $\infty$-category $\mathrm{DMfd}$ has arbitrary finite pullbacks.
-  \item A transverse pullback of manifolds, regarded in $\mathrm{DMfd}$,
-    agrees with the ordinary manifold pullback.
-  \item A nontransverse diagram has a pullback in $\mathrm{DMfd}$ even when no
-    ordinary manifold pullback exists.
-  \item The construction is model-independent: any model satisfying the
-    universal property presents the same $\infty$-category.
-\end{enumerate}
-
-The chapter has deliberately not calculated any of the new objects. We know
-that the self-intersection of the $x$-axis exists in $\mathrm{DMfd}$, and we
-know why its pullback can retain more than an ordinary quotient. We have not
-yet identified the retained algebraic information.
-
-That gives the next question:
-
-\begin{question}
-  \label[question]{question:Calculate_New_Derived_Pullbacks}
-  What do the newly adjoined pullbacks look like in examples, and how can their
-  infinitesimal information be calculated?
-\end{question}
-
-The next chapter will answer this for derived zero loci. Only after the
-derived objects themselves are concrete will we introduce their tangent
-complexes.
-
-\section{Summary and supplementary materials}
+\section{Further details: retracts and coherence}
 \label[section]{sec:From_Smooth_Algebra_Summary_Supplementary_Materials}
 
-\subsection{The live route}
-\label[subsection]{sec:From_Ordinary_To_Derived_Live_Route}
-
-The default live route occupies 70 minutes. The collapsing
-self-intersection is the continuing example. It first exposes the limit of
-the ordinary finite-limit envelope, then motivates equality as structure and
-the passage from sets to animae. The ordinary and animated envelope theorems
-are stated and interpreted rather than proved in full. The geometric
-extension theorem is also quoted. Their common universal property yields the
-algebraic presentation of derived manifolds and the handoff to the explicit
-calculations of Talk 5.
-
-\subsection{Takeaways}
-\label[subsection]{sec:From_Smooth_Algebra_Takeaways}
-
-The live route can be compressed into seven statements.
-
-\begin{enumerate}
-  \item A $\Cinfty$-ring object in a category $C$ is a
-    finite-product-preserving functor $\mathrm{Euc}\to C$.
-  \item The opposite category of finitely presented ordinary $\Cinfty$-rings
-    is the universal finite-limit envelope appropriate to ordinary
-    categories.
-  \item This envelope contains ordinary singular zero loci but collapses the
-    repeated relation in a self-intersection.
-  \item Animae retain equality data, so a pullback can remember the ways in
-    which two composites agree.
-  \item Animated $\Cinfty$-rings give the corresponding finite-limit envelope
-    among idempotent-complete $\infty$-categories.
-  \item The universal property under manifolds is equivalent to the universal
-    property of carrying a $\Cinfty$-ring object.
-  \item Consequently,
-    \[
-      \mathrm{DMfd}
-      \simeq
-      \operatorname{Alg}_{\Cinfty}(\An)_{\mathrm{fp}}\catop.
-    \]
-\end{enumerate}
-
-\subsection{Supplement and related literature}
-\label[subsection]{sec:Finite_Limit_Envelope_Supplement}
-
-This final subsection records technical qualifications and references. It is not
-part of the default live route.
-
-\subsubsection{Finite presentation in the two envelopes}
-\label[subsubsection]{sec:Finite_Presentation_Two_Envelopes}
-
-In the ordinary category of $\Cinfty$-rings, finite presentation can be
-expressed by finitely many generators and finitely many relations. It is also
-equivalent to compactness with respect to filtered colimits.
-
-In the $\infty$-category of animated $\Cinfty$-rings, compactness is stronger
-than asking that $\pi_0A$ be finitely presented. It controls maps from $A$ into
-filtered colimits as animae, including all higher homotopy groups of those hom
-animae. This is why an ordinary finite presentation need not define a compact
-object after discrete inclusion.
-
-The useful structural statement is
-\[
-  \operatorname{Alg}_{\Cinfty}(\An)_{\mathrm{fp}}
-  =
-  \left\langle
-    \text{finitely generated free animated $\Cinfty$-rings}
-  \right\rangle_{\text{finite colimits and retracts}}.
-\]
-It is this statement, rather than a chosen resolution theory, which drives the
-finite-limit-envelope theorem.
-
-\subsubsection{Why idempotent completion appears}
-\label[subsubsection]{sec:Why_Idempotent_Completion_Appears}
+The universal properties above require idempotent-complete targets.
+We explain more precisely what this means in an $\infty$-category and
+why finite limits alone do not supply it. The exercises revisit this
+point and the self-pullback example.
 
 Informally, an idempotent looks like a morphism $e\colon X\to X$ together with
 a homotopy from $e\circ e$ to $e$. Formally, an idempotent in an
@@ -910,35 +742,30 @@ finding an object $Y$ and maps
 \]
 together with coherent identifications of $r\circ i$ with
 $\operatorname{id}_Y$ and of $i\circ r$ with the given idempotent. In an
-ordinary category with finite limits, idempotents split. For $\infty$-categories
+ordinary category with finite limits, an idempotent $e\colon X\to X$
+splits by taking the equalizer $i\colon Y\to X$ of $e$ and the identity.
+The map $e$ factors as $ir$, and $ri=\operatorname{id}_Y$ follows
+from the equalizer property. For $\infty$-categories
 this is not forced by finite limits alone. The compact algebraic objects are
 closed under retracts, so their opposite category is naturally
 idempotent-complete. The universal property of derived manifolds must record
 this closure explicitly.
 
-\subsubsection{Related literature}
-\label[subsubsection]{sec:Finite_Limit_Envelope_Related_Literature}
+\begin{exercise}
+Prove the equalizer construction of a splitting just described.
+Compare it with the explicit finite presentation for a retract ring
+in \Cref{chap:Manifolds_As_Cinfty_Rings}.
+\end{exercise}
 
-The primary source is Carchedi--Steffens, \emph{On the universal property of
-derived manifolds}. The universal property under manifolds is Definition~2.1,
-the finite-limit-envelope theorem for an algebraic theory is Theorem~3.22, and
-its ordinary counterpart is discussed in Remark~3.26
-\cite[Definition~2.1, Theorem~3.22, and Remark~3.26]{Carchedi_Steffens_Universal_Derived_Manifolds}.
-The comparison between functors on Euclidean spaces and functors on manifolds
-is Lemma~5.1 and Corollary~5.2. The equivalence of the two universal properties
-and the algebraic presentation of derived manifolds are Theorem~5.3 and
-Corollary~5.4
-\cite[Lemma~5.1, Corollary~5.2, Theorem~5.3, and Corollary~5.4]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+\begin{exercise}
+Use the universal property of a homotopy pullback to identify
+$*\times_{BG}*$ with a discrete group $G$, where $BG$ is its
+classifying anima and both maps select the base point.
+Compare this with the self-pullback over a set.
+\end{exercise}
 
-Spivak's axioms for derived smooth manifolds supply the earlier geometric
-requirement that transverse pullbacks remain unchanged
-\cite[Sections~1--3]{Spivak_Derived_Smooth_Manifolds}.
-Carchedi--Steffens show that an extension of Spivak's construction satisfies
-their universal property
-\cite[Theorem~5.10]{Carchedi_Steffens_Universal_Derived_Manifolds}.
-
-The spectrum and structure-sheaf theory of ordinary and derived
-$\Cinfty$-schemes has been deliberately postponed to Talk 7. It gives a
-geometric realization of affine $\Cinfty$-algebra and supplies the local
-language needed for later descent and representability arguments, but it is
-not required for the universal passage from Talks 2--3 to derived manifolds.
+The primary source is
+\cite[Definition~2.1, Theorem~3.22, Remark~3.26,
+and Section~5]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+It treats both universal properties, their geometric comparison, and
+the relation with Spivak's construction.

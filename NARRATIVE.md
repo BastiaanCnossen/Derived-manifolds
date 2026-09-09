@@ -18,9 +18,68 @@ representability through local coordinates, formal thickening, and analysis.
 Talk 14 applies this to pseudo-holomorphic curves, with compactification
 as an optional outlook.
 
-The AI-generated manuscript in `main.tex`, its chapters, and existing timed
-outlines reflect an older arrangement. Their revision is a later task;
+The AI-generated manuscript in `main.tex` and its fourteen chapters was
+revised on 9 September 2026 to follow this program. Chapters 5--7 and 9--13
+were rewritten, and all chapters received a program-alignment and exposition
+pass. Existing timed outlines remain historical preparation material;
 their numbering and allocation do not override the current program.
+
+The subsequent manuscript narrative review was implemented on the same date.
+The accompanying wholesale rewrite of the program was rejected by the
+organizers. All fourteen talk entries have been restored to their wording
+before that rewrite, while preserving the organizers' newly written
+introduction. The program is authored by the organizers; substantive changes
+are to be proposed and discussed one talk at a time, beginning with Talk 1.
+The manuscript revisions remain in place, and its main reading route is
+described in its front matter.
+
+## Manuscript narrative review
+
+The following records the manuscript revisions, not agreed changes to the
+restored program.
+
+1. **Separate the reasons for enlarging smooth geometry.** The opening
+   distinguishes zero sets, nonlinear equations, and excess intersections.
+   The self-intersection of the origin is now a main example in Chapter 1;
+   the square/cube comparison alone does not justify passing beyond
+   ordinary nonreduced smooth rings.
+2. **State the relative endpoint consistently.** The manuscript describes
+   quasi-smooth derived scheme representability relative to the parameter
+   stack. Talk 14 applies the local zero-section argument after trivializing
+   the equation bundle, retaining the source caveat in Chapter 14.
+3. **Make the main reading route visible.** Chapter 3 states the transverse
+   theorem and proves the local calculation before its geometric consequences;
+   the complete test-ring descent proof follows those conclusions. Its chapter
+   opening states the guiding question, and its four main sections separate
+   equations and zero loci, finite presentation, products and open restrictions,
+   and transverse pullbacks. The filtered-colimit criterion accompanies the
+   globalization proof, while the circle presentation introduces finiteness.
+   Chapter 4
+   reduces repeated setup, and Chapter 6 keeps the tangent-complex calculation
+   as its explicit destination. Module comparisons and existence results are
+   quoted inputs in the talk, not additional proof assignments.
+4. **Give the representability proof one final assembly.** Chapter 11 lists
+   the outputs of coordinates, augmentation, and analysis. Chapters 11 and 12
+   retain their relative constructions; Chapter 13 assembles them into the
+   global relative theorem after proving the arbitrary-family criterion.
+5. **Give recurring examples distinct purposes.** Successive returns to
+   the same equations calculate their quotient rings, higher homotopy,
+   tangent complexes, and presentation changes. Chapter 10 previews the
+   multiple-point conclusion of Chapter 13. The flat-function example in
+   Chapter 2 explains the geometric information lost by Taylor expansion.
+   Borel's theorem is omitted from Talk 2. Its statement, cutoff proof, and
+   the flat-function example are optional further material in Chapter 2.
+6. **Explain coherence before its formalism.** Chapter 9 opens with the
+   distinction between descent of families as a limit and presentation by
+   an atlas as a colimit. It connects the globally defined solution functor
+   directly to the coherence problem raised in Chapter 1.
+7. **Bring geometric consequences forward.** The Möbius-line Euler example
+   follows the trivial-line example in Chapter 8. Constant maps follow the
+   ellipticity and index calculations in Chapter 14, before the intrinsic
+   tangent theorem. The elementary complex-linear decomposition is compressed.
+8. **Preserve flexibility in delivery.** Dates and chapter order are retained;
+   the public program remains adaptable. Compactification stays optional,
+   and speaker assignments remain open. No new bibliography entries are needed.
 
 ## The endpoint
 
@@ -86,7 +145,7 @@ defines the differential moduli problems to which the proof applies.
    alone is insufficient. Introduce the universal-property viewpoint and
    the coherence problem for local reductions of elliptic moduli problems.
 2. **Introduction to $C^\infty$-rings.** Introduce smooth rings, free objects,
-   Hadamard's lemma, quotients, Borel's theorem, and the fully faithful
+   Hadamard's lemma, quotients, and the fully faithful
    description of closed subsets by their smooth functions.
 3. **$C^\infty$-rings as generalized manifolds.** Introduce coproducts,
    finite presentation of manifold function rings, products, and the
@@ -177,9 +236,11 @@ to Talk 7.
 Talk 6 starts with ordinary smooth derivations and Kähler differentials,
 then explains why the derived setting needs a complex. The main example
 for stability is the derived infinity-category of real vector spaces.
+Use chain complexes with homological grading throughout the derived
+infinity-categories, following the organizers' preference and Steffens.
 Shifts and fibre/cofibre sequences should be related to short exact
 sequences before they are used in cotangent-complex arguments. The final
-calculation is $[T_xU\xrightarrow{d_xs}E_x]$ in cohomological degrees $0,1$,
+calculation is $[T_xU\xrightarrow{d_xs}E_x]$ in homological degrees $0,-1$,
 with its deformation and obstruction interpretation. A Koszul dg-algebra
 and this tangent complex play different roles; explain that distinction.
 
@@ -188,7 +249,7 @@ is a quoted input. Spectra use real points of the classical truncation,
 not all prime ideals of the underlying real algebra. The purpose is to
 define locally affine derived schemes and make the local normal-form
 statement precise. Quasi-smoothness is expressed by cotangent
-Tor-amplitude $[-1,0]$; its geometric counterpart is local presentation by
+Tor-amplitude $[0,1]$; its geometric counterpart is local presentation by
 a derived zero locus. The substantial converse is discussed without
 promising a full proof. Stabilization illustrates nonuniqueness of charts.
 
@@ -386,21 +447,24 @@ in the manuscript or speaker notes.
 
 ## Later work and source cautions
 
-The program edit is complete. The following remain tasks for manuscript
-revision and speaker preparation, not unresolved allocations in the program.
+The manuscript revision is in place. The restored program is being discussed
+talk by talk with the organizers. The following concern speaker preparation
+and source checks; they do not authorize changes to the program wording.
 
-1. **Revise the manuscript.** Bring main.tex and its chapters into line with
-   this route. Expand the differential-operator examples in Talk 10 and
-   the explanations connecting coordinates, augmentation, and Sobolev
-   analysis in Talks 11--13. Check existing AI-generated text against
-   primary sources before reuse.
+1. **Use the revised manuscript for speaker preparation.** It now includes
+   the differential-operator motivation in Talk 10 and the explanations
+   connecting coordinates, augmentation, and Sobolev analysis in Talks 11--13.
+   The written chapters contain proofs and further material beyond a
+   90-minute talk; speakers should select a route through them.
 2. **Prepare Talk 14 carefully.** Its program is the intended application,
    but does not settle the source issue recorded in LITERATURE.md:
    Steffens's printed Construction 4.0.1 requires care concerning the
    full-jet target and the ellipticity of the resulting matching operator.
-   Check the local zero-section argument for the chosen formulation of
-   pseudo-holomorphic curves. Do not treat this caveat as resolved merely
-   because the program edit is finished.
+   The revised manuscript gives the local zero-section argument using
+   exponential coordinates and parallel transport, and records the full-jet
+   and mixed-order issues in its further discussion. This supplies the
+   seminar's argument without asserting a correction authorized by the
+   source's author.
 3. **Separate representability from enumerative constructions.** Talk 14
    includes compactification only if time permits. Orientations, virtual
    classes, isotropy, and compactness require additional input.
@@ -410,10 +474,12 @@ revision and speaker preparation, not unresolved allocations in the program.
    recorded in LITERATURE.md as unfinished work in progress. Logarithmic
    degeneration is not an assigned topic or dependency of the current
    fourteen-talk program.
-5. **Bibliography and organization.** The foundations-paper entry
-   Steffens_Derived_Cinfty_Geometry_I was added to the project bibliography
-   for Talk 5; the shared-bibliography addition remains pending as recorded
-   in LITERATURE.md. Speaker assignments and detailed delivery timings
+5. **Bibliography and organization.** Both documents use the repository's
+   `Bibliography.bib`, including the foundations-paper entry
+   `Steffens_Derived_Cinfty_Geometry_I`. The manuscript's missing Joyce and Lee
+   entries were copied from the shared bibliography with their existing keys.
+   The separate `references-local.bib` is no longer needed.
+   Speaker assignments and detailed delivery timings
    are not specified in the current program.
 
 Update this narrative when the program changes. Keep the current program,

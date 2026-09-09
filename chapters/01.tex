@@ -1,5 +1,4 @@
-% The title and chapter boundary remain provisional. This chapter is the
-% complete working manuscript for the first seminar talk.
+% !TEX root = ../main.tex
 
 \chapter{Why derived manifolds?}\label[chapter]{chap:Why_Derived_Manifolds}
 
@@ -54,11 +53,10 @@ of solutions.
   the transverse case, and behaves well in families?
 \end{question*}
 
-This question is the point of entry to derived manifolds. We will not define
-them in this chapter. Instead, we first recall exactly what transversality
-provides, then calculate what is lost when it fails, and finally see the same
-deformation--obstruction pattern in elliptic moduli problems. The calculations
-will give us a short list of requirements that later definitions must satisfy.
+Derived manifolds provide such an object. Transversality gives the first
+test for the construction: a derived intersection must recover the ordinary
+manifold when the derivatives are independent. The nontransverse examples
+will show what additional information is needed.
 The same intersection-theoretic problem is the starting point of Spivak's
 construction of derived smooth manifolds
 \cite[Sections~1--3]{Spivak_Derived_Smooth_Manifolds}.
@@ -116,7 +114,7 @@ We will use the following standard consequence of the regular value theorem.
 
 This result is also called the transverse preimage theorem; see
 \cite[Chapter~8]{lee2000smooth}. We take it as recalled differential topology
-and use it to prove the principal result of this subsection.
+and use it to prove the principal result of this section.
 
 \begin{theorem}[Transverse fiber product theorem]
   \label[theorem]{thm:Transverse_Fiber_Product}
@@ -188,6 +186,13 @@ and use it to prove the principal result of this subsection.
     &=\ker(\delta_{x,y}),
   \end{align*}
   as asserted.
+
+  Finally, suppose a manifold $W$ has smooth maps to $X$ and $Y$ whose
+  composites to $Z$ agree. Their product is a smooth map to $X\times Y$
+  with image in the embedded submanifold $h^{-1}(\Delta_Z)$, so its
+  corestriction is smooth. It is the unique map compatible with the two
+  projections. Thus the constructed manifold is the categorical pullback
+  in manifolds.
 \end{proof}
 
 In particular, under the hypotheses of
@@ -211,23 +216,18 @@ the last map is no longer surjective.
     \mathbb{T}_{x,y}(f,g)
     =\bigl[T_xX\oplus T_yY\xrightarrow{\delta_{x,y}}T_zZ\bigr],
   \]
-  with the source in cohomological degree $0$ and the target in degree $1$.
+  with the source in homological degree $0$ and the target in degree $-1$.
   We call this the \emph{linearized matching complex}. Thus
   \[
-    H^0\mathbb{T}_{x,y}(f,g)=\ker(\delta_{x,y}),
+    H_0\mathbb{T}_{x,y}(f,g)=\ker(\delta_{x,y}),
     \qquad
-    H^1\mathbb{T}_{x,y}(f,g)=\operatorname{coker}(\delta_{x,y}).
+    H_{-1}\mathbb{T}_{x,y}(f,g)=\operatorname{coker}(\delta_{x,y}).
   \]
 \end{notation}
 
-The notation is deliberately provisional. Later, after derived intersections
-have been defined, this complex will be identified with their tangent complex.
-For now it is simply a two-term complex extracted from the derivatives of the
-two maps. No homological algebra beyond the displayed kernel and cokernel
-calculations is needed in this chapter.
-
-\subsection{What the underlying set forgets}
-\label[subsection]{sec:Underlying_Set_Forgets}
+For now the complex is a way to keep the linear map together with its kernel
+and cokernel. \Cref{chap:Stable_Linearization_And_Tangent_Complexes} will identify it with the tangent complex of the
+derived intersection. The calculations here require only linear algebra.
 
 We now return to the two intersections pictured in
 \Cref{fig:Two_Intersections}. The following two examples calculate their
@@ -251,9 +251,9 @@ consists only of the origin, but the complexes are different.
   \]
   It is an isomorphism, so the maps are transverse and
   \[
-    H^0\mathbb{T}_{0,0}(i,k)=0,
+    H_0\mathbb{T}_{0,0}(i,k)=0,
     \qquad
-    H^1\mathbb{T}_{0,0}(i,k)=0.
+    H_{-1}\mathbb{T}_{0,0}(i,k)=0.
   \]
 \end{example}
 
@@ -282,12 +282,12 @@ consists only of the origin, but the complexes are different.
   \]
   It follows that
   \[
-    H^0\mathbb{T}_{0,0}(i,j)
+    H_0\mathbb{T}_{0,0}(i,j)
     =\{(u,u)\mid u\in\R\}\cong\R
   \]
   and
   \[
-    H^1\mathbb{T}_{0,0}(i,j)
+    H_{-1}\mathbb{T}_{0,0}(i,j)
     =\R^2/(\R\times\{0\})\cong\R.
   \]
   We refer provisionally to these as the infinitesimal deformation space and
@@ -313,12 +313,6 @@ coordinate of the target, which represents the cokernel of
 $\delta_{0,0}(u,v)=(u-v,0)$. Thus it is an explicit second-order obstruction
 to extending the infinitesimal solution.
 
-In particular, there cannot be an actual curve of solutions with velocity
-$(1,1)$. Indeed, the identity $t(\tau)^2=0$ for every $\tau$ forces
-$t(\tau)=0$ and then $s(\tau)=0$ for every $\tau$. This is an elementary
-instance of obstruction theory. A formal treatment will require more structure
-than this calculation alone.
-
 The same example can be presented as a zero locus in one variable. Eliminating
 $s$ gives the smooth function
 \[
@@ -332,7 +326,7 @@ Its linearized complex at the origin is
   =
   [\R\xrightarrow{0}\R].
 \]
-This is not merely an analogy with the matching complex in
+We can compare this directly with the matching complex in
 \Cref{ex:Tangent_Line_And_Parabola}. Let
 \[
   a=(1,1),
@@ -375,19 +369,45 @@ complex of $q$.
     [\R\xrightarrow{0}\R].
   \]
   The first complex is acyclic, while the second has a one-dimensional
-  cohomology group in each of degrees $0$ and $1$. Thus the passage from an
+  homology group in each of degrees $0$ and $-1$. Thus the passage from an
   equation to its underlying set of solutions forgets information already
   visible in the derivative.
 \end{example}
 
-The linearized complex does not remember the entire equation. For example,
-$t^2$ and $t^3$ have the same derivative at the origin. Their different orders
-of vanishing are higher-order information. Thus a derived intersection should
-retain the nonlinear equation itself, while its tangent complex should extract
-the first-order deformation and obstruction spaces.
+\begin{example}[The same tangent complex from different equations]
+\label[example]{ex:Square_And_Cube_Infinitesimal_Tests}
+The equations $x^2=0$ and $x^3=0$ both have zero set $\{0\}$ and
+linearized complex $[\R\xrightarrow0\R]$. Nevertheless they differ
+on second-order infinitesimal tests. In the truncated polynomial ring
+$\R[\varepsilon]/(\varepsilon^3)$, the element $x=\varepsilon$
+satisfies $x^3=0$ but does not satisfy $x^2=0$.
+Over $\R[\varepsilon]/(\varepsilon^2)$ it satisfies both equations.
+Thus the first-order solution extends one order further for the cubic.
+The nonlinear equation contains information beyond its tangent complex.
+\end{example}
 
-\subsection{Complexes in families}
-\label[subsection]{sec:Complexes_In_Families}
+\begin{example}[An excess self-intersection]
+\label[example]{ex:Excess_Self_Intersection}
+Consider the self-intersection of the origin in $\R$, given by two maps
+$*\to\R$. Its ordinary pullback is a point. Its linearized matching
+complex is $[0\to\R]$ in degrees $0,-1$, with alternating dimension
+$-1$. No ordinary manifold has that dimension. There is no nonzero
+infinitesimal solution direction, but the ambient equation still
+contributes an obstruction direction.
+
+Even ordinary smooth function rings will lose this information: imposing
+the relation $x=0$ twice gives the same quotient as imposing it once.
+The derived self-intersection will instead have a function algebra with
+a nonzero homotopy group in degree one. We will construct it in
+\Cref{chap:Derived_Zero_Loci_And_Tangent_Complexes}.
+\end{example}
+
+These examples expose different losses of information. The zero set
+forgets the difference between $x$ and $x^2$. The linearized complex
+forgets the difference between $x^2$ and $x^3$. Ordinary quotient rings
+distinguish all three equations, but they still collapse the excess
+self-intersection. It is this last example that points beyond ordinary
+smooth algebra to derived intersections.
 
 The previous examples concern a single equation. A one-parameter family shows
 why it is useful to retain the entire two-term complex rather than only its
@@ -418,19 +438,19 @@ kernel or cokernel.
   Neither the kernels nor the cokernels form a vector bundle of constant rank
   over the parameter line.
 
-  By contrast, let $E^0=E^1=\R\times\R$ be trivial line bundles over the first
+  Let $E_0=E_{-1}=\R\times\R$ be trivial line bundles over the first
   factor and define a bundle map
   \[
-    d\colon E^0\longrightarrow E^1,
+    d\colon E_0\longrightarrow E_{-1},
     \qquad
     d(t,u)=(t,tu).
   \]
   This gives a smooth two-term complex of vector bundles
   \[
-    [E^0\xrightarrow{d}E^1]
+    [E_0\xrightarrow{d}E_{-1}]
   \]
   whose fiber over $t$ is $[\R\xrightarrow{L_t}\R]$. The complex varies
-  smoothly even though the dimensions of its cohomology groups jump. The
+  smoothly even though the dimensions of its homology groups jump. The
   alternating dimension
   \[
     \dim\ker L_t-\dim\operatorname{coker}L_t=0
@@ -446,13 +466,9 @@ kernel or cokernel.
   singular origin.
 \end{example}
 
-The point of \Cref{ex:Family_With_Jumping_Kernels} is not that the complex has
-constant cohomology. It does not. The point is that its terms are vector
-bundles and its differential varies smoothly. This is the stable datum from
-which the jumping kernels and cokernels can both be recovered.
-
-\subsection{Requirements on a derived replacement}
-\label[subsection]{sec:Requirements_On_A_Derived_Replacement}
+The vector bundles and their differential give a single smooth object
+throughout the family. Its homology recovers the jumping kernels and
+cokernels at each parameter.
 
 We can now collect what the examples require from a replacement of singular
 fiber products.
@@ -475,26 +491,52 @@ the redundant variable. On the other hand, the zero set and the linearized
 complex are both too coarse: the first cannot distinguish $t$ from $t^2$, and
 the second cannot distinguish $t^2$ from $t^3$.
 
-These are requirements, not a definition. They describe the finite-dimensional
-objects we seek. The next question is why the same objects should govern moduli
-problems arising from infinite-dimensional differential equations.
+There is a universal construction satisfying the pullback requirement.
+Informally, one freely adjoins finite homotopy limits to manifolds while
+retaining the transverse pullbacks already present. A construction of
+intersections in any other suitable $\infty$-category then factors through
+this one, provided it agrees with transverse intersections. This is the
+universal-property viewpoint on derived manifolds, made precise in
+\Cref{chap:From_Smooth_Algebra_To_Derived_Manifolds}. It gives an intrinsic object for each intersection, independent
+of a chosen algebraic presentation.
+
+The use of homotopy limits retains the identifications that express an
+equation, including their higher compatibilities. The elementary examples
+above motivate this construction; its existence and algebraic description
+require the smooth-ring theory developed in the next chapters.
 
 \section{Elliptic equations and finite-dimensional reduction}
 \label[section]{sec:Elliptic_Moduli}
 
-This section is a quoted preview of the analytic endpoint. In the live talk we
-use only the semilinear example, the linearized two-term complex, and the
-statement of finite-dimensional reduction. The bundle-theoretic setup and the
-analytic hypotheses are retained here so that the preview is mathematically
-precise, but they are not prerequisites for the next chapters.
+The final part of the seminar will prove \emph{Steffens's relative elliptic
+representability theorem}. This is a principal application of the derived
+geometry we will develop: it gives a geometric structure to moduli problems
+defined by nonlinear elliptic partial differential equations. Such equations
+occur throughout differential geometry. For example, pseudo-holomorphic maps
+from a Riemann surface to an almost complex manifold satisfy an elliptic
+equation, and the last talk will apply the theorem to their moduli problem.
 
-Why should singular zero loci matter in geometry? Many moduli problems in
-differential geometry, symplectic geometry, and gauge theory are spaces of
-solutions to nonlinear elliptic partial differential equations. Such problems
-usually also involve symmetries and compactifications. We suppress those
-additional layers for now and study the equation itself.
+Informally, Steffens's theorem says that a family of elliptic equations on a
+proper family of manifolds has a solution stack represented, relative to its
+parameters, by a quasi-smooth derived $\Cinfty$-scheme
+\cite[Theorem~3.4.3]{Steffens_Representability_Elliptic_Moduli}.
+Properness supplies the compactness needed for elliptic analysis.
+Quasi-smoothness means that, locally over the parameters, the solutions admit
+presentations as derived zero loci of sections of finite-rank vector bundles
+on finite-dimensional manifolds. Thus the finite-dimensional geometry of
+equations studied above also describes solutions of certain
+infinite-dimensional problems. The theorem asserts representability of the
+solution functor, so these local presentations describe an intrinsic moduli
+object, including its families and deformation theory.
 
-Let $M$ be a compact smooth manifold, let $\pi\colon V\to M$ be a smooth fiber
+\Cref{chap:Section_Stacks_Jets_Solution_Stacks} constructs the solution stacks
+to which the theorem applies. We state the precise theorem in
+\Cref{thm:Relative_Elliptic_Representability} and prove it over
+\Cref{chap:Elliptic_Equations_Kuranishi_Models,chap:Elliptic_Representability_Smooth_Derived_Bridge,chap:Elliptic_Representability_Derived_Charts}.
+Here we explain the role of finite-dimensional reduction in that proof,
+starting with an equation on a fixed manifold.
+
+Let $M$ be a closed smooth manifold, let $\pi\colon V\to M$ be a smooth fiber
 bundle, and let $F\to M$ be a smooth vector bundle. Suppose that
 \[
   P\colon\Gamma(V)\longrightarrow\Gamma(F)
@@ -504,29 +546,30 @@ is a nonlinear elliptic differential operator. We write
   \operatorname{Sol}(P)=P^{-1}(0).
 \]
 A point of $\operatorname{Sol}(P)$ is a section satisfying the geometric
-equation encoded by $P$. Thus $\operatorname{Sol}(P)$ is our simplified moduli
-set of solutions. When a symmetry group acts, the correct moduli problem is
-typically a quotient stack rather than this set, but the local elliptic
-mechanism discussed below remains the starting point.
+equation encoded by $P$. For the moment this notation denotes the ordinary
+set of solutions. The theorem concerns the derived solution stack, whose
+construction must also retain families of solutions and the equations
+defining them.
 
 For a concrete model, take $V=F=M\times\R$ over a closed connected
 Riemannian manifold. The semilinear equation
 \[
   P(u)=\Delta u+u^2=0
 \]
-defines a subset $\operatorname{Sol}(P)\subseteq C^\infty(M)$. This example is
-not our eventual geometric application. Its purpose is to make clear that
-$\operatorname{Sol}(P)$ is simply the locus of solutions to a nonlinear
-elliptic equation. The zero function is a solution and its linearization is
+uses the nonnegative Laplacian $\Delta=d^*d$ and defines a subset
+$\operatorname{Sol}(P)\subseteq C^\infty(M)$. It arises
+as the critical-point equation for the energy
+$\int_M(\tfrac12|du|^2+u^3/3)$. The zero function is a solution and its linearization is
 $D_0P=\Delta$. Since $M$ is closed and connected, its kernel consists of the
 constant functions, and self-adjointness identifies its cokernel with the same
 one-dimensional space. We will return to this example when we carry out a
 finite-dimensional reduction later in the seminar.
 
-There is an apparent mismatch with the preceding sections. The spaces
-$\Gamma(V)$ and $\Gamma(F)$ are infinite-dimensional, whereas derived
-manifolds will be built locally from finite-dimensional smooth data. The role
-of ellipticity is to bridge this gap.
+Why should such an equation admit the finite-dimensional local presentations
+promised by the theorem? Both $\Gamma(V)$ and $\Gamma(F)$ are
+infinite-dimensional. Ellipticity first gives a finiteness statement about
+the linearized equation; finite-dimensional reduction then extends this
+statement to the nonlinear equation near a solution.
 
 Write
 \[
@@ -556,29 +599,27 @@ We therefore obtain the two-term complex
       \Gamma(F)
     \bigr]
 \]
-in cohomological degrees $0$ and $1$. Its cohomology is the infinitesimal
+in homological degrees $0$ and $-1$. Its homology is the infinitesimal
 deformation space and obstruction space of the equation at $u$:
 \[
-  H^0(\mathbb{T}_uP)=\ker(D_uP),
+  H_0(\mathbb{T}_uP)=\ker(D_uP),
   \qquad
-  H^1(\mathbb{T}_uP)=\operatorname{coker}(D_uP).
+  H_{-1}(\mathbb{T}_uP)=\operatorname{coker}(D_uP).
 \]
 Ellipticity and compactness imply that these spaces are finite-dimensional.
 As $u$ varies, their dimensions can jump, so the complex $\mathbb{T}_uP$ is
-again more stable than its cohomology groups separately. This is the
+again more stable than its homology groups separately. This is the
 infinite-dimensional version of \Cref{ex:Family_With_Jumping_Kernels}.\footnote{
   This is the motivating linear picture in
   \cite[Sections~1--2]{Pardon_Representability_Elliptic_Fredholm}.}
 
-Finite-dimensional deformation and obstruction spaces do not yet make
-$\operatorname{Sol}(P)$ a finite-dimensional geometric object. The remaining
-analytic input says that all other directions can be solved away locally. We
-use the following statement only as a quoted analytic principle. In addition
-to the compactness and ellipticity assumptions above, one needs the standard
-hypotheses ensuring that, after choosing Sobolev completions of sufficiently
-high regularity, $P$ is a smooth map of Banach manifolds, its linearization is
-Fredholm, the Banach inverse function theorem applies, and elliptic regularity
-identifies the resulting nearby solutions with smooth sections.
+The analytic step is to solve the nonlinear equation in the remaining
+directions, leaving only finitely many variables and equations. The following
+classical reduction previews that step. We quote it here under the usual
+analytic hypotheses: suitable Sobolev completions make $P$ a smooth map of
+Banach manifolds with Fredholm linearization, and elliptic regularity
+identifies its nearby Sobolev solutions with smooth sections. These are the
+tools developed in \Cref{chap:Elliptic_Representability_Derived_Charts}.
 
 \begin{fact}[Local finite-dimensional reduction]
   \label[fact]{fact:Finite_Dimensional_Reduction}
@@ -601,10 +642,9 @@ identifies the resulting nearby solutions with smooth sections.
   solution $u_v$.
 \end{fact}
 
-For this talk, ``quasi-isomorphic'' means that the complexes can be connected
-by a zigzag of chain maps which induce isomorphisms on $H^0$ and $H^1$. In
-particular, they have the same deformation and obstruction spaces. No
-derived-category formalism is needed here.
+Here \emph{quasi-isomorphic} means that the complexes can be connected
+by a zigzag of chain maps which induce isomorphisms on $H_0$ and $H_{-1}$. In
+particular, they have the same deformation and obstruction spaces.
 
 The mechanism behind the fact is worth keeping in mind. After passing to
 Sobolev completions, $D_uP$ is a Fredholm operator. One chooses splittings
@@ -615,23 +655,22 @@ that the resulting solutions are smooth. We quote this analytic argument; the
 precise conclusion above is
 \cite[Fact~1.0.0.1]{Steffens_Derived_Differential_Geometry}.
 
-\Cref{fact:Finite_Dimensional_Reduction} has two distinct consequences. First,
-it solves the apparent dimension problem: near any solution, the
-infinite-dimensional equation $P=0$ is controlled by a finite-dimensional
-zero locus $\kappa^{-1}(0)$. Second, it preserves the linearized
-deformation--obstruction theory. The examples from the preceding sections are
-therefore not merely toys. They describe the local form of genuine elliptic
-moduli problems.
-
-The nonlinear map $\kappa$, and not only its derivative, remains essential.
-As with $t\mapsto t^2$, its zero set can hide higher-order obstruction data.
+Thus a finite-dimensional zero locus $\kappa^{-1}(0)$ describes the equation
+near a solution and retains its linearized deformation--obstruction theory.
+The nonlinear map $\kappa$ also retains higher-order obstruction data,
+as in the preceding examples $t\mapsto t^2$ and $t\mapsto t^3$.
+This explains why a derived zero locus is a plausible local model for the
+solution stack. To prove Steffens's theorem, we must establish this
+description for the solution functor itself, compatibly with parameters,
+and glue the resulting local models. The formal thickening argument in
+\Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge} and the analytic
+argument in \Cref{chap:Elliptic_Representability_Derived_Charts} provide these
+local derived presentations.
 
 \section{From local zero loci to coherent moduli problems}
 \label[section]{sec:Local_Zero_Loci_Not_Enough}
 
-\Cref{fact:Finite_Dimensional_Reduction} solves the infinite-dimensionality
-problem, but it does not solve the invariance problem. The construction of
-$\kappa$ depends on choices of Sobolev completions, splittings,
+The construction of $\kappa$ depends on choices of Sobolev completions, splittings,
 finite-dimensional subspaces, and neighborhoods. Different choices can
 produce zero-locus presentations
 \[
@@ -652,86 +691,36 @@ There are therefore two global problems.
     compatibilities.
 \end{enumerate}
 
-The second point is where higher-categorical language becomes useful. It keeps
-track not only of comparison maps, but also of homotopies between comparisons
-and their iterated compatibilities. No knowledge of a particular model of
-$\infty$-categories is needed for the present conclusion: ordinary equality
-is too rigid, while an unstructured collection of coordinate changes is not
-coherent enough.
+Higher-categorical language records the comparison maps, homotopies between
+comparisons, and their iterated compatibilities. A moduli problem formulated
+as a functor of families already includes this information. If the functor
+is representable, its representing object is unique, and local calculations
+describe charts of that object. This is the representability viewpoint
+discussed in \cite[Section~1]{Pardon_Representability_Elliptic_Fredholm}.
 
-There is also a conceptual alternative to writing down all coordinate changes
-by hand. One can define the moduli problem as a functor of families and ask
-whether it is represented by a derived smooth object. A representing object,
-if it exists, is unique. This separates two questions that should not be
-conflated: first represent the moduli problem, then use additional structures
-  to construct virtual fundamental classes or enumerative invariants. Pardon's
-  proceedings article advocates precisely this representability viewpoint, but
-  its implementation belongs later in the seminar
-  \cite[Section~1]{Pardon_Representability_Elliptic_Fredholm}.
+For elliptic equations, Fredholm reduction will provide the local charts,
+and descent will glue them into a quasi-smooth derived $C^\infty$-scheme.
+Constructing virtual fundamental classes or enumerative invariants then
+requires further geometric input, such as orientations and compactness.
 
-The route from this local picture to the seminar's main theorem has three
-stages. First, we construct derived zero loci and their tangent complexes, then
-pass from affine calculations to locally affine derived smooth geometry.
-Second, we formulate moduli problems intrinsically as functors of families and
-construct their solution stacks. Third, Fredholm reduction and locality of
-representability identify those stacks with quasi-smooth derived
-$C^\infty$-schemes. Pseudo-holomorphic curves will then provide the principal
-geometric application.
-
-\section{Summary and supplementary materials}
+\section{Further examples}
 \label[section]{sec:Why_Derived_Summary_And_Further_Reading}
 
-\subsection{The live route}
-\label[subsection]{sec:Why_Derived_Live_Route}
+An intersection can have an ordinary zero set of the wrong positive
+dimension. The zero map $\R^n\to\R^r$ has all of $\R^n$ as its zero set,
+while the expected dimension is $n-r$. Its linearized complex
+$[\R^n\xrightarrow0\R^r]$ retains both the variables and the redundant
+equations. The derived construction will distinguish this presentation
+from the manifold $\R^n$ with no equations imposed.
 
-The default live route occupies 70 minutes. Its engine is the transverse
-fiber-product theorem and the precise point where its proof uses
-surjectivity. The tangent line--parabola intersection and the family
-$[\R\xrightarrow{t}\R]$ then motivate deformation-obstruction complexes.
-The elliptic section is an eight-minute application: it states
-\Cref{fact:Finite_Dimensional_Reduction} and explains why the preceding
-finite-dimensional examples occur in genuine moduli problems, without
-developing the analytic proof. The talk ends with the invariance and coherence
-problems for the resulting local zero-locus presentations.
+\begin{exercise}
+Express the intersection of the graph of $f\colon U\to\R^r$ with the
+zero section of $U\times\R^r$ as a fibre product. Separate the acyclic
+summand of its linearized matching complex to obtain $[T_xU\to\R^r]$.
+\end{exercise}
 
-\subsection{Takeaways and next step}
-\label[subsection]{sec:Takeaways_And_Next_Step}
-
-The argument of this chapter can be compressed into four statements.
-
-\begin{enumerate}
-  \item Transversality makes an ordinary fiber product smooth, with tangent
-    space given by the kernel of the linearized matching map.
-  \item When transversality fails, the same linearization produces both a
-    deformation space and an obstruction space, but the nonlinear equation
-    contains further information.
-  \item In families, the two-term complex varies more robustly than its kernel
-    or cokernel separately.
-  \item Elliptic moduli problems are locally finite-dimensional zero loci, but
-    those local presentations are nonunique and must be compared coherently.
-\end{enumerate}
-
-Derived manifolds are designed to package these requirements into a category
-with well-behaved pullbacks. To construct them, we first need a language in
-which smooth equations can be treated algebraically. The next chapter begins
-with $C^\infty$-rings and explains how an ordinary manifold is encoded by its
-algebra of smooth functions.
-
-\subsection{Related literature}
-\label[subsection]{sec:Why_Derived_Related_Literature}
-
-The differential-topological input, including transverse preimages and fiber
-products, is standard; Lee gives a convenient reference
-\cite[Chapter~8]{lee2000smooth}. Spivak develops derived manifolds explicitly
-as a solution to the failure of ordinary intersections and proves their basic
-intersection-theoretic properties
-\cite[Sections~1--3 and~9]{Spivak_Derived_Smooth_Manifolds}.
-
-For the passage from elliptic equations to finite-dimensional obstruction
-maps, the direct source used here is the opening chapter of Steffens's thesis
-\cite[Chapter~1]{Steffens_Derived_Differential_Geometry}. Pardon's completed
-proceedings article gives a complementary discussion of complexes of elliptic
-operators, Kuranishi charts, and the representability viewpoint
-\cite[Sections~1--5]{Pardon_Representability_Elliptic_Fredholm}. Its principal
-representability argument is explicitly presented as a proof sketch, a status
-that later chapters will keep separate from Steffens's completed theorem.
+\begin{exercise}
+Use truncated polynomial rings to find the first order at which the
+equations $x^m=0$ and $x^{m+1}=0$ can be distinguished by an
+infinitesimal solution with leading term $\varepsilon$.
+\end{exercise}

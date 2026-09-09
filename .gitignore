@@ -17,6 +17,7 @@ main.pdf
 output/pdf/*.pdf
 
 # Local scratch files and extracted source text
+output/manuscript-revision/
 tmp/
 build/
 

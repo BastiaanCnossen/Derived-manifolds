@@ -1,755 +1,574 @@
-% This chapter is the complete working manuscript for the sixth seminar talk.
-% The final section contains supplementary material outside the default live
-% route.
+% !TEX root = ../main.tex
 
-\chapter{Derived bordism and fundamental classes}
-\label[chapter]{chap:Derived_Bordism_And_Fundamental_Classes}
+\chapter{Tangent and cotangent complexes}
+\label[chapter]{chap:Stable_Linearization_And_Tangent_Complexes}
 
-The preceding chapter constructed a derived zero locus
+Let $x$ be a zero of a smooth map $f\colon U\to\R^r$. A first-order
+variation $v\in T_xU$ preserves the equation precisely when $d_xf(v)=0$.
+If the equation itself is varied by a vector $e\in\R^r$, the linearized
+problem becomes $d_xf(v)=e$. Its solvability is measured by the class of
+$e$ in $\operatorname{coker}(d_xf)$. Both questions are encoded by
 \[
-  Z^{\mathrm{der}}(s)
-  =
-  M\mathbin{\times_E^{\mathrm{der}}}M
+ [T_xU\xrightarrow{d_xf}\R^r]
 \]
-for every section $s\colon M\to E$ of a finite-rank vector bundle, without
-requiring $s$ to be transverse to the zero section. It then calculated this
-object through a Koszul presentation. We now ask a different question. If $M$
-is compact and $s'$ is a transverse perturbation of $s$, how are the derived
-zero locus $Z^{\mathrm{der}}(s)$ and the ordinary manifold $Z(s')$ related?
+in degrees $0$ and $-1$.
 
-They are generally not equivalent. They need not even have homeomorphic
-underlying spaces. The relation between them is deliberately coarser:
+The Koszul model of the preceding chapter lets us differentiate a chosen
+list of equations. We want a construction that depends on the derived
+zero locus itself. The cotangent complex supplies this intrinsic
+linearization by representing smooth derivations.
 
-\begin{quote}
-  A compact derived zero locus and a transverse perturbation represent the
-  same bordism class.
-\end{quote}
+We begin with ordinary differentials and explain why their relations
+must be retained in a complex. Fibres and cofibres then provide the
+linear algebra needed to define and calculate the cotangent complex.
+Its base-change and transitivity properties lead back to the displayed
+two-term tangent complex, whose homology describes infinitesimal
+deformations and obstructions. We quote the existence and module
+comparison theorems; the zero-locus calculation is the main conclusion.
 
-This statement gives derived intersections their first topological payoff.
-The unperturbed intersection exists as a geometric object, while its bordism
-class is the classical class obtained by perturbation. The same statement also
-shows how much bordism forgets. A derived object may have nontrivial animated
-structure even when its bordism class vanishes.
+\section{Smooth derivations and differentials}
+\label[section]{sec:Smooth_Derivations}
 
-There is one scope convention which will remain in force throughout the
-chapter. Spivak's bordism theorem concerns compact \emph{quasi-smooth} derived
-manifolds, meaning the derived manifolds locally presented as zero loci of
-maps between ordinary manifolds. All derived intersections and vector-bundle
-zero loci used in this chapter are of this kind. We do not claim the theorem
-for arbitrary higher-amplitude objects in the full $\infty$-category
-$\mathrm{DMfd}$. Carchedi--Steffens compare Spivak's framework with the modern
-one used in this manuscript, so the quasi-smooth objects considered below may
-be regarded as objects of the same $\infty$-category as in the preceding
-chapters \cite[Theorem~5.10]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+Let $A$ be an ordinary $\Cinfty$-ring and let $M$ be an $A$-module.
+A \emph{smooth derivation} is a map $D\colon A\to M$ satisfying
+\begin{equation}\label{eq:Cinfty_Derivation_Chain_Rule}
+ D\bigl(\varphi(a_1,\ldots,a_n)\bigr)
+ =\sum_i(\partial_i\varphi)(a_1,\ldots,a_n)D(a_i)
+\end{equation}
+for every smooth function $\varphi\colon\R^n\to\R$. Addition,
+multiplication, and constants among the smooth operations show that $D$
+is $\R$-linear and satisfies the Leibniz rule. The displayed condition
+also requires compatibility with the nonpolynomial smooth operations.
 
-\section{From perturbations to derived cobordisms}
-\label[section]{sec:From_Perturbations_To_Derived_Cobordisms}
-
-\subsection{A homotopy of sections}
-\label[subsection]{sec:Homotopy_Of_Sections_Cobordism}
-
-Let $M$ be a compact manifold, let $q\colon E\to M$ be a rank-$r$ vector
-bundle, and let $s\colon M\to E$ be a section. Recall that its derived zero
-locus is defined by the pullback square
+\begin{definition}[Smooth K\"ahler differentials]
+\label[definition]{def:Smooth_Kahler_Differentials}
+The module $\Omega_A^1$ of smooth K\"ahler differentials is equipped with
+a derivation $d\colon A\to\Omega_A^1$ such that
 \[
-\begin{tikzcd}
-  Z^{\mathrm{der}}(s) \rar \dar \drar[pullback]
-    & M \dar["0"] \\
-  M \rar["s"'] & E .
-\end{tikzcd}
+ \Hom_A(\Omega_A^1,M)\cong\operatorname{Der}_{\Cinfty}(A,M)
 \]
-Its underlying set is the ordinary zero set of $s$, but its structure sheaf
-retains the equations defining that set.
-
-Choose another section $s'\colon M\to E$. We first assume that $s'$ is
-transverse to the zero section. Choose a smooth function
-\[
-  \beta\colon\R\longrightarrow[0,1]
-\]
-which is identically zero on a neighborhood of $0$ and identically one on a
-neighborhood of $1$. Fiberwise affine combination defines a section
-\[
-  H\colon\R\times M\longrightarrow\operatorname{pr}_M^*E,
-  \qquad
-  H(u,m)=(1-\beta(u))s(m)+\beta(u)s'(m).
-\]
-Its derived zero locus is taken over $\R\times M$:
-\[
-\begin{tikzcd}
-  W \rar \dar \drar[pullback]
-    & \R\times M \dar["0"] \\
-  \R\times M \rar["H"'] & \operatorname{pr}_M^*E .
-\end{tikzcd}
-\]
-Projection to the first factor induces a map
-\[
-  p\colon W=Z^{\mathrm{der}}(H)\longrightarrow\R.
-\]
-The important point is that the single derived object $W$ contains both zero
-loci as fibers.
-
-\begin{proposition}[A homotopy of sections gives a cobordism]
-  \label[proposition]{prop:Homotopy_Of_Sections_Derived_Cobordism}
-  With notation as above, the map $p\colon W\to\R$ is proper and is a product
-  near its fibers over $0$ and $1$. Moreover,
-  \[
-    W_{p=0}\simeq Z^{\mathrm{der}}(s),
-    \qquad
-    W_{p=1}\simeq Z(s').
-  \]
-\end{proposition}
-
-\begin{proof}
-  Pulling the defining square of $W$ back along $\{0\}\to\R$ replaces $H$
-  by $s$, so
-  \[
-    W_{p=0}\simeq Z^{\mathrm{der}}(s).
-  \]
-  The same argument at $1$ gives
-  $W_{p=1}\simeq Z^{\mathrm{der}}(s')$. Since $s'$ is transverse to the zero
-  section, its derived zero locus is the ordinary zero manifold $Z(s')$.
-
-  Choose $\varepsilon>0$ so that $\beta$ is zero on
-  $(-\varepsilon,\varepsilon)$ and one on
-  $(1-\varepsilon,1+\varepsilon)$. Over these two intervals the section $H$
-  is constant in the parameter. Consequently,
-  \[
-    W|_{(-\varepsilon,\varepsilon)}
-    \simeq
-    Z^{\mathrm{der}}(s)\times(-\varepsilon,\varepsilon)
-  \]
-  and
-  \[
-    W|_{(1-\varepsilon,1+\varepsilon)}
-    \simeq
-    Z(s')\times(1-\varepsilon,1+\varepsilon).
-  \]
-
-  It remains to check properness. Let $K\subset\R$ be compact. The
-  underlying space of $p^{-1}(K)$ is the ordinary zero set of $H$ inside
-  $K\times M$. It is closed because the zero section of the vector bundle is
-  closed. Since $K\times M$ is compact, the space underlying $p^{-1}(K)$ is
-  compact. Thus $p$ is proper.
-\end{proof}
-
-The proof separates the two roles of the hypotheses. The constancy of the
-homotopy near $0$ and $1$ supplies product neighborhoods of the endpoint
-fibers. Compactness of $M$ prevents zeros from escaping to infinity while the
-section is perturbed.
-
-\subsection{The definition of derived cobordism}
-\label[subsection]{sec:Definition_Derived_Cobordism}
-
-The preceding construction contains every clause in the general definition.
-
-\begin{definition}[Collared map]
-  \label[definition]{def:Collared_Map_Derived_Manifolds}
-  Let $p\colon W\to\R$ be a map of derived manifolds and let $i\in\R$. We say
-  that $p$ is \emph{$i$-collared} if there is an $\varepsilon>0$ and an
-  equivalence over $(i-\varepsilon,i+\varepsilon)$
-  \[
-    W|_{|p-i|<\varepsilon}
-    \simeq
-    W_{p=i}\times(-\varepsilon,\varepsilon).
-  \]
-  On the right, the interval is translated so that its origin maps to $i$.
+naturally in $M$.
 \end{definition}
 
-\begin{definition}[Derived cobordism]
-  \label[definition]{def:Derived_Cobordism}
-  Let $X_0$ and $X_1$ be compact quasi-smooth derived manifolds. A
-  \emph{derived cobordism} from $X_0$ to $X_1$ consists of a quasi-smooth
-  derived manifold $W$ and a proper map
-  \[
-    p\colon W\longrightarrow\R
-  \]
-  such that:
-  \begin{enumerate}
-    \item The map $p$ is $0$-collared and $1$-collared.
-    \item There are equivalences
-      \[
-        W_{p=0}\simeq X_0,
-        \qquad
-        W_{p=1}\simeq X_1.
-      \]
-  \end{enumerate}
-  If the objects carry maps to a manifold $T$, a derived cobordism
-  \emph{over $T$} also carries a continuous map from the underlying space of
-  $W$ to $T$ which restricts to the endpoint maps.
-\end{definition}
-
-This is Spivak's boundaryless formulation of cobordism
-\cite[Definitions~3.5--3.6]{Spivak_Derived_Smooth_Manifolds}. Instead of
-introducing derived manifolds with boundary, one uses a manifold without
-boundary equipped with a proper map to $\R$. Properness is the compactness
-condition appropriate to such a family. The collars permit two cobordisms to
-be glued along a common endpoint fiber.
-
-\begin{remark}[Cobordism is not equivalence]
-  \label[remark]{rem:Cobordism_Not_Equivalence}
-  A homotopy of sections does not generally produce an equivalence between
-  their derived zero loci. It produces a larger derived object over a
-  parameter line. Passing from objects to bordism classes discards the
-  difference between the two endpoint fibers.
-\end{remark}
-
-\begin{corollary}[Homotopic sections]
-  \label[corollary]{cor:Homotopic_Sections_Derived_Cobordant}
-  Let $M$ be compact and let $s_0,s_1$ be sections of the same vector bundle
-  over $M$. Then their derived zero loci are derived cobordant. If $s_1$ is
-  transverse, then $Z^{\mathrm{der}}(s_0)$ is derived cobordant to the
-  ordinary manifold $Z(s_1)$.
-\end{corollary}
-
-\begin{proof}
-  Apply the construction above to a homotopy of sections which is constant
-  near its endpoints. Transversality is needed only to identify the second
-  endpoint with an ordinary manifold.
-\end{proof}
-
-\section{Classical and derived bordism}
-\label[section]{sec:Classical_And_Derived_Bordism}
-
-\subsection{The comparison map}
-\label[subsection]{sec:Derived_Bordism_Comparison_Map}
-
-Let $T$ be a manifold. Write $\Omega_d(T)$ for the ordinary unoriented
-bordism group of proper maps from $d$-manifolds to $T$. Equivalently,
-$\Omega_*(T)$ is the homology theory represented by $MO$. Define
-$\Omega_d^{\mathrm{der}}(T)$ in the same way using compact quasi-smooth
-derived manifolds of virtual dimension $d$ and derived cobordisms over $T$.
-Disjoint union gives the group operation.
-
-The inclusion of ordinary manifolds into derived manifolds induces a map
-\[
-  i_*
-  \colon
-  \Omega_*(T)\longrightarrow\Omega_*^{\mathrm{der}}(T).
-\]
-At first sight the target might be larger. Derived manifolds provide many new
-representatives, including singular zero loci and nontransverse
-intersections. The comparison theorem says that these representatives do not
-produce new bordism classes.
-
-\begin{theorem}[Spivak's bordism comparison]
-  \label[theorem]{thm:Spivak_Derived_Bordism_Comparison}
-  For every manifold $T$, inclusion induces an isomorphism
-  \[
-    i_*
-    \colon
-    \Omega_*(T)
-    \iso
-    \Omega_*^{\mathrm{der}}(T).
-  \]
-\end{theorem}
-
-The absolute assertion is Spivak's Theorem 3.12, and the relative assertion is
-Corollary 3.13
-\cite[Theorem~3.12 and Corollary~3.13]{Spivak_Derived_Smooth_Manifolds}.
-The theorem says that every compact quasi-smooth derived manifold is
-\emph{derived cobordant} to an ordinary manifold. It does not say that it is
-equivalent to one.
-
-\subsection{Global equations for a compact derived manifold}
-\label[subsection]{sec:Global_Equations_Compact_Derived_Manifold}
-
-The proof reduces the general case to the construction from the first
-section. Two geometric inputs make this possible.
-
-\begin{theorem}[Embedding and global zero-locus presentation]
-  \label[theorem]{thm:Compact_Derived_Manifold_Global_Zero_Locus}
-  Let $X$ be a compact quasi-smooth derived manifold in Spivak's framework.
-  Then there are:
-  \begin{enumerate}
-    \item An embedding $j\colon X\to\R^N$.
-    \item An open neighborhood $U\subseteq\R^N$ of the underlying space of
-      $X$.
-    \item A finite-rank vector bundle $E\to U$.
-    \item A section $s\colon U\to E$.
-  \end{enumerate}
-  With this data, there is an equivalence over $U$
-  \[
-    X\simeq Z^{\mathrm{der}}(s).
-  \]
-\end{theorem}
-
-\begin{proof}[Source and proof architecture]
-  The embedding is Spivak's Proposition 3.3. Once $X$ is embedded, the
-  normal-bundle axiom, Definition 2.1(7), supplies the neighborhood $U$, the
-  vector bundle, and the defining section
-  \cite[Definition~2.1(7) and Proposition~3.3]
-  {Spivak_Derived_Smooth_Manifolds}. The proof of the embedding theorem is a
-  derived version of the familiar partition-of-unity proof for compact
-  manifolds. We use the result as a quoted geometric input.
-\end{proof}
-
-There is a small but essential difference from the opening construction. The
-ambient manifold $U$ need not be compact. Compactness of $X$ nevertheless
-allows the perturbation to be supported near its zero locus.
-
-Choose a compact subset $K\subset U$ whose interior contains the underlying
-space of $X$. Since $s$ has no zeros outside the interior of $K$, relative
-transversality gives a transverse section $s'$ which agrees with $s$ outside
-$K$. The straight-line homotopy, made constant near its endpoints, is also
-fixed outside $K$. Every zero of every section in the homotopy therefore lies
-in $K$, which restores the properness argument.
-
-\subsection{Proof of the comparison theorem}
-\label[subsection]{sec:Proof_Derived_Bordism_Comparison}
-
-\begin{proof}[Proof of \Cref{thm:Spivak_Derived_Bordism_Comparison}]
-  We first prove surjectivity in the absolute case. Let $X$ be a compact
-  quasi-smooth derived manifold. Choose a global zero-locus presentation
-  \[
-    X\simeq Z^{\mathrm{der}}(s)
-  \]
-  as in \Cref{thm:Compact_Derived_Manifold_Global_Zero_Locus}. Perturb $s$ to
-  a transverse section $s'$ while keeping the perturbation fixed outside a
-  compact neighborhood of the zero locus. The homotopy-zero-locus
-  construction of \Cref{prop:Homotopy_Of_Sections_Derived_Cobordism} gives a
-  derived cobordism
-  \[
-    X\sim_{\mathrm{bord}}Z(s').
-  \]
-  The endpoint $Z(s')$ is an ordinary compact manifold. Hence every derived
-  bordism class is in the image of $i_*$.
-
-  For injectivity, suppose that ordinary compact manifolds $M_0$ and $M_1$
-  are derived cobordant. Let
-  \[
-    p\colon W\longrightarrow\R
-  \]
-  be a derived cobordism between them. Restrict to the part of $W$ over an
-  open interval containing $[0,1]$. Spivak's relative embedding theorem
-  embeds this restricted cobordism over the parameter into
-  $\R^N\times\R$ \cite[Corollary~3.4]{Spivak_Derived_Smooth_Manifolds}.
-  The normal-bundle axiom presents it as the derived zero locus of a section.
-  Because $p$ is collared, this presentation is product-like near $M_0$ and
-  $M_1$. Relative transversality permits us to perturb the defining section
-  while keeping those collared regions fixed. The perturbed zero locus is an
-  ordinary smooth cobordism from $M_0$ to $M_1$. Thus two ordinary manifolds
-  which become derived cobordant were already classically cobordant, and
-  $i_*$ is injective.
-
-  For the relative theorem over $T$, one performs the same constructions
-  while retaining the map to $T$. The only additional point is that a map
-  from the compact zero locus to the manifold $T$ extends to a neighborhood
-  in the ambient Euclidean space. The perturbation and cobordism can then be
-  carried out over $T$.
-\end{proof}
-
-The two halves of the proof have distinct meanings. Surjectivity says that
-derived representatives can be regularized without changing their bordism
-class. Injectivity says that allowing derived cobordisms does not identify two
-classical bordism classes which were previously distinct.
-
-\begin{example}[A singular fiber of a Morse function]
-  \label[example]{ex:Figure_Eight_Derived_Bordism}
-  Let $f\colon T^2\to\R$ be a Morse function and let $c$ be a critical value
-  of index one. The underlying space of the derived fiber
-  \[
-    T^2\mathbin{\times_{\R}^{\mathrm{der}}}\{c\}
-  \]
-  is a figure eight. It is not the underlying space of a one-dimensional
-  manifold. Moving $c$ slightly to either side produces a regular fiber,
-  either one circle or two circles depending on the side. The parameter
-  interval gives derived cobordisms from the singular fiber to both regular
-  fibers. Thus the two regular fibers are classically cobordant, while the
-  singular derived fiber remains a distinct geometric object. This is one of
-  Spivak's examples \cite[Example~2.7]{Spivak_Derived_Smooth_Manifolds}.
-\end{example}
-
-\section{Intersection products and Euler classes}
-\label[section]{sec:Intersection_Products_And_Euler_Classes}
-
-\subsection{The nontransverse cup-product formula}
-\label[subsection]{sec:Nontransverse_Cup_Product_Formula}
-
-Let $M$ be a closed manifold, and let $A,B\subseteq M$ be closed
-submanifolds. We use cohomological notation for their Poincare-dual
-unoriented bordism classes:
-\[
-  [A]\in MO^{\operatorname{codim}(A)}(M),
-  \qquad
-  [B]\in MO^{\operatorname{codim}(B)}(M).
-\]
-Equivalently, one may work homologically with the proper maps $A\to M$ and
-$B\to M$ and then apply bordism Poincare duality. This convention prevents a
-common ambiguity: the intersection formula is a cup-product formula in
-cohomology, while the geometric representatives are manifolds over $M$.
-
-If $A$ and $B$ are transverse, their ordinary intersection represents the
-cup product. Derived geometry removes the transversality condition from the
-geometric representative.
-
-\begin{theorem}[General cup-product formula]
-  \label[theorem]{thm:General_Cup_Product_Derived_Intersection}
-  Let $A$ and $B$ be closed submanifolds of a closed manifold $M$. Then
-  \[
-    [A]\smile[B]
-    =
-    [A\mathbin{\times_M^{\mathrm{der}}}B]
-  \]
-  in the unoriented bordism cohomology of $M$.
-\end{theorem}
-
-\begin{proof}
-  Perturb the inclusion $A\to M$ through smooth maps until it is transverse
-  to $B\to M$. Denote the perturbed map by $A'\to M$. Pulling the homotopy
-  back along $B\to M$ gives a derived cobordism over $M$ from
-  \[
-    A\mathbin{\times_M^{\mathrm{der}}}B
-  \]
-  to the ordinary transverse fiber product $A'\pitchfork B$. Hence the two
-  objects determine the same class over $M$. The classical transverse
-  intersection formula gives
-  \[
-    [A]\smile[B]=[A'\pitchfork B].
-  \]
-  Combining the two equalities proves the result.
-\end{proof}
-
-This is Spivak's Corollary 3.13
-\cite[Corollary~3.13]{Spivak_Derived_Smooth_Manifolds}. Notice where
-transversality remains in the argument. It is not needed to form the derived
-intersection. It is used only to identify the bordism class of that canonical
-object with the familiar classical product.
-
-\subsection{The self-intersection of a zero section}
-\label[subsection]{sec:Zero_Section_Self_Intersection}
-
-Let $M$ be a closed $m$-manifold and let $q\colon E\to M$ be a rank-$r$
-vector bundle. Write $z\colon M\to E$ for the zero section. Its derived
-self-intersection is
-\[
-  X_E
-  =
-  M\mathbin{\times_E^{\mathrm{der}}}M.
-\]
-The two maps to $E$ in this expression are both $z$. The underlying space of
-$X_E$ is all of $M$, but the derived object remembers that the same normal
-equation has been imposed twice.
-
-Choose a transverse section $s'\colon M\to E$. Its graph is a perturbation of
-one copy of the zero section. The transverse intersection of $z(M)$ and
-$s'(M)$ is precisely the zero manifold $Z(s')$. The homotopy from $z$ to
-$s'$ therefore gives a derived cobordism over $M$
-\[
-  X_E
-  \sim_{\mathrm{bord}}
-  Z(s').
-\]
-
-The bordism Euler class
-\[
-  e_{MO}(E)\in MO^r(M)
-\]
-is represented by the zero locus of a transverse section. We have proved the
-following self-intersection formula.
-
-\begin{corollary}[Zero-section self-intersection]
-  \label[corollary]{cor:Zero_Section_Self_Intersection_Euler_Class}
-  The cohomological bordism class represented by the derived
-  self-intersection of the zero section is the Euler class:
-  \[
-    [M\mathbin{\times_E^{\mathrm{der}}}M]
-    =
-    e_{MO}(E).
-  \]
-  In homological notation, the corresponding class over $M$ is
-  \[
-    e_{MO}(E)\cap[M]
-    =
-    [Z(s')\longrightarrow M]
-    \in MO_{m-r}(M).
-  \]
-\end{corollary}
-
-The derived self-intersection is canonical, whereas the transverse section
-$s'$ is a choice. Any two choices are joined by a homotopy of sections, so
-their zero manifolds are cobordant. Derived geometry packages the class before
-the choice of perturbation is made.
-
-\begin{example}[The trivial line bundle]
-  \label[example]{ex:Trivial_Line_Derived_Self_Intersection}
-  Let $E=M\times\R$ be the trivial line bundle. Its derived zero-section
-  self-intersection is
-  \[
-    X_{\underline{\R}}
-    =
-    M\mathbin{\times_{M\times\R}^{\mathrm{der}}}M.
-  \]
-  Locally, its algebra of functions is the Koszul algebra
-  \[
-    \bigl(\Cinfty(U)\otimes\Lambda(\eta),\partial\eta=0\bigr).
-  \]
-  Thus its underlying space and classical truncation are both $M$, while it
-  has a nonzero degree-one class generated by $\eta$.
-
-  On the other hand, the zero section can be perturbed to the nowhere-zero
-  constant section $1$. Its zero locus is empty. Hence
-  \[
-    [X_{\underline{\R}}]=0
-  \]
-  in bordism. The derived object is visibly nonempty and nonclassical, but its
-  bordism class vanishes. This is the cleanest example of the information
-  which bordism deliberately forgets.
-\end{example}
-
-\section{Fundamental classes and their limits}
-\label[section]{sec:Fundamental_Classes_And_Their_Limits}
-
-\subsection{From bordism to generalized homology}
-\label[subsection]{sec:From_Bordism_To_Generalized_Homology}
-
-Let $X$ be a compact quasi-smooth derived manifold of virtual dimension $d$.
-The comparison theorem supplies a class
-\[
-  [X]\in\Omega_d^{\mathrm{der}}
-  \cong
-  \Omega_d
-  =MO_d.
-\]
-More generally, a proper map $X\to T$ supplies a class in $MO_d(T)$.
-
-Suppose that a generalized homology theory $\mathbb E_*$ is equipped with a
-morphism
-\[
-  MO\longrightarrow\mathbb E
-\]
-between the stable objects which represent the two theories. This induces a
-natural transformation
-\[
-  MO_*(T)\longrightarrow\mathbb E_*(T).
-\]
-
-\begin{definition}[Generalized fundamental class]
-  \label[definition]{def:Generalized_Fundamental_Class_Derived_Manifold}
-  The image of $[X\to T]$ under this natural transformation is the
-  $\mathbb E$-homology fundamental class of $X$ over $T$:
-  \[
-    [X\to T]_{\mathbb E}
-    \in
-    \mathbb E_d(T).
-  \]
-\end{definition}
-
-For the live talk, the displayed morphism should be treated as the datum that
-makes ordinary unoriented manifold fundamental classes available in
-$\mathbb E$-homology. The point of the comparison theorem is then immediate:
-the same datum assigns compatible classes to compact quasi-smooth derived
-manifolds. This is the observation made in Spivak's introduction
-\cite[Section~1]{Spivak_Derived_Smooth_Manifolds}.
-
-\subsection{Orientations}
-\label[subsection]{sec:Orientations_Derived_Bordism}
-
-Everything above is unoriented. This is not a cosmetic convention. To obtain
-an integral or otherwise oriented class, one must supply orientation data.
-Spivak formulates an orientation using a normal bundle. A compact derived
-manifold is embedded in some $\R^N$, and the normal-bundle axiom supplies a
-normal vector bundle. After adding trivial summands, this normal bundle is
-stable under changing the embedding. An orientation of the stable normal
-bundle is the input for oriented derived bordism
-\cite[Remark~3.8]{Spivak_Derived_Smooth_Manifolds}.
-
-In the oriented case, $MO$ is replaced by the appropriate Thom object, for
-example $MSO$ for oriented bordism. A morphism from that object to
-$\mathbb E$ transports the oriented bordism class to $\mathbb E$-homology.
-Nothing in the existence of a derived zero locus automatically provides such
-an orientation.
-
-This brief normal-bundle discussion also points forward. Bordism only retains
-the stable normal information needed for a class. The next chapter will
-construct a finer stable linear object intrinsic to the derived manifold: its
-tangent and cotangent complexes.
-
-\subsection{What has not been constructed}
-\label[subsection]{sec:What_Derived_Bordism_Does_Not_Construct}
-
-The phrase \enquote{fundamental class} can obscure several separate
-requirements. The construction in this chapter requires a compact
-quasi-smooth derived manifold, or more generally a proper map to the chosen
-target. It does not prove that a moduli problem is compact. It does not add
-limiting objects to a noncompact moduli space. It does not orient a determinant
-line. It also does not treat isotropy or produce a virtual integration theory
-for derived orbifolds or stacks.
-
-These distinctions matter for the elliptic moduli problems later in the
-seminar. A representability theorem has the form
-\[
-  \text{moduli functor}
-  \simeq
-  \text{quasi-smooth derived geometric object}.
-\]
-It does not by itself imply
-\[
-  \text{compactness},
-  \qquad
-  \text{orientation},
-  \qquad
-  \text{virtual fundamental class}.
-\]
-If the represented object is later shown to be compact and is equipped with
-the required normal orientation, derived bordism becomes one possible route
-to a class. In applications with automorphisms, compactifications, or more
-general Kuranishi structures, additional theory is needed.
-
-We can now formulate the handoff to the next chapter. The trivial-line
-self-intersection in \Cref{ex:Trivial_Line_Derived_Self_Intersection} has zero
-bordism class, but its derived structure has not disappeared. What intrinsic
-first-order invariant retains that structure, and how does it record
-deformations and obstructions? The answer will be the stable tangent complex.
-
-\section{Summary and supplementary materials}
-\label[section]{sec:Derived_Bordism_Summary_And_Supplements}
-
-\subsection{Takeaways}
-\label[subsection]{sec:Derived_Bordism_Takeaways}
-
-The live route through the chapter can be compressed into seven statements.
-
-\begin{enumerate}
-  \item A homotopy of vector-bundle sections gives a derived family of their
-    zero loci.
-  \item Making the homotopy constant near its endpoints gives collars, while
-    compactness or compact support gives properness.
-  \item Every compact quasi-smooth derived manifold has a global zero-locus
-    presentation in Spivak's framework.
-  \item Inclusion induces an isomorphism from classical unoriented bordism to
-    derived bordism.
-  \item The theorem compares bordism classes, not derived manifolds up to
-    equivalence.
-  \item A nontransverse derived intersection represents the classical
-    cup product, and a zero-section self-intersection represents the bordism
-    Euler class.
-  \item A map from $MO$ to a generalized homology theory transports the
-    bordism class to a fundamental class, while compactness and orientation
-    remain additional inputs.
-\end{enumerate}
-
-The remainder of the chapter is supplementary. It supplies proofs and
-examples which are useful for reference but are not part of the default
-70-minute route.
-
-\subsection{Supplement: derived cobordism is an equivalence relation}
-\label[subsection]{sec:Supplement_Derived_Cobordism_Equivalence_Relation}
+One construction takes the free $A$-module on symbols $da$, for $a\in A$,
+and imposes all instances of the smooth chain rule. The universal property
+follows immediately from the imposed relations.
 
 \begin{proposition}
-  \label[proposition]{prop:Derived_Cobordism_Equivalence_Relation}
-  Derived cobordism is an equivalence relation on compact quasi-smooth
-  derived manifolds.
+\label[proposition]{prop:Differentials_Free_Cinfty_Ring}
+For $A=\Cinfty(\R^n)$, there is an isomorphism
+\[
+ \Omega_A^1\cong\bigoplus_{i=1}^n A\,dx_i,\qquad
+ dg=\sum_i\partial_i g\,dx_i.
+\]
 \end{proposition}
 
 \begin{proof}
-  Reflexivity is represented by the projection
-  \[
-    X\times\R\longrightarrow\R.
-  \]
-  This map is proper when $X$ is compact, is collared everywhere, and has
-  fiber $X$ over both $0$ and $1$.
-
-  Symmetry follows by reversing the parameter. If $p\colon W\to\R$ is a
-  cobordism from $X_0$ to $X_1$, then $1-p$ is a cobordism from $X_1$ to
-  $X_0$.
-
-  For transitivity, let $W_{01}$ be a cobordism from $X_0$ to $X_1$ and let
-  $W_{12}$ be a cobordism from $X_1$ to $X_2$. Their collars identify open
-  neighborhoods of the common endpoint with
-  $X_1\times(-\varepsilon,\varepsilon)$. After translating the parameters,
-  glue the two derived manifolds along these equivalent open subobjects. The
-  product descriptions ensure that the parameter maps agree on the overlap.
-  The resulting map is proper and collared at the remaining endpoints, hence
-  is a derived cobordism from $X_0$ to $X_2$.
+A derivation is determined by its values $m_i=D(x_i)$, because the chain
+rule forces $D(g)=\sum_i\partial_i g\,m_i$. Conversely, any such choice
+defines a smooth derivation by the usual chain rule.
 \end{proof}
 
-This is Spivak's Proposition 3.10
-\cite[Proposition~3.10]{Spivak_Derived_Smooth_Manifolds}. The collar condition
-is exactly what makes the gluing step formal.
-
-\subsection{Supplement: the relative injectivity argument}
-\label[subsection]{sec:Supplement_Relative_Injectivity_Derived_Bordism}
-
-The injectivity proof hides two relative statements. First, a derived
-cobordism $p\colon W\to\R$ can be embedded over the parameter, after
-restricting to a neighborhood of $[0,1]$:
+For a manifold $U$, the corresponding formula is
 \[
-\begin{tikzcd}
-  W' \rar[hook,"j"] \dar["p"']
-    & \R^N\times(-1,2) \dar["\operatorname{pr}_2"] \\
-  (-1,2) \rar[equal] & (-1,2).
-\end{tikzcd}
+ \Omega_{\Cinfty(U)}^1\cong\Gamma(U,T^*U).
 \]
-The map to the parameter remains proper. This is the role of Spivak's
-Corollary 3.4.
+It follows by localizing the coordinate calculation and gluing.
+After tensoring with $\R$ along evaluation at $x$, its dual is $T_xU$.
 
-Second, the defining section for $W'$ may be perturbed relative to the
-collared regions. In those regions the endpoint fibers are already ordinary
-manifolds, and the section is already transverse in the normal directions.
-Relative transversality changes the section only away from those regions. Its
-ordinary zero locus is therefore a smooth cobordism with the same endpoints.
-
-For a cobordism over $T$, the map from the compact part of the zero locus to
-$T$ is extended to a neighborhood before perturbing. All subsequent
-constructions retain this extended map. This is why the absolute comparison
-upgrades to an isomorphism of bordism homology theories, rather than merely an
-isomorphism of coefficient groups.
-
-\subsection{Supplement: the Pontryagin--Thom picture}
-\label[subsection]{sec:Supplement_Pontryagin_Thom_Derived_Bordism}
-
-For an ordinary compact manifold $N$ embedded in $\R^k$, the
-Pontryagin--Thom collapse produces a stable map from a sphere to the Thom
-space of the normal bundle. Stabilizing over all embeddings yields the class
-of $N$ in $MO_*$. This construction explains why the normal bundle, rather
-than a chosen tangent bundle, is the natural input for unoriented bordism.
-
-For a compact quasi-smooth derived manifold $X$, the embedding and
-normal-bundle theorem again supplies stable normal data. A transverse
-perturbation of a defining section produces an ordinary manifold $N$ derived
-cobordant to $X$. Define the Pontryagin--Thom class of $X$ to be the class of
-$N$. If a second perturbation produces $N'$, a homotopy of perturbations gives
-a derived cobordism from $N$ to $N'$. Injectivity in
-\Cref{thm:Spivak_Derived_Bordism_Comparison} turns this into an ordinary
-cobordism, so the stable class is independent of the perturbation.
-
-This picture is useful conceptually, but it should not replace the
-homotopy-of-sections construction in the live talk. The latter makes the
-geometric content visible without requiring an introduction to stable
-homotopy theory.
-
-\subsection{Supplement: the Möbius line bundle}
-\label[subsection]{sec:Supplement_Mobius_Euler_Class}
-
-Let $L\to S^1$ be the Möbius line bundle. A section can be described by a
-smooth function $f\colon\R\to\R$ satisfying
+For a quotient $A=B/I$, differentiating the equations gives a right exact
+sequence
 \[
-  f(t+1)=-f(t).
+ I/I^2\longrightarrow\Omega_B^1\otimes_B A
+ \longrightarrow\Omega_A^1\longrightarrow0.
 \]
-The function $f(t)=\sin(\pi t)$ defines a transverse section. Modulo the
-identification $t\sim t+1$, it has one zero. Therefore the derived
-self-intersection of the zero section is derived cobordant to one point over
-$S^1$. Its mod-$2$ Euler number is nonzero.
+Taking the cokernel discards the kernel of the first map. This matters
+already for a hypersurface. For $B=\Cinfty(\R)$ and $I=(x^2)$, the
+differentiated relation is $2x\,dx$; at the origin it vanishes. The ordinary
+cotangent space has dimension one, but the equation still contributes
+a relation direction. A complex can retain both.
 
-This complements the trivial-line example. For the trivial line, a
-nowhere-zero section makes the self-intersection class vanish. For the Möbius
-line, every section has a zero and the transverse zero set detects the
-nontrivial unoriented Euler class.
+The same issue appears in families. The maps $\R\xrightarrow{t}\R$ vary
+smoothly with $t$, whereas both kernel and cokernel jump in dimension
+at zero. Keeping the differential allows a single linear description
+throughout the family.
 
-\subsection{Related literature}
-\label[subsection]{sec:Derived_Bordism_Related_Literature}
+\section{Complexes and the derived category}
+\label[section]{sec:Complexes_And_Derived_Category}
 
-The definitions of collared derived cobordism, the embedding theorem, the
-comparison with ordinary bordism, and the general cup-product formula are all
-from Spivak's \emph{Derived smooth manifolds}
-\cite[Sections~1--3]{Spivak_Derived_Smooth_Manifolds}. The comparison which
-places Spivak's model inside the universal modern framework is
-Carchedi--Steffens, especially their comparison with Spivak in Section 5.2
-\cite[Section~5.2]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+To retain both solutions and relations, we work with complexes rather
+than individual modules. We first describe their maps and homotopies,
+then the shifts and cones that will be used to linearize a pullback.
 
-Joyce's theory of d-manifolds and d-orbifolds develops oriented bordism and
-virtual classes in a framework which also accommodates finite isotropy. Those
-results are relevant to later moduli problems, but they require definitions
-and hypotheses not developed in this chapter. In particular, they should not
-be conflated with the bordism comparison for compact quasi-smooth derived
-manifolds proved here.
+A chain complex $C$ consists of real vector spaces and maps
+\[
+ \cdots\longrightarrow C_{n+1}\xrightarrow{d_{n+1}}C_n
+ \xrightarrow{d_n}C_{n-1}\longrightarrow\cdots
+\]
+with $d_{n-1}d_n=0$. Its homology is
+$H_n(C)=\ker(d_n)/\operatorname{im}(d_{n+1})$.
+The underlying complexes of the preceding Koszul algebras are examples,
+concentrated in nonnegative degrees. Here we allow all degrees.
+
+A morphism of complexes commutes with the differentials. It is a
+\emph{quasi-isomorphism} if it induces isomorphisms on all homology groups.
+For example, the acyclic complex $[\R\xrightarrow{1}\R]$ is
+quasi-isomorphic to zero. Adding this complex as a direct summand should
+not change a linear invariant.
+
+\begin{definition}[Derived $\infty$-category]
+\label[definition]{def:Derived_Category_Real_Vector_Spaces}
+The derived $\infty$-category $D(\R)$ is the $\infty$-categorical
+localization of chain complexes of real vector spaces at
+quasi-isomorphisms.
+\end{definition}
+
+Objects can be represented by complexes, and quasi-isomorphic complexes
+represent isomorphic objects. Mapping objects are animae: they retain
+homotopies between maps and their higher homotopies.
+
+For vector spaces these can be calculated explicitly. A chain homotopy
+from $f$ to $g$ is a degree $1$ map $h$ with $f-g=dh+hd$.
+The mapping complex has terms
+\[
+ \underline{\Hom}(C,D)_n
+ =\prod_p\Hom_\R(C_p,D_{p+n}),\qquad
+ d(h)=d_Dh-(-1)^n h\,d_C.
+\]
+Its degree-zero cycles are chain maps, and its degree-zero homology
+is chain maps modulo chain homotopy. Over a field this complex computes
+the derived mapping object; positive homology gives the higher
+homotopy groups of the mapping anima.
+
+To move between degrees, we use shifts. The shift of $C$ is defined by
+\[
+ C[1]_n=C_{n-1},\qquad d_{C[1]}=-d_C.
+\]
+A vector space in degree zero moves to degree $1$ under $[1]$.
+The inverse shift $[-1]$ moves it to degree $-1$.
+Thus $H_n(C[m])=H_{n-m}(C)$.
+In particular, a Koszul generator contributes in the degree of $A[1]$;
+dualizing puts the corresponding tangent direction in degree $-1$.
+
+As a simple example of higher homotopy, the mapping anima from $\R$
+to $\R[1]$ has one component and fundamental group $\R$.
+Every map is nullhomotopic, but its nullhomotopy is additional data.
+Such data is part of a homotopy fibre.
+
+Fibres and cofibers can be calculated using cones.
+For a chain map $f\colon C\to D$, the cone is
+\[
+ \operatorname{Cone}(f)_n=D_n\oplus C_{n-1},\qquad
+ d(y,x)=(d_Dy+f(x),-d_Cx).
+\]
+It represents the cofiber of $f$ in $D(\R)$.
+Its shift $\operatorname{Cone}(f)[-1]$ represents the fibre.
+These constructions replace cokernels and kernels by operations
+invariant under quasi-isomorphism.
+
+If $C,D$ are vector spaces in degree zero, the cone is
+$[C\xrightarrow{f}D]$ in degrees $1,0$, so
+\[
+ H_1(\operatorname{Cone}(f))=\ker f,\qquad
+ H_0(\operatorname{Cone}(f))=\operatorname{coker}f.
+\]
+For $f=0$, the cone is $D\oplus C[1]$. For an injective $f$, the cone
+maps quasi-isomorphically to $\operatorname{coker}f$.
+An ordinary short exact sequence
+$0\to C\to D\to E\to0$ therefore gives a cofiber sequence $C\to D\to E$.
+
+Every morphism fits into an exact triangle
+\[
+ C\xrightarrow{f}D\longrightarrow\operatorname{Cone}(f)
+ \longrightarrow C[1].
+\]
+Its homology forms a long exact sequence
+\[
+ \cdots\longrightarrow H_n(C)\longrightarrow H_n(D)
+ \longrightarrow H_n(\operatorname{Cone}(f))
+ \longrightarrow H_{n-1}(C)\longrightarrow\cdots.
+\]
+The connecting map relates the neighbouring homology groups.
+An exact triangle includes these maps and their compatibility, rather
+than merely three objects.
+
+Short exact sequences of complexes can have nonzero connecting maps even
+over a field. Put $K=[\R\xrightarrow{1}\R]$ in degrees $1,0$.
+Its degree-zero term is a subcomplex, giving a short exact sequence
+\[
+ 0\longrightarrow\R\longrightarrow K\longrightarrow\R[1]
+ \longrightarrow0.
+\]
+The middle complex is acyclic. In the derived category, its triangle
+therefore becomes
+\[
+ \R\longrightarrow0\longrightarrow\R[1]\iso\R[1].
+\]
+The nonzero connecting map is essential to this triangle, even though
+its middle object is zero.
+This example also identifies the shift $\R[1]$ as the cofiber of
+$\R\to0$.
+
+The cone calculations describe categorical constructions in $D(\R)$.
+The zero complex is both initial and terminal. The fibre and cofiber
+of $f\colon A\to B$ fit into the squares
+\[
+ \begin{tikzcd}
+ \operatorname{fib}(f)\rar\dar\drar[pullback]&A\dar["f"]\\
+ 0\rar&B
+ \end{tikzcd}
+ \qquad
+ \begin{tikzcd}
+ A\rar["f"]\dar\drar[pushout]&B\dar\\
+ 0\rar&\operatorname{cofib}(f).
+ \end{tikzcd}
+\]
+Each square includes its specified commutativity homotopy. In $D(\R)$,
+a square is a pullback if and only if it is a pushout. This can be
+checked using the cone descriptions above. Consequently,
+$A\to B\to C$, with a specified nullhomotopy of its composite, is
+a fibre sequence exactly when it is a cofiber sequence.
+
+The fibre and cofiber of the \emph{same map} differ by a shift:
+\[
+ \operatorname{cofib}(f)\cong\operatorname{fib}(f)[1].
+\]
+In particular, $A[1]=0\amalg_A0$ and $A[-1]=0\times_A0$.
+For vector spaces concentrated in degree zero, a fibre-cofiber sequence
+is precisely a short exact sequence. For general complexes, its
+homology instead forms a long exact sequence, and no injectivity or
+surjectivity of the first map is required. Finite products and
+coproducts in $D(\R)$ agree and are given by direct sums of complexes.
+
+\section{Modules and derived smooth derivations}
+\label[section]{sec:Square_Zero_Extensions_And_Cotangent_Complexes}
+
+We now apply this linear algebra to an animated smooth ring. Modules
+provide the coefficients for infinitesimal variations, square-zero
+extensions turn those variations into maps of smooth rings, and the
+cotangent complex represents the resulting derivations.
+
+The tensor product of real complexes gives $D(\R)$ a symmetric
+monoidal structure with unit $\R$. Forgetting the nonpolynomial
+smooth operations of an animated $\Cinfty$-ring $A$ gives a
+connective commutative algebra object $A^{\mathrm{alg}}$ in $D(\R)$.
+We define its modules in this $\infty$-category.
+
+\begin{definition}
+\label[definition]{def:Stable_Module_Animated_Cinfty_Ring}
+The $\infty$-category $\operatorname{Mod}_A$ is the category of
+modules over the commutative algebra object $A^{\mathrm{alg}}$ in
+$D(\R)$.
+\end{definition}
+
+Informally, such a module is an object $M$ of $D(\R)$ equipped with
+an action $A^{\mathrm{alg}}\otimes_\R M\to M$. Associativity and the
+unit law are supplied by homotopies, together with their higher
+compatibilities. Module morphisms likewise respect the action with
+coherent homotopies, and the morphisms between two modules form an
+anima. This is the higher-categorical notion of a module; the coherence
+data is part of its structure.
+
+For an explicit model, choose a $\Cinfty$-dg-algebra presenting $A$.
+Then $\operatorname{Mod}_A$ is modeled by dg-modules over its underlying
+commutative dg-algebra, with quasi-isomorphisms inverted in the
+$\infty$-categorical sense. This description presents the module
+category just defined. Modules may have homology in all degrees.
+For an ordinary smooth ring, $\operatorname{Mod}_A$ is the derived
+$\infty$-category of ordinary $A$-modules; in particular,
+$\operatorname{Mod}_\R=D(\R)$.
+
+Shifts, fibres, and cofibres work as they do for real complexes, and a
+fibre sequence is also a cofiber sequence. In a dg-module model they
+are calculated by shifts and cones of dg-modules.
+Extension of scalars along $A\to B$ is written $M\otimes_A B$.
+All tensor products over $A$ here are derived tensor products over
+the underlying commutative algebras.
+
+The smooth operations re-enter in square-zero extensions.
+For ordinary $A,M$, the ring $A\oplus M$ has multiplication
+\[
+ (a,m)(b,n)=(ab,an+bm).
+\]
+The ideal $M$ has square zero. The smooth operations are
+\begin{equation}\label{eq:Smooth_Square_Zero_Formula}
+ \varphi_{A\oplus M}((a_1,m_1),\ldots,(a_n,m_n))
+ =\left(\varphi_A(a),\sum_i(\partial_i\varphi)_A(a)m_i\right).
+\end{equation}
+A section $a\mapsto(a,D(a))$ of $A\oplus M\to A$ preserves these
+operations precisely when $D$ is a smooth derivation.
+
+For animated $A$ and connective $M$, there is similarly a split square-zero
+extension $A\oplus M$. In connective dg-models its underlying complex
+is the direct sum, with the displayed multiplication and smooth operations
+in degree zero. This construction respects the derived module category.
+For a general module, $A\oplus M$ uses its connective cover,
+since animated rings are connective. In our homological convention,
+connectivity means that homology vanishes in negative degrees.
+
+As in the ordinary case, we define the cotangent object by its maps
+into every coefficient module. The sets of derivations are now replaced
+by animae of derivations.
+
+\begin{definition}[Derived derivations and the cotangent complex]
+\label[definition]{def:Cotangent_Complex_Animated_Cinfty_Ring}
+The anima of smooth derivations is
+\[
+ \operatorname{Der}_{\Cinfty}(A,M)
+ =\Hom_{\operatorname{Alg}_{\Cinfty}(\An)_{/A}}(A,A\oplus M).
+\]
+The cotangent complex $\mathbb L_A$ represents this functor:
+\begin{equation}\label{eq:Cotangent_Complex_Universal_Property}
+ \Hom_{\operatorname{Mod}_A}(\mathbb L_A,M)
+ \cong\operatorname{Der}_{\Cinfty}(A,M).
+\end{equation}
+For $A\to B$, the relative cotangent complex $\mathbb L_{B/A}$
+represents derivations of $B$ vanishing on $A$: the maps $B\to B\oplus M$
+are taken over $B$ and under $A$.
+\end{definition}
+
+Existence is part of the general cotangent-complex construction.
+The complex is connective, so maps from it depend only on the connective
+cover of the target module, as required by the square-zero convention.
+For an ordinary ring $A$, $H_0(\mathbb L_A)\cong\Omega_A^1$.
+The other degrees retain relations in a presentation of $A$.
+They may be present even when $A$ itself has no higher homotopy groups.
+
+\begin{proposition}[Smooth manifolds]
+\label[proposition]{prop:Cotangent_Complex_Manifold}
+For a manifold $U$,
+$\mathbb L_{\Cinfty(U)}\cong\Gamma(U,T^*U)$ in degree zero.
+Its derived fibre at $x$ is $T_x^*U$.
+\end{proposition}
+
+For Euclidean space the proof uses universal derivations of a free
+animated smooth ring. Smooth localization has vanishing relative
+cotangent complex, so the calculation extends to coordinate opens
+and then to manifolds. We use that localization result here; the
+geometric construction appears in the next chapter.
+
+\section{Base change and transitivity}
+\label[section]{sec:Cotangent_Base_Change_Transitivity}
+
+The universal definition makes the cotangent complex independent of a
+presentation. The following two properties let us calculate it from one.
+Base change transports equations, and transitivity compares successive
+stages of imposing them.
+
+\begin{theorem}[Base change]
+\label[theorem]{thm:Cotangent_Complex_Base_Change}
+For a pushout of animated smooth rings
+\[
+ \begin{tikzcd}
+ A\rar\dar\drar[pushout]&B\dar\\
+ A'\rar&B',
+ \end{tikzcd}
+\]
+there is a natural isomorphism
+$\mathbb L_{B/A}\otimes_B B'\cong\mathbb L_{B'/A'}$.
+\end{theorem}
+
+\begin{theorem}[Transitivity]
+\label[theorem]{thm:Cotangent_Complex_Transitivity}
+For $A\to B\to C$, there is a natural cofiber sequence
+\[
+ \mathbb L_{B/A}\otimes_B C\longrightarrow
+ \mathbb L_{C/A}\longrightarrow\mathbb L_{C/B}.
+\]
+\end{theorem}
+
+For base change, an $A'$-linear derivation of $B'$ is the same as an
+$A$-linear derivation of $B$ with the indicated coefficients.
+For transitivity, restriction gives a fibre sequence
+\[
+ \operatorname{Der}_B(C,M)\longrightarrow
+ \operatorname{Der}_A(C,M)\longrightarrow
+ \operatorname{Der}_A(B,M).
+\]
+The fibre includes the nullhomotopy expressing vanishing on $B$.
+Representing these functors gives the cofiber sequence.
+These arguments explain the formal content of the two theorems;
+their construction for animated smooth rings is included in the
+cotangent-complex theory cited below.
+
+Absolute cotangent complexes are relative to the initial ring $\R$.
+For $D=B\otimes_{\infty,A}^{\mathbb L}C$, base change and transitivity imply
+\begin{equation}\label{eq:Algebraic_Pushout_Cotangent_Sequence}
+ \mathbb L_A\otimes_A D
+ \xrightarrow{(df,-dg)}
+ (\mathbb L_B\otimes_B D)\oplus(\mathbb L_C\otimes_C D)
+ \longrightarrow\mathbb L_D.
+\end{equation}
+This is a cofiber sequence. The signs identify the two copies of
+a differential coming from $A$.
+
+\section{The tangent complex of a zero locus}
+\label[section]{sec:Linearizing_Derived_Pullbacks}
+
+We can now recover the complex from the chapter opening without choosing
+a dg-algebra resolution. We first linearize a pullback, specialize to a
+vector bundle section, and interpret the two homology groups.
+
+For a real point $x$ of a derived manifold $X$, write $\mathbb L_X|_x$
+for the derived fibre of its cotangent complex.
+
+\begin{definition}
+\label[definition]{def:Tangent_Complex_At_A_Point}
+The tangent complex is
+$T_xX=\operatorname{RHom}_\R(\mathbb L_X|_x,\R)$.
+\end{definition}
+
+For $X=U\times_W V$ a derived pullback of ordinary manifolds,
+\Cref{eq:Algebraic_Pushout_Cotangent_Sequence} at $(u,v)$ gives
+\[
+ T_w^*W\longrightarrow T_u^*U\oplus T_v^*V
+ \longrightarrow\mathbb L_X|_{(u,v)}.
+\]
+Dualizing identifies
+\[
+ T_{(u,v)}X\cong
+ [T_uU\oplus T_vV\xrightarrow{df-dg}T_wW]
+\]
+in degrees $0,-1$. Its degree-zero homology is the ordinary tangent
+space of the equations.
+
+Let $s$ be a section of $p\colon E\to U$, and let $s(x)=0_x$.
+At the zero section there is a canonical splitting
+\[
+ T_{0_x}E\cong T_xU\oplus E_x.
+\]
+It uses $dp$, the derivative of the zero section, and the vertical tangent
+of the vector bundle. Since $p\circ s$ is the identity,
+$d_xs(v)=(v,D_xs(v))$ for a map $D_xs\colon T_xU\to E_x$.
+This vertical linearization is canonical at a zero; no connection is needed.
+
+The pullback of $s$ and the zero section has tangent complex
+\[
+ [T_xU\oplus T_xU\longrightarrow T_xU\oplus E_x],
+ \qquad(v,w)\longmapsto(v-w,D_xs(v)).
+\]
+Changing source coordinates to $(v,v-w)$ separates the acyclic
+identity complex on $T_xU$.
+
+\begin{theorem}
+\label[theorem]{thm:Tangent_Complex_Derived_Zero_Locus}
+There are isomorphisms
+\[
+ T_xZ^{\mathrm{der}}(s)\cong[T_xU\xrightarrow{D_xs}E_x],\qquad
+ \mathbb L_{Z^{\mathrm{der}}(s)}|_x
+ \cong[E_x^\vee\xrightarrow{(D_xs)^\vee}T_x^*U],
+\]
+in degrees $0,-1$ and $1,0$, respectively.
+\end{theorem}
+
+The Koszul model gives the same answer. Its derived differentials
+have generators $dx_j$ in degree zero and $d\varepsilon_i$ in degree $1$,
+with differential
+\[
+ d_{\mathrm{complex}}(d\varepsilon_i)
+ =d_{\mathrm{dR}}f_i
+ =\sum_j\frac{\partial f_i}{\partial x_j}\,dx_j.
+\]
+Tensoring with the residue field gives the transpose of the Jacobian.
+The relative free resolution used in the Koszul model is what makes
+this a derived differential calculation.
+
+The homology groups are
+\[
+ H_0(T_xZ^{\mathrm{der}}(s))=\ker D_xs,\qquad
+ H_{-1}(T_xZ^{\mathrm{der}}(s))=\operatorname{coker}D_xs.
+\]
+The first consists of infinitesimal solutions. In coordinates,
+$x+\varepsilon v$ over $\R[\varepsilon]/(\varepsilon^2)$ satisfies
+the equation exactly when $D_xs(v)=0$.
+
+The second is the target for obstruction classes. Perturbing the equation
+by $\varepsilon e$ gives $D_xs(v)=-e$, whose obstruction is $[e]$
+in the cokernel. Extending a first-order solution illustrates the same
+phenomenon. In local coordinates and a bundle frame, write
+\[
+ x(\varepsilon)=x+\varepsilon v+\varepsilon^2w.
+\]
+Modulo $\varepsilon^3$, Taylor expansion gives
+\[
+ D_xs(v)=0,\qquad
+ D_xs(w)+\tfrac12D_x^2s(v,v)=0.
+\]
+Thus the class of $\tfrac12D_x^2s(v,v)$ obstructs extension to second order.
+The representative uses coordinates; the obstruction has an intrinsic
+cotangent-complex interpretation. A nonzero obstruction space permits
+nonzero obstruction classes, but does not imply that every deformation
+is obstructed.
+
+For $f(x)=x$ the tangent complex is acyclic. For $x^2$ at zero it is
+$[\R\xrightarrow0\R]$: every $v$ solves the first-order equation,
+but second-order extension requires $v^2=0$.
+For $x^3$ the tangent complex is identical, and the first obstruction
+occurs one order later. A tangent complex therefore does not determine
+the nonlinear derived object.
+
+For the zero section of $E$, the tangent complex is
+$[T_xU\xrightarrow0 E_x]$. In all these cases,
+\[
+ \dim H_0(T_xX)-\dim H_{-1}(T_xX)=\dim U-\operatorname{rank}E.
+\]
+This is the virtual dimension. Its constancy is compatible with jumps
+in the individual homology dimensions.
+
+\section{Further reading}
+\label[section]{sec:Supplement_Intrinsic_Stable_Modules}
+
+The following observations distinguish smooth from algebraic
+differentials and clarify how the finiteness of a tangent complex
+differs from that of the homotopy of functions.
+
+Modules have an algebraic description, while their extensions carry
+smooth operations. Thus the smooth cotangent complex represents
+smooth derivations. In general it cannot be replaced by the algebraic
+cotangent complex of the underlying $\R$-algebra.
+For example, $\Cinfty(\R)$ is free on one generator as a smooth ring,
+but is not the polynomial $\R$-algebra on that generator.
+
+A finitely presented animated smooth ring has a perfect cotangent complex.
+After taking its fibre at a real point, a perfect complex is represented
+by a bounded complex of finite-dimensional vector spaces. The tangent
+complex at that point consequently has
+finite-dimensional homology in finitely many degrees.
+There is no universal two-term bound for all derived manifolds.
+The two-term form above reflects the particular presentation by a
+section of an ordinary vector bundle. The next chapter characterizes
+the objects that have such local presentations.
+
+For example, the free smooth dg-algebra $\R[z]$ with $|z|=2$ and
+$dz=0$ is a finite cell algebra. Its derived differentials are freely
+generated by $d_{\mathrm{dR}}z$ in degree $2$. At its real point,
+the cotangent complex is $\R[2]$ and the tangent complex is $\R[-2]$,
+concentrated in degree $-2$. Its function algebra has nonzero homotopy
+in every nonnegative even degree. Bounded tangent information and
+bounded homotopy of functions are therefore different finiteness conditions.
+
+\begin{exercise}
+For a linear map $f\colon V\to W$, write down its fibre complex and
+verify that its cofiber is the shift of its fibre. Check zero maps
+and identity maps.
+\end{exercise}
+
+\begin{exercise}
+Calculate the tangent complexes of the derived zero loci of $(x,0)$
+and $(x,x)$ as maps $\R\to\R^2$. Compare the Koszul models.
+\end{exercise}
+
+\begin{exercise}
+For a smooth family of equations and zeros, show that the Euler
+characteristic of the tangent complex is locally constant even where
+its homology dimensions jump.
+\end{exercise}
+
+The smooth module comparison and cotangent construction are developed in
+\cite[Section~4.3 and Construction~5.1.0.1, Definition~5.1.0.2,
+Remark~5.1.0.4]{Steffens_Derived_Differential_Geometry}.
+For a complementary account, see
+\cite[Sections~3.2--3.3 and Appendix~D.3]
+{Pascarella_Cotangent_Complex_Derived_Differential_Geometry}.
+Spivak's geometric cotangent calculation is in
+\cite[Section~7]{Spivak_Derived_Smooth_Manifolds}.
