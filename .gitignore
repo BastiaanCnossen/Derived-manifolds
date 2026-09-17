@@ -12,14 +12,15 @@
 *.toc
 *.xdv
 *-SAVE-ERROR
-program.pdf
-main.pdf
-output/pdf/*.pdf
 
 # Local scratch files and extracted source text
 output/manuscript-revision/
 tmp/
 build/
+
+# Local Markdown notes (keep README files public)
+*.md
+!README.md
 
 # Editor and operating-system files
 .DS_Store
