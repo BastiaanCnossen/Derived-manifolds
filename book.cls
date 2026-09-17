@@ -61,7 +61,10 @@
       {\SingleSpacing\huge\@title\par}
       \vskip 7\bigskipamount
       {\LARGE\@author\par}
-      \vskip 7\bigskipamount
+      \vskip 3\bigskipamount
+      {\bfseries Most of this document is AI-generated\par}
+      See \emph{A note from the organizers} for more information.\par
+      \vskip 3\bigskipamount
       Regensburg, \today
     \end{center}
   \end{titlingpage}
