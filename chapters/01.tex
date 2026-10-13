@@ -42,10 +42,11 @@ tangent intersection, replace the parabola by
 \]
 Its intersection with the $x$-axis consists of two points when
 $\varepsilon<0$, one point when $\varepsilon=0$, and no points when
-$\varepsilon>0$. The singleton at $\varepsilon=0$ therefore conceals both an
-infinitesimal direction and the
-obstruction which prevents that direction from extending to an actual family
-of solutions.
+$\varepsilon>0$. For the fixed equation at $\varepsilon=0$, we will find an
+infinitesimal solution direction which cannot extend to an actual curve of
+solutions. This is distinct from varying the equation: if $\varepsilon$ is
+allowed to vary, then $x(\tau)=\tau$ and $\varepsilon(\tau)=-\tau^2$ do give
+a curve of solutions in the total family.
 
 \begin{question*}
   What geometric object should replace a nontransverse intersection so that it
@@ -209,6 +210,19 @@ the last map is no longer surjective.
 \section{Nontransverse fiber products}
 \label[section]{sec:Nontransverse_Fiber_Products}
 
+For a transverse intersection, the kernel of the matching map is the tangent
+space of the intersection. Without transversality, this kernel still describes
+solutions of the linearized matching equation, but these need not extend to
+actual solutions. Attempting to extend a first-order solution to second order
+produces an error. In local coordinates, changing the second-order correction
+changes this error by an element of the image of the matching map. The
+remaining obstruction therefore takes values in its cokernel. We will see
+this explicitly in \Cref{ex:Tangent_Line_And_Parabola}.
+
+This gives a role to both the kernel, which describes first-order
+solutions, and the cokernel, in which obstruction classes take values.
+We package the matching map into a two-term complex.
+
 \begin{notation}\label[notation]{not:Linearized_Matching_Complex}
   For arbitrary smooth maps $f\colon X\to Z$ and $g\colon Y\to Z$, and a point
   $(x,y)\in X\times_ZY$, write
@@ -295,23 +309,41 @@ consists only of the origin, but the complexes are different.
   with the expected dimension of the intersection.
 \end{example}
 
-The nonzero class in degree $0$ has a direct interpretation. The vector
-$(1,1)$ solves the linearization of the equations $s=t$ and $t^2=0$. It does
-not arise as the velocity of an actual curve of solutions. More precisely, a
-curve with this initial velocity would have expansions
+The class represented by $(1,1)$ in degree $0$ is a solution of the linearized
+matching equation. It is not a tangent vector to the ordinary intersection,
+which is a single point. To see why this first-order solution cannot extend
+to second order, write the matching equation as
 \[
-  s(\tau)=\tau+O(\tau^2),
+  F(s,t)=i(s)-j(t)=(s-t,-t^2)=0.
+\]
+An extension with initial velocity $(1,1)$ would have expansions
+\[
+  s(\tau)=\tau+a\tau^2+O(\tau^3),
   \qquad
-  t(\tau)=\tau+O(\tau^2).
+  t(\tau)=\tau+b\tau^2+O(\tau^3).
 \]
-The second equation would then give
+Substitution gives
 \[
-  t(\tau)^2=\tau^2+O(\tau^3),
+  F(s(\tau),t(\tau))=\tau^2(a-b,-1)+O(\tau^3).
 \]
-whose quadratic coefficient is nonzero. This coefficient lies in the second
-coordinate of the target, which represents the cokernel of
-$\delta_{0,0}(u,v)=(u-v,0)$. Thus it is an explicit second-order obstruction
-to extending the infinitesimal solution.
+The quadratic error is therefore
+\[
+  (a-b,-1)=(0,-1)+\delta_{0,0}(a,b).
+\]
+Changing the second-order correction changes this error by an element of
+$\operatorname{im}(\delta_{0,0})$. Its class
+\[
+  [(0,-1)]\in\operatorname{coker}(\delta_{0,0})
+  =H_{-1}\mathbb{T}_{0,0}(i,j)
+\]
+is nonzero, so no choice of $a,b$ makes the equation hold through second
+order. In particular, $(1,1)$ cannot be the velocity of an actual curve of
+solutions.
+
+The cokernel is the space in which this obstruction takes values; the
+obstruction class itself uses the quadratic term of $F$. It is not determined
+by the linearized complex alone. A nonzero cokernel does not by itself imply
+that a given first-order solution is obstructed.
 
 The same example can be presented as a zero locus in one variable. Eliminating
 $s$ gives the smooth function
@@ -351,66 +383,71 @@ Consequently, the matching complex splits as
 The first summand is acyclic, while the second is isomorphic to the linearized
 complex of $q$.
 
-\begin{example}[The same point from different equations]
-  \label[example]{ex:Same_Point_Different_Equations}
-  Compare
-  \[
-    r,q\colon\R\longrightarrow\R,
-    \qquad
-    r(t)=t,
-    \qquad
-    q(t)=t^2.
-  \]
-  Both zero sets are the singleton $\{0\}$. Their linearized complexes at the
-  origin are respectively
-  \[
-    [\R\xrightarrow{1}\R]
-    \qquad\text{and}\qquad
-    [\R\xrightarrow{0}\R].
-  \]
-  The first complex is acyclic, while the second has a one-dimensional
-  homology group in each of degrees $0$ and $-1$. Thus the passage from an
-  equation to its underlying set of solutions forgets information already
-  visible in the derivative.
-\end{example}
+This illustrates a change of presentation which should preserve the geometric
+object. Adding a variable $s$ and an equation $s=0$ to $q(t)=0$ adds an
+acyclic summand $[\R\xrightarrow{1}\R]$ to its linearized complex: the new
+variable is uniquely eliminated by the new equation. In contrast, appending
+the equation $0=0$ without adding a variable contributes $[0\to\R]$.
+Although the zero set is unchanged in both cases, only the first operation
+preserves the linearized deformation and obstruction spaces.
+
+Already the equations $t=0$ and $t^2=0$ have the same zero set but different
+linearized complexes, respectively $[\R\xrightarrow{1}\R]$ and
+$[\R\xrightarrow{0}\R]$. Passing to the zero set therefore forgets
+information visible in the derivative. The next example shows that the
+derivative alone is still insufficient.
 
 \begin{example}[The same tangent complex from different equations]
 \label[example]{ex:Square_And_Cube_Infinitesimal_Tests}
 The equations $x^2=0$ and $x^3=0$ both have zero set $\{0\}$ and
-linearized complex $[\R\xrightarrow0\R]$. Nevertheless they differ
-on second-order infinitesimal tests. In the truncated polynomial ring
-$\R[\varepsilon]/(\varepsilon^3)$, the element $x=\varepsilon$
-satisfies $x^3=0$ but does not satisfy $x^2=0$.
-Over $\R[\varepsilon]/(\varepsilon^2)$ it satisfies both equations.
-Thus the first-order solution extends one order further for the cubic.
+linearized complex $[\R\xrightarrow0\R]$. Nevertheless their first-order
+solutions have different extension behavior. For an attempted extension
+\[
+  x(\tau)=\tau+a\tau^2+O(\tau^3),
+\]
+we obtain
+\[
+  x(\tau)^2=\tau^2+O(\tau^3),
+  \qquad
+  x(\tau)^3=\tau^3+O(\tau^4).
+\]
+No choice of $a$ makes the square vanish through second order, whereas the
+cubic does vanish through second order. Thus the first-order solution extends
+one order further for the cubic, although neither equation admits an actual
+curve of solutions with initial velocity $1$.
 The nonlinear equation contains information beyond its tangent complex.
 \end{example}
 
+These examples show why the nonlinear equations matter, even when we know
+their zero set and their linearization. The next example raises a different
+issue: an equation can contribute to the linearized problem even when it
+imposes no condition at all on the set of solutions.
+
 \begin{example}[An excess self-intersection]
 \label[example]{ex:Excess_Self_Intersection}
-Consider the self-intersection of the origin in $\R$, given by two maps
-$*\to\R$. Its ordinary pullback is a point. Its linearized matching
-complex is $[0\to\R]$ in degrees $0,-1$, with alternating dimension
-$-1$. No ordinary manifold has that dimension. There is no nonzero
-infinitesimal solution direction, but the ambient equation still
-contributes an obstruction direction.
+Compare an ordinary point with the self-intersection of the origin in $\R$,
+given by two maps $*\to\R$. The point has no variables and no equations.
+The self-intersection has no variables and one matching equation, which
+happens to vanish. Its ordinary pullback is again a point, but the two
+linearized complexes are respectively
+\[
+  [0\to0]\qquad\text{and}\qquad[0\to\R].
+\]
+The second has alternating dimension $-1$, which cannot be the dimension
+of an ordinary manifold. There is no nonzero first-order solution direction
+to obstruct. Rather, perturbing one of the two points away from the other
+produces a matching error which cannot be corrected, since there are no
+variables.
 
-Even ordinary smooth function rings will lose this information: imposing
-the relation $x=0$ twice gives the same quotient as imposing it once.
-The derived self-intersection will instead have a function algebra with
-a nonzero homotopy group in degree one. We will construct it in
+We therefore seek a geometric object which remembers this matching equation,
+even though it imposes no condition on the set of solutions. The derived
+self-intersection will be such an object. Its linearized complex will be
+$[0\to\R]$, distinguishing it from an ordinary point. We will construct it in
 \Cref{chap:Derived_Zero_Loci_And_Tangent_Complexes}.
 \end{example}
 
-These examples expose different losses of information. The zero set
-forgets the difference between $x$ and $x^2$. The linearized complex
-forgets the difference between $x^2$ and $x^3$. Ordinary quotient rings
-distinguish all three equations, but they still collapse the excess
-self-intersection. It is this last example that points beyond ordinary
-smooth algebra to derived intersections.
-
-The previous examples concern a single equation. A one-parameter family shows
-why it is useful to retain the entire two-term complex rather than only its
+The preceding examples concern fixed equations. A one-parameter family shows
+why it is useful to work with the entire two-term complex rather than only its
 kernel or cokernel.
 
 \begin{example}[A family with jumping kernels]
@@ -464,11 +501,18 @@ kernel or cokernel.
   which is the union of the two coordinate axes. The additional branch over
   $t=0$ records the jump in $\ker L_t$, and the two branches meet at the
   singular origin.
+
+  Here $L_t$ linearizes the equation in $u$ at $u=0$, with $t$ held fixed.
+  Thus the displayed complex is relative to the parameter $t$. If we instead
+  allow both $t$ and $u$ to vary, the derivative of $(t,u)\mapsto tu$ at the
+  origin is zero, giving the absolute linearized complex
+  $[\R^2\xrightarrow0\R]$ of the total zero locus there.
 \end{example}
 
 The vector bundles and their differential give a single smooth object
-throughout the family. Its homology recovers the jumping kernels and
-cokernels at each parameter.
+throughout the family. At each parameter, we take the corresponding linear
+map and calculate its kernel and cokernel. These can change dimension even
+though the vector bundles have fixed ranks.
 
 We can now collect what the examples require from a replacement of singular
 fiber products.
@@ -476,7 +520,7 @@ fiber products.
 \begin{enumerate}
   \item It should admit arbitrary pullbacks and recover the ordinary smooth
     fiber product when the maps are transverse.
-  \item It should retain the nonlinear defining equations in a
+  \item It should describe the nonlinear defining equations in a
     presentation-independent way, not merely their set of solutions or their
     first derivatives.
   \item It should organize deformation and obstruction data in families, even
@@ -491,19 +535,15 @@ the redundant variable. On the other hand, the zero set and the linearized
 complex are both too coarse: the first cannot distinguish $t$ from $t^2$, and
 the second cannot distinguish $t^2$ from $t^3$.
 
-There is a universal construction satisfying the pullback requirement.
-Informally, one freely adjoins finite homotopy limits to manifolds while
-retaining the transverse pullbacks already present. A construction of
-intersections in any other suitable $\infty$-category then factors through
-this one, provided it agrees with transverse intersections. This is the
-universal-property viewpoint on derived manifolds, made precise in
-\Cref{chap:From_Smooth_Algebra_To_Derived_Manifolds}. It gives an intrinsic object for each intersection, independent
-of a chosen algebraic presentation.
-
-The use of homotopy limits retains the identifications that express an
-equation, including their higher compatibilities. The elementary examples
-above motivate this construction; its existence and algebraic description
-require the smooth-ring theory developed in the next chapters.
+Derived manifolds will provide a construction satisfying these requirements. It may be described via a universal property: they form a universal
+enlargement of manifolds in which finite homotopy limits exist and transverse
+pullbacks are preserved. We will explain these terms and state the precise
+universal property in
+\Cref{chap:From_Smooth_Algebra_To_Derived_Manifolds}. For now, the point is that
+there is a systematic construction of intersections, independent of a chosen
+system of coordinates or a redundant variable eliminated by an equation.
+The next chapters develop the algebraic tools needed to construct these
+objects and establish their properties.
 
 \section{Elliptic equations and finite-dimensional reduction}
 \label[section]{sec:Elliptic_Moduli}
@@ -548,8 +588,8 @@ is a nonlinear elliptic differential operator. We write
 A point of $\operatorname{Sol}(P)$ is a section satisfying the geometric
 equation encoded by $P$. For the moment this notation denotes the ordinary
 set of solutions. The theorem concerns the derived solution stack, whose
-construction must also retain families of solutions and the equations
-defining them.
+construction must also account for families of solutions and their defining
+equations.
 
 For a concrete model, take $V=F=M\times\R$ over a closed connected
 Riemannian manifold. The semilinear equation
@@ -562,8 +602,24 @@ as the critical-point equation for the energy
 $\int_M(\tfrac12|du|^2+u^3/3)$. The zero function is a solution and its linearization is
 $D_0P=\Delta$. Since $M$ is closed and connected, its kernel consists of the
 constant functions, and self-adjointness identifies its cokernel with the same
-one-dimensional space. We will return to this example when we carry out a
-finite-dimensional reduction later in the seminar.
+one-dimensional space.
+
+Nevertheless, the only real solution is $u=0$: integrating the equation gives
+\[
+  0=\int_M P(u)=\int_M u^2,
+\]
+since the integral of $\Delta u$ vanishes on a closed manifold. The constant
+function $1$ is a first-order solution at zero. To extend it to second order,
+try
+\[
+  u(\tau)=\tau+\tau^2v+O(\tau^3).
+\]
+The coefficient of $\tau^2$ in $P(u(\tau))$ is $\Delta v+1$. Its integral
+is $\operatorname{vol}(M)$, so it cannot vanish for any $v$. Equivalently,
+the quadratic error represents the nonzero class of $1$ in
+$\operatorname{coker}(\Delta)$. This is the same obstruction mechanism as
+for the tangent line and parabola. We will return to this example when we
+carry out a finite-dimensional reduction later in the seminar.
 
 Why should such an equation admit the finite-dimensional local presentations
 promised by the theorem? Both $\Gamma(V)$ and $\Gamma(F)$ are
@@ -655,9 +711,10 @@ that the resulting solutions are smooth. We quote this analytic argument; the
 precise conclusion above is
 \cite[Fact~1.0.0.1]{Steffens_Derived_Differential_Geometry}.
 
-Thus a finite-dimensional zero locus $\kappa^{-1}(0)$ describes the equation
-near a solution and retains its linearized deformation--obstruction theory.
-The nonlinear map $\kappa$ also retains higher-order obstruction data,
+Thus the map $\kappa$ gives a finite-dimensional presentation of the equation
+near the chosen solution. Its zero set describes nearby solutions, while its
+derivative recovers their deformation and obstruction spaces.
+The nonlinear terms of $\kappa$ determine higher-order obstructions,
 as in the preceding examples $t\mapsto t^2$ and $t\mapsto t^3$.
 This explains why a derived zero locus is a plausible local model for the
 solution stack. To prove Steffens's theorem, we must establish this
@@ -692,14 +749,20 @@ There are therefore two global problems.
 \end{enumerate}
 
 Higher-categorical language records the comparison maps, homotopies between
-comparisons, and their iterated compatibilities. A moduli problem formulated
-as a functor of families already includes this information. If the functor
-is representable, its representing object is unique, and local calculations
-describe charts of that object. This is the representability viewpoint
+comparisons, and their iterated compatibilities. Later we will formulate the
+equation as a \emph{derived solution functor}, which describes families of
+solutions together with additional information about the equations. Its
+definition belongs to \Cref{chap:Section_Stacks_Jets_Solution_Stacks}; it is
+not simply the assignment of an ordinary solution set to each parameter.
+Identifying local finite-dimensional reductions with charts of this functor
+is an additional step beyond identifying their ordinary zero sets. If the
+functor is representable, its representing object is unique. This is the representability viewpoint
 discussed in \cite[Section~1]{Pardon_Representability_Elliptic_Fredholm}.
 
-For elliptic equations, Fredholm reduction will provide the local charts,
-and descent will glue them into a quasi-smooth derived $C^\infty$-scheme.
+For elliptic equations, the derived comparison of the local reductions and
+descent will show that the solution stack is representable over its parameter
+stack by quasi-smooth derived $\Cinfty$-schemes. When the parameter object is
+a point, the solution stack itself is a quasi-smooth derived $\Cinfty$-scheme.
 Constructing virtual fundamental classes or enumerative invariants then
 requires further geometric input, such as orientations and compactness.
 
@@ -709,7 +772,7 @@ requires further geometric input, such as orientations and compactness.
 An intersection can have an ordinary zero set of the wrong positive
 dimension. The zero map $\R^n\to\R^r$ has all of $\R^n$ as its zero set,
 while the expected dimension is $n-r$. Its linearized complex
-$[\R^n\xrightarrow0\R^r]$ retains both the variables and the redundant
+$[\R^n\xrightarrow0\R^r]$ displays both the variables and the redundant
 equations. The derived construction will distinguish this presentation
 from the manifold $\R^n$ with no equations imposed.
 
@@ -720,7 +783,9 @@ summand of its linearized matching complex to obtain $[T_xU\to\R^r]$.
 \end{exercise}
 
 \begin{exercise}
-Use truncated polynomial rings to find the first order at which the
-equations $x^m=0$ and $x^{m+1}=0$ can be distinguished by an
-infinitesimal solution with leading term $\varepsilon$.
+For $m\geq1$, find the first order at which the equations $x^m=0$ and
+$x^{m+1}=0$ can be distinguished by substituting
+$x(\tau)=\tau+O(\tau^2)$. As an algebraic reformulation, find the least
+$N$ for which $x=\varepsilon$ satisfies one equation but not the other in
+the truncated polynomial ring $\R[\varepsilon]/(\varepsilon^N)$.
 \end{exercise}

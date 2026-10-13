@@ -65,7 +65,7 @@
       {\bfseries Most of this document is AI-generated\par}
       See \emph{A note from the organizers} for more information.\par
       \vskip 3\bigskipamount
-      Regensburg, \today
+      Regensburg, \@date
     \end{center}
   \end{titlingpage}
   \hypersetup{pageanchor=true}
