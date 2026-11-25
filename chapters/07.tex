@@ -9,8 +9,8 @@ presentation locally. The answer is detected by its cotangent complex:
 the quasi-smooth objects are precisely those locally presented as zero
 loci of sections of finite-rank vector bundles.
 
-To make this local statement precise, we first pass from animated smooth
-rings to their spectra and structure sheaves. Smooth localization supplies
+To make this local statement precise, we first pass from animated
+$\Cinfty$-rings to their spectra and structure sheaves. Smooth localization supplies
 the restriction maps, and gluing affine objects leads to derived
 $\Cinfty$-schemes. We then state the local zero-locus theorem and study
 its presentations, called Kuranishi charts. Stabilization and changes of
@@ -42,8 +42,8 @@ Let now $A$ be an animated $\Cinfty$-ring and $a\in\pi_0A$.
 
 \begin{definition}
 \label[definition]{def:Derived_Localization}
-The smooth localization $A[a^{-1}]$ is initial among animated smooth
-rings under $A$ in which the image of $a$ is invertible in $\pi_0$.
+The smooth localization $A[a^{-1}]$ is initial among animated
+$\Cinfty$-rings under $A$ in which the image of $a$ is invertible in $\pi_0$.
 \end{definition}
 
 Choose a representative of $a$, hence a map $\Cinfty(\R)\to A$.
@@ -56,7 +56,7 @@ The localization is the pushout
 \]
 The universal property makes the result independent of this choice.
 
-\begin{theorem}[Flatness of smooth localization]
+\begin{theorem}[Homotopy groups of smooth localizations]
 \label[theorem]{thm:Homotopy_Groups_Smooth_Localization}
 There are natural isomorphisms
 \[
@@ -68,17 +68,47 @@ The smooth localization of the ordinary ring $\pi_0A$ is flat as
 a module over its underlying ring.
 \end{theorem}
 
-We use this result without proof
+The homotopy-group formula is
+\citet[Proposition~4.1.3.13]{Steffens_Derived_Differential_Geometry}.
+The tensor product in it is an ordinary module tensor product. To see
+flatness, put $B=\pi_0A$. First suppose $B=P/I$ with $P=\Cinfty(\R^n)$.
+Choose a lift of $a$ to $P$ and let $U$ be its cozero set. Localizing
+the quotient imposes the same relations on $\Cinfty(U)$, so
+\[
+ B[a^{-1}]\cong\Cinfty(U)/I\Cinfty(U)
+             \cong B\otimes_P\Cinfty(U).
+\]
+The last tensor product is algebraic. Since $\Cinfty(U)$ is flat over
+$P$ by \cite[Lemma~4.1.3.12]{Steffens_Derived_Differential_Geometry},
+base change gives flatness over $B$.
+
+For general $B$, take its filtered union of finitely generated
+$\Cinfty$-subrings $B_i$ containing $a$. The universal property of
+localization gives $B[a^{-1}]\cong\operatorname{colim}_i B_i[a^{-1}]$,
+also on underlying rings since all smooth operations have finite arity.
+For any ordinary $B$-module $M$ this gives
+\[
+ M\otimes_B B[a^{-1}]
+ \cong \operatorname{colim}_i \bigl(M\otimes_{B_i} B_i[a^{-1}]\bigr).
+\]
+Indeed, every scalar in a balancing relation on the left belongs to
+some $B_i$, and every finite collection of such relations holds at a
+common stage. Each functor on the right preserves injections by the
+finitely generated case. Filtered colimits preserve injections, proving
+flatness. This is the filtered-colimit reduction in the proof of
 \cite[Proposition~4.1.3.13]{Steffens_Derived_Differential_Geometry}.
-The tensor product in its second formula is an ordinary module tensor
-product. Flatness explains why restricting functions creates no
-additional higher homotopy from a derived tensor product.
-It restricts each existing homotopy module.
 
 The corresponding relative cotangent complex vanishes:
 \[
  \mathbb L_{A[a^{-1}]/A}\cong0.
 \]
+Indeed, put $P=\Cinfty(\R)$ and $Q=\Cinfty(\R\setminus\{0\})$.
+By \Cref{prop:Cotangent_Complex_Manifold}, the map
+$\mathbb L_P\otimes_P Q\to\mathbb L_Q$ restricts one-forms. It sends the
+basis $dt$ to $dt|_{\R\setminus\{0\}}$, a basis of $\mathbb L_Q$.
+Its cofiber $\mathbb L_{Q/P}$ therefore vanishes. Base change along the
+pushout defining $A[a^{-1}]$ proves the claim, also stated in
+\cite[Corollary~5.1.0.14]{Steffens_Derived_Differential_Geometry}.
 By transitivity,
 \begin{equation}\label{eq:Cotangent_Complex_Localizes}
  \mathbb L_{A[a^{-1}]}\cong\mathbb L_A\otimes_A A[a^{-1}].
@@ -88,7 +118,7 @@ geometric objects.
 
 \section{The spectrum and its structure sheaf}
 
-Assume $A$ is finitely presented as an animated smooth ring.
+Assume $A$ is finitely presented as an animated $\Cinfty$-ring.
 Its spectrum has underlying set
 \[
  |\Spec A|=\Hom_{\Cinfty\text{-rings}}(\pi_0A,\R).
@@ -114,7 +144,7 @@ The derived spectrum is
 \[
  \Spec A=(|\Spec A|,\mathcal O_{\Spec A}),
 \]
-where the sheaf of animated smooth rings is obtained from smooth
+where the sheaf of animated $\Cinfty$-rings is obtained from smooth
 localizations. In the finite-presentation setting,
 \[
  \mathcal O_{\Spec A}(D(a))\cong A[a^{-1}].
@@ -124,15 +154,15 @@ over basic neighbourhoods of $x$.
 \end{construction}
 
 The assertion that these assignments have the required sheaf and
-reconstruction properties is a theorem about smooth rings.
+reconstruction properties is a theorem about $\Cinfty$-rings.
 It is part of the affine comparison
-\cite[Section~4.1.3, especially Corollary~4.1.3.34]
+\cite[Section~4.1.3, especially Corollary~4.1.3.34 and Remark~4.1.3.35]
 {Steffens_Derived_Differential_Geometry}.
-For unrestricted smooth rings one must take care with sheafification
+For unrestricted $\Cinfty$-rings one must take care with sheafification
 and reconstruction; finite presentation is the class used here.
 
 The term \emph{locally animated $\Cinfty$-ringed space} means that
-$\pi_0$ of every stalk is a local smooth ring. At $x$ its residue map
+$\pi_0$ of every stalk is a local $\Cinfty$-ring. At $x$ its residue map
 is evaluation in $\R$. The higher homotopy modules remain in the stalk.
 A stalk belongs to a point; the values on basic opens are the
 localizations before taking that colimit.
@@ -147,8 +177,8 @@ the manifold topology, and the localization formula identifies the
 structure sheaf with smooth functions.
 
 The examples from \Cref{chap:Derived_Zero_Loci_And_Tangent_Complexes} now have an explicit topological meaning.
-The spectra of $\R$, $\R[\delta]/(\delta^2)$, and
-$\R[\varepsilon]$ with $|\varepsilon|=1$, $d=0$, all have one point.
+The spectra of $\R$, $\R[\varepsilon]/(\varepsilon^2)$, and
+$\R[e]$ with $|e|=1$, $de=0$, all have one point.
 Their structure sheaves differ. The second has nilpotents in degree zero;
 the third has a nonzero homotopy group in degree one.
 
@@ -255,14 +285,25 @@ A derived $\Cinfty$-scheme locally of finite presentation is
 quasi-smooth if and only if it admits an open cover by Kuranishi charts.
 \end{theorem}
 
-The forward implication is the substantive normal-form theorem.
-The affine statement is proved in
-\citet[Proposition~5.1.1.11 and Corollary~5.1.1.13]
-{Steffens_Derived_Differential_Geometry}.
-In that statement, a finitely presented quasi-smooth affine object
-can be expressed as the zero locus of a bundle section over an open
-subset of a Euclidean space. Applying it on affine opens proves the
-displayed local form. The reverse implication is the cotangent calculation.
+The forward implication is the substantive normal-form theorem. For
+affine objects it holds globally.
+
+\begin{theorem}[Global normal form for derived manifolds]
+\label[theorem]{thm:Global_Normal_Form_Affine}
+A derived manifold is quasi-smooth if and only if it is isomorphic to
+the derived zero locus $Z^{\mathrm{der}}(s)$ of a section $s$ of a
+vector bundle $E$ over an open subset $U\subseteq\R^n$.
+\end{theorem}
+
+This is \citet[Proposition~5.1.1.11 and Corollary~5.1.1.13]
+{Steffens_Derived_Differential_Geometry}. A derived manifold in
+$\mathrm{DMfd}$ is affine and its animated ring of functions is finitely
+presented, which supplies the finiteness hypothesis. Its underlying topological
+space may be noncompact. Applying the theorem on affine opens
+proves the local form of \Cref{thm:Local_Zero_Locus_Form}. The reverse
+implications are the cotangent calculation. In particular, a
+quasi-smooth derived manifold can always be treated as a single
+Kuranishi chart.
 
 The proof begins by choosing generators for the ring, giving an
 ambient smooth affine object. The relative cotangent complex describes
@@ -303,8 +344,8 @@ $Z^{\mathrm{der}}(f')\cong Z^{\mathrm{der}}(f)$.
 The second factor is the derived zero locus of the identity of $\R^q$.
 That map is transverse to zero, so its zero locus is the ordinary point.
 Pasting pullbacks gives the stated isomorphism.
-Equivalently, the new Koszul variables satisfy $d\eta_j=y_j$.
-Evaluation at $y=\eta=0$ removes an acyclic Koszul resolution.
+Equivalently, the new Koszul generators satisfy $de'_j=y_j$.
+Evaluation at $y=0$, $e'=0$ removes an acyclic Koszul resolution.
 \end{proof}
 
 For example, $x^2$ and $(x^2,y)$ give the same derived object.
@@ -317,7 +358,7 @@ Changing a bundle frame likewise changes the list of equations
 without changing the object. If $g(x)$ is an invertible matrix of
 smooth functions, then $f$ and $g f$ present isomorphic derived zero loci.
 Explicitly, the map from the Koszul algebra for $gf$ to that for $f$
-sends its generator $\varepsilon'_i$ to $\sum_jg_{ij}\varepsilon_j$.
+sends its generator $e'_i$ to $\sum_jg_{ij}e_j$.
 The inverse matrix gives the inverse dg-algebra map.
 The intrinsic bundle model with differential $\iota_s$ makes this
 independence immediate.
@@ -329,7 +370,7 @@ Nor does equality of tangent complexes suffice: $x^2$ and $x^3$
 have the same tangent complex at zero but distinct classical
 function rings. Comparisons of charts must respect their equations.
 
-\section{Further reading}
+\section{Further remarks and exercises}
 
 Two refinements of the chart description will recur later: removing
 transverse directions makes a chart minimal at a point, while a
@@ -337,8 +378,8 @@ nontrivial obstruction bundle shows what local frames can conceal.
 
 A useful refinement makes a chart minimal at a chosen point.
 Suppose $f\colon U\subseteq\R^n\to\R^r$ vanishes at $x$ and $d_xf$
-has rank $q$. After linear changes of coordinates, $q$ components
-of $f$ have independent differentials. The inverse function theorem
+has rank $q$. After a linear change of the equations, that is, of the
+basis of $\R^r$, $q$ components of $f$ have independent differentials. The inverse function theorem
 allows these components to be used as coordinates $y\in\R^q$.
 Writing the remaining coordinates as $z$, the map becomes
 \[

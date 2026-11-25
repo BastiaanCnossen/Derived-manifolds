@@ -20,7 +20,7 @@ Once the analytic condition is established, the augmentation identity
 gives a derived chart and identifies its tangent complex. We then
 retain parameters and glue the charts to complete the relative
 representability theorem. The final calculation returns to
-$\Delta u+u^2=0$ and exhibits the multiple point that its solution
+$\Delta u+u^2=0$ and exhibits the double point that its solution
 stack contains near zero.
 
 \section{Sobolev spaces and the loss of derivatives}
@@ -44,37 +44,38 @@ For a nonnegative integer $\ell$, the Sobolev norm is equivalent to
  \|u\|_{H^\ell}^2
  =\sum_{j=0}^{\ell}\int_N|\nabla^ju|^2\,d\mathrm{vol}.
 \]
-Completing smooth sections gives the Hilbert space $H^\ell(E;N)$.
+Completing smooth sections gives the Hilbert space $H^\ell(N;E)$.
 Its elements have weak derivatives through order $\ell$ in $L^2$;
 they need not be smooth. Different geometric choices give equivalent
 norms.
 
 The Sobolev embedding theorem implies
 \[
- H^{k+\ell}(F;N)\longrightarrow C^k(F;N)
+ H^{k+\ell}(N;F)\longrightarrow C^k(N;F)
  \quad\text{if }\ell>\tfrac12\dim N.
 \]
 Thus, at these levels, a section has a well-defined continuous $k$-jet.
 If $Q$ was defined by requiring the jet to lie in an open
 $W\subseteq J_N^k(F)$, the same requirement defines an open subset
-$Q_{k+\ell}\subseteq H^{k+\ell}(F;N)$.
+$Q_{k+\ell}\subseteq H^{k+\ell}(N;F)$.
 
 A differential operator of order $k$ uses $k$ derivatives.
 Its Sobolev extension therefore has the form
 \begin{equation}\label{eq:Sobolev_Extension_Nonlinear_Operator}
- \widetilde P_\ell\colon Q_{k+\ell}\longrightarrow H^\ell(E;N).
+ \widetilde P_\ell\colon Q_{k+\ell}\longrightarrow H^\ell(N;E).
 \end{equation}
-For $\ell>\dim N/2$, multiplication and smooth substitution are
-continuous operations on $H^\ell$. Applied to the finite jet formula,
-these results make \Cref{eq:Sobolev_Extension_Nonlinear_Operator}
-a smooth map of Banach manifolds.
+The $k$-jet map is bounded linear from $H^{k+\ell}$ to $H^\ell$.
+For $\ell>\dim N/2$, substitution into a smooth bundle map defines
+a smooth map on the open set of $H^\ell$ sections taking values in
+its domain. Composing these maps gives the Banach smoothness of
+\eqref{eq:Sobolev_Extension_Nonlinear_Operator}.
 We use the compatible construction in
 \cite[Lemma~3.4.5]{Steffens_Representability_Elliptic_Moduli}.
 
 The extensions commute with the inclusions between Sobolev levels.
 Moreover,
 \[
- \Gamma(N;E)\cong\lim_\ell H^\ell(E;N)
+ \Gamma(N;E)\cong\lim_\ell H^\ell(N;E)
 \]
 as Fr\'echet spaces, with the smooth-section topology.
 The corresponding statement holds for $Q$ and its Sobolev domains.
@@ -102,7 +103,7 @@ $\dim\ker D-\dim\operatorname{coker}D$.
 A smooth linear elliptic differential operator of order $k$ on a
 closed manifold extends to Fredholm operators
 \[
- D_\ell\colon H^{k+\ell}(F;N)\longrightarrow H^\ell(E;N).
+ D_\ell\colon H^{k+\ell}(N;F)\longrightarrow H^\ell(N;E).
 \]
 Its kernel consists of smooth sections and is independent of $\ell$.
 Its cokernel is naturally identified with
@@ -110,18 +111,24 @@ $\Gamma(N;E)/D\Gamma(N;F)$, also independently of $\ell$.
 If $v$ is a Sobolev section and $Dv$ is smooth, then $v$ is smooth.
 \end{theorem}
 
-We quote this standard analytic input, used in the proof of Steffens's
-theorem. A basic estimate underlying it is
+Ellipticity gives both a left and a right parametrix. By
+\citet[Theorems~19.5.1--19.5.2]{Hormander_Analysis_Linear_PDE_III},
+the left parametrix gives closed range and finite-dimensional kernel,
+and the right parametrix gives finite-dimensional cokernel. This is the
+Fredholm result used by \citet[proof of Theorem~3.4.3, p.~68]{Steffens_Representability_Elliptic_Moduli}.
+A basic estimate underlying it is
 \[
  \|v\|_{H^{k+\ell}}
  \leq C_\ell\bigl(\|Dv\|_{H^\ell}+\|v\|_{L^2}\bigr).
 \]
 Ellipticity controls the highest derivatives through $Dv$.
 The lower-order term accommodates the kernel.
-A parametrix and compactness of the lower Sobolev inclusions give
-Fredholmness; regularity gives smoothness of kernel elements.
-Applying the same reasoning to the formal adjoint identifies the
-cokernel by smooth representatives.
+If $Dv$ is smooth, applying a left parametrix recovers $v$ up to a
+smoothing operator, so $v$ is smooth as well. In particular the kernel
+is the same at every Sobolev level. Smooth sections have dense image
+in the finite-dimensional Sobolev cokernel, hence span it. If a smooth
+section lies in the Sobolev image, regularity makes its preimage smooth.
+Thus inclusion induces the asserted isomorphism on cokernels.
 
 At the chosen solution, put $D=T_t\widetilde P$ and
 \[
@@ -138,6 +145,11 @@ representing each basis vector, and extend linearly.
 The phrase smooth representatives refers to these sections on $N$.
 A map from finite-dimensional $V$ obtained in this way is also smooth
 as a map to the Fr\'echet section space.
+For the running example $P(u)=\Delta u+u^2$ on a closed connected
+Riemannian manifold $N$, the linearization at zero is $D=\Delta$.
+Its cokernel is represented by the constants, so we take $V=\R$
+and let $\iota(a)$ be the constant function $a$
+(\Cref{sec:Running_Example_Double_Point}).
 
 The augmented derivative is
 \[
@@ -188,28 +200,29 @@ manifold $Z$. In the local coordinates above, the pullback is an open
 subset of $K\times Z$, and its projection to $Z$ is a submersion.
 This family statement is exactly the form required in \Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge}.
 
-For each sufficiently large $\ell$, define
+Fix an integer $\ell_0>\dim N/2$. For $\ell\geq\ell_0$, define
 \[
  G_\ell(u,a)=\widetilde P_\ell(u)+\iota(a).
 \]
-Its derivative at $(t,0)$ is surjective Fredholm.
-Surjectivity of a split surjection is open in the operator norm, and
-Fredholmness is also open. We can therefore restrict to an open
-neighbourhood $U_\ell\subseteq Q_{k+\ell}\times V$ where
-$dG_\ell$ is everywhere surjective Fredholm.
+Within the elliptic jet neighbourhood chosen above, let
+$A_\ell\subseteq Q_{k+\ell}\times V$ consist of all points where
+$dG_\ell$ is surjective Fredholm of index $\operatorname{ind}D+\dim V$.
+This is an open neighbourhood of $(t,0)$ since split surjectivity is
+open and the Fredholm operators of a fixed index form an open set.
+At a smooth point $(u,a)$, linear elliptic regularity identifies the
+kernel and cokernel of $T_u\widetilde P_\ell$ at every level.
+The same holds after adding $\iota$, whose values are smooth.
+Thus the intersection $U=A_\ell\cap(Q\times V)$ is independent of $\ell$.
 
-The neighbourhoods must be chosen compatibly across Sobolev levels.
-At a smooth section, linear elliptic regularity identifies the kernel
-and cokernel of the derivative at every level.
-Thus the condition that $dG_\ell$ be onto has the same restriction
-to smooth sections for every $\ell$. Using these surjectivity loci,
-and successively intersecting higher-level neighbourhoods with
-the inverse images of lower-level ones, gives
+Let $i_{\ell+1,\ell}\colon Q_{k+\ell+1}\times V\to Q_{k+\ell}\times V$
+be Sobolev inclusion on sections and the identity on $V$. Set
 \[
- U_{\ell+1}\longrightarrow U_\ell,\qquad
- U=U_\ell\cap(Q\times V)
+ U_{\ell_0}=A_{\ell_0},\qquad
+ U_{\ell+1}=A_{\ell+1}\cap i_{\ell+1,\ell}^{-1}(U_\ell).
 \]
-with the same smooth open neighbourhood $U$ at every level.
+Each $U_{\ell+1}$ is open and maps into $U_\ell$. Since the inclusions
+are the identity on smooth sections, induction gives
+$U_\ell\cap(Q\times V)=U$ for every $\ell\geq\ell_0$.
 This is the neighbourhood construction in the proof of
 \cite[Theorem~3.4.3, p.~69]{Steffens_Representability_Elliptic_Moduli}.
 The inverse limit of the resulting domains is $U$ in convenient
@@ -227,6 +240,20 @@ Sobolev level, the implicit function theorem gives a finite-dimensional
 pullback. Nonlinear regularity identifies its points with smooth
 solutions, and linear regularity identifies its smooth structure.
 
+\begin{proposition}[Submersiveness of the augmented operator]
+\label[proposition]{prop:Augmented_Operator_Submersive}
+For every ordinary manifold $Z$ and smooth map
+$h\colon Z\to\Gamma(N;E)$, the pullback
+$Z\times^{\mathrm{Sm}}_{j_{\mathrm{Con}}\Gamma(N;E)}j_{\mathrm{Con}}U$
+is represented by a finite-dimensional manifold, submersive over $Z$.
+Hence $j_{\mathrm{Con}}G\colon j_{\mathrm{Con}}U\to
+j_{\mathrm{Con}}\Gamma(N;E)$ is submersive.
+\end{proposition}
+
+This is claim~$(*)$ in the proof of
+\cite[Theorem~3.4.3]{Steffens_Representability_Elliptic_Moduli}.
+The rest of this section is its proof.
+
 Let $Z$ be an ordinary finite-dimensional manifold and let
 $h\colon Z\to\Gamma(N;E)$ be smooth.
 At Sobolev level $\ell$, consider
@@ -235,27 +262,26 @@ At Sobolev level $\ell$, consider
  =\{(z,u,a)\in Z\times U_\ell:
        \widetilde P_\ell(u)+\iota(a)=h(z)\}.
 \end{equation}
-The Banach implicit function theorem makes $W_\ell$ an ordinary
-finite-dimensional manifold with a submersion $W_\ell\to Z$.
+The Banach implicit function theorem makes $W_\ell$ a finite-dimensional
+manifold with a submersion $W_\ell\to Z$. It is Hausdorff and second
+countable, as a subspace of $Z\times H^{k+\ell}(N;F)\times V$; the
+Sobolev spaces are separable.
 The dimension of a fibre is the Fredholm index of $G_\ell$, namely
 $\operatorname{ind}D+\dim V$.
 
 It remains to identify these manifolds with the smooth-stack pullback.
 
-We use the following nonlinear regularity statement from
-\cite[Lemma~3.4.6]{Steffens_Representability_Elliptic_Moduli}:
-above a sufficiently high Sobolev threshold, a solution of the
-nonlinear elliptic equation with smooth right-hand side is smooth.
-The threshold includes $\ell>\dim N/2$ and the additional regularity
-needed for the nonlinear elliptic bootstrap.
-No optimal numerical threshold is required for the argument.
-
 At a point of $W_\ell$ the equation reads
 \[
  \widetilde P_\ell(u)=h(z)-\iota(a).
 \]
-The right side is a smooth section.
-For $\ell$ above the regularity threshold, $u$ is therefore smooth.
+For $\ell$ sufficiently large in terms of $\dim N$ and $k$, the
+nonlinear elliptic estimate gives a gain of one derivative. A solution
+$u\in H^{k+\ell}$ belongs to $H^{k+\ell+1}$ whenever the right-hand
+side lies in $H^{\ell+1}$ \cite[Theorem~1.2.D]{Taylor_Pseudodifferential_Nonlinear_PDE}.
+Here $h(z)-\iota(a)$ is smooth on $N$, so we can iterate the estimate.
+It follows that $u$ is smooth, as in
+\cite[Lemma~3.4.6]{Steffens_Representability_Elliptic_Moduli}.
 The common smooth trace of the $U_\ell$ then shows that all
 sufficiently high $W_\ell$ have the same underlying set.
 Their transition maps are bijections.
@@ -294,11 +320,11 @@ Since limits commute with pullbacks, the preceding identification gives
 This identifies the entire smooth family functor, including its
 smooth dependence on parameters.
 
-The test manifold $Z$ and map $h$ were arbitrary.
-By the criterion of \Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge}, the augmented map
-$j_{\mathrm{Con}}G$ is submersive.
-The comparison theorem then makes it submersive in derived stacks too.
-This proves claim $(*)$ in Steffens's argument.
+The manifold $Z$ and the map $h$ were arbitrary, so $j_{\mathrm{Con}}G$
+is submersive. This proves
+\Cref{prop:Augmented_Operator_Submersive}. The comparison theorem of
+\Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge} then makes
+it submersive in derived stacks too.
 
 \section{The derived chart and its tangent complex}
 
@@ -361,31 +387,30 @@ kernel and cokernel with those of the vertical operator.
 
 Choose smooth representatives $\iota$ at this solution and repeat the
 Sobolev construction on $S\times Q\times V$.
-A test family is now a map
+A smooth family parametrized by a manifold $Z$ is now a map
 $Z\to S\times\Gamma(N;E)$, written $(s(z),h(z))$.
 Its equation is
 \[
  \widetilde P_{s(z),\ell}(u)+\iota(a)=h(z).
 \]
-The Banach argument and both regularity arguments work with these
-additional finite-dimensional parameters. They prove that the
-augmented operator is submersive over $S$ in the required sense.
+At each $z$ the nonlinear estimate applies to the fixed operator
+$\widetilde P_{s(z)}$ with the same threshold, since $k$ and $\dim N$
+are fixed. The vertical tangent calculation likewise holds at fixed
+$z$. Together with the Banach submersion over $Z$, this gives the same
+identification of smooth families and proves the required submersiveness.
 
-\Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge} therefore produces relative Kuranishi charts.
-\Cref{chap:Elliptic_Equations_Kuranishi_Models} showed that their neighbourhoods cover all solutions,
-and \Cref{chap:Coherence_Descent_Local_Representability} glues this effective open atlas.
-For a smooth stack base $S$, choose an effective covering by ordinary
-manifolds and pull the differential moduli problem back to them.
-The argument above proves relative representability on each such
-family. Locality on the base, proved in
-\Cref{cor:Local_Representability_Relative}, descends this conclusion
-to $S$. The globally defined solution stack supplies the overlaps and
-their coherence, so no independent choices of chart transitions are
-needed. This completes the proof of
-\Cref{thm:Relative_Elliptic_Representability}, subject to the
-analytic and geometric input theorems explicitly quoted above.
+\Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge} therefore
+produces relative Kuranishi charts: around every solution, an open
+substack of the solution stack is a quasi-smooth derived scheme over
+the base. This is exactly the input assumed in
+\Cref{sec:Open_Covers_Parameter_Families}, where these charts are
+glued by the open atlas criterion and the case of a smooth stack base is
+reduced to manifold bases. This completes the proof of
+\Cref{thm:Relative_Elliptic_Representability}, subject to the analytic
+and geometric input theorems explicitly quoted above.
 
-\section{The running example as a multiple point}
+\section{The running example as a double point}
+\label[section]{sec:Running_Example_Double_Point}
 
 Return to $P(u)=\Delta u+u^2$ on closed connected $N$.
 At zero, the cokernel of $\Delta$ is represented by constants.
@@ -419,7 +444,7 @@ with that of $c^2$.
 
 The local function ring is therefore
 \[
- \Cinfty(\R)/(c^2)\cong\R[\delta]/(\delta^2).
+ \Cinfty(\R)/(c^2)\cong\R[c]/(c^2).
 \]
 The real solution set is one point, but it has a nontrivial infinitesimal
 direction. Its tangent complex is $[\R\xrightarrow0\R]$ in degrees
@@ -427,7 +452,7 @@ $0,-1$, agreeing with the kernel and cokernel of $\Delta$.
 This is the finite-dimensional singularity encoded by the original
 infinite-dimensional equation.
 
-\section{Further reading}
+\section{Further remarks and exercises}
 
 The construction used auxiliary sections and Sobolev completions.
 We explain how these choices affect the presentations, and distinguish

@@ -86,10 +86,19 @@ For example, augment $f(x)=x^2$ to
 Its derivative $(v,b)\mapsto2xv+b$ is surjective everywhere. Its derived
 zero locus is therefore the ordinary parabola $Z=\{a=-x^2\}$.
 Using $x$ as a coordinate on $Z$, the projection to the auxiliary line
-is $\kappa(x)=-x^2$. Its derived zero fibre is the multiple point with
-function ring $\R[\delta]/(\delta^2)$ calculated earlier.
+is $\kappa(x)=-x^2$. Its derived zero fibre is the double point with
+function ring $\R[c]/(c^2)$, writing $c$ for the coordinate.
 The singularity is retained by the projection $\kappa$ from the smooth
 augmented zero manifold.
+
+This toy example is the finite-dimensional shadow of the running
+example $P(u)=\Delta u+u^2$ on a closed connected Riemannian manifold
+$N$. The cokernel of $\Delta$ is represented by the constants, so we
+take $V=\R$ and let $\iota(a)$
+be the constant function $a$, so that $\overline P(u,a)=\Delta u+u^2+a$.
+\Cref{chap:Elliptic_Representability_Derived_Charts} shows that near
+$(0,0)$ the augmented solution manifold is the curve $a=-c^2$ of
+constant functions $u=c$, with Kuranishi map $\kappa(c)=-c^2$.
 
 In practice we work on an open neighbourhood $U\subseteq Q\times V$
 of a point $(t,0)$. Set
@@ -113,7 +122,7 @@ inside the chosen augmented neighbourhood.
 The local operators can be studied analytically on Fr\'echet spaces
 of sections. To use their analytic properties in derived geometry,
 we need to identify the associated functors of smooth families and
-then their extensions to derived parameters.
+then their extensions to all derived manifolds.
 
 For a finite-rank bundle $E$ over compact $N$, the space $\Gamma(N;E)$
 has seminorms measuring all derivatives:
@@ -141,24 +150,26 @@ A convenient manifold $B$ determines a smooth stack
  j_{\mathrm{Con}}(B)(T)=C^\infty(T,B),
  \qquad T\in\mathrm{Mfd}.
 \]
-This is the restricted Yoneda functor. It is fully faithful and preserves
-all limits that exist in convenient manifolds
-\cite[Proposition~3.1.7]{Steffens_Representability_Elliptic_Moduli}.
-These limits are preserved in \emph{smooth stacks}.
-After further inclusion into derived stacks, arbitrary pullbacks
-need not be preserved.
+This is the restricted Yoneda functor. It is fully faithful
+\cite[Proposition~3.1.7]{Steffens_Representability_Elliptic_Moduli},
+and, like any restricted Yoneda functor, it preserves all limits that
+exist in convenient manifolds. These limits are preserved in
+\emph{smooth stacks}. After further inclusion into derived stacks by
+$j_!$, arbitrary pullbacks need not be preserved; the derived
+self-intersection of the origin in $\R$ in
+\Cref{sec:Smooth_Stacks_As_Derived_Stacks} is an example.
 
 The exponential law says that a smooth map
 $T\to\Gamma(N;E)$ is exactly a jointly smooth section on $T\times N$.
 Consequently,
 \[
- j_{\mathrm{Con}}\Gamma(N;E)\cong\Sec_N(E)_{\mathrm{Sm}}.
+ j_{\mathrm{Con}}\Gamma(N;E)\cong j^*\Sec_N(E).
 \]
 This identifies the analytic notion of a smooth family of sections
-with the smooth mapping stack
+with the restriction of the section stack to ordinary manifolds
 \cite[Proposition~3.1.9]{Steffens_Representability_Elliptic_Moduli}.
 
-We also need the identification on derived parameters:
+We also need the identification on all derived manifolds:
 \begin{equation}\label{eq:Section_Stack_Convenient_Comparison}
  j_!j_{\mathrm{Con}}\Gamma(N;E)\cong\Sec_N(E).
 \end{equation}
@@ -167,16 +178,26 @@ It uses the additional theorem that this derived section stack is smooth
 The ordinary exponential law alone would not imply that assertion.
 
 The same comparison applies to the open sets of sections produced in
-\Cref{chap:Elliptic_Equations_Kuranishi_Models}. Thus $Q$, $U$, and their operators can be discussed both
-as convenient manifolds and as smooth stacks, with the derived
-incarnations specified by \Cref{eq:Section_Stack_Convenient_Comparison}.
+\Cref{chap:Elliptic_Equations_Kuranishi_Models}. Let
+$Q_{\mathrm{an}}\subseteq\Gamma(N;F)$ be the open subset of sections
+whose $k$-jets take values in $W$. Under \eqref{eq:Section_Stack_Convenient_Comparison},
+open substacks correspond to open subsets of the convenient manifold,
+and the corresponding subset is determined by its ordinary points
+\cite[Propositions~3.1.11(1) and~3.1.12]{Steffens_Representability_Elliptic_Moduli}.
+Thus $Q\simeq j_!j_{\mathrm{Con}}(Q_{\mathrm{an}})$.
+Since $j_!$ preserves finite products
+\cite[Lemma~2.2.14]{Steffens_Representability_Elliptic_Moduli}, the same
+holds for open subsets of $\Gamma(N;F)\times V$. Thus $Q$, $U$, and their
+operators can be discussed both as convenient manifolds and as smooth
+stacks, with the derived incarnations specified by
+\Cref{eq:Section_Stack_Convenient_Comparison}.
 
 \section{Submersions and the comparison of pullbacks}
 
 The inclusion of smooth stacks into derived stacks does not preserve
 every pullback. Submersiveness gives a sufficient condition. Its
 definition is phrased in terms of families so that the analytic
-argument can verify it using ordinary parameter manifolds.
+argument can verify it by testing against ordinary manifolds.
 
 For ordinary manifolds, a smooth map is a submersion if its differential
 is surjective everywhere. The implicit function theorem identifies it
@@ -191,9 +212,20 @@ for every ordinary manifold $T$ and map $T\to\mathcal B$, the pullback
 \[
  T\times_{\mathcal B}^{\mathrm{Sm}}\mathcal A
 \]
-is represented by an ordinary finite-dimensional manifold whose map
-to $T$ is a submersion.
+is represented by a finite-dimensional manifold whose map to $T$ is a
+submersion.
 \end{definition}
+
+Here, unlike in the rest of these notes, we follow
+\citet[Definition~2.1.53]{Steffens_Representability_Elliptic_Moduli} and
+allow manifolds that are not Hausdorff or second countable: a
+finite-dimensional manifold means a space locally modelled on open
+subsets of Euclidean spaces. This is needed for the equivalence in
+\Cref{thm:Smooth_Derived_Submersion_Comparison}; for example, the line
+with two origins of \Cref{ex:Line_Two_Origins} is submersive over a
+point. In our application the relevant fibres are finite-dimensional
+submanifolds of separable Banach manifolds, and hence manifolds in the
+usual sense.
 
 The superscript indicates that the pullback is computed in smooth
 stacks. It will be useful when comparing categories.
@@ -202,11 +234,12 @@ fibre. The finite-dimensionality requirement is substantial when
 $\mathcal A$ and $\mathcal B$ arise from infinite-dimensional manifolds.
 
 There is an analogous definition for derived stacks.
-After base change to a derived affine test $T$, a submersive morphism
+After base change to a derived manifold $T$, a submersive morphism
 must be represented by a derived submersion over $T$, locally a
-projection with a finite-dimensional smooth manifold factor.
+projection with a finite-dimensional smooth manifold factor
+\cite[Definition~2.1.53]{Steffens_Representability_Elliptic_Moduli}.
 The following comparison makes it possible to test this property using
-ordinary parameters.
+only ordinary manifolds.
 
 \begin{theorem}[Comparison along submersions]
 \label[theorem]{thm:Smooth_Derived_Submersion_Comparison}
@@ -221,13 +254,47 @@ $\mathcal C\to\mathcal B$ is a map of smooth stacks, then
 \]
 \end{theorem}
 
-These are the relevant consequences of
-\cite[Propositions~2.2.17--2.2.18 and Corollary~2.2.19]
-{Steffens_Representability_Elliptic_Moduli}.
-Locally a submersion is a projection, and inclusion of smooth stacks
-preserves products. Open descent then permits these local comparisons
-to be glued. The cited propositions carry this reasoning out for
-stack bases and verify the test-object criterion.
+The first assertion is
+\cite[Corollary~2.2.19]{Steffens_Representability_Elliptic_Moduli},
+whose proof rests on Propositions~2.2.17--2.2.18 there; we take it as an
+input. The second assertion is a special case of
+\cite[Proposition~2.2.17(3)]{Steffens_Representability_Elliptic_Moduli},
+and follows from the first as we now explain.
+
+\begin{proof}[Proof of the pullback formula]
+Both sides preserve colimits as functors of $\mathcal C\to\mathcal B$
+in the slice over $\mathcal B$, since $j_!$ is a left adjoint and base
+change preserves colimits in both $\infty$-topoi. Every object of this
+slice is a colimit of maps $h_T\to\mathcal B$ from ordinary manifolds.
+It therefore suffices to check the canonical comparison on such a map.
+
+By the first assertion, $j_!\mathcal A\to j_!\mathcal B$ is submersive
+in derived stacks. Hence the derived pullback
+$X=h_T\times_{j_!\mathcal B}^{\mathrm{der}}j_!\mathcal A$ is a derived
+scheme which is submersive over $T$, so locally a product of an open
+subset of $T$ with an open subset of a Euclidean space. Thus $X$ is
+a smooth manifold in the sense above.
+
+Choose a cover of $X$ by coordinate opens $U_i$. Each intersection
+$U_{i_0\ldots i_n}=U_{i_0}\cap\cdots\cap U_{i_n}$ is open in $U_{i_0}$
+and hence belongs to the ordinary manifold site. In both smooth and
+derived geometry the pullback of open subobjects is their intersection.
+Thus the atlas nerves of $j^*X$ in smooth stacks and of $X$ in
+derived stacks both have in degree $n$ the coproduct of the stacks
+represented by these same intersections. The face maps come
+from the inclusions obtained by omitting an index, and the degeneracies
+repeat an index. Since $j_!$ sends each represented overlap and each
+inclusion to its derived counterpart and preserves coproducts, it sends
+the smooth \v{C}ech nerve to the derived one as a simplicial diagram.
+It also preserves realization, so it sends the realization in smooth
+stacks to $X$ by \Cref{lem:Gluing_Derived_Schemes}.
+
+Consequently $X$ lies in the essential image of $j_!$ and the counit
+$j_!j^*X\to X$ is an isomorphism. Since $j^*$ preserves limits and
+$j^*j_!\simeq\mathrm{id}$, we have
+$j^*X\simeq h_T\times_{\mathcal B}^{\mathrm{Sm}}\mathcal A$.
+Under this identification the counit is the canonical comparison.
+\end{proof}
 
 In particular, the derived fibre of a submersive map over an ordinary
 point is the ordinary smooth fibre. This is the mechanism that will
@@ -272,8 +339,14 @@ The smooth-stack pullback along $0\colon *\to\Gamma(N;E)$ is represented
 by an ordinary finite-dimensional manifold by the definition of
 submersiveness. The comparison theorem identifies its image in
 derived stacks with the derived zero fibre of $G$.
-Now apply \Cref{eq:Local_Augmentation_Identity}.
+Now apply \eqref{eq:Local_Augmentation_Identity}.
 \end{proof}
+
+Thus $\Sol(\widetilde P|_H)$ is a quasi-smooth derived scheme.
+Restricting $\kappa$ to a coordinate neighbourhood of $(t,0)$ in
+$Z_U$ gives a derived zero locus in a Euclidean open set. This is a
+quasi-smooth derived-manifold chart around the chosen solution in
+$\Sol(P;b)$ by \Cref{prop:Local_Vector_Bundle_Reduction}.
 
 This isolates the sufficient condition to be proved by analysis.
 Explicitly, for every ordinary manifold $T$ and smooth family
@@ -333,7 +406,7 @@ The pullback argument is the final part of the proof of
 At this point the remaining task is to choose $V,\iota,U$ for which
 the submersiveness hypothesis holds.
 
-\section{Further reading}
+\section{Further remarks and exercises}
 
 Two comparisons clarify the criterion: the weaker notion of stacky
 submersiveness explains why finite-dimensional fibres must be required,
@@ -376,7 +449,10 @@ $[A\to B]$ in degrees $0,-1$.
 \end{exercise}
 
 \begin{exercise}
-Explain why the pullback of $x^2\colon\R\to\R$ along zero in smooth
-stacks is different from its pullback in derived stacks.
-Locate exactly which hypothesis of the comparison theorem fails.
+Compute the pullback of $x^2\colon\R\to\R$ along zero in smooth stacks.
+Apply $j_!$ to this pullback and compare it with the pullback formed
+in derived stacks by evaluating both on the dual numbers
+$D=\Spec(\R[\varepsilon]/(\varepsilon^2))$ of
+\Cref{ex:Section_Stack_Tangent_Vectors}. Which hypothesis of
+\Cref{thm:Smooth_Derived_Submersion_Comparison} fails?
 \end{exercise}

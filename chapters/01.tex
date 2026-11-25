@@ -2,6 +2,24 @@
 
 \chapter{Why derived manifolds?}\label[chapter]{chap:Why_Derived_Manifolds}
 
+When two submanifolds meet transversely, their intersection is again a
+manifold of the expected dimension, and it behaves well under
+perturbation and in families. Without transversality, the set-theoretic
+intersection forgets how it was cut out. This chapter asks what should
+replace a nontransverse intersection, and explains why the answer leads
+to derived geometry.
+
+We first recall the transverse case, which any answer must reproduce.
+We then study simple nontransverse examples and see how far the
+derivative, packaged as a two-term complex, goes towards recovering the
+lost information, and where it falls short. The same phenomena appear in
+the main application of the seminar: moduli spaces of solutions to
+nonlinear elliptic equations, which are locally presented by
+finite-dimensional, typically nontransverse, zero loci. The final section
+explains why these local presentations alone do not yet define a
+geometric object, which motivates the coherent, functorial approach of
+the later chapters.
+
 \section{Transverse fiber products}
 \label[section]{sec:Transverse_Fiber_Products}
 
@@ -130,6 +148,8 @@ and use it to prove the principal result of this section.
     \cong
     \ker\bigl(\delta_{x,y}\colon T_xX\oplus T_yY\to T_zZ\bigr).
   \]
+  Moreover, $X\times_ZY$ with its two projections is the pullback of
+  $f$ and $g$ in the category of smooth manifolds.
 \end{theorem}
 
 \begin{proof}
@@ -561,11 +581,11 @@ proper family of manifolds has a solution stack represented, relative to its
 parameters, by a quasi-smooth derived $\Cinfty$-scheme
 \cite[Theorem~3.4.3]{Steffens_Representability_Elliptic_Moduli}.
 Properness supplies the compactness needed for elliptic analysis.
-Quasi-smoothness means that, locally over the parameters, the solutions admit
-presentations as derived zero loci of sections of finite-rank vector bundles
-on finite-dimensional manifolds. Thus the finite-dimensional geometry of
-equations studied above also describes solutions of certain
-infinite-dimensional problems. The theorem asserts representability of the
+Quasi-smoothness is a condition on the cotangent complex, with a local
+description in terms of equations (\Cref{thm:Local_Zero_Locus_Form}).
+Over a manifold of parameters $S$, the local models for the solutions
+are derived zero loci of sections of finite-rank vector bundles on
+finite-dimensional manifolds submersive over $S$. The theorem asserts representability of the
 solution functor, so these local presentations describe an intrinsic moduli
 object, including its families and deformation theory.
 
@@ -576,10 +596,10 @@ to which the theorem applies. We state the precise theorem in
 Here we explain the role of finite-dimensional reduction in that proof,
 starting with an equation on a fixed manifold.
 
-Let $M$ be a closed smooth manifold, let $\pi\colon V\to M$ be a smooth fiber
-bundle, and let $F\to M$ be a smooth vector bundle. Suppose that
+Let $N$ be a closed smooth manifold, let $\pi\colon Y\to N$ be a smooth fiber
+bundle, and let $E\to N$ be a smooth vector bundle. Suppose that
 \[
-  P\colon\Gamma(V)\longrightarrow\Gamma(F)
+  P\colon\Gamma(N;Y)\longrightarrow\Gamma(N;E)
 \]
 is a nonlinear elliptic differential operator. We write
 \[
@@ -591,22 +611,22 @@ set of solutions. The theorem concerns the derived solution stack, whose
 construction must also account for families of solutions and their defining
 equations.
 
-For a concrete model, take $V=F=M\times\R$ over a closed connected
+For a concrete model, take $Y=E=N\times\R$ over a closed connected
 Riemannian manifold. The semilinear equation
 \[
   P(u)=\Delta u+u^2=0
 \]
 uses the nonnegative Laplacian $\Delta=d^*d$ and defines a subset
-$\operatorname{Sol}(P)\subseteq C^\infty(M)$. It arises
+$\operatorname{Sol}(P)\subseteq C^\infty(N)$. It arises
 as the critical-point equation for the energy
-$\int_M(\tfrac12|du|^2+u^3/3)$. The zero function is a solution and its linearization is
-$D_0P=\Delta$. Since $M$ is closed and connected, its kernel consists of the
+$\int_N(\tfrac12|du|^2+u^3/3)$. The zero function is a solution and its linearization is
+$D_0P=\Delta$. Since $N$ is closed and connected, its kernel consists of the
 constant functions, and self-adjointness identifies its cokernel with the same
 one-dimensional space.
 
 Nevertheless, the only real solution is $u=0$: integrating the equation gives
 \[
-  0=\int_M P(u)=\int_M u^2,
+  0=\int_N P(u)=\int_N u^2,
 \]
 since the integral of $\Delta u$ vanishes on a closed manifold. The constant
 function $1$ is a first-order solution at zero. To extend it to second order,
@@ -615,44 +635,50 @@ try
   u(\tau)=\tau+\tau^2v+O(\tau^3).
 \]
 The coefficient of $\tau^2$ in $P(u(\tau))$ is $\Delta v+1$. Its integral
-is $\operatorname{vol}(M)$, so it cannot vanish for any $v$. Equivalently,
+is $\operatorname{vol}(N)$, so it cannot vanish for any $v$. Equivalently,
 the quadratic error represents the nonzero class of $1$ in
 $\operatorname{coker}(\Delta)$. This is the same obstruction mechanism as
-for the tangent line and parabola. We will return to this example when we
-carry out a finite-dimensional reduction later in the seminar.
+for the tangent line and parabola, and the resemblance is not superficial.
+\Cref{sec:Running_Example_Double_Point} will show that near zero the
+derived solution stack of this equation is the derived zero locus of
+$c\mapsto c^2$ on $\R$, the double point with function ring
+$\R[c]/(c^2)$. This is precisely the reduced form $q(t)=t^2$ of the
+tangent line and parabola in \Cref{ex:Tangent_Line_And_Parabola}: the
+infinite-dimensional elliptic problem and the first picture of this
+chapter describe the same derived object.
 
 Why should such an equation admit the finite-dimensional local presentations
-promised by the theorem? Both $\Gamma(V)$ and $\Gamma(F)$ are
+promised by the theorem? Both $\Gamma(N;Y)$ and $\Gamma(N;E)$ are
 infinite-dimensional. Ellipticity first gives a finiteness statement about
 the linearized equation; finite-dimensional reduction then extends this
 statement to the nonlinear equation near a solution.
 
 Write
 \[
-  T^{\mathrm{vert}}V
-  =\ker(D\pi\colon TV\longrightarrow TM)
+  T_{Y/N}
+  =\ker(D\pi\colon TY\longrightarrow TN)
 \]
 for the vertical tangent bundle. At a solution $u$, the tangent space to the
 space of sections is
 \[
-  T_u\Gamma(V)\cong\Gamma(u^*T^{\mathrm{vert}}V).
+  T_u\Gamma(N;Y)\cong\Gamma(N;u^*T_{Y/N}).
 \]
-If $V$ is a vector bundle, then $T^{\mathrm{vert}}V\cong\pi^*V$, and this
-reduces to the familiar identification $T_u\Gamma(V)\cong\Gamma(V)$.
+If $Y$ is a vector bundle, then $T_{Y/N}\cong\pi^*Y$, and this
+reduces to the familiar identification $T_u\Gamma(N;Y)\cong\Gamma(N;Y)$.
 The linearization of $P$ at $u$ is therefore the elliptic operator
 \[
   D_uP\colon
-  \Gamma(u^*T^{\mathrm{vert}}V)
+  \Gamma(N;u^*T_{Y/N})
   \longrightarrow
-  \Gamma(F).
+  \Gamma(N;E).
 \]
 We therefore obtain the two-term complex
 \[
   \mathbb{T}_uP
   =\bigl[
-      \Gamma(u^*T^{\mathrm{vert}}V)
+      \Gamma(N;u^*T_{Y/N})
       \xrightarrow{D_uP}
-      \Gamma(F)
+      \Gamma(N;E)
     \bigr]
 \]
 in homological degrees $0$ and $-1$. Its homology is the infinitesimal
@@ -761,12 +787,12 @@ discussed in \cite[Section~1]{Pardon_Representability_Elliptic_Fredholm}.
 
 For elliptic equations, the derived comparison of the local reductions and
 descent will show that the solution stack is representable over its parameter
-stack by quasi-smooth derived $\Cinfty$-schemes. When the parameter object is
+stack by quasi-smooth derived $\Cinfty$-schemes. When the parameter stack is
 a point, the solution stack itself is a quasi-smooth derived $\Cinfty$-scheme.
 Constructing virtual fundamental classes or enumerative invariants then
 requires further geometric input, such as orientations and compactness.
 
-\section{Further examples}
+\section{Further examples and exercises}
 \label[section]{sec:Why_Derived_Summary_And_Further_Reading}
 
 An intersection can have an ordinary zero set of the wrong positive

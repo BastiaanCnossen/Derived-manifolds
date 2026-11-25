@@ -24,7 +24,7 @@ pushout of $\Cinfty$-rings.
 Transversality is a sufficient condition. To understand why, we first show
 that independent smooth equations generate the full ideal of functions
 vanishing on their common zero locus. This lets us translate geometric
-constructions into presentations of smooth rings.
+constructions into presentations of $\Cinfty$-rings.
 
 Two intermediate results prepare the general pullback theorem. Every
 manifold has a finitely presented function ring, and products and open
@@ -32,7 +32,7 @@ restrictions have the expected algebraic descriptions. We then prove the
 transverse-pullback theorem locally and explain its consequences. The final
 proof section supplies the globalization argument. Together with the full
 faithfulness proved in the preceding chapter, these results identify
-manifolds inside smooth algebra and explain which intersections that
+manifolds inside the category of $\Cinfty$-rings and explain which intersections that
 embedding preserves.
 
 \section{Equations and zero loci}
@@ -113,7 +113,9 @@ the parabola $y=x^2$, the analogous calculation begins
   A/(y)\mathbin{\amalg_A}A/(y-x^2)
   \cong A/(y,y-x^2).
 \]
-Eliminating $y$ gives $\Cinfty(\R)/(x^2)$, the dual-number ring.
+Eliminating $y$ gives $\Cinfty(\R)/(x^2)$, the ring of dual numbers of
+\Cref{sec:Taylor_Expansions_And_Infinitesimal_Information}: the tangency
+is remembered as the double point.
 
 The first calculation recovers the function ring of the geometric
 intersection; the second retains a nonzero nilpotent element. The
@@ -439,9 +441,21 @@ This result is the first complete answer to
 \Cref{question:When_Pushout_Is_Manifold}: a product is a pullback over a point,
 and its function ring is always the corresponding coproduct.
 
-Every open subset of a manifold can be written as $\{a\neq0\}$ for some
-smooth function $a$. We now extend the one-relation presentation of an
-open subset of Euclidean space to this setting.
+We now extend the one-relation presentation of an open subset of
+Euclidean space to manifolds. This requires cozero functions on manifolds.
+
+\begin{lemma}[Open subsets of manifolds are cozero loci]
+\label[lemma]{lem:Open_Subset_Manifold_Cozero}
+Every open subset $U$ of a manifold $M$ is of the form $\{a\neq0\}$ for
+some $a\in\Cinfty(M)$.
+\end{lemma}
+
+\begin{proof}
+Choose a proper embedding $M\subseteq\R^N$, so that $M$ is closed. Then
+$W=U\cup(\R^N\setminus M)$ is open in $\R^N$ and $W\cap M=U$. By
+\Cref{lem:Open_Subset_Cozero_Locus}, $W=\{b\neq0\}$ for a smooth function
+$b$ on $\R^N$; take $a=b|_M$.
+\end{proof}
 
 \begin{proposition}[Smooth localization]
 \label[proposition]{prop:Smooth_Localization}
@@ -580,7 +594,7 @@ is transverse to the diagonal $\Delta_N$, and
 Combining \Cref{cor:Recovering_Manifolds,thm:Manifold_Function_Ring_Finitely_Presented,thm:Transverse_Pullbacks_Pushouts}
 gives the classical structural theorem.
 
-\begin{theorem}[Manifolds inside smooth algebra]
+\begin{theorem}[Manifolds inside $\Cinfty$-rings]
   \label[theorem]{thm:Manifolds_Inside_Smooth_Algebra}
   The contravariant functor
   \[
@@ -602,7 +616,7 @@ $\Cinfty(\R)/(x^2)\cong\R[\varepsilon]/(\varepsilon^2)$.
 The comparison homomorphism kills $\varepsilon$: it forgets the
 infinitesimal information retained by the equations.
 
-This pushout shows that ordinary smooth algebra already contains
+This pushout shows that ordinary $\Cinfty$-rings already contain
 intersections which are not manifolds. It does not retain all intersection
 data, however: the ordinary pushout for the self-intersection
 $*\to\R\leftarrow *$ is just $\R$. The excess direction seen in
@@ -625,7 +639,7 @@ on its real points.
 \subsection{Test rings and descent}
 \label[subsection]{sec:Finite_Presentation_And_Test_Rings}
 
-To verify a pushout, we must test maps into arbitrary smooth rings. The
+To verify a pushout, we must test maps into arbitrary $\Cinfty$-rings. The
 following criterion will let us restrict to finitely presented test rings,
 where we can glue functions modulo a finite list of equations.
 
@@ -752,7 +766,7 @@ and \Cref{lem:Cech_Descent_Finitely_Presented_Cinfty_Ring}.
 \end{lemma}
 
 \begin{proof}
-  Choose $a_\alpha\in\Cinfty(M)$ with
+  Using \Cref{lem:Open_Subset_Manifold_Cozero}, choose $a_\alpha\in\Cinfty(M)$ with
   $V_\alpha=\{a_\alpha\neq0\}$. Represent $\eta(a_\alpha)$ by a smooth
   function $\widetilde a_\alpha$ on $\R^k$, and set
   \[
@@ -816,7 +830,7 @@ and \Cref{lem:Cech_Descent_Finitely_Presented_Cinfty_Ring}.
   function-ring square over every nonempty finite intersection $U_S$ is a
   pushout.
 
-  Choose $b_\alpha\in\Cinfty(N)$ with
+  Using \Cref{lem:Open_Subset_Manifold_Cozero}, choose $b_\alpha\in\Cinfty(N)$ with
   $U_\alpha=\{b_\alpha\neq0\}$. Then $V_\alpha$ is the cozero locus of
   $b_\alpha\circ f$, while $U_\alpha\cap Z$ is the cozero locus of
   $b_\alpha|_Z$. The compatibility of $\varphi$ and $\psi$ says that these two
@@ -879,7 +893,7 @@ it to calculate its coproduct with $\Cinfty(S^1)$.
 
 \begin{exercise}
 Show that the pushout for the self-intersection $*\to\R\leftarrow*$
-in ordinary smooth rings is $\R$. Compare the result with the
+in ordinary $\Cinfty$-rings is $\R$. Compare the result with the
 linearized matching complex $[0\to\R]$ of \Cref{chap:Why_Derived_Manifolds}.
 \end{exercise}
 

@@ -40,9 +40,9 @@ descend to quotients by arbitrary ideals. Thus the quotient rings above
 retain both the smooth functional calculus and the distinction between the
 two equations.
 
-The operations formulation below follows
-\citet[Chapter~I, Section~1]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}; a
-modern account, including the functor formulation, is given by
+Both the operations formulation and the functor formulation below are
+given in \citet[Chapter~I, Section~1]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis};
+a modern account of both is
 \citet[Sections~2.1--2.2]{Joyce_Introduction_Cinfty_Schemes}.
 
 \section{Rings with smooth operations}
@@ -51,7 +51,7 @@ modern account, including the functor formulation, is given by
 We give two formulations of the definition: one in terms of operations
 and their identities, and one in terms of functors on Euclidean spaces.
 The first makes the algebra explicit; the second will be useful when we
-pass to derived smooth rings.
+pass to animated $\Cinfty$-rings.
 
 \Needspace{15\baselineskip}
 \begin{definition}[$\Cinfty$-ring]
@@ -171,7 +171,7 @@ to replace sets by animae.
 To describe smooth equations algebraically, we need rings of functions in
 freely chosen variables and a way to impose relations among them. Smooth
 functions on $\R^n$ supply the free rings. Hadamard's lemma then shows that
-every ideal defines a quotient smooth ring. Together, these constructions
+every ideal defines a quotient $\Cinfty$-ring. Together, these constructions
 give presentations and colimits in the category of $\Cinfty$-rings.
 
 Let $x_1,\ldots,x_n\in\Cinfty(\R^n)$ be the coordinate functions. Every
@@ -336,7 +336,7 @@ $\Phi_f((a_1,b_1),\ldots,(a_n,b_n))
 =(\Phi_f(a_1,\ldots,a_n),\Phi_f(b_1,\ldots,b_n))$.
 The one-element ring is terminal, and $\R=\Cinfty(\R^0)$ is initial.
 
-There is a free smooth ring on any set $I$ of generators. Its elements
+There is a free $\Cinfty$-ring on any set $I$ of generators. Its elements
 are smooth expressions in finitely many of those generators, with
 expressions identified when they define the same smooth function
 after adding unused variables. Equivalently, it is the filtered
@@ -347,7 +347,7 @@ By \Cref{prop:Quotient_Cinfty_Rings}, quotients by arbitrary ideals
 carry smooth operations. Combining free objects and quotients constructs
 all colimits: introduce generators for the elements of the rings in
 a diagram, and impose their operation relations and the identifications
-specified by the diagram. Thus the category of smooth rings is
+specified by the diagram. Thus the category of $\Cinfty$-rings is
 complete and cocomplete. \Cref{chap:Manifolds_As_Cinfty_Rings} calculates its coproducts more
 explicitly.
 
@@ -356,7 +356,7 @@ explicitly.
 
 We return to the quotient rings from the chapter opening. Taylor's formula
 will identify the information retained by $t^2=0$ and show why real points
-do not determine a smooth ring.
+do not determine a $\Cinfty$-ring.
 
 \begin{example}[A point and a double point]
 We can now compute the two quotients from the opening. In one variable,
@@ -396,6 +396,12 @@ by the first-order Taylor formula
 \]
 \end{example}
 
+The double point $\Spec\R[\varepsilon]/(\varepsilon^2)$ will recur
+throughout the seminar. Maps out of it detect tangent vectors, for
+instance to spaces of sections (\Cref{ex:Section_Stack_Tangent_Vectors}).
+It is also the derived solution stack of the running elliptic example
+near its unique solution (\Cref{sec:Running_Example_Double_Point}).
+
 To compare these quotients with their ordinary solution sets, we isolate the
 appropriate notion of point.
 
@@ -429,21 +435,23 @@ point. They are nevertheless not isomorphic: the class of $t$ is zero in the
 first and is a nonzero square-zero element in the second. The quotient by
 $(t^2)$ remembers first-order information which the zero set forgets.
 
-These are ordinary smooth rings. They retain infinitesimal equations
-through nilpotents. Derived smooth rings will additionally retain
+These are ordinary $\Cinfty$-rings. They retain infinitesimal equations
+through nilpotents. Animated $\Cinfty$-rings will additionally retain
 higher homotopy, which is needed for the pullbacks in \Cref{chap:Derived_Zero_Loci_And_Tangent_Complexes}.
 
 \section{Recovering geometry from function rings}
 \label[section]{sec:Recovering_Smooth_Spaces_From_Functions}
 
-Different smooth rings can have the same real points, as the dual numbers
+Different $\Cinfty$-rings can have the same real points, as the dual numbers
 illustrate. In the other direction, passing from a manifold to its function
 ring loses no information: every homomorphism between such rings comes
 from a unique smooth map. We prove this first for closed subsets of
 Euclidean spaces, then deduce the manifold case using a proper embedding.
 
-Let $X\subseteq\R^n$ be an arbitrary closed subset. It need not be a
-manifold, so we specify what smoothness means in this setting.
+Let $X\subseteq\R^n$ be an arbitrary subset. It need not be a
+manifold, so we specify what smoothness means in this setting, following
+\citet[Chapter~I, Section~1]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
+Our main interest is in closed subsets.
 
 \begin{definition}[Smooth functions and maps on subsets]
   \label[definition]{def:Smooth_Functions_On_Subsets}
@@ -571,11 +579,14 @@ relations in $\mathfrak m_X$ will force that map to land in $X$.
 The corresponding result for all locally closed subsets is
 \citet[Chapter~I, Proposition~1.5]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
 
-For the usual class of finite-dimensional, second-countable smooth manifolds,
-Whitney's embedding theorem may be strengthened to give a proper Euclidean
-embedding \cite{lee2000smooth}. Its image is closed. The intrinsic smooth
+By Whitney's embedding theorem, every smooth $n$-manifold $M$ admits
+a proper smooth embedding into $\R^{2n+1}$
+\cite[Theorem~10.11]{lee2000smooth}. Its image is closed. The intrinsic smooth
 functions and smooth maps agree with those in
-\Cref{def:Smooth_Functions_On_Subsets}. We therefore obtain the case which
+\Cref{def:Smooth_Functions_On_Subsets}: restrictions of ambient smooth
+functions are intrinsically smooth, and conversely every intrinsically
+smooth function extends to a neighbourhood of the embedded manifold by
+composing with the retraction of a tubular neighbourhood. We therefore obtain the case which
 will be used later.
 
 \begin{corollary}[Recovering manifolds]
@@ -768,10 +779,24 @@ respectively a singleton and the entire neighbourhood.
 Borel's theorem says that every formal series occurs; this example
 shows what passage to that series can forget. Smooth function rings
 retain the flat functions as well as all finite and infinite Taylor data.
-The use of smooth rings in the seminar consequently retains more than
+The use of $\Cinfty$-rings in the seminar consequently retains more than
 the formal infinitesimal behaviour of an equation at one point.
+
+\begin{exercise}
+Verify the formula $f(a+b\varepsilon)=f(a)+bf'(a)\varepsilon$ for the
+$\Cinfty$-structure on $\R[\varepsilon]/(\varepsilon^2)$ directly from
+\Cref{prop:Quotient_Cinfty_Rings}. Find the analogous formula for
+$\Cinfty(\R)/(t^3)\cong\R[\varepsilon]/(\varepsilon^3)$.
+\end{exercise}
+
+\begin{exercise}
+For $p\in\R^n$, let $\mathfrak m_p\subseteq\Cinfty(\R^n)$ be the ideal of
+functions vanishing at $p$. Use \Cref{lem:Hadamard} to show that
+$\Cinfty(\R^n)/\mathfrak m_p\cong\R$ and that
+$\mathfrak m_p/\mathfrak m_p^2\cong T_p^*\R^n$ via $f\mapsto d_pf$.
+\end{exercise}
 
 The principal reference is
 \cite[Chapter~I, Section~1]{Moerdijk_Reyes_Smooth_Infinitesimal_Analysis}.
-For a modern account of smooth rings and their spectra, see
+For a modern account of $\Cinfty$-rings and their spectra, see
 \cite[Sections~2--3]{Joyce_Introduction_Cinfty_Schemes}.

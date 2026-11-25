@@ -1,0 +1,216 @@
+% !TEX root = ../main.tex
+
+% The chapter letters distinguish the two halves of Talk 4. Inside both
+% halves, sections and numbered statements use the same 4.x sequences.
+\renewcommand{\thechapter}{\arabic{chapter}a}
+\chapter{The ordinary finite-limit completion of manifolds}
+\label[chapter]{chap:Ordinary_Finite_Limit_Completion_Manifolds}
+\renewcommand{\thechapter}{\arabic{chapter}}
+
+\emph{Seminar note. This chapter and \Cref{chap:From_Smooth_Algebra_To_Derived_Manifolds}
+were covered together in Talk~4.}
+
+In \Cref{thm:Manifolds_Inside_Smooth_Algebra} we embedded manifolds in
+the opposite category of finitely presented $\Cinfty$-rings. There
+every pair of maps to a common target has a pullback, and transverse
+maps of manifolds have the pullback we already know from differential
+geometry. Could we have arrived at this category by asking for just
+these properties?
+
+\begin{question}
+  \label[question]{question:Universal_Finite_Limit_Completion}
+  What is the universal way to adjoin finite limits to the category of
+  manifolds while preserving the point and transverse pullbacks?
+\end{question}
+
+Write $\operatorname{Aff}_{\Cinfty}^{\mathrm{fp}}$ for the opposite
+category of finitely presented $\Cinfty$-rings and
+$i_0\colon\mathrm{Mfd}\to\operatorname{Aff}_{\Cinfty}^{\mathrm{fp}}$
+for the functor taking $M$ to $\Cinfty(M)$. This category has finite
+limits because finitely presented rings are closed under finite colimits.
+Concretely, a coproduct combines the generators and relations in two
+presentations, and a coequalizer imposes equality on the images of
+each of the finitely many generators of its source.
+
+\begin{theorem}[The ordinary finite-limit completion of manifolds]
+  \label[theorem]{thm:Ordinary_Finite_Limit_Completion_Manifolds}
+  For every ordinary category $C$ with finite limits, restriction along
+  $i_0$ induces an equivalence of categories
+  \[
+    \Fun^{\mathrm{lex}}(\operatorname{Aff}_{\Cinfty}^{\mathrm{fp}},C)
+    \simeq \Fun^{\pitchfork}(\mathrm{Mfd},C).
+  \]
+  On the left are the functors preserving finite limits. On the right
+  are the functors preserving the point and transverse pullbacks.
+\end{theorem}
+
+We will construct the extension of a functor on manifolds by solving
+finite systems of smooth equations in $C$. We then ask what these
+equations tell us about a tangency and about a self-intersection.
+
+\section{Extending functors by generators and relations}
+\label[section]{sec:Ordinary_Finite_Limit_Envelope}
+
+A functor on manifolds preserving the point and transverse pullbacks
+preserves products, since a product is a transverse pullback over the
+point. Its restriction to the Euclidean spaces therefore has the
+following structure.
+
+\begin{definition}[$\Cinfty$-ring object]
+  \label[definition]{def:Internal_Cinfty_Ring}
+  Let $C$ be an ordinary category with finite products. A \emph{$\Cinfty$-ring object in
+  $C$} is a finite-product-preserving functor
+  \[
+    R\colon\mathrm{Euc}\longrightarrow C.
+  \]
+  We write $\operatorname{Alg}_{\Cinfty}(C)$ for the category of
+  $\Cinfty$-ring objects in $C$.
+\end{definition}
+
+Let $j\colon\mathrm{Euc}\to\operatorname{Aff}_{\Cinfty}^{\mathrm{fp}}$
+be the restriction of $i_0$, taking $\R^n$ to the free ring on $n$ generators.
+
+\begin{theorem}[Ordinary finite-limit envelope]
+  \label[theorem]{thm:Ordinary_Cinfty_Finite_Limit_Envelope}
+  Let $C$ be an ordinary category with finite limits. Restriction along $j$
+  induces an equivalence of categories
+  \[
+    \Fun^{\mathrm{lex}}
+    \bigl(\operatorname{Aff}_{\Cinfty}^{\mathrm{fp}},C\bigr)
+    \simeq
+    \operatorname{Alg}_{\Cinfty}(C),
+  \]
+  where the left side consists of finite-limit-preserving functors.
+\end{theorem}
+
+\begin{proof}
+  Let $R\colon\mathrm{Euc}\to C$ preserve finite products. Given a
+  presentation $A=\Cinfty(\R^n)/(f_1,\ldots,f_q)$, assemble the
+  equations into $f\colon\R^n\to\R^q$. Define $\widehat R(A)$ by the pullback
+  \[
+  \begin{tikzcd}
+    \widehat R(A) \rar \dar & R(\R^n) \dar["R(f)"] \\
+    R(*) \rar["R(0)"'] & R(\R^q).
+  \end{tikzcd}
+  \]
+  Here $0$ denotes the origin and $R(*)$ is terminal. When $A$ is free
+  there are no equations, so this construction returns $R(\R^n)$.
+
+  To see why the presentation can be chosen freely, fix $c\in C$.
+  The sets $B_c(T)=\Hom_C(c,R(T))$ form an ordinary $\Cinfty$-ring
+  as $T$ ranges over Euclidean spaces. A map $c\to\widehat R(A)$
+  amounts to an $n$-tuple in $B_c(\R)$ solving the equations $f=0$,
+  or equivalently a map of $\Cinfty$-rings $A\to B_c$. Thus
+  \[
+    \Hom_C(c,\widehat R(A))\cong
+    \Hom_{\Cinfty\text{-}\mathrm{Ring}}(A,B_c)
+  \]
+  naturally in $c$. The right side depends only on $A$ and is
+  contravariantly functorial in $A$. By Yoneda this identifies
+  the objects obtained from different presentations and defines all
+  maps of the extension. It also proves left exactness, since mapping
+  a colimit of rings into $B_c$ gives a limit of sets.
+
+  A natural transformation $R\to R'$ acts on these solution objects
+  by the universal property of the displayed pullback. Conversely,
+  every finitely presented $A$, viewed in the opposite category, is
+  itself the displayed zero fibre for $j$. A left-exact extension is
+  therefore determined on objects by its restriction to Euclidean
+  spaces. For a map of presented rings, choose smooth representatives
+  for the images of the generators. Applying $R$ to this tuple induces
+  the map on solution objects, uniquely determined by substitution on
+  solutions. The same pullback determines natural
+  transformations from their restrictions. This proves the equivalence.
+\end{proof}
+
+For the ordinary envelope of an algebraic theory see also
+\citet[Remark~3.26]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+
+\begin{proof}[Proof of \Cref{thm:Ordinary_Finite_Limit_Completion_Manifolds}]
+  Restriction along $i_0$ is well defined by
+  \Cref{thm:Manifolds_Inside_Smooth_Algebra} and $\Cinfty(*)=\R$.
+  Given $F\in\Fun^{\pitchfork}(\mathrm{Mfd},C)$, write $R$ for its
+  restriction to Euclidean spaces and form $\widehat R$ as above.
+  We must identify $F(M)$ with $\widehat R(\Cinfty(M))$ naturally in $M$.
+
+  There is a comparison map before we choose any presentation of $M$.
+  For $u\colon c\to F(M)$, send a smooth function $h\colon M\to\R$ to
+  $F(h)u\in B_c(\R)$. This assignment respects every smooth operation
+  since $F$ preserves products. It defines a ring map $\Cinfty(M)\to B_c$,
+  hence a map $c\to\widehat R(\Cinfty(M))$. By Yoneda we obtain the
+  desired comparison, natural in $M$ and $F$. On Euclidean spaces it
+  is an isomorphism by construction.
+
+  For an open $U\subseteq\R^d$, \Cref{prop:Open_Subset_One_Relation}
+  presents $U$ as the regular zero locus of $a(x)y-1$ in $\R^{d+1}$.
+  Both functors preserve this transverse pullback, so the comparison
+  is an isomorphism on $U$. Every manifold is a retract of an open
+  tubular neighbourhood in Euclidean space. By naturality, the
+  comparison on a manifold is a retract of an isomorphism and hence
+  an isomorphism. In the other direction, extending the restriction
+  of a left-exact functor recovers that functor by
+  \Cref{thm:Ordinary_Cinfty_Finite_Limit_Envelope}.
+\end{proof}
+
+Ordinary categories with finite limits also split idempotents. Indeed,
+if $e\colon X\to X$ satisfies $e^2=e$, take the equalizer
+$i\colon Y\to X$ of $e$ and $\operatorname{id}_X$. Then $e=ir$ for
+a unique $r\colon X\to Y$, and $iri=ei=i$ implies $ri=\operatorname{id}_Y$
+since $i$ is monic.
+
+\section{Two nontransverse intersections}
+\label[section]{sec:What_Ordinary_Envelope_Forgets}
+
+For a smooth map $f\colon M\to\R^q$, the zero locus in the ordinary
+envelope thus has ring $\Cinfty(M)/(f_1,\ldots,f_q)$.
+
+\begin{example}[A transverse zero]
+  \label[example]{ex:Ordinary_Envelope_Transverse_Zero}
+  The quotient $\Cinfty(\R)/(x)\cong\R$ says that the formal zero locus
+  of $x$ is the ordinary point, as required by transverse compatibility.
+\end{example}
+
+\begin{example}[A singular zero]
+  \label[example]{ex:Ordinary_Envelope_Singular_Zero}
+  The dual-number quotient $\Cinfty(\R)/(x^2)$ from the preceding
+  chapters is the formal zero locus of $x^2$. Thus the ordinary envelope
+  already retains its nilpotent thickening.
+\end{example}
+
+Now consider the self-intersection of a closed subobject. Let $A$ be a
+$\Cinfty$-ring, let $I\subseteq A$ be an ideal, and put
+\[
+  B=A/I.
+\]
+The self-intersection of the corresponding formal closed subobject is computed
+by
+\[
+  B\amalg_A B.
+\]
+
+\begin{proposition}[Ordinary self-intersections]
+  \label[proposition]{prop:Ordinary_Self_Intersections_Collapse}
+  There is a natural isomorphism
+  \[
+    (A/I)\amalg_A(A/I)
+    \cong
+    A/I.
+  \]
+\end{proposition}
+
+\begin{proof}
+  Apply the quotient pushout formula:
+  \[
+    (A/I)\amalg_A(A/I)
+    \cong
+    A/(I+I)
+    =A/I.
+  \]
+\end{proof}
+
+In particular, taking $A=\Cinfty(\R)$ and $I=(x)$ shows that the
+ordinary self-intersection of the origin has ring $\R$. The two
+nontransverse examples give different answers. In the tangency, the
+class of $x$ survives and has square zero. In the self-intersection,
+the pullback is again the point. Where did the excess direction from
+\Cref{ex:Excess_Self_Intersection} go?

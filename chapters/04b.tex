@@ -1,0 +1,641 @@
+% !TEX root = ../main.tex
+
+% Give the second heading its own PDF destination, then resume the
+% section and theorem counters where the first half of Talk 4 ended.
+\edef\talkfourlastsection{\arabic{section}}
+\edef\talkfourlasttheorem{\arabic{theorem}}
+\addtocounter{chapter}{-1}
+\let\talkfourHchapter\theHchapter
+\renewcommand{\theHchapter}{\arabic{chapter}b}
+\renewcommand{\thechapter}{\arabic{chapter}b}
+\chapter{Derived manifolds}
+\label[chapter]{chap:From_Smooth_Algebra_To_Derived_Manifolds}
+\renewcommand{\thechapter}{\arabic{chapter}}
+\setcounter{section}{\talkfourlastsection}
+\setcounter{theorem}{\talkfourlasttheorem}
+
+Consider again the origin $0\colon *\to\R$. We saw in
+\Cref{chap:Ordinary_Finite_Limit_Completion_Manifolds} that its
+self-intersection in the ordinary finite-limit completion is the point.
+Could a different enlargement give a better answer? In any ordinary
+category in which $*$ is terminal, the universal property forces
+\[
+  *\times_{\R}*\cong *.
+\]
+Indeed, for each object $T$ there is exactly one pair of maps $T\to *$,
+and their composites with $0$ agree. Thus the point itself represents
+the pullback. This argument works for a point in any ambient manifold.
+
+The intersection of two points in a line has expected dimension
+$0+0-1=-1$. Moving one copy of the origin slightly gives an empty
+transverse intersection, so the intersection class vanishes. The ordinary
+self-pullback, however, is a single point of dimension zero. A single
+point represents a nonzero class in unoriented bordism, since the
+boundary of a compact one-manifold has an even number of points.
+Spivak uses this example to show that no ordinary category can satisfy
+his general cup-product formula in cobordism
+\cite[Definition~1.7 and Proposition~1.10]{Spivak_Derived_Smooth_Manifolds}.
+We return to bordism in \Cref{thm:Spivak_Derived_Bordism_Comparison}.
+
+The ordinary argument turns on what it means for the two composites
+to agree. Suppose we could specify an identification between them
+as part of a point of the pullback. The two maps to $*$ would still
+be unique, but their common composite could have several
+self-identifications. We first introduce the language for such a
+pullback, then calculate the self-intersection of the origin and
+formulate the universal property of derived manifolds.
+
+\section{Pullbacks with higher identifications}
+\label[section]{sec:Equality_As_Structure}
+
+For sets, asking whether two elements are equal is a yes-or-no
+question. For points of a space, one can instead ask for a path between
+them, and then for a homotopy between two such paths. Animae give us
+a language for these successive identifications.
+
+\begin{definition}[Anima, informal description]
+\label[definition]{def:Anima_Conceptual}
+An \emph{anima} behaves like a set in which the identifications between
+any two elements themselves form an anima. Identifications can be composed
+and inverted, with the usual identities holding through coherent higher
+identifications.
+\end{definition}
+
+We write $\An$ for the category of animae, understood in the higher
+categorical sense described below. A set determines a discrete anima, a groupoid determines one whose
+identifications are its isomorphisms, and a topological space $X$
+determines its homotopy type $\Pi_\infty(X)$. In the last example,
+paths give identifications and homotopies of paths give identifications
+between them. For instance, the pullback of the base point of
+$\Pi_\infty(S^1)$ along itself is its based loop anima. This is
+equivalent to the discrete anima $\Z$ because each winding-number
+component of the loop space is contractible.
+
+In an $\infty$-category, the morphisms between two objects form an
+anima. Composition is associative and unital with coherent higher
+identifications. Ordinary categories are examples in which all the
+hom animae are discrete. To form a pullback, we now apply the
+universal property to these hom animae.
+Let
+\[
+  X\xrightarrow{f}Z\xleftarrow{g}Y
+\]
+be a diagram in an $\infty$-category $C$. Its pullback is characterized by
+natural equivalences of animae
+\[
+  \Hom_C(T,X\times_ZY)
+  \simeq
+  \Hom_C(T,X)
+  \times_{\Hom_C(T,Z)}
+  \Hom_C(T,Y)
+\]
+for all $T\in C$.
+
+Informally, a generalized $T$-point consists of
+\[
+  a\colon T\to X,
+  \qquad
+  b\colon T\to Y,
+  \qquad
+  \alpha\colon f\circ a\cong g\circ b.
+\]
+The identification $\alpha$ is part of the datum. Equalities between choices of
+$\alpha$, and all subsequent coherence, are contained in the pullback of hom
+animae. In particular, a map from $T$ to the self-intersection of a
+point $*\to X$ now amounts to a loop in $\Hom_C(T,X)$ based at the
+composite $T\to *\to X$.
+
+For a derived intersection the ambient $\infty$-category is the
+opposite of a category of rings. We now describe its hom animae and
+compute the self-intersection in that category.
+
+\section{Animated \texorpdfstring{$\Cinfty$}{C-infinity}-rings and compact objects}
+\label[section]{sec:Animated_Finite_Limit_Envelope}
+
+The definition of a $\Cinfty$-ring object extends to any $\infty$-category
+$C$ with finite products by taking $\operatorname{Alg}_{\Cinfty}(C)
+=\Fun^\times(\mathrm{Euc},C)$. We apply it first to $C=\An$.
+
+\begin{definition}[Animated $\Cinfty$-ring]
+  \label[definition]{def:Animated_Cinfty_Ring}
+  An \emph{animated $\Cinfty$-ring} is a finite-product-preserving functor
+  \[
+    A\colon\mathrm{Euc}\longrightarrow\An.
+  \]
+  We denote their $\infty$-category by
+  \[
+    \operatorname{Alg}_{\Cinfty}(\An)
+    =
+    \Fun^\times(\mathrm{Euc},\An).
+  \]
+\end{definition}
+
+An ordinary $\Cinfty$-ring is the special case in which every value $A(\R^n)$
+is a set, regarded as a $0$-truncated anima. Animated rings allow the smooth
+operations themselves to interact with higher equality data.
+
+Write $A\otimes^{\mathbb L}_{\infty,B}C$ for a pushout of animated
+$\Cinfty$-rings.
+For an animated ring $D$, the components of $D(\R)$ form its ordinary
+ring $\pi_0D$. Based loops at zero up to homotopy give $\pi_1D$,
+and the higher homotopy groups at zero give $\pi_iD$.
+
+There is a useful calculation rule. For ordinary $\Cinfty$-rings
+$A\leftarrow B\to C$, if one of the maps out of $B$ is surjective, then
+\[
+  \pi_i(A\otimes^{\mathbb L}_{\infty,B} C)
+  \cong \operatorname{Tor}^{B}_i(A,C).
+\]
+On the right we take a free resolution of $A$ over the underlying
+ordinary ring $B$ and tensor it over $B$ with $C$.
+
+\begin{example}[The derived self-intersection of the origin]
+\label[example]{ex:Animated_Self_Intersection_Origin}
+For the diagram $*\to\R\leftarrow *$, the corresponding diagram of
+rings is $\R\leftarrow B\to\R$, where $B=\Cinfty(\R)$ and both maps
+are evaluation at zero. Multiplication by $x$ gives
+a free resolution $0\to B\xrightarrow{x}B\to\R\to0$. Indeed, the ideal of
+functions vanishing at zero is $(x)$ by Hadamard's lemma, and a smooth
+function annihilated by $x$ vanishes on a dense open set. Tensoring
+this resolution over $B$ with $\R$ gives the zero differential.
+Thus the self-intersection has $\pi_0=\R$, $\pi_1=\R$, and all higher
+groups vanish. For the derived zero locus of $t\mapsto t^2$,
+tensoring the same resolution along $x\mapsto t^2$ gives multiplication
+by $t^2$, which is injective. Here the infinitesimal information is
+the nilpotent class of $t$ in $\pi_0=\Cinfty(\R)/(t^2)$.
+\end{example}
+
+The surjectivity hypothesis enters in passing to Tor. For a pushout
+of animated rings along a map surjective on $\pi_0$, forgetting the
+smooth operations gives a pushout of simplicial commutative
+$\R$-algebras. This is the effective epimorphism case of
+\citet[Theorem~3.32, Lemma~4.6 and Corollary~4.7]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+For ordinary inputs, the Tor spectral sequence for that pushout has
+only its internal-degree-zero row, giving the formula above
+\cite[Remark~4.2]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+
+\paragraph{Finite presentation for animated rings.}
+For ordinary $\Cinfty$-rings, \Cref{prop:Filtered_Colimit_Criterion} expresses
+finite presentation by preservation of filtered colimits. We use the same
+criterion here, applied to the whole mapping anima.
+
+\begin{definition}[Homotopical finite presentation]
+  \label[definition]{def:Homotopically_Finitely_Presented_Cinfty_Ring}
+  An animated $\Cinfty$-ring $A$ is \emph{homotopically finitely presented} if
+  it is compact in $\operatorname{Alg}_{\Cinfty}(\An)$, meaning that the functor
+  \[
+    \Hom_{\operatorname{Alg}_{\Cinfty}(\An)}(A,-)
+    \colon
+    \operatorname{Alg}_{\Cinfty}(\An)
+    \longrightarrow
+    \An
+  \]
+  preserves filtered colimits.
+\end{definition}
+
+The free ring on $n$ generators is the discrete algebra $\Cinfty(\R^n)$.
+Indeed its hom anima into $B$ is $B(\R^n)$ by Yoneda. Finite products of
+animae commute with sifted colimits, so sifted colimits of algebras
+are computed by evaluation. In particular these free rings are compact.
+
+Write $\mathcal A=\operatorname{Alg}_{\Cinfty}(\An)$ and let
+$\mathcal A_{\mathrm{fp}}$ denote its full subcategory of compact
+objects. The category $\mathcal A$ is the sifted-colimit completion of
+$\mathrm{Euc}\catop$. Its compact objects are precisely the retracts of
+finite colimits of finitely generated free rings
+\cite[Theorems~3.10--3.11 and Lemma~3.21]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+Indeed, finite colimits of compact objects are compact since filtered
+colimits of animae commute with finite limits. Conversely, a presentation
+of $A$ as a colimit of free rings expresses it as a filtered colimit of
+colimits over finite simplicial subsets of the indexing simplicial set.
+If $A$ is compact, its identity factors through one of these finite
+colimits, exhibiting $A$ as a retract.
+
+\begin{warning}
+  \label[warning]{warn:Ordinary_Fp_Not_Necessarily_Animated_Fp}
+  An ordinary finitely presented $\Cinfty$-ring need not remain compact when it
+  is regarded as a discrete animated $\Cinfty$-ring. Thus the ordinary
+  envelope is not simply a full subcategory of the animated envelope obtained
+  by declaring every ordinary object discrete.
+\end{warning}
+
+The analogous warning for an arbitrary algebraic theory is recorded in
+\citet[Warning~3.28]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+The truncation functor $\pi_0$ does send homotopically finitely presented
+animated rings to finitely presented ordinary rings, but the reverse passage
+can require retaining higher relation data.
+
+\section{The universal property of derived manifolds}
+\label[section]{sec:Derived_Manifolds_Universal_Pair}
+
+The self-intersection has supplied the missing excess direction in
+degree one. We now return to the question of
+\Cref{chap:Ordinary_Finite_Limit_Completion_Manifolds} and allow the
+target of a functor on manifolds to be an $\infty$-category.
+
+\begin{definition}[Universal property of derived manifolds]
+  \label[definition]{def:Universal_Infinity_Category_Derived_Manifolds}
+  A pair $(D,i)$ has the universal property of \emph{derived manifolds}
+  if $D$ is an idempotent-complete $\infty$-category with finite limits,
+  $i\colon\mathrm{Mfd}\to D$ preserves transverse pullbacks and the
+  terminal object, and restriction along $i$ induces an equivalence
+  \[
+    \Fun^{\mathrm{lex}}(D,C)\simeq\Fun^{\pitchfork}(\mathrm{Mfd},C)
+  \]
+  for every idempotent-complete $\infty$-category $C$ with finite
+  limits. The left side consists of finite-limit-preserving functors,
+  the right side of functors preserving transverse pullbacks and the
+  terminal object. For such a pair we write $\mathrm{DMfd}$ for $D$.
+\end{definition}
+
+Here idempotent completeness means that coherent idempotents split,
+as explained in \Cref{sec:From_Smooth_Algebra_Summary_Supplementary_Materials}.
+The following theorem constructs a pair with this universal property.
+
+\begin{theorem}[Derived manifolds from animated $\Cinfty$-rings]
+  \label[theorem]{thm:Universal_Property_Derived_Manifolds_Cinfty_Rings}
+  The functor
+  $i\colon\mathrm{Mfd}\to(\mathcal A_{\mathrm{fp}})\catop$ taking $M$
+  to its discrete ring $\Cinfty(M)$ is fully faithful, and the pair
+  $((\mathcal A_{\mathrm{fp}})\catop,i)$ has the universal property
+  of derived manifolds.
+\end{theorem}
+
+\begin{corollary}
+  \label[corollary]{cor:Derived_Manifolds_Animated_Cinfty_Rings}
+  There is a canonical equivalence under $\mathrm{Mfd}$
+  \[
+    \mathrm{DMfd}\simeq\operatorname{Alg}_{\Cinfty}(\An)_{\mathrm{fp}}\catop .
+  \]
+\end{corollary}
+
+The corollary follows from uniqueness of the universal pair. For the
+theorem we must answer two questions. Algebraically, why do compact
+animated rings give the finite limits generated by Euclidean spaces?
+Geometrically, why does a transverse pullback still give the correct
+pushout after animation? Applying $\pi_0$ to an animated pushout gives
+the ordinary pushout, since $\pi_0$ is left adjoint to the inclusion of
+discrete rings. Thus \Cref{thm:Transverse_Pullbacks_Pushouts} already
+identifies $\pi_0$. We will calculate the higher homotopy groups for a regular
+zero locus, then reduce an arbitrary transverse pullback to that case.
+The universal property follows by extending functors from Euclidean
+spaces to manifolds
+\cite[Definition~2.1, Theorem~5.3 and Corollary~5.4]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+
+\section{The animated finite-limit envelope}
+\label[section]{sec:Animated_Envelope_Proof}
+
+Let $j^{\mathrm{fp}}\colon\mathrm{Euc}\to(\mathcal A_{\mathrm{fp}})\catop$
+be the inclusion of the free rings, with variance reversed. We will
+extend a functor on Euclidean spaces by first allowing it to take
+values in presheaves and then using compactness to show that these
+presheaves are representable.
+
+\begin{theorem}[Animated finite-limit envelope]
+  \label[theorem]{thm:Animated_Cinfty_Finite_Limit_Envelope}
+  For every idempotent-complete $\infty$-category $C$ with finite
+  limits, restriction along $j^{\mathrm{fp}}$ gives an equivalence
+  \[
+    \Fun^{\mathrm{lex}}\bigl((\mathcal A_{\mathrm{fp}})\catop,C\bigr)
+    \simeq\Fun^\times(\mathrm{Euc},C).
+  \]
+\end{theorem}
+
+\begin{proof}
+  Let $F\colon\mathrm{Euc}\to C$ preserve finite products. For $c\in C$
+  the functor $B_c(T)=\Hom_C(c,F(T))$ is an animated $\Cinfty$-ring.
+  To each $A\in\mathcal A$ assign the presheaf on $C$ given by
+  \[
+    \widetilde F(A)(c)=\Hom_{\mathcal A}(A,B_c).
+  \]
+  This assignment takes colimits in $A$ to limits of presheaves. On
+  $A=\Cinfty(T)$ its value at $c$ is $B_c(T)=\Hom_C(c,F(T))$ by Yoneda,
+  so it extends the composite of $F$ with the Yoneda embedding $y$.
+  More precisely, consider the category of finitely generated free rings
+  over $A$. It has finite coproducts, formed by taking the coproduct of
+  the free rings with its induced map to $A$, so it is sifted.
+  By Yoneda density, the colimit of this diagram of representables is
+  the presheaf $A$. Sifted colimits of animated $\Cinfty$-rings are
+  computed pointwise, so this is also a colimit in $\mathcal A$.
+  Mapping it into $B_c$ gives the limit over the opposite indexing
+  category, exactly the pointwise right Kan extension formula for $yF$.
+
+  When $A$ is compact, it is a retract of a finite colimit of free rings.
+  Hence $\widetilde F(A)$ is a retract of a finite limit of representables.
+  The image of $y$ is closed under both operations since $C$ has finite
+  limits and is idempotent-complete. The formula therefore defines a
+  functor $\widehat F\colon(\mathcal A_{\mathrm{fp}})\catop\to C$,
+  left exact because $y$ detects limits. It is the right Kan extension
+  of $F$ along $j^{\mathrm{fp}}$ since the pointwise limits just computed
+  in presheaves are represented in $C$.
+
+  For a left-exact $G$ on $(\mathcal A_{\mathrm{fp}})\catop$, the unit
+  $G\to\widehat{G j^{\mathrm{fp}}}$ is an equivalence on free rings by
+  full faithfulness of $j^{\mathrm{fp}}$. Both functors preserve finite
+  limits and retracts, so it is an equivalence everywhere. The counit
+  is evaluation on free rings, already identified by Yoneda. These
+  natural maps give the asserted equivalence of functor categories.
+\end{proof}
+
+This is \citet[Theorem~3.22]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+To use it for manifolds we must show that their function rings are
+compact and identify the effect of the functor on transverse pullbacks.
+
+\section{Regular zero loci and compactness of function rings}
+\label[section]{sec:Animated_Regular_Zero_Loci}
+
+Let $g=(g_1,\ldots,g_q)\colon M\to\R^q$ be smooth and write $Z=g^{-1}(0)$.
+When $0$ is a regular value, \Cref{cor:Function_Ring_Regular_Zero_Locus}
+identifies $\Cinfty(Z)$ with the quotient by $(g_1,\ldots,g_q)$.
+We now compute the positive homotopy groups of the same pushout in
+animated rings.
+
+\begin{proposition}[Derived transverse zero locus]
+  \label[proposition]{prop:Animated_Regular_Zero_Locus}
+  If $0$ is a regular value of $g$, restriction induces an equivalence
+  of animated $\Cinfty$-rings
+  \[
+    \Cinfty(M)\otimes^{\mathbb L}_{\infty,\Cinfty(\R^q)}\R
+    \longrightarrow \Cinfty(Z).
+  \]
+\end{proposition}
+
+\begin{proof}
+  Write $B=\Cinfty(\R^q)$. The evaluation $B\to\R$ is surjective,
+  so we may compute the homotopy groups by Tor. The coordinates
+  $x_1,\ldots,x_q$ form a regular sequence in $B$. Indeed, quotienting
+  by the first $j$ coordinates gives the functions on the corresponding
+  coordinate subspace by Hadamard's lemma, and multiplication by the
+  next coordinate is injective there. At each step, adjoining the next
+  two-term Koszul factor takes the mapping cone of multiplication by
+  that coordinate. The long exact homology sequence gives only the
+  next quotient in degree zero. Thus the Koszul complex on all $q$
+  coordinates is a finite free resolution of $\R$ over $B$.
+  Tensoring it with $\Cinfty(M)$ replaces $x_j$ by $g_j$. Its degree
+  $p$ term is $\Cinfty(M)\otimes_{\R}\Lambda^p((\R^q)^\vee)$, with
+  differential contraction by $g$. Write $e_j$ for the $j$th coordinate
+  covector, so that $d(e_j)=g_j$.
+
+  To compute its homology, take the same complex of sheaves on $M$.
+  Near a point of $Z$, the submersion theorem gives coordinates in
+  which $g_1,\ldots,g_q$ are the first $q$ coordinates. The coordinate
+  calculation identifies the homology there with smooth functions on
+  $Z$ in degree zero. Off $Z$, some $g_j$ is locally invertible and
+  exterior multiplication by $e_j/g_j$ contracts the complex.
+  These local identifications use restriction to $Z$ as augmentation.
+  Global sections are exact on sheaves of smooth-function modules on
+  $M$ since local lifts of a section can be multiplied by a subordinate
+  partition of unity and summed to give a global lift. The global
+  complex therefore has homology $\Cinfty(Z)$ in degree zero and zero
+  in positive degrees. This proves that the comparison is an
+  equivalence.
+\end{proof}
+
+This module calculation is \citet[Lemma~4.5]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+In \Cref{chap:Derived_Zero_Loci_And_Tangent_Complexes} we will construct
+a differential graded $\Cinfty$-algebra presenting the pushout itself.
+
+\begin{corollary}[Compactness of manifold function rings]
+  \label[corollary]{cor:Manifold_Function_Ring_Animated_Compact}
+  For every manifold $M$, its discrete ring $\Cinfty(M)$ is compact in
+  $\mathcal A$.
+\end{corollary}
+
+\begin{proof}
+  For an open $U\subseteq\R^d$, choose a smooth function $a$ with
+  $U=\{a\ne0\}$ by \Cref{lem:Open_Subset_Cozero_Locus}. Projection
+  identifies the zero locus of $h(x,y)=a(x)y-1$ with $U$. On that
+  locus $\partial_yh=a(x)\ne0$, so
+  \Cref{prop:Animated_Regular_Zero_Locus} presents $\Cinfty(U)$ as
+  a pushout of three free rings, $\Cinfty(\R^{d+1})$, $\Cinfty(\R)$
+  and $\R$. Thus it is compact. For general $M$, take a proper embedding
+  in Euclidean space. The retraction of an open tubular neighbourhood
+  onto $M$ makes $\Cinfty(M)$ a retract of a compact object.
+\end{proof}
+
+We use this same geometric presentation below
+\cite[Proposition~4.9 and Corollary~4.10]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+In particular the functor $i$ in the main theorem is now defined on all
+manifolds. It is fully faithful since ordinary rings embed fully faithfully
+as discrete animated rings and \Cref{cor:Recovering_Manifolds} identifies
+maps between manifold function rings.
+
+\section{Derived transversality}
+\label[section]{sec:Derived_Transversality}
+
+We next pass from a regular zero locus to a transverse intersection
+$P=M\times_LN$. The product case is needed first, because the difference
+of two maps to $\R^d$ is defined on $M\times N$.
+
+\begin{lemma}
+  \label[lemma]{lem:Animated_Manifold_Products}
+  The functor $i$ preserves finite products.
+\end{lemma}
+
+\begin{proof}
+  The point goes to the initial ring $\R$ in $\mathcal A$. For
+  Euclidean spaces this follows because the coproduct
+  of the free rings on $m$ and $n$ generators is free on $m+n$.
+  For Euclidean opens $U$ and $V$, use the scalar equations
+  $h_U=0$ and $h_V=0$ from the preceding proof. The two equations on
+  the product of the ambient Euclidean spaces have independent
+  differentials along $U\times V$, since they use disjoint variables.
+  Taking the coproduct of the two pushout presentations gives the
+  pushout for $(h_U,h_V)$, since the coproducts of the three respective
+  pairs of free rings are the free rings for the product ambient
+  space, $\R^2$, and the point. By
+  \Cref{prop:Animated_Regular_Zero_Locus} this presents
+  $\Cinfty(U\times V)$, with structure maps given by the projections.
+  Finally, for $M$ and $N$ choose tubular neighbourhoods $U$ and $V$
+  retracting onto them. By naturality, the product comparison for
+  $M,N$ is a retract of the comparison for $U,V$, hence an equivalence.
+\end{proof}
+
+\begin{theorem}[Preservation of transverse pullbacks]
+  \label[theorem]{thm:Animated_Transverse_Pullbacks}
+  If $f\colon M\to L$ and $g\colon N\to L$ are transverse, then
+  restriction along the two projections induces an equivalence
+  \[
+    \Cinfty(M)\otimes^{\mathbb L}_{\infty,\Cinfty(L)}\Cinfty(N)
+    \longrightarrow \Cinfty(M\times_L N).
+  \]
+\end{theorem}
+
+\begin{proof}
+  We prove that $i$ carries the transverse square to a pullback, in
+  three steps according to the target $L$.
+
+  \emph{Euclidean target.}
+  Suppose $L=\R^d$. The difference $h(m,n)=f(m)-g(n)$ has zero locus
+  $P$, and $dh$ is surjective there by transversality. By
+  \Cref{prop:Animated_Regular_Zero_Locus}, $i(P)$ is the zero fibre of
+  $i(h)$. To identify this fibre with the required pullback, observe
+  that on $\R^d\times\R^d$ the automorphism $(v,w)\mapsto(v-w,w)$
+  carries the diagonal to $\{0\}\times\R^d$. By
+  \Cref{lem:Animated_Manifold_Products} the same automorphism identifies
+  the pullback of the diagonal along $(i(f),i(g))$ with the zero fibre
+  of $i(h)$ on $i(M)\times i(N)$.
+
+  \emph{Open Euclidean target.}
+  Let $U\subseteq\R^d$ be open. Applying the first step to the open
+  inclusion twice gives
+  $i(U)\simeq i(U)\times_{i(\R^d)}i(U)$ via the diagonal. Thus
+  $i(U)\to i(\R^d)$ is a monomorphism. For maps landing in $i(U)$
+  we may consequently compute their pullback over $i(\R^d)$.
+  Transversality of maps into $U$ is unchanged by the open inclusion,
+  so the first step proves the assertion over $U$.
+
+  \emph{Manifold target.}
+  Embed $L$ in $\R^d$ and let $e\colon L\to U$ and $r\colon U\to L$
+  be the zero section and projection of an open tubular neighbourhood.
+  Since $r$ is a submersion, the ordinary manifold $N'=N\times_L U$
+  exists. Write $g'\colon N'\to U$ for its second projection. Consider
+  the squares
+  \[
+  \begin{tikzcd}
+    P \rar \dar & N \dar["g"] \\
+    M \rar["f"'] & L
+  \end{tikzcd}
+  \qquad\qquad
+  \begin{tikzcd}
+    P \rar \dar & N' \dar["g'"] \\
+    M \rar["ef"'] & U .
+  \end{tikzcd}
+  \]
+  The square on the right is a transverse pullback. Indeed, over
+  $e(l)$ the differential of $g'$ supplies all directions in
+  $\ker d r_{e(l)}$, and its projection to $T_lL$ has image
+  $\operatorname{im}dg$. Together with $d(ef)$ this spans $T_{e(l)}U$
+  by the original transversality. A point in the new pullback has
+  the form $(m,(n,e(f(m))))$ with $f(m)=g(n)$, and this identification
+  and its inverse are smooth.
+
+  The left square is a retract of the right square as a diagram of
+  manifolds. On the bottom right use $e$ and $r$, on the top right use
+  $n\mapsto(n,e(g(n)))$ and projection to $N$, and on $M$ and $P$ use
+  the identities. Applying $i$ preserves this retraction. The square
+  over $i(U)$ is cartesian by the second step, so its retract is
+  cartesian as well, since its comparison to the pullback is a retract of
+  an equivalence.
+\end{proof}
+
+The product lemma is \citet[Lemma~4.11]{Carchedi_Steffens_Universal_Derived_Manifolds},
+and the theorem is their Theorem~4.52. Their proof uses completeness of
+the higher homotopy groups as modules over $\pi_0$ to pass from local
+calculations to global sections (Theorem~4.44). The proof here uses
+the tubular retraction of squares for this passage. The manifold $N'$
+in the proof is formed in $\mathrm{Mfd}$ before applying $i$.
+
+\section{Extension from Euclidean spaces to manifolds}
+\label[section]{sec:Universal_Property_Derived_Manifolds}
+
+Let $q\colon\mathrm{Euc}\to\mathrm{Mfd}$ be the inclusion, so that
+$i q=j^{\mathrm{fp}}$. The algebraic envelope gives an extension
+$\widehat F$ of any product-preserving $F$ on $\mathrm{Euc}$. Derived
+transversality now lets us restrict that extension to manifolds.
+
+\begin{proposition}[Geometric extension]
+  \label[proposition]{prop:Geometric_Extension_From_Euclidean_Spaces}
+  For every idempotent-complete $\infty$-category $C$ with finite limits,
+  restriction along $q$ induces an equivalence
+  \[
+    \Fun^{\pitchfork}(\mathrm{Mfd},C)\simeq\Fun^\times(\mathrm{Euc},C).
+  \]
+  Its inverse sends $F$ to $\widehat F\circ i$.
+\end{proposition}
+
+\begin{proof}
+  Restriction is well defined since products of manifolds are transverse
+  pullbacks over the point. The composite $\widehat F\circ i$ preserves
+  transverse pullbacks and the terminal object by left exactness of
+  $\widehat F$, \Cref{thm:Animated_Transverse_Pullbacks} and
+  \Cref{lem:Animated_Manifold_Products}. It is the pointwise right Kan
+  extension of $F$ along $q$. Indeed, at $M$ the indexing category for
+  this extension consists of maps $M\to q(T)$, for $T$ Euclidean.
+  Full faithfulness of $i$ identifies it with the indexing category
+  of maps $i(M)\to j^{\mathrm{fp}}(T)$ computing $\widehat F(i(M))$.
+
+  The counit on Euclidean spaces is an equivalence since $q$ is fully
+  faithful. For $G\in\Fun^{\pitchfork}(\mathrm{Mfd},C)$ consider the
+  unit $G\to\operatorname{Ran}_q(Gq)$. It is an equivalence on
+  Euclidean spaces. Each Euclidean open is a transverse pullback of
+  Euclidean spaces by its presentation $a(x)y=1$, and both functors
+  preserve that pullback. Thus the unit is an equivalence on Euclidean
+  opens, and then on every manifold by the tubular retraction. This
+  proves the equivalence on functor categories
+  \cite[Lemma~5.1 and Corollary~5.2]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{thm:Universal_Property_Derived_Manifolds_Cinfty_Rings}]
+  The compact algebras are closed under finite colimits and retracts,
+  so their opposite has finite limits and is idempotent-complete.
+  The functor $i$ is fully faithful, preserves the terminal object,
+  and preserves transverse pullbacks, as proved above. For every
+  idempotent-complete $C$ with finite limits, restriction along $i$ fits
+  into the triangle
+  \[
+  \begin{tikzcd}[column sep=small]
+    \Fun^{\mathrm{lex}}\bigl((\mathcal A_{\mathrm{fp}})\catop,C\bigr)
+      \ar[rr,"i^*"] \ar[dr,"(j^{\mathrm{fp}})^*"']
+    && \Fun^{\pitchfork}(\mathrm{Mfd},C) \ar[dl,"q^*"] \\
+    & \Fun^\times(\mathrm{Euc},C).
+  \end{tikzcd}
+  \]
+  The triangle commutes since $i q=j^{\mathrm{fp}}$. Its diagonal maps
+  are equivalences by \Cref{thm:Animated_Cinfty_Finite_Limit_Envelope,prop:Geometric_Extension_From_Euclidean_Spaces}.
+  Hence $i^*$ is an equivalence. This constructs the universal pair
+  of \Cref{def:Universal_Infinity_Category_Derived_Manifolds}.
+\end{proof}
+
+In particular, for an arbitrary smooth map $f\colon M\to\R^q$, the
+ring of the derived zero locus is the animated pushout
+$\Cinfty(M)\otimes^{\mathbb L}_{\infty,\Cinfty(\R^q)}\R$.
+The next chapter gives a multiplicative model for this ring and uses
+it to compare singular intersections and their families.
+
+\section{Further details on retracts and coherence}
+\label[section]{sec:From_Smooth_Algebra_Summary_Supplementary_Materials}
+
+The universal property of derived manifolds requires idempotent-complete targets.
+We explain more precisely what this means in an $\infty$-category and
+why finite limits alone do not supply it. The exercises revisit this
+point and the self-pullback example.
+
+Informally, an idempotent looks like a morphism $e\colon X\to X$ together with
+a homotopy from $e\circ e$ to $e$. Formally, an idempotent in an
+$\infty$-category is a coherent idempotent diagram: the displayed homotopy is
+part of the data, together with its higher compatibilities. Splitting it means
+finding an object $Y$ and maps
+\[
+  Y\xrightarrow{i}X\xrightarrow{r}Y
+\]
+together with coherent identifications of $r\circ i$ with
+$\operatorname{id}_Y$ and of $i\circ r$ with the given idempotent. In an
+ordinary category with finite limits the equalizer construction in
+\Cref{sec:Ordinary_Finite_Limit_Envelope} supplies a splitting. For $\infty$-categories
+this is not forced by finite limits alone. The compact algebraic objects are
+closed under retracts, so their opposite category is naturally
+idempotent-complete. The universal property of derived manifolds must record
+this closure explicitly.
+
+\begin{exercise}
+Describe the equalizer splitting for an idempotent on an object of
+$\operatorname{Aff}_{\Cinfty}^{\mathrm{fp}}$. Compare it with the
+explicit finite presentation for a retract ring
+in \Cref{chap:Manifolds_As_Cinfty_Rings}.
+\end{exercise}
+
+\begin{exercise}
+Use the universal property of a pullback to identify
+$*\times_{BG}*$ with a discrete group $G$, where $BG$ is its
+classifying anima and both maps select the base point.
+Compare this with the self-pullback over a set.
+\end{exercise}
+
+The primary source is
+\cite[Definition~2.1, Theorem~3.22, Remark~3.26,
+and Section~5]{Carchedi_Steffens_Universal_Derived_Manifolds}.
+It treats both universal properties, their geometric comparison, and
+the relation with Spivak's construction.
+
+\let\theHchapter\talkfourHchapter

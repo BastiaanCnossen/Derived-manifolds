@@ -73,7 +73,7 @@ For a manifold $U$, the corresponding formula is
 \[
  \Omega_{\Cinfty(U)}^1\cong\Gamma(U,T^*U).
 \]
-It follows by localizing the coordinate calculation and gluing.
+This is \citet[Theorem~3.1.11]{Pascarella_Cotangent_Complex_Derived_Differential_Geometry}.
 After tensoring with $\R$ along evaluation at $x$, its dual is $T_xU$.
 
 For a quotient $A=B/I$, differentiating the equations gives a right exact
@@ -243,16 +243,19 @@ coproducts in $D(\R)$ agree and are given by direct sums of complexes.
 \section{Modules and derived smooth derivations}
 \label[section]{sec:Square_Zero_Extensions_And_Cotangent_Complexes}
 
-We now apply this linear algebra to an animated smooth ring. Modules
+We now apply this linear algebra to an animated $\Cinfty$-ring. Modules
 provide the coefficients for infinitesimal variations, square-zero
-extensions turn those variations into maps of smooth rings, and the
+extensions turn those variations into maps of $\Cinfty$-rings, and the
 cotangent complex represents the resulting derivations.
 
 The tensor product of real complexes gives $D(\R)$ a symmetric
-monoidal structure with unit $\R$. Forgetting the nonpolynomial
-smooth operations of an animated $\Cinfty$-ring $A$ gives a
-connective commutative algebra object $A^{\mathrm{alg}}$ in $D(\R)$.
-We define its modules in this $\infty$-category.
+monoidal structure with unit $\R$. To pass from an animated
+$\Cinfty$-ring $A\colon\mathrm{Euc}\to\An$ to its underlying algebra,
+restrict $A$ to the subcategory with the same Euclidean spaces and
+polynomial maps. This gives an animated commutative $\R$-algebra.
+In the dg model of \Cref{sec:Smooth_Dold_Kan_Bridge}, the same operation
+takes the underlying commutative dg-algebra. We write $A^{\mathrm{alg}}$
+for the resulting connective commutative algebra object in $D(\R)$.
 
 \begin{definition}
 \label[definition]{def:Stable_Module_Animated_Cinfty_Ring}
@@ -273,8 +276,10 @@ For an explicit model, choose a $\Cinfty$-dg-algebra presenting $A$.
 Then $\operatorname{Mod}_A$ is modeled by dg-modules over its underlying
 commutative dg-algebra, with quasi-isomorphisms inverted in the
 $\infty$-categorical sense. This description presents the module
-category just defined. Modules may have homology in all degrees.
-For an ordinary smooth ring, $\operatorname{Mod}_A$ is the derived
+category just defined, as in
+\citet[Corollary~4.3.1.4]{Steffens_Derived_Differential_Geometry}.
+Modules may have homology in all degrees.
+For an ordinary $\Cinfty$-ring, $\operatorname{Mod}_A$ is the derived
 $\infty$-category of ordinary $A$-modules; in particular,
 $\operatorname{Mod}_\R=D(\R)$.
 
@@ -302,9 +307,11 @@ For animated $A$ and connective $M$, there is similarly a split square-zero
 extension $A\oplus M$. In connective dg-models its underlying complex
 is the direct sum, with the displayed multiplication and smooth operations
 in degree zero. This construction respects the derived module category.
-For a general module, $A\oplus M$ uses its connective cover,
-since animated rings are connective. In our homological convention,
-connectivity means that homology vanishes in negative degrees.
+For a general module $M$, the split square-zero extension uses the
+connective cover $\tau_{\geq0}M$
+\cite[Remark~4.3.1.5]{Steffens_Derived_Differential_Geometry}.
+In our homological convention, this cover has the same nonnegative
+homology as $M$ and zero homology in negative degrees.
 
 As in the ordinary case, we define the cotangent object by its maps
 into every coefficient module. The sets of derivations are now replaced
@@ -334,19 +341,6 @@ For an ordinary ring $A$, $H_0(\mathbb L_A)\cong\Omega_A^1$.
 The other degrees retain relations in a presentation of $A$.
 They may be present even when $A$ itself has no higher homotopy groups.
 
-\begin{proposition}[Smooth manifolds]
-\label[proposition]{prop:Cotangent_Complex_Manifold}
-For a manifold $U$,
-$\mathbb L_{\Cinfty(U)}\cong\Gamma(U,T^*U)$ in degree zero.
-Its derived fibre at $x$ is $T_x^*U$.
-\end{proposition}
-
-For Euclidean space the proof uses universal derivations of a free
-animated smooth ring. Smooth localization has vanishing relative
-cotangent complex, so the calculation extends to coordinate opens
-and then to manifolds. We use that localization result here; the
-geometric construction appears in the next chapter.
-
 \section{Base change and transitivity}
 \label[section]{sec:Cotangent_Base_Change_Transitivity}
 
@@ -357,7 +351,7 @@ stages of imposing them.
 
 \begin{theorem}[Base change]
 \label[theorem]{thm:Cotangent_Complex_Base_Change}
-For a pushout of animated smooth rings
+For a pushout of animated $\Cinfty$-rings
 \[
  \begin{tikzcd}
  A\rar\dar\drar[pushout]&B\dar\\
@@ -387,9 +381,9 @@ For transitivity, restriction gives a fibre sequence
 \]
 The fibre includes the nullhomotopy expressing vanishing on $B$.
 Representing these functors gives the cofiber sequence.
-These arguments explain the formal content of the two theorems;
-their construction for animated smooth rings is included in the
-cotangent-complex theory cited below.
+These arguments explain the formal content of the two theorems.
+For animated $\Cinfty$-rings both are
+\citet[Remark~5.1.0.4]{Steffens_Derived_Differential_Geometry}.
 
 Absolute cotangent complexes are relative to the initial ring $\R$.
 For $D=B\otimes_{\infty,A}^{\mathbb L}C$, base change and transitivity imply
@@ -401,6 +395,56 @@ For $D=B\otimes_{\infty,A}^{\mathbb L}C$, base change and transitivity imply
 \end{equation}
 This is a cofiber sequence. The signs identify the two copies of
 a differential coming from $A$.
+
+As a first application, we compute the cotangent complex of a manifold.
+
+\begin{proposition}[Smooth manifolds]
+\label[proposition]{prop:Cotangent_Complex_Manifold}
+For a manifold $U$,
+$\mathbb L_{\Cinfty(U)}\cong\Gamma(U,T^*U)$ in degree zero.
+Its derived fibre at $x$ is $T_x^*U$.
+\end{proposition}
+
+\begin{proof}
+For $P=\Cinfty(\R^n)$, a map $P\to P\oplus M$ over $P$ amounts to a
+lift of each coordinate $x_i$. Each lift has the form $(x_i,m_i)$,
+where $m_i$ belongs to the underlying anima
+$\Omega^\infty M=\Hom_{D(\R)}(\R,M)$. Thus the anima of derivations
+is $(\Omega^\infty M)^n$. The free $P$-module on $dx_1,\ldots,dx_n$
+represents this functor.
+
+Next let $U=\{a\neq0\}\subseteq\R^n$ be open, put
+$P=\Cinfty(\R^{n+1})$ and $h(x,y)=a(x)y-1$. If $B=\Cinfty(\R)$ with
+coordinate $t$, then \Cref{prop:Animated_Regular_Zero_Locus} gives
+$A=\Cinfty(U)\simeq P\otimes^{\mathbb L}_{\infty,B}\R$ along $t\mapsto h$.
+For $\R\to B\to\R$, the transitivity sequence begins $\R\,dt\to 0$,
+so $\mathbb L_{\R/B}\simeq\R\,dt[1]$. Base change gives
+$\mathbb L_{A/P}\simeq A\,dt[1]$. To identify the differential, apply
+the pushout sequence \eqref{eq:Algebraic_Pushout_Cotangent_Sequence}.
+Since $\mathbb L_\R=0$, it presents $\mathbb L_A$ as the cofiber of
+\[
+ A\,dt\longrightarrow\Omega_P^1\otimes_P A,\qquad
+ dt\longmapsto d h=y\,da+a\,dy.
+\]
+This map differentiates $t\mapsto h$. Since its $dy$-component $a$
+is invertible on $U$, the map is split injective,
+and its cokernel is free on $dx_1,\ldots,dx_n$. Thus
+$\mathbb L_{\Cinfty(U)}\cong\Gamma(U,T^*U)$ in degree zero.
+
+Finally, a general manifold $M$ is a retract of an open tubular
+neighbourhood $U$ of a proper embedding $M\subseteq\R^N$. Write
+$S=\Cinfty(M)$ and $T=\Cinfty(U)$. The composite $S\to T\to S$ is the
+identity, so by functoriality the composite
+$\mathbb L_S\to\mathbb L_T\otimes_T S\to\mathbb L_S$ is the identity.
+Its middle term is finite free in degree zero. Hence $\mathbb L_S$
+is discrete and projective, and identifies with
+$H_0(\mathbb L_S)=\Omega^1_S\cong\Gamma(M,T^*M)$.
+Projectivity identifies its derived fibre at $x$ with the ordinary
+fibre $T_x^*M$.
+\end{proof}
+
+For another proof from the universal property of differential forms, see
+\citet[Theorem~3.3.11]{Pascarella_Cotangent_Complex_Derived_Differential_Geometry}.
 
 \section{The tangent complex of a zero locus}
 \label[section]{sec:Linearizing_Derived_Pullbacks}
@@ -429,8 +473,12 @@ Dualizing identifies
  T_{(u,v)}X\cong
  [T_uU\oplus T_vV\xrightarrow{df-dg}T_wW]
 \]
-in degrees $0,-1$. Its degree-zero homology is the ordinary tangent
-space of the equations.
+in degrees $0,-1$. Its degree-zero homology consists of the first-order
+solutions $(v_U,v_V)$ satisfying $df(v_U)=dg(v_V)$.
+The displayed complex is the linearized matching complex
+$\mathbb T_{u,v}(f,g)$ of \Cref{not:Linearized_Matching_Complex}: as
+promised in \Cref{chap:Why_Derived_Manifolds}, it is the tangent complex
+of the derived pullback.
 
 Let $s$ be a section of $p\colon E\to U$, and let $s(x)=0_x$.
 At the zero section there is a canonical splitting
@@ -462,10 +510,10 @@ in degrees $0,-1$ and $1,0$, respectively.
 \end{theorem}
 
 The Koszul model gives the same answer. Its derived differentials
-have generators $dx_j$ in degree zero and $d\varepsilon_i$ in degree $1$,
+have generators $dx_j$ in degree zero and $de_i$ in degree $1$,
 with differential
 \[
- d_{\mathrm{complex}}(d\varepsilon_i)
+ d_{\mathrm{complex}}(de_i)
  =d_{\mathrm{dR}}f_i
  =\sum_j\frac{\partial f_i}{\partial x_j}\,dx_j.
 \]
@@ -485,11 +533,12 @@ the equation exactly when $D_xs(v)=0$.
 The second is the target for obstruction classes. Perturbing the equation
 by $\varepsilon e$ gives $D_xs(v)=-e$, whose obstruction is $[e]$
 in the cokernel. Extending a first-order solution illustrates the same
-phenomenon. In local coordinates and a bundle frame, write
+phenomenon. To lift from the dual numbers to $\R[t]/(t^3)$, use the
+quotient map $t\mapsto\varepsilon$. In local coordinates write
 \[
- x(\varepsilon)=x+\varepsilon v+\varepsilon^2w.
+ x(t)=x+tv+t^2w\pmod{t^3}.
 \]
-Modulo $\varepsilon^3$, Taylor expansion gives
+Taylor expansion in a local bundle frame gives
 \[
  D_xs(v)=0,\qquad
  D_xs(w)+\tfrac12D_x^2s(v,v)=0.
@@ -515,7 +564,7 @@ $[T_xU\xrightarrow0 E_x]$. In all these cases,
 This is the virtual dimension. Its constancy is compatible with jumps
 in the individual homology dimensions.
 
-\section{Further reading}
+\section{Further remarks and exercises}
 \label[section]{sec:Supplement_Intrinsic_Stable_Modules}
 
 The following observations distinguish smooth from algebraic
@@ -526,10 +575,10 @@ Modules have an algebraic description, while their extensions carry
 smooth operations. Thus the smooth cotangent complex represents
 smooth derivations. In general it cannot be replaced by the algebraic
 cotangent complex of the underlying $\R$-algebra.
-For example, $\Cinfty(\R)$ is free on one generator as a smooth ring,
+For example, $\Cinfty(\R)$ is free on one generator as a $\Cinfty$-ring,
 but is not the polynomial $\R$-algebra on that generator.
 
-A finitely presented animated smooth ring has a perfect cotangent complex.
+A finitely presented animated $\Cinfty$-ring has a perfect cotangent complex.
 After taking its fibre at a real point, a perfect complex is represented
 by a bounded complex of finite-dimensional vector spaces. The tangent
 complex at that point consequently has
@@ -539,7 +588,7 @@ The two-term form above reflects the particular presentation by a
 section of an ordinary vector bundle. The next chapter characterizes
 the objects that have such local presentations.
 
-For example, the free smooth dg-algebra $\R[z]$ with $|z|=2$ and
+For example, the free $\Cinfty$-dg-algebra $\R[z]$ with $|z|=2$ and
 $dz=0$ is a finite cell algebra. Its derived differentials are freely
 generated by $d_{\mathrm{dR}}z$ in degree $2$. At its real point,
 the cotangent complex is $\R[2]$ and the tangent complex is $\R[-2]$,

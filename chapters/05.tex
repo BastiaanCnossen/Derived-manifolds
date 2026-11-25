@@ -29,7 +29,7 @@ Thus
  \mathcal O(Z^{\mathrm{der}}(f))
  \cong \Cinfty(U)\mathbin{\otimes^{\mathbb L}_{\infty,\Cinfty(\R^r)}}\R.
 \end{equation}
-Here the tensor notation denotes a pushout of animated smooth rings.
+Here the tensor notation denotes a pushout of animated $\Cinfty$-rings.
 The corresponding ordinary pushout is
 $\Cinfty(U)/(f_1,\ldots,f_r)$. Computing that quotient first would discard
 the higher homotopy of the animated pushout.
@@ -41,23 +41,27 @@ $x$ and $x^2$ have the same zero set but give different quotients.
 The derived construction adds a third level: homotopy groups beyond
 $\pi_0$.
 
-We first introduce smooth differential graded algebras as a tool for
-computing animated smooth rings, then construct the Koszul model of a
+\Cref{chap:From_Smooth_Algebra_To_Derived_Manifolds} computed the homotopy
+groups for a regular zero locus and for the self-intersection of the
+origin. Here we construct a differential graded algebra that presents
+the pushout for any $f$, including its multiplication and smooth structure.
+We first introduce differential graded $\Cinfty$-algebras as a tool for
+computing animated $\Cinfty$-rings, then construct the Koszul model of a
 zero locus. Comparing a transverse equation, a multiple zero, and a
 repeated equation will make these three levels visible. The same
 construction will then apply to families and to sections of vector bundles.
 
-\section{Smooth differential graded algebras}
+\section{Differential graded \texorpdfstring{$\Cinfty$}{C-infinity}-algebras}
 \label[section]{sec:Smooth_Dold_Kan_Bridge}
 
-Smooth differential graded algebras make the higher homotopy of an
-animated smooth ring accessible through homology. We use homological
+Differential graded $\Cinfty$-algebras make the higher homotopy of an
+animated $\Cinfty$-ring accessible through homology. We use homological
 grading, as in Steffens: the differential lowers degree by one. Our
 connective dg-algebra models are concentrated in nonnegative degrees.
 After describing their smooth structure, we state the comparison theorem
 that justifies using them to compute derived pushouts.
 
-\begin{definition}[Smooth dg-algebra]
+\begin{definition}[$\Cinfty$-dg-algebra]
 \label[definition]{def:Smooth_Dg_Algebra}
 A \emph{connective $\Cinfty$-dg-algebra} is a commutative differential
 graded $\R$-algebra
@@ -84,20 +88,20 @@ This is the convention of the foundations paper \cite[Definition~3.3.1]
 is no additional chain-rule condition to impose on its degree-zero elements.
 
 \begin{example}
-An ordinary $\Cinfty$-ring is a smooth dg-algebra concentrated in degree
-zero. More generally, for an ordinary smooth ring $A$ and elements
+An ordinary $\Cinfty$-ring is a $\Cinfty$-dg-algebra concentrated in degree
+zero. More generally, for an ordinary $\Cinfty$-ring $A$ and elements
 $f_1,\ldots,f_r\in A$, form
 \[
- A[\varepsilon_1,\ldots,\varepsilon_r],
- \qquad |\varepsilon_i|=1,\qquad d\varepsilon_i=f_i.
+ A[e_1,\ldots,e_r],
+ \qquad |e_i|=1,\qquad de_i=f_i.
 \]
 The notation denotes a free graded-commutative extension: as a graded
 $A$-module it is $A\otimes_\R\Lambda^\bullet(\R^r)$, with
 $\Lambda^q$ placed in degree $q$. Its differential is determined by the
 displayed equations and the Leibniz rule. In particular,
 \[
- d(\varepsilon_i\varepsilon_j)
- =f_i\varepsilon_j-f_j\varepsilon_i.
+ d(e_ie_j)
+ =f_ie_j-f_je_i.
 \]
 The equality $d^2=0$ follows on generators and hence on the whole algebra.
 \end{example}
@@ -113,12 +117,12 @@ Replacing each $x_i$ by an element congruent to $y_i$ modulo the ideal
 changes the output by an element of the same ideal. The groups $H_i(A)$
 are modules over $H_0(A)$, and their products form a graded algebra.
 
-The passage from dg-algebras to animated smooth rings identifies maps
-that induce isomorphisms on homology.
+The passage from dg-algebras to animated $\Cinfty$-rings inverts
+quasi-isomorphisms.
 
 \begin{definition}
 \label[definition]{def:Smooth_Dga_Quasi_Isomorphism}
-A morphism of smooth dg-algebras is a \emph{quasi-isomorphism} if it induces
+A morphism of $\Cinfty$-dg-algebras is a \emph{quasi-isomorphism} if it induces
 an isomorphism on every homology group.
 \end{definition}
 
@@ -139,13 +143,13 @@ It includes multiplicative and smooth structure. The ordinary Dold--Kan
 correspondence for vector spaces alone does not supply that structure.
 
 One way to describe the animated object attached to $A$ is through its
-values on free smooth rings. In the localized category $D$ of smooth
-dg-algebras, set
+values on free $\Cinfty$-rings. In the localized category $D$ of
+$\Cinfty$-dg-algebras, set
 \[
  A_{\mathrm{an}}(\R^n)=\Hom_D(\Cinfty(\R^n),A).
 \]
 The functor is covariant in Euclidean spaces because smooth functions are
-contravariant. Free smooth rings turn finite products of Euclidean spaces
+contravariant. Free $\Cinfty$-rings turn finite products of Euclidean spaces
 into coproducts, so this functor preserves finite products. It is therefore
 an animated $\Cinfty$-ring. The mapping objects in this formula are animae;
 using only strict dg-algebra maps would lose the higher homotopies.
@@ -166,10 +170,10 @@ functions defining our zero locus into this resolution.
 
 Start with one coordinate $t$ and put $B=\Cinfty(\R)$. Consider the map
 \[
- B[\varepsilon]\longrightarrow\R,\qquad
- |\varepsilon|=1,\quad d\varepsilon=t,
+ B[e]\longrightarrow\R,\qquad
+ |e|=1,\quad de=t,
 \]
-sending $t$ and $\varepsilon$ to zero. Its underlying complex is
+sending $t$ and $e$ to zero. Its underlying complex is
 \[
  B\xrightarrow{\ t\ }B
 \]
@@ -181,37 +185,23 @@ by $t$. Thus this map is a quasi-isomorphism.
 For $B=\Cinfty(\R^r)$, the same construction gives
 \[
  K_B(t_1,\ldots,t_r)
- =\bigl(B[\varepsilon_1,\ldots,\varepsilon_r],
-          d\varepsilon_i=t_i\bigr)\longrightarrow\R.
+ =\bigl(B[e_1,\ldots,e_r],
+          de_i=t_i\bigr)\longrightarrow\R.
 \]
-The coordinate functions form a regular sequence. Indeed, quotienting by
-the first $j$ coordinates gives the smooth functions on the remaining
-coordinate subspace, and the next coordinate is a non-zero-divisor there.
-Successively applying the one-variable calculation proves that the
-augmentation is a quasi-isomorphism.
-
-The map $B\to K_B(t_1,\ldots,t_r)$ is built by adjoining generators in
-positive degree with prescribed differential. Together with the
-augmentation to $\R$, it is a relative free resolution of evaluation.
-Taking its strict pushout computes derived base change. The criterion
-used here is \citet[Corollary~3.3.15]{Steffens_Derived_Cinfty_Geometry_I}:
-this map is an isomorphism in
-degree zero, is surjective on $H_0$, and is a relative cell extension
-of underlying commutative dg-algebras. The resulting zero-locus
-calculation is given in
-\citet[Example~3.3.16]
-{Steffens_Derived_Cinfty_Geometry_I}.
+The underlying complex is the free resolution of $\R$ from the proof of
+\Cref{prop:Animated_Regular_Zero_Locus}, so the augmentation is a
+quasi-isomorphism.
 
 Now base change along $f^*\colon B\to A=\Cinfty(U)$. Each $t_i$ becomes
 $f_i$, so the pushout is
 \begin{equation}\label{eq:Koszul_Algebra_Function}
- K_A(f)=\bigl(A[\varepsilon_1,\ldots,\varepsilon_r],
-               d\varepsilon_i=f_i\bigr).
+ K_A(f)=\bigl(A[e_1,\ldots,e_r],
+               de_i=f_i\bigr).
 \end{equation}
 
 \begin{theorem}[Koszul model]
 \label[theorem]{thm:Koszul_Presentation_Derived_Zero_Locus}
-The smooth dg-algebra $K_A(f)$ presents the animated function ring of
+The $\Cinfty$-dg-algebra $K_A(f)$ presents the animated function ring of
 $Z^{\mathrm{der}}(f)$. Consequently,
 \[
  \pi_i\mathcal O(Z^{\mathrm{der}}(f))\cong H_i(K_A(f)).
@@ -219,11 +209,19 @@ $Z^{\mathrm{der}}(f)$. Consequently,
 \end{theorem}
 
 \begin{proof}
-Replace the evaluation map $B\to\R$ in
-\Cref{eq:Derived_Zero_Locus_Animated_Pushout} by the relative free
-resolution $B\to K_B(t)$. Its strict pushout along $B\to A$ computes
-the derived pushout and is exactly \Cref{eq:Koszul_Algebra_Function}.
-Apply the smooth Dold--Kan correspondence.
+Replace evaluation $B\to\R$ in \eqref{eq:Derived_Zero_Locus_Animated_Pushout}
+by $B\to K_B(t)$. This map is the identity in degree zero and induces
+the surjection $B\to\R$ on $H_0$. Adjoining the degree-one generators
+with their prescribed differentials makes it a relative cell extension,
+hence a cofibration of underlying commutative dg-algebras. By
+\citet[Corollary~3.3.15 and Example~3.3.16]{Steffens_Derived_Cinfty_Geometry_I},
+its strict pushout along $B\to A$ therefore computes the derived pushout.%
+\footnote{Condition (iii) of the corollary is printed with degree-zero
+subscripts. Its proof uses a cofibration of the underlying dg-algebras,
+as do Examples~3.3.16 and~3.3.17.}
+Substituting $t_i\mapsto f_i$ gives \eqref{eq:Koszul_Algebra_Function},
+and the smooth Dold--Kan correspondence identifies its homology with
+the asserted homotopy groups.
 \end{proof}
 
 The construction resolves the coordinates on $\R^r$, which are a regular
@@ -235,9 +233,9 @@ In particular,
 \[
  H_0(K_A(f))=A/(f_1,\ldots,f_r).
 \]
-In degree $1$, a cycle $\sum_i a_i\varepsilon_i$ is a relation
+In degree $1$, a cycle $\sum_i a_ie_i$ is a relation
 $\sum_i a_if_i=0$. Boundaries include the relations
-$f_i\varepsilon_j-f_j\varepsilon_i$. Thus higher homology measures
+$f_ie_j-f_je_i$. Thus higher homology measures
 relations that survive after these elementary ones have been identified.
 The algebra also retains the multiplication between such classes.
 
@@ -251,24 +249,21 @@ homotopy of functions, whereas an excess equation can produce it.
 \begin{example}[A transverse equation]
 For $f(x)=x$, the model is
 \[
- \Cinfty(\R)[\varepsilon],\qquad d\varepsilon=x.
+ \Cinfty(\R)[e],\qquad de=x.
 \]
 The resolution calculation shows that it is quasi-isomorphic to $\R$.
 Thus the derived zero locus is the ordinary point.
 
-More generally, if $f\colon U\to\R^r$ is transverse to zero, its components
-can be completed locally to coordinates along the zero set. The same
-Koszul calculation shows that the derived zero locus is the ordinary
-manifold $f^{-1}(0)$. Away from the zero set, one of the functions is
-invertible, and the Koszul complex is contractible. These local statements
-recover the transverse-pullback property of derived manifolds.
+More generally, if $f\colon U\to\R^r$ is transverse to zero, the Koszul
+model has no positive homology and $H_0(K_A(f))\cong\Cinfty(f^{-1}(0))$.
+This is the regular-zero calculation of \Cref{prop:Animated_Regular_Zero_Locus}.
 \end{example}
 
 \begin{example}[A multiple zero]
 For $f(x)=x^2$, multiplication by $x^2$ is still injective on $\Cinfty(\R)$.
 Hence the Koszul algebra has no positive homology, but
 \[
- H_0(K(x^2))=\Cinfty(\R)/(x^2)\cong\R[\delta]/(\delta^2).
+ H_0(K(x^2))=\Cinfty(\R)/(x^2)\cong\R[\varepsilon]/(\varepsilon^2).
 \]
 The last identification follows from Taylor's formula:
 \[
@@ -276,18 +271,18 @@ The last identification follows from Taylor's formula:
 \]
 with $r$ smooth. The smooth operations on the quotient are given by the
 first-order Taylor formula. For instance,
-$\varphi(a+b\delta)=\varphi(a)+\varphi'(a)b\delta$.
+$\varphi(a+b\varepsilon)=\varphi(a)+\varphi'(a)b\varepsilon$.
 
 Thus $Z^{\mathrm{der}}(x^2)$ is not the ordinary point, even though its
 animated ring is discrete. Nilpotents in $\pi_0$ can already distinguish
 it. The same argument gives
-$\Cinfty(\R)/(x^m)\cong\R[\delta]/(\delta^m)$ for $m\geq1$.
+$\Cinfty(\R)/(x^m)\cong\R[t]/(t^m)$ for $m\geq1$.
 \end{example}
 
 \begin{example}[A zero equation]
 For the zero function on $\R$, the differential vanishes:
 \[
- K(0)=\Cinfty(\R)[\varepsilon],\qquad d\varepsilon=0.
+ K(0)=\Cinfty(\R)[e],\qquad de=0.
 \]
 Its degree-zero homology is $\Cinfty(\R)$, and its degree $1$
 homology is another copy of $\Cinfty(\R)$. The classical truncation is
@@ -295,9 +290,11 @@ the line, while the derived object remembers that an equation was imposed
 which vanishes identically.
 
 Similarly, the self-intersection of $\{0\}\subset\R$ has function algebra
-$\R[\varepsilon]$ with $d\varepsilon=0$. Its underlying topological space
+$\R[e]$ with $de=0$. Its underlying topological space
 is a point and its classical function ring is $\R$, but $\pi_1=\R$.
-This is a local instance of the excess-intersection phenomena in
+This gives a multiplicative model for the calculation in
+\Cref{ex:Animated_Self_Intersection_Origin}. It is a local instance
+of the excess-intersection phenomena in
 \citet[Example~2.7]{Spivak_Derived_Smooth_Manifolds}.
 \end{example}
 
@@ -305,10 +302,10 @@ This is a local instance of the excess-intersection phenomena in
 The maps $x\mapsto x$ and $x\mapsto(x,x)$ have the same zero set and
 the same ordinary quotient ring. For the second map the Koszul algebra is
 \[
- \Cinfty(\R)[\varepsilon_1,\varepsilon_2],
- \qquad d\varepsilon_1=d\varepsilon_2=x.
+ \Cinfty(\R)[e_1,e_2],
+ \qquad de_1=de_2=x.
 \]
-Set $\eta=\varepsilon_2-\varepsilon_1$. Then $d\eta=0$, and the algebra
+Set $\eta=e_2-e_1$. Then $d\eta=0$, and the algebra
 becomes $K(x)\otimes_\R\Lambda(\eta)$. It is quasi-isomorphic to
 $\R[\eta]$ with zero differential. The repeated equation produces a
 nonzero $\pi_1$.
@@ -333,7 +330,7 @@ derived object over $S$:
  X=(S\times U)\times_{S\times\R^r}(S\times\{0\}).
 \]
 Its Koszul model has coefficients in $\Cinfty(S\times U)$ and
-differential $d\varepsilon_i=f_i(s,x)$.
+differential $de_i=f_i(s,x)$.
 
 For a smooth map $g\colon T\to S$, pullback gives the same construction
 with $f(g(t),x)$. This follows by pasting the defining pullback squares.
@@ -344,13 +341,13 @@ manifold.
 For example, consider $f(s,x)=x^2-s$. The total zero locus is the ordinary
 parabola $s=x^2$, since the derivative in the $s$-direction is $-1$.
 Over $s>0$ its fibre consists of two points; over $s<0$ it is empty.
-The derived fibre at $s=0$ has function ring $\R[\delta]/(\delta^2)$.
+The derived fibre at $s=0$ has function ring $\R[\varepsilon]/(\varepsilon^2)$.
 The parameter map from the parabola to $S$ has a critical point there.
 
 A second family, $f(s,x)=sx$, illustrates the appearance of higher
 homotopy in a fibre. For $s\neq0$, the fibre is an ordinary point.
 For $s=0$, its Koszul model is
-$\Cinfty(\R)[\varepsilon]$ with zero differential. Although multiplication
+$\Cinfty(\R)[e]$ with zero differential. Although multiplication
 by $sx$ on $\Cinfty(\R^2)$ is injective, substitution $s=0$ destroys
 injectivity. Derived base change retains this change in the equation.
 
@@ -360,7 +357,7 @@ injectivity. Derived base change retains this change in the equation.
 The same model works without a chosen list of global equations. Let
 $p\colon E\to U$ be a vector bundle of rank $r$, and let $s$ be a section.
 Its derived zero locus is the pullback of $s$ and the zero section as maps
-from $U$ to $E$. Define a sheaf of smooth dg-algebras on $U$ by
+from $U$ to $E$. Define a sheaf of $\Cinfty$-dg-algebras on $U$ by
 \[
  \mathcal K(s)_q
    =\Gamma(-,\Lambda^qE^\vee),\qquad d=\iota_s.
@@ -371,33 +368,64 @@ contraction, so the local algebras glue.
 
 \begin{proposition}
 \label[proposition]{prop:Vector_Bundle_Koszul_Presentation}
-The sheaf $\mathcal K(s)$ presents the functions of the derived zero locus
-of $s$, supported on its ordinary zero set. In particular, for the zero
-section its differential vanishes and its homotopy sheaves are
-$\Lambda^qE^\vee$ in degree $q$.
+The $\Cinfty$-dg-algebra of global sections
+\[
+ K(s)=\bigl(\Gamma(U;\Lambda^\bullet E^\vee),\ d=\iota_s\bigr)
+\]
+presents the animated function ring of the derived zero locus of $s$.
+In particular, for the zero section the differential vanishes, and
+$\pi_q\mathcal O(Z^{\mathrm{der}}(0))\cong\Gamma(U;\Lambda^qE^\vee)$.
 \end{proposition}
 
 \begin{proof}
-Trivialize $E$ on an open cover and apply the Koszul model theorem.
-On the complement of the zero set, contraction has a local contracting
-homotopy: choose $\lambda\in E^\vee$ with $\lambda(s)=1$ and use exterior
-multiplication by $\lambda$. The frame-independent contraction formula
-identifies the models on overlaps, giving the stated sheaf.
+The derived zero locus is the pullback of $s$ along the zero section, so
+its function ring is the derived pushout of
+$s^*,0^*\colon\Cinfty(E)\to\Cinfty(U)$. Factor $0^*$ as
+\[
+ \Cinfty(E)\longrightarrow
+ \Cinfty(E)\otimes_{\Cinfty(U)}\Gamma(U;\Lambda^\bullet E^\vee)
+ \longrightarrow\Cinfty(U),
+\]
+where the differential contracts with the tautological section of $p^*E$.
+The augmentation restricts functions to the zero section and sends forms
+of positive degree to zero.
+
+Choose a complementary bundle $E'$ over $U$ such that $E\oplus E'$ is
+trivial. Pullback along a bundle map over $U$ commutes with contraction
+by the tautological vectors, because it sends each fibre covector to
+its composite with the fibre map. Thus the inclusion and projection
+exhibit the whole factorization for $E$ as a retract of the one for
+$E\oplus E'$. For the trivial bundle the first map adjoins one
+degree-one generator for each fibre coordinate, and the augmentation
+is a quasi-isomorphism by the regular-zero calculation in those
+coordinates. Taking retracts shows that the first map for $E$ is a
+cofibration of underlying commutative dg-algebras and the augmentation
+is a quasi-isomorphism.
+
+The first map is the identity in degree zero. On $H_0$ it identifies
+with the surjection $0^*\colon\Cinfty(E)\to\Cinfty(U)$, which has
+section $p^*$. Thus \citet[Corollary~3.3.15]{Steffens_Derived_Cinfty_Geometry_I}
+applies. In the strict pushout along $s^*$, the tautological vector at
+$s(x)$ is $s(x)$ itself, so the differential becomes $\iota_s$.
+This gives the asserted algebra $K(s)$.
 \end{proof}
 
-This is the bundle form of the calculation in
-\cite[Example~3.3.17]{Steffens_Derived_Cinfty_Geometry_I}.
+This is \cite[Example~3.3.17]{Steffens_Derived_Cinfty_Geometry_I}.
+The construction sheafifies: $\mathcal K(s)$ is a sheaf of
+$\Cinfty$-dg-algebras on $U$, and on the complement of the zero set it is
+contractible, by the homotopy given by exterior multiplication with a
+local form $\lambda\in E^\vee$ satisfying $\lambda(s)=1$.
 It explains how the local excess directions of a self-intersection fit
 into a vector bundle rather than a fixed vector space.
 
-\section{Further reading}
+\section{Further remarks and exercises}
 
 The following observations explain the role of regular sequences in the
 examples and the effect of allowing generators in higher degrees.
 The exercises give further comparisons between presentations of zero loci.
 
 A regular sequence $f_1,\ldots,f_r$ in an ordinary
-smooth ring has Koszul homology concentrated in degree zero. One proves
+$\Cinfty$-ring has Koszul homology concentrated in degree zero. One proves
 this inductively: adjoining the last generator forms the cone of
 multiplication by $f_r$ on the preceding Koszul complex. If the preceding
 homology is $A/(f_1,\ldots,f_{r-1})$ and $f_r$ is a non-zero-divisor
@@ -406,7 +434,7 @@ homology. This explains both the transverse case and the multiple-zero
 example. Concentration in degree zero is weaker than smoothness of the
 resulting ordinary ring.
 
-The smooth dg-algebra model also permits generators in degrees above $1$.
+The $\Cinfty$-dg-algebra model also permits generators in degrees above $1$.
 For example, a free generator $z$ in degree $2$ with $dz=0$ gives
 $\R[z]$. Since $z$ has even degree, its powers need not vanish:
 $H_{2j}(\R[z])=\R z^j$ for every $j\geq0$.
