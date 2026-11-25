@@ -3,11 +3,13 @@
 \chapter{Stacks and local representability}
 \label[chapter]{chap:Coherence_Descent_Local_Representability}
 
-A moduli problem assigns families to parameter objects. For example, a
-family of zeros of $f\colon U\to\R^r$ parametrized by $T$ is a map
-$T\to U$ satisfying the equation. In derived geometry the equation
-includes a specified homotopy to zero. Pulling the family back along
-$T'\to T$ gives a family over $T'$.
+In this chapter, a moduli problem assigns to each derived manifold $T$
+an anima of families over $T$. For example, a
+family of zeros of $f\colon U\to\R^r$ parametrized by an ordinary
+manifold $T$ is a map $u\colon T\to U$ such that $f\circ u=0$.
+When $T$ is a derived manifold, we ask for $u$ together with a path from
+$f\circ u$ to the zero map in $\Hom(T,\R^r)$. Precomposition along
+$T'\to T$ pulls back both the map and the path.
 
 This viewpoint defines a moduli problem before a geometric representing
 object has been constructed. Descent expresses that families and their
@@ -21,53 +23,103 @@ stack supplies the overlaps and their higher compatibilities; the work
 is to construct open charts of that functor. We develop descent and
 atlases with the vector bundle zero locus as a running example, then
 formulate representability relative to a parameter stack. The distinction
-between gluing families and gluing charts will be essential throughout.
+between gluing families over a cover of a test object and gluing charts
+of the moduli stack itself will be essential throughout. We end by
+comparing smooth stacks with the stacks of this chapter, in preparation
+for the analytic argument of
+\Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge}.
+
+The following three points are the main takeaways.
+\begin{enumerate}
+ \item A moduli functor is a stack if families and their identifications
+ satisfy descent for open covers. Its values record families together with
+ their identifications and all higher coherences.
+ \item A stack is represented by a derived $\Cinfty$-scheme if and only
+ if it admits an open atlas
+ (\Cref{thm:Open_Local_Representability}). The coherences needed to
+ glue the charts are supplied by the stack itself.
+ \item Representability relative to a parameter stack can be checked
+ locally on that parameter stack
+ (\Cref{cor:Local_Representability_Relative}).
+\end{enumerate}
+Some additional details on the coherent constructions used in this chapter
+are given in \Cref{sec:Additional_Descent_Gluing}.
 
 \section{The open topology and descent}
 
-Descent concerns a cover of a parameter object: it reconstructs an
+Descent concerns a cover of a test object: it reconstructs an
 anima of global families from coherent local families. We specify the
 test objects and covers first, then express this reconstruction as a limit.
 
-We use the category $\mathrm{DMfd}$ of derived manifolds as test objects.
-By the affine comparison, these are spectra of finitely presented animated
-smooth rings. An open embedding is an inclusion of an open subobject
-with its restricted structure sheaf. An \emph{open covering family}
-$\{T_i\to T\}$ is a family of open embeddings whose underlying images
-cover $|T|$. Smooth localization describes these embeddings algebraically.
-They are preserved by pullback.
+We use derived manifolds as test objects and write $\mathrm{DMfd}$ for
+their $\infty$-category. By the discussion following
+\Cref{def:Derived_Cinfty_Scheme}, these are the affine derived
+$\Cinfty$-schemes of finite presentation, that is, the spectra of
+finitely presented animated $\Cinfty$-rings. An \emph{open embedding}
+$T'\to T$ is the inclusion of an open subset of $|T|$ with the restricted
+structure sheaf; algebraically it is described by smooth localization.
+An open subobject of a derived manifold is again a derived manifold.
+For a derived manifold $\Spec A$, such an open is of the form
+$\Spec A[a^{-1}]$, since every open subset of $\R^n$ is the nonvanishing
+locus of a smooth function. An \emph{open covering family}
+$\{T_i\to T\}$ is a family of open embeddings whose images cover $|T|$.
+Open embeddings and open covering families are stable under pullback.
+
+\begin{convention}
+\label[convention]{conv:Stacks_Chapter_Terminology}
+In this chapter, a \emph{derived scheme} is a derived
+$\Cinfty$-scheme locally of finite presentation in the sense of
+\Cref{def:Derived_Cinfty_Scheme}; the affine derived schemes are exactly
+the objects of $\mathrm{DMfd}$. A \emph{stack} is a stack on $\mathrm{DMfd}$ in the
+sense of \Cref{def:Stack_Derived_Cinfty} below. For a prestack
+$\mathcal F$, an element of $\mathcal F(T)$ is called a \emph{family
+over~$T$}.
+\end{convention}
 
 \begin{definition}[Prestack]
 \label[definition]{def:Prestack_Derived_Cinfty}
-A derived smooth prestack is a functor
+A \emph{prestack} is a functor
 $\mathcal F\colon\mathrm{DMfd}^{\mathrm{op}}\to\An$.
 \end{definition}
 
 The anima $\mathcal F(T)$ contains the $T$-families, their isomorphisms,
 and higher identifications between those isomorphisms.
 Replacing it by its set of components loses automorphisms as well as
-higher coherence. Pullback along a map of parameter objects is part
+higher coherence. Pullback along a map of test objects is part
 of the functor.
 
-For an open cover, write $T_{i_0\cdots i_n}$ for the iterated intersection.
-Restriction gives a cosimplicial diagram with degree-$n$ term
+Fix an open covering family $\{T_i\to T\}_{i\in I}$. For each ordered
+tuple $(i_0,\ldots,i_n)\in I^{n+1}$, write
 \[
- C^n=\prod_{i_0,\ldots,i_n}\mathcal F(T_{i_0\cdots i_n}).
+ T_{i_0\cdots i_n}=T_{i_0}\times_T\cdots\times_T T_{i_n}.
 \]
-Its face maps restrict to smaller intersections, and its degeneracy maps
-repeat indices. The following formula for its limit avoids any
-need for an infinite disjoint union to be a test object.
+This is the intersection of the indicated opens with the restricted
+structure sheaf. For example, the two projections from $T_{ij}$ give
+two ways to restrict a collection of local families to the double
+overlaps. The augmented \v{C}ech nerve of the cover assembles its
+intersections and their maps to $T$ into one diagram. Mapping this
+diagram into $\mathcal F$ gives a cone over a cosimplicial anima,
+indexed by the category $\Delta$ of nonempty finite ordinals and
+order-preserving maps. Its degree-$n$ term is the product below.
 
 \begin{definition}[Stack]
 \label[definition]{def:Stack_Derived_Cinfty}
-A prestack is a stack if, for every open covering family, the natural map
+A prestack $\mathcal F$ is a \emph{stack} if, for every open covering
+family $\{T_i\to T\}_{i\in I}$, the restriction map
 \begin{equation}\label{eq:Stack_Descent_Parameter_Cech}
  \mathcal F(T)\longrightarrow
  \lim_{[n]\in\Delta}
- \prod_{i_0,\ldots,i_n}\mathcal F(T_{i_0\cdots i_n})
+ \prod_{(i_0,\ldots,i_n)\in I^{n+1}}\mathcal F(T_{i_0\cdots i_n})
 \end{equation}
 is an isomorphism of animae.
 \end{definition}
+
+The arrow in \eqref{eq:Stack_Descent_Parameter_Cech} sends a global
+family to its restrictions to the intersections $T_{i_0\cdots i_n}$,
+together with the canonical identifications between the various
+restrictions to smaller intersections.
+\Cref{sec:Additional_Cech_Details} constructs the cosimplicial diagram
+and this map precisely, as the augmented \v{C}ech nerve of the cover.
 
 For a set-valued functor this reduces to the usual sheaf condition:
 local elements must agree on double overlaps.
@@ -75,11 +127,13 @@ For groupoid-valued functors one instead chooses isomorphisms on double
 overlaps and imposes the cocycle condition on triple overlaps.
 For general animae the cocycle condition itself is supplied by a homotopy,
 followed by higher compatibility data. The limit in
-\Cref{eq:Stack_Descent_Parameter_Cech} packages all of it.
+\eqref{eq:Stack_Descent_Parameter_Cech} packages all of it.
 
-Descent applies to maps between families too. It says that the anima of
-global families is the anima of coherent local data, rather than merely
-that some global family exists.
+For example, suppose $x,y\in\mathcal F(T)$ and we want to identify
+them. A path between their images in the limit consists of local
+identifications $x|_{T_i}\simeq y|_{T_i}$ compatible on overlaps,
+with all higher compatibilities. Descent says that the anima of such
+data is the path anima from $x$ to $y$ in $\mathcal F(T)$.
 
 The resulting $\infty$-category of stacks is denoted
 $\mathrm{dSt}_{\Cinfty}^{\mathrm{fp}}$ here.
@@ -98,7 +152,7 @@ object. The universal property of a derived pullback answers this
 question for the zero-locus functor and gives a model for the later
 elliptic moduli problem.
 
-For a derived scheme $X$ locally of finite presentation, its functor
+For a derived scheme $X$, its functor
 of points is
 \[
  h_X(T)=\Hom(T,X).
@@ -113,20 +167,30 @@ including all homotopies between them; this is the mapping assertion of
 the maps on stalks are local can be checked on the same cover.
 This proves descent for the entire mapping anima and hence the
 subcanonical property of the open topology.
-Moreover, the functor $X\mapsto h_X$ is fully faithful.
+The functor $X\mapsto h_X$ is also fully faithful. For affine $X$
+this is Yoneda. For general $X$, a transformation $h_X\to h_Y$
+gives a map to $Y$ on each affine open of $X$ by Yoneda. Naturality
+supplies their compatible restrictions to the intersections. Descent
+for maps into $Y$ now identifies the anima of such transformations
+with $\Hom(X,Y)$
+\cite[Proposition~2.1.35(4)]{Steffens_Representability_Elliptic_Moduli}.
 
 \begin{definition}[Representability]
 \label[definition]{def:Represented_Stack}
-A stack $\mathcal F$ is represented by a derived $\Cinfty$-scheme $X$
-if there is a natural isomorphism
-$\mathcal F(T)\cong\Hom(T,X)$ for every test object $T$.
+A stack $\mathcal F$ is \emph{represented} by a derived $\Cinfty$-scheme
+$X$ if there is an isomorphism $h_X\iso\mathcal F$ of stacks. In
+particular, the resulting isomorphisms $\Hom(T,X)\simeq\mathcal F(T)$
+are natural in the test object $T$.
 \end{definition}
 
-The representing object is unique. If $X$ is not affine, the notation
-$\mathcal F(X)$ means the value obtained by descent from an affine
-open cover. Under representability, the identity of $X$ corresponds
-to a universal family in $\mathcal F(X)$. Every other family is its
-pullback, by the Yoneda lemma.
+Full faithfulness gives uniqueness of the representing object among
+derived schemes. For a derived scheme $X$ we
+write $\mathcal F(X)=\Hom(h_X,\mathcal F)$, also when $X$ is
+non-affine. One can compute this anima by descent on an affine open
+cover of $X$. A representing isomorphism $h_X\iso\mathcal F$ is thus
+itself a family over $X$. It is universal in the sense that its
+pullback along $u\colon T\to X$ is precisely the family corresponding
+to $u$ under $\Hom(T,X)\simeq\mathcal F(T)$.
 
 Let $f\colon U\to\R^r$ be smooth. Define
 \begin{equation}\label{eq:Derived_Zero_Locus_Prestack}
@@ -146,61 +210,47 @@ Thus it is represented by the derived zero locus computed in \Cref{chap:Derived_
 This is a simple instance of the representability question that will
 later arise for differential equations.
 
-For a section $s\colon U\to E$ of a vector bundle, the analogous formula
-is most conveniently written in the category over $U$:
+For a section $s\colon U\to E$ of a vector bundle, the analogous stack is
+the pullback
 \[
- \mathcal Z_s=U\times_E^{\mathrm{der}}U,
+ \mathcal Z_s=h_U\times_{h_E}h_U
 \]
-using $s$ and the zero section. Restricting to a trivializing open
-$U_i$ gives the Koszul presentation for its list of local components.
-These local representatives will form an open atlas of $\mathcal Z_s$.
+of $s$ and the zero section. It is represented by the derived zero locus
+$U\times_E^{\mathrm{der}}U$. Over an open $U_i\subseteq U$ with a
+trivialization $E|_{U_i}\cong U_i\times\R^r$, the section becomes a smooth
+map $s_i\colon U_i\to\R^r$, and
+$\mathcal Z_s\times_{h_U}h_{U_i}\simeq\mathcal Z_{s_i}$ has the Koszul
+model of \Cref{chap:Derived_Zero_Loci_And_Tangent_Complexes}.
+These local zero loci will form an open atlas of $\mathcal Z_s$.
 
-\section{Smooth stacks as derived stacks}
-
-A smooth stack is a sheaf of animae on ordinary manifolds with their
-open-cover topology. The inclusion of manifolds into derived manifolds
-induces a fully faithful functor
-\[
- j_!\colon\mathrm{Shv}(\mathrm{Mfd})
- \longrightarrow\mathrm{dSt}_{\Cinfty}^{\mathrm{fp}}.
-\]
-It is obtained by left Kan extension and sheafification, and sends
-an ordinary manifold to its derived functor of points.
-We can therefore regard smooth stacks as particular derived stacks.
-
-The derived values of $j_!\mathcal F$ are not obtained just by
-evaluating $\mathcal F$ on an underlying point set.
-They are determined by this extension construction.
-Conversely, restriction to ordinary test manifolds does not recover
-every derived stack. For example, a multiple point and an ordinary
-point have the same families over ordinary manifolds, while maps
-from infinitesimal derived tests distinguish them.
-
-There is also an essential distinction between the two categories of
-pullbacks. In smooth stacks,
-\[
- *\times_\R *=*
-\]
-for the two origins. After passing to derived stacks, the pullback
-is the derived self-intersection, with algebra $\R[\varepsilon]$,
-where $|\varepsilon|=1$ and $d\varepsilon=0$.
-Thus $j_!$ does not preserve arbitrary pullbacks.
-The pullbacks needed in the analytic argument will be compared using
-submersiveness in \Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge}.
+We stress that these examples are representable for a formal reason.
+Manifolds are test objects, and $\mathrm{DMfd}$ has finite limits, so
+$\mathcal Z_f$ and $\mathcal Z_s$ are represented by derived manifolds
+before any gluing takes place. We use them to watch the machinery of
+atlases in a case where the answer is known. For the elliptic moduli
+problems of \Cref{chap:Elliptic_Equations_Kuranishi_Models}, by contrast,
+no global finite-dimensional presentation is available, and
+representability must be established chart by chart.
+\Cref{ex:Line_Two_Origins} gives a simple stack for which gluing is
+genuinely needed.
 
 \section{Open atlases and local representability}
 
-We now turn from gluing families over a parameter cover to presenting
+We now turn from gluing families over a cover of a test object to presenting
 the moduli stack itself by charts. Here a \v{C}ech diagram reconstructs
 the stack as a colimit. Effectiveness expresses that the charts cover
 the functor; openness makes it possible to glue their representing
 objects into a derived scheme.
-We use two sheaf-theoretic inputs below, with references to Steffens
-and heuristic explanations, before giving the geometric proof of
-open local representability.
+The proof uses two inputs. The local lifting criterion detects
+effective epimorphisms on test objects. A gluing lemma constructs a
+derived scheme from charts and open overlaps, once all their coherences
+have been specified. The point of the proof is that a stack with an open
+atlas specifies these coherences for us.
 
 Let $p\colon\mathcal U\to\mathcal F$ be a morphism of stacks.
-Its \v{C}ech nerve is the simplicial stack
+Applying the augmented \v{C}ech nerve construction of
+\Cref{sec:Additional_Cech_Details} in the $\infty$-category of stacks
+gives a simplicial stack over $\mathcal F$ with terms
 \[
  \mathcal U_n=
  \underbrace{\mathcal U\times_{\mathcal F}\cdots
@@ -219,20 +269,565 @@ $|\mathcal U_\bullet|\to\mathcal F$ is an isomorphism.
 \begin{lemma}[Local lifting criterion]
 \label[lemma]{lem:Effective_Epimorphism_Local_Lifting}
 A map $p\colon\mathcal U\to\mathcal F$ is an effective epimorphism
-if and only if, for every test object $T$ and every $x\in\mathcal F(T)$,
+if and only if, for every derived manifold $T$ and every $x\in\mathcal F(T)$,
 there is an open cover $\{T_a\to T\}$ on which $x$ lifts to
 $\mathcal U$. A lift includes an identification of its image with
 $x|_{T_a}$.
 Effective epimorphisms are preserved by pullback.
 \end{lemma}
 
-We take this standard sheaf-theoretic criterion as an input.
-For the reduction to sheaves on underlying topological spaces, see
+This is a standard sheaf-theoretic criterion, whose proof we sketch in
+\Cref{sec:Local_Lifts_And_Sheaf_Gluing}. For the reduction to sheaves on
+underlying topological spaces, see
 \citet[Lemma~2.1.38]{Steffens_Representability_Elliptic_Moduli};
-the local lifting criterion is used explicitly in the proof of
-Corollary~2.1.49 there.
+the criterion is used explicitly in the proof of Corollary~2.1.49 there.
 
-\begin{proof}[Heuristic explanation]
+For a family $\{\mathcal U_i\to\mathcal F\}$, the criterion says
+that each family in $\mathcal F(T)$ locally lifts to one of the
+$\mathcal U_i$. A map into a coproduct of stacks locally lands in
+one summand, since that coproduct is the sheafification of the
+pointwise coproduct. This accounts for the possible refinement of
+the open cover of the test object when applying the criterion to a family.
+
+Starting with a globally defined stack supplies the overlap data.
+If $U_i\to\mathcal F$ and $U_j\to\mathcal F$ are two charts, their
+overlap is $U_i\times_{\mathcal F}U_j$. Its associativity and higher
+compatibilities come from pullbacks in the ambient $\infty$-category.
+The following condition makes these overlaps geometric open subsets.
+
+\begin{definition}[Open atlas]
+\label[definition]{def:Open_Atlas}
+A morphism $\mathcal V\to\mathcal F$ is an open inclusion if, for every
+derived manifold $T$ and map $h_T\to\mathcal F$, the pullback
+$h_T\times_{\mathcal F}\mathcal V$ is represented by an open subobject of $T$.
+An open atlas is a small family of open inclusions $h_{U_i}\to\mathcal F$
+from derived schemes such that
+$\coprod_i h_{U_i}\to\mathcal F$ is an effective epimorphism.
+\end{definition}
+
+Concretely, a family $x\colon h_T\to\mathcal F$ determines an open
+subobject $T_i(x)\subseteq T$ by
+\[
+ h_{T_i(x)}\simeq h_T\times_{\mathcal F}h_{U_i}.
+\]
+For any $R\to T$, a factorization through $T_i(x)$ amounts to a lift of
+$x|_R$ to the chart, including the identification of its image with
+$x|_R$. The local lifting criterion says exactly that these opens
+cover $T$. This is how a cover of the moduli stack induces an ordinary
+open cover of the underlying space of each test object.
+
+The word \emph{open} is crucial for representing a stack by a scheme.
+For example, a nontrivial finite group $G$ has a classifying stack $BG$.
+The map $*\to BG$ is an effective epimorphism, expressing local
+triviality of principal $G$-bundles. It is not an open inclusion:
+its pullback along itself is $G\to*$.
+The automorphisms of the trivial bundle also show that $BG$ cannot be
+represented by a derived scheme, whose real points form a set.
+More general notions of atlas lead to orbifolds and other geometric
+stacks, but an arbitrary effective epimorphism is insufficient for
+scheme representability.
+
+To glue charts we use the following lemma. Recall that a simplicial
+object $C_\bullet$ is a \emph{groupoid object} if its Segal maps
+$C_n\to C_1\times_{C_0}\cdots\times_{C_0}C_1$ are isomorphisms and the
+map $(d_2,d_1)\colon C_2\to C_1\times_{C_0}C_1$, which records two arrows
+with a common source, is an isomorphism as well; the latter condition
+expresses that arrows are invertible
+\cite[Definition~2.18]{Hoyois_Cnossen_Lectures_Topos}. The \v{C}ech
+nerve of a map is a groupoid object
+\cite[Lemma~2.26]{Hoyois_Cnossen_Lectures_Topos}.
+
+\begin{lemma}[Gluing derived schemes]
+\label[lemma]{lem:Gluing_Derived_Schemes}
+Let $I$ be a set, and let $C_\bullet$ be a groupoid object in derived
+schemes with a map to the \v{C}ech nerve
+$[n]\mapsto\coprod_{I^{n+1}}*$ of $\coprod_{i\in I}*\to*$. Write
+$U_{i_0\cdots i_n}$ for the fibre of $C_n$ over
+$(i_0,\ldots,i_n)\in I^{n+1}$, so that
+$C_n=\coprod_{(i_0,\ldots,i_n)}U_{i_0\cdots i_n}$. Suppose that every
+component $U_{i_0\cdots i_n}\to U_{j_0\cdots j_m}$ of a simplicial
+structure map is an open embedding. Then there is a derived scheme $X$
+with an open cover $\{U_i\to X\}_{i\in I}$ whose \v{C}ech nerve is
+$C_\bullet$, and $h_X\simeq|h_{C_\bullet}|$ in stacks.
+\end{lemma}
+
+This is a special case of
+\citet[Propositions~2.1.18(2), 2.1.31(5), and~2.1.35(2)]{Steffens_Representability_Elliptic_Moduli}.
+The injectivity hypothesis concerns the map of topological spaces
+$|C_1|\to |C_0|\times |C_0|$. The two chart indices determine the
+summand $|U_{ij}|$, and on this summand the first projection is injective.
+Remark~2.1.19 there explains the special case relevant to us.
+Concretely, $X$ is obtained by gluing the $U_i$ along the open subsets
+$|U_{ij}|\subseteq|U_i|$, and the higher terms $C_2,C_3,\ldots$ supply
+the cocycle condition and its higher coherences. We sketch the
+construction in \Cref{sec:Local_Lifts_And_Sheaf_Gluing}.
+
+
+\begin{theorem}[Open local representability]
+\label[theorem]{thm:Open_Local_Representability}
+A stack is represented by a derived $\Cinfty$-scheme
+locally of finite presentation if and only if it has an open atlas
+by affine derived schemes of finite presentation.
+One may equivalently allow derived schemes locally of finite presentation
+as the atlas objects.
+\end{theorem}
+
+This is \citet[Proposition~2.1.48]{Steffens_Representability_Elliptic_Moduli}.
+
+\begin{proof}
+Suppose first that $\mathcal F=h_X$, and choose an affine open cover
+$\{U_i\to X\}$. Each $h_{U_i}\to h_X$ is an open inclusion:
+its pullback along $T\to X$ is the open subscheme $T\times_X U_i$.
+These pullbacks cover $T$. Refining them by affine opens gives local
+lifts of every $T\to X$ to the charts. By
+\Cref{lem:Effective_Epimorphism_Local_Lifting}, the chart family is
+an effective epimorphism and hence an open atlas.
+
+Conversely, let $p_i\colon h_{U_i}\to\mathcal F$, for $i\in I$, be an
+affine open atlas, and write
+$p\colon\mathcal U=\coprod_i h_{U_i}\to\mathcal F$. Since $p$ is an
+effective epimorphism, $\mathcal F\simeq|\check C(p)_\bullet|$. We show
+that the \v{C}ech nerve $\check C(p)_\bullet$ is the functor of points
+of a simplicial derived scheme to which
+\Cref{lem:Gluing_Derived_Schemes} applies.
+
+We first compute its terms. Pullbacks of stacks distribute over
+coproducts, since locally on a test object a map into a coproduct
+chooses a summand. Hence
+\[
+ \check C(p)_n\simeq\coprod_{(i_0,\ldots,i_n)\in I^{n+1}}
+ h_{U_{i_0}}\times_{\mathcal F}\cdots\times_{\mathcal F}h_{U_{i_n}}.
+\]
+This decomposition is compatible with the simplicial structure: it is
+the decomposition into fibres of the map of \v{C}ech nerves induced by
+the map from $p$ to $\coprod_{i\in I}*\to*$. For $n=1$, the summand is
+represented by an open subscheme $U_{i_0i_1}\subseteq U_{i_0}$, by the
+definition of an open inclusion applied to $p_{i_1}$ and the family
+$p_{i_0}$. In general, the summand is the iterated pullback of the
+$h_{U_{i_0i_k}}$ over $h_{U_{i_0}}$ for $k=1,\ldots,n$. Since functors
+of points preserve pullbacks, it is represented by the intersection
+$U_{i_0\cdots i_n}=U_{i_0i_1}\cap\cdots\cap U_{i_0i_n}$. Functors of points
+also preserve coproducts
+\cite[Proposition~2.1.35(3)]{Steffens_Representability_Elliptic_Moduli},
+so $\check C(p)_n\simeq h_{C_n}$ for
+$C_n=\coprod_{(i_0,\ldots,i_n)}U_{i_0\cdots i_n}$.
+
+Next we consider the structure maps. An open inclusion is a
+monomorphism: on each test object its fibres are either empty or
+contractible, since a factorization through an open subscheme is unique
+when it exists. Consequently, a component of a degeneracy map, which
+repeats an index, is an isomorphism. For example, the diagonal
+$h_{U_i}\to h_{U_i}\times_{\mathcal F}h_{U_i}$ is an isomorphism.
+A component of a face map, which omits an index, is a pullback of one
+of the $p_i$, and hence an open inclusion. Every component of a
+structure map is therefore an open inclusion between representable
+stacks. Such a map $h_V\to h_W$ comes from an open embedding: its
+pullback along the identity of $h_W$ is $h_{W'}$ for an open subscheme
+$W'\subseteq W$, and full faithfulness identifies $V$ with $W'$ over~$W$.
+
+Now we lift. The functor of points is fully faithful on derived schemes,
+so it is an equivalence onto its essential image. Every term of
+$\check C(p)_\bullet$ lies in this image. Hence the entire simplicial
+stack, with all its coherences, lifts uniquely to a simplicial derived
+scheme $C_\bullet$ with $h_{C_\bullet}\simeq\check C(p)_\bullet$, and
+the same holds for its map to the \v{C}ech nerve of $\coprod_i*\to*$.
+The pullback squares expressing that $\check C(p)_\bullet$ is a groupoid
+object have all their vertices in the essential image, and a fully
+faithful functor reflects limits. Thus $C_\bullet$ is a groupoid object
+in derived schemes, and by the previous paragraph it satisfies the
+hypotheses of \Cref{lem:Gluing_Derived_Schemes}.
+
+This step solves the coherence problem of
+\Cref{sec:Local_Zero_Loci_Not_Enough}. The cocycle condition on triple
+overlaps and all higher compatibilities between the charts are part of
+the simplicial structure of $\check C(p)_\bullet$. The map from the
+charts to $\mathcal F$ supplies their \v{C}ech nerve. The atlas condition
+identifies its realization with $\mathcal F$.
+
+\Cref{lem:Gluing_Derived_Schemes} now gives a derived scheme $X$ with an
+open cover by the $U_i$, and
+\[
+ h_X\simeq|h_{C_\bullet}|\simeq|\check C(p)_\bullet|\simeq\mathcal F.
+\]
+This is an isomorphism of stacks, and thus identifies the animae of
+families on every test object.
+
+Finally, suppose the atlas objects are only locally of finite
+presentation. Choose an affine open cover of each $U_i$.
+The composites of these open inclusions with $p_i$ are open.
+A family in $\mathcal F(T)$ first locally lifts to some $U_i$,
+and then, after pulling back its affine cover, locally lifts to
+one of these affine charts. The local lifting criterion shows that
+the refined family is again an effective epimorphism. The affine
+case just proved applies.
+\end{proof}
+
+\begin{example}[The line with two origins]
+\label[example]{ex:Line_Two_Origins}
+Let $V=\R\setminus\{0\}$, and let $\mathcal F=h_\R\sqcup_{h_V}h_\R$ be
+the pushout of stacks along two copies of the inclusion $V\subseteq\R$.
+The two maps $h_\R\to\mathcal F$ form an open atlas, with overlap
+$h_\R\times_{\mathcal F}h_\R\simeq h_V$; this is verified in the
+exercises at the end of the chapter.
+\Cref{thm:Open_Local_Representability} represents $\mathcal F$ by the
+derived scheme obtained by gluing two copies of $\R$ along $V$: the line
+with two origins. Its underlying space is not Hausdorff. Hence it is not
+affine, since the underlying space of a test object is a closed subset of
+some $\R^n$, and it is not a derived manifold. This is why no global
+Hausdorff or second-countability condition is imposed on a derived
+scheme: imposing either would require an additional hypothesis on the
+atlas.
+\end{example}
+
+In the bundle-section example, the charts are the zero loci over a
+trivializing cover of $U$. Their overlaps are the zero loci over the
+corresponding intersections. The transition maps of the bundle identify
+the Koszul models, and the theorem recovers the global derived zero locus.
+
+For instance, given a family of zeros over $T$ with underlying map
+$u\colon T\to U$, the part of $T$ on which it belongs to the chart
+over $U_i$ is $T\times_U U_i$. These opens cover $T$, independently
+of the chosen nullhomotopy of the section. Quasi-smoothness can also
+be read off from the charts, since the cotangent complex restricts
+to the cotangent complex of each open subscheme.
+
+The local representability criterion does not make the construction of
+a chart automatic.
+One must identify the entire derived functor on an open neighbourhood,
+including its values on derived test objects. An identification of real
+solution sets, or even of their tangent complexes, proves less.
+The later Kuranishi argument is designed to establish precisely
+this functorial identification.
+
+This is how the theorem is used in
+\Cref{chap:Elliptic_Equations_Kuranishi_Models}. For each real solution
+$t$ of an elliptic equation, one constructs an open substack
+$\Sol(\mathcal E)_t$ of the solution stack and checks that these
+substacks jointly form an effective epimorphism. The theorem then reduces
+representability of the solution stack to representability of each
+$\Sol(\mathcal E)_t$, which occupies the following two chapters.
+
+\section{Relative representability and base change}
+
+Moduli problems often have a parameter stack $S$.
+For example, the metric, the domain manifold, or a coefficient in an
+equation may vary. The correct representability statement is then
+relative to $S$.
+
+\begin{definition}
+\label[definition]{def:Relative_Representability}
+A map $\mathcal F\to S$ is representable by derived $\Cinfty$-schemes
+locally of finite presentation if, for each derived manifold $T$ and each
+map $h_T\to S$, the pullback $\mathcal F\times_S h_T$ is represented by such
+a scheme. It is relatively quasi-smooth if these representing
+morphisms to $T$ are quasi-smooth.
+\end{definition}
+
+For example, let $S$ be a manifold and let
+$f\colon U\times S\to\R^r$ be a smooth family of equations on $U$.
+Projection makes the stack $\mathcal Z_f$ of
+\eqref{eq:Derived_Zero_Locus_Prestack} into a stack over $h_S$. For a
+derived manifold $T$ with a map $\sigma\colon T\to S$, the pullback
+$\mathcal Z_f\times_{h_S}h_T$ is the zero-locus stack of the
+$T$-parametrized family
+$f\circ(\mathrm{id}_U\times\sigma)\colon U\times T\to\R^r$. It is
+therefore represented by a derived manifold over $T$, which is
+quasi-smooth over $T$. Over a real point $s\in S$ it is the derived zero
+locus of the single equation $f(-,s)$. Here the total stack
+$\mathcal Z_f$ is itself representable. The relative notion becomes
+essential when the base is a genuine stack, as in
+\Cref{ex:Finite_Quotient_Relative} below.
+
+\begin{corollary}[Locality on the base]
+\label[corollary]{cor:Local_Representability_Relative}
+Representability by derived schemes locally of finite presentation
+can be checked after an effective epimorphic covering family of the base.
+The same holds with the additional requirement of relative
+quasi-smoothness.
+\end{corollary}
+
+The maps $S_i\to S$ in this criterion can have many lifts of the same
+parameter. What we need in order to glue schemes is an open cover
+of the derived manifold $T$. Effectiveness produces just such a cover on which
+we can choose lifts.
+
+\begin{proof}
+Let $\{S_i\to S\}$ be a family whose coproduct is an effective
+epimorphism, and suppose each
+$\mathcal F_i=\mathcal F\times_S S_i\to S_i$ is representable.
+Fix a derived manifold $T$ with a map $h_T\to S$. By
+\Cref{lem:Effective_Epimorphism_Local_Lifting}, there is an open
+cover $\{T_a\to T\}$ and, for each $a$, a lift
+$T_a\to S_{i(a)}$ with a specified identification over $S$.
+Each $T_a$ is again a derived manifold.
+The pullback identity
+\[
+ \mathcal F\times_S T_a
+ \cong\mathcal F_{i(a)}\times_{S_{i(a)}}T_a
+\]
+and the assumed relative representability give a representing
+scheme $X_a$ locally of finite presentation.
+
+Put $\mathcal G=\mathcal F\times_S T$.
+Each $h_{X_a}\to\mathcal G$ is the pullback of the open inclusion
+$T_a\to T$, so is open. Their coproduct is an effective epimorphism:
+for any test map $R\to\mathcal G$, the opens $R\times_T T_a$
+cover $R$ and give local lifts to the $h_{X_a}$.
+\Cref{thm:Open_Local_Representability}, including its non-affine
+atlas formulation, therefore represents $\mathcal G$ by a scheme
+$X$ locally of finite presentation. This works for every $T\to S$
+and proves the required relative representability.
+
+If every $\mathcal F_i\to S_i$ is relatively quasi-smooth, then
+$X_a\to T_a$ is quasi-smooth by relative quasi-smoothness applied to
+the map $T_a\to S_{i(a)}$.
+Moreover $X_a=X\times_T T_a$. Base change for relative cotangent
+complexes identifies $\mathbb L_{X/T}|_{X_a}$ with
+$\mathbb L_{X_a/T_a}$. Perfection and Tor-amplitude in $[0,1]$
+can be checked on this open cover of $X$, so $X\to T$ is
+quasi-smooth. Conversely, representability and relative
+quasi-smoothness are preserved by base change, so the asserted
+conditions are necessary as well.
+\end{proof}
+
+The source formulation is
+\cite[Definition~2.1.42 and Corollary~2.1.49]
+{Steffens_Representability_Elliptic_Moduli}.
+The addendum on relative quasi-smoothness is not part of Corollary~2.1.49
+there; it follows from the base change argument in the last paragraph of
+the proof. The corollary permits a proof over a smooth stack to be
+carried out on manifold charts of the base, provided the moduli
+construction is compatible with pullback.
+
+\begin{example}[Quotients by finite groups]
+\label[example]{ex:Finite_Quotient_Relative}
+Let a finite group $G$ act on $U$ such that $f\colon U\to\R^r$ is
+invariant, $f(gu)=f(u)$. Then $G$ acts on $\mathcal Z_f$, and we can
+form the quotient stack $[\mathcal Z_f/G]$: the geometric realization in
+stacks of the action groupoid with terms $G^n\times\mathcal Z_f$. It
+maps to $BG=[*/G]$. Since groupoid objects in stacks are effective, the
+pullback of $[\mathcal Z_f/G]\to BG$ along $*\to BG$ is $\mathcal Z_f$,
+which is represented by a quasi-smooth derived manifold. As $*\to BG$ is
+an effective epimorphism, \Cref{cor:Local_Representability_Relative}
+shows that $[\mathcal Z_f/G]\to BG$ is representable and relatively
+quasi-smooth. The total stack is not representable in general. For the
+trivial action, $[\mathcal Z_f/G]\simeq\mathcal Z_f\times BG$, and every
+real point has automorphism group $G$, whereas the real points of a
+derived scheme form a set. Representability is a property of the map:
+it holds once the parameter in $BG$, including its identification with
+a chosen torsor, is fixed.
+\end{example}
+
+\section{Smooth stacks as derived stacks}
+\label[section]{sec:Smooth_Stacks_As_Derived_Stacks}
+
+The analytic part of the representability proof regards Fr\'echet
+spaces of sections as smooth stacks, which are only defined on ordinary
+manifolds (\Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge}).
+We therefore compare smooth stacks with the stacks of this chapter.
+
+A smooth stack is a sheaf of animae on ordinary manifolds with their
+open-cover topology. Write $j\colon\mathrm{Mfd}\hookrightarrow
+\mathrm{DMfd}$ for the inclusion. Restriction along $j$ takes a derived
+stack $\mathcal G$ to the smooth stack $M\mapsto\mathcal G(jM)$,
+since an open cover of $M$ gives an open cover of $jM$ with the same
+intersections. Its left adjoint
+\[
+ j_!\colon\mathrm{Shv}(\mathrm{Mfd})
+ \longrightarrow\mathrm{dSt}_{\Cinfty}^{\mathrm{fp}}
+\]
+extends the families of a smooth stack $\mathcal F$ to all test objects.
+To see how, fix a derived manifold $T$. A map $u\colon T\to jM$ and a
+family $x\in\mathcal F(M)$ should give a family over $T$ by pullback.
+The left Kan extension along $j^{\mathrm{op}}$ assembles these families
+into the anima
+\[
+ (\operatorname{Lan}_{j^{\mathrm{op}}}\mathcal F)(T)
+ \simeq \operatorname*{colim}_{(T\to jM)\in(T\downarrow j)^{\mathrm{op}}}
+ \mathcal F(M).
+\]
+Here $(T\downarrow j)$ is the $\infty$-category of maps from $T$ to
+ordinary manifolds. For a smooth map $g\colon M\to N$, a triangle
+identifying $v\colon T\to jN$ with $j(g)\circ u$ gives the transition
+map $g^*\colon\mathcal F(N)\to\mathcal F(M)$. Thus pulling a family
+back along $v$ agrees coherently with first pulling it back along $g$
+and then along $u$. Sheafifying this presheaf for open covers of
+test objects gives $j_!\mathcal F$.
+
+The functor $j_!$ is fully faithful
+\cite[Proposition~2.1.40]{Steffens_Representability_Elliptic_Moduli}.
+We sketch the argument. First, $j_!h_M\simeq h_{jM}$, since by
+adjunction and Yoneda maps from either stack to a stack $\mathcal G$
+form the anima $\mathcal G(jM)$. As $j$ is fully faithful,
+$j^*h_{jM}\simeq h_M$, so the unit $\mathcal F\to j^*j_!\mathcal F$ is
+an isomorphism for representable $\mathcal F$. Second, $j^*$ preserves
+colimits of stacks, not merely limits. This is the nontrivial input.
+It holds because colimits of stacks can be detected after restriction
+to the open subsets of each test object, and the open subsets of an
+ordinary manifold are again ordinary manifolds
+\cite[Lemma~2.1.38 and Proposition~2.1.40(2)]{Steffens_Representability_Elliptic_Moduli}.
+Since $j_!$ preserves colimits as a left adjoint, the smooth stacks on
+which the unit is an isomorphism are closed under colimits. Every smooth
+stack is a colimit of representables, so the unit is always an
+isomorphism. This is the full faithfulness of $j_!$.
+In particular, $(j_!h_M)(T)\simeq\Hom_{\mathrm{DMfd}}(T,jM)$.
+
+Restriction to ordinary manifolds forgets information, even for derived
+schemes with a discrete ring of functions. Let
+$D=\Spec\R[x]/(x^2)$ be the double point. A map $jM\to D$ from an
+ordinary manifold is a smooth function $g$ on $M$ with $g^2=0$, hence
+$g=0$. Thus the inclusion $*\to D$ of the reduced point becomes an
+isomorphism $j^*h_*\iso j^*h_D$, although it is not an isomorphism:
+the identity of $D$ is a family over $D$ that does not factor through
+the point. In particular, $j^*$ is not conservative, and a stack is not
+determined by its values on ordinary manifolds.
+
+There is a related issue with pullbacks. In smooth stacks,
+\[
+ *\times_\R *=*
+\]
+for the two origins. After passing to derived stacks, the pullback
+is the derived self-intersection, with algebra $\R[\varepsilon]$,
+where $|\varepsilon|=1$ and $d\varepsilon=0$.
+Thus $j_!$ does not preserve arbitrary pullbacks.
+Both the derived self-intersection and the ordinary point restrict to
+the point stack on ordinary manifolds, since restriction preserves limits.
+The pullbacks needed in the analytic argument will be compared using
+submersiveness in \Cref{chap:Elliptic_Representability_Smooth_Derived_Bridge}.
+
+\section{Additional details on descent and gluing}
+\label[section]{sec:Additional_Descent_Gluing}
+
+We give the construction behind \Cref{def:Stack_Derived_Cinfty}, then
+sketch the proofs of the two inputs to
+\Cref{thm:Open_Local_Representability}: the local lifting criterion
+and the gluing lemma for derived schemes.
+
+\subsection{The \v{C}ech nerve of an open cover}
+\label[subsection]{sec:Additional_Cech_Details}
+
+We first construct the augmented nerve of a single arrow
+$p\colon U\to X$ in an $\infty$-category $C$ with pullbacks, following
+\cite[Construction~2.24]{Hoyois_Cnossen_Lectures_Topos}.
+Write $\Delta_+$ for the category obtained from $\Delta$ by adjoining
+the empty ordinal $[-1]$ as an initial object. In $\Delta_+^{\mathrm{op}}$
+the full subcategory $K$ on $[0]$ and $[-1]$ consists of a single
+nonidentity arrow $[0]\to[-1]$. Thus $p$ itself is a functor $K\to C$.
+For the inclusion $j\colon K\hookrightarrow\Delta_+^{\mathrm{op}}$,
+define the \emph{augmented \v{C}ech nerve} by
+\[
+ U^+_\bullet=\operatorname{Ran}_j(p)
+ \quad\in\Fun(\Delta_+^{\mathrm{op}},C).
+\]
+Here $\operatorname{Ran}_j$ is right adjoint to restriction along $j$.
+In particular, for every augmented simplicial object $A$ there is a
+natural isomorphism of animae
+\[
+ \Hom_{\Fun(\Delta_+^{\mathrm{op}},C)}(A,U^+_\bullet)
+ \simeq \Hom_{\Fun(K,C)}(j^*A,p).
+\]
+Since $j$ is fully faithful, the counit identifies $j^*U^+_\bullet$
+with $p$. This universal property determines the entire functor,
+including its augmentation, uniquely with that identification.
+
+To see that the extension exists and compute its terms, fix $n\geq0$.
+The pointwise formula takes the limit over the comma category
+$([n]\downarrow j)$. Its objects are the maps $[0]\to[n]$ and
+$[-1]\to[n]$ in $\Delta_+$. The first are the vertices $0,\ldots,n$,
+and the second is the unique empty map. There is one nonidentity
+arrow from each vertex to the empty map in the comma category.
+Thus the diagram whose limit we take consists of $n+1$ copies of
+$p\colon U\to X$ with common target. Pullbacks in $C$ give its limit
+\[
+ U_n^+\simeq\underbrace{U\times_X\cdots\times_X U}_{n+1\text{ factors}}.
+\]
+In degree $-1$ the comma category has only the empty map and the
+limit is $X$. For $\alpha\colon[m]\to[n]$ in $\Delta$, composition
+with $\alpha$ sends the vertex $r$ of $[m]$ to the vertex $\alpha(r)$
+of $[n]$ and the empty map to the empty map. Restriction of limit
+cones along this functor $([m]\downarrow j)\to([n]\downarrow j)$
+gives $U_n^+\to U_m^+$. This computes the action of the right Kan
+extension on $\alpha$. In particular, omitting an index gives a
+projection and repeating an index gives a diagonal. For instance,
+in $\Delta_+^{\mathrm{op}}$ the unique arrow $[1]\to[-1]$ factors through
+each of the two arrows $[1]\to[0]$. Applying $U^+_\bullet$ to these
+two triangles identifies $p\circ\mathrm{pr}_0$ and
+$p\circ\mathrm{pr}_1$ with the same augmentation $U_1^+\to X$.
+Applying the same functor to longer strings of arrows gives the
+higher compatibilities for these triangles.
+
+Now take $C=\Fun(\mathrm{DMfd}^{\mathrm{op}},\An)$. For the cover
+$\{T_i\to T\}_{i\in I}$ of \Cref{def:Stack_Derived_Cinfty}, use the arrow
+\[
+ p\colon U=\coprod_{i\in I}h_{T_i}\longrightarrow h_T .
+\]
+This coproduct exists in presheaves for every index set $I$.
+Write $i\colon\Delta^{\mathrm{op}}\hookrightarrow\Delta_+^{\mathrm{op}}$
+for the inclusion and $U_\bullet=i^*U^+_\bullet$ for the underlying
+simplicial presheaf. Pullbacks distribute over coproducts in animae,
+presheaf limits and colimits are computed pointwise, and Yoneda
+preserves pullbacks. The pointwise formula above therefore gives
+\[
+ U_n\simeq \coprod_{(i_0,\ldots,i_n)\in I^{n+1}}h_{T_{i_0\cdots i_n}}.
+\]
+
+For any prestack $\mathcal F$, the composite
+\[
+ \Delta_+\xrightarrow{(U^+_\bullet)^{\mathrm{op}}}C^{\mathrm{op}}
+ \xrightarrow{\Hom_C(-,\mathcal F)}\An
+\]
+is an augmented cosimplicial anima. Its value at $[-1]$ is
+$\Hom_C(h_T,\mathcal F)\simeq\mathcal F(T)$. In degree $n\geq0$,
+mapping out of the coproduct and applying Yoneda gives precisely
+the product $C^n$ in \eqref{eq:Stack_Descent_Parameter_Cech}.
+For $\alpha\colon[m]\to[n]$, the $(i_0,\ldots,i_n)$-component of
+$C^m\to C^n$ takes the $(i_{\alpha(0)},\ldots,i_{\alpha(m)})$-component
+and restricts it along
+\[
+ T_{i_0\cdots i_n}\longrightarrow T_{i_{\alpha(0)}\cdots i_{\alpha(m)}}.
+\]
+In particular, the two maps $C^0\rightrightarrows C^1$ send a family
+$(x_i)$ to $(x_i|_{T_{ij}})_{i,j}$ and $(x_j|_{T_{ij}})_{i,j}$.
+A point of the limit supplies paths between these restrictions. On
+$T_{ijk}$ it supplies a homotopy from the composite of the paths for
+$(i,j)$ and $(j,k)$ to the path for $(i,k)$, all restricted to that
+triple overlap. The higher terms supply the compatibilities among
+these homotopies.
+
+Since $[-1]$ is initial in $\Delta_+$, the augmented cosimplicial
+anima is a cone on $C^\bullet$ with vertex $\mathcal F(T)$. We can
+identify its map to the limit explicitly. For the adjunction
+$\operatorname{Lan}_i\dashv i^*$ in presheaf-valued diagrams, evaluate
+the counit $\operatorname{Lan}_i i^*U^+_\bullet\to U^+_\bullet$ at
+$[-1]$. Every $[n]$ admits a unique map to $[-1]$ in
+$\Delta_+^{\mathrm{op}}$, so $(i\downarrow[-1])\cong\Delta^{\mathrm{op}}$.
+The pointwise left Kan extension at $[-1]$ is consequently the
+realization $|U_\bullet|$, and the counit there is a map
+$|U_\bullet|\to h_T$. Precomposing with this component gives
+\[
+ \mathcal F(T)\simeq\Hom(h_T,\mathcal F)
+ \longrightarrow\Hom(|U_\bullet|,\mathcal F)
+ \simeq\lim_{[n]\in\Delta}\Hom(U_n,\mathcal F).
+\]
+The last isomorphism takes a map out of the realization to its cocone
+of restrictions. Applied to a global family $x\colon h_T\to\mathcal F$,
+it gives the augmentation cocone followed by $x$. This identifies
+the displayed arrow with the restriction map of
+\Cref{def:Stack_Derived_Cinfty}. Given a coherent local family, the fibre of this
+map over it is the anima of global families equipped with an
+identification with the prescribed descent datum. The stack condition
+says that each such fibre is contractible.
+
+\subsection{Local lifts and gluing}
+\label[subsection]{sec:Local_Lifts_And_Sheaf_Gluing}
+
+Two uses of the \v{C}ech nerve enter the atlas argument. Realizing
+the nerve of a map detects the families in its image after passage
+to an open cover. Taking a limit over the intersections of the
+charts glues their structure sheaves, and with it the charts
+themselves.
+
+\begin{proof}[Explanation of \Cref{lem:Effective_Epimorphism_Local_Lifting}]
 For a map of animae $A\to B$, the realization of its \v{C}ech nerve
 is the union of the components of $B$ met by $A$. Indeed, its fibre
 over $b\in B$ is the realization of the \v{C}ech nerve of
@@ -253,53 +848,17 @@ This substack is all of $\mathcal F$ precisely when
 the stated local lifts exist. Since realization in stacks is
 presheaf realization followed by sheafification, this proves the criterion.
 
-If $\mathcal G\to\mathcal F$ is any map, a family in $\mathcal G(T)$
-can locally be lifted to $\mathcal U$ together with an identification
-in $\mathcal F(T)$. These are exactly the data of a local lift to
-$\mathcal U\times_{\mathcal F}\mathcal G$. Thus the criterion also
+Suppose $p$ is effective and let $\mathcal G\to\mathcal F$ be any map.
+For $y\in\mathcal G(T)$, choose local lifts of its image in
+$\mathcal F(T)$ to $\mathcal U$. Each lift, together with the given
+identification over the open on which it is defined, pairs with the
+restriction of $y$ to give a lift to $\mathcal U\times_{\mathcal F}\mathcal G$. Thus the criterion also
 proves stability under pullback.
 \end{proof}
 
-For a family $\{\mathcal U_i\to\mathcal F\}$, the criterion says
-that each family in $\mathcal F(T)$ locally lifts to one of the
-$\mathcal U_i$. A map into a coproduct of stacks locally lands in
-one summand, since that coproduct is the sheafification of the
-pointwise coproduct. This accounts for the possible refinement of
-the parameter cover when applying the criterion to a family.
-
-Starting with a globally defined stack supplies the overlap data.
-If $U_i\to\mathcal F$ and $U_j\to\mathcal F$ are two charts, their
-overlap is $U_i\times_{\mathcal F}U_j$. Its associativity and higher
-compatibilities come from pullbacks in the ambient $\infty$-category.
-The following condition makes these overlaps geometric open subsets.
-
-\begin{definition}[Open atlas]
-\label[definition]{def:Open_Atlas}
-A morphism $\mathcal V\to\mathcal F$ is an open inclusion if every
-pullback along $T\to\mathcal F$ is represented by an open subobject of $T$.
-An open atlas is a small family of open inclusions $h_{U_i}\to\mathcal F$
-from derived schemes such that
-$\coprod_i h_{U_i}\to\mathcal F$ is an effective epimorphism.
-\end{definition}
-
-The coproduct here is in stacks. Each map is a condition on families:
-after choosing a family over $T$, belonging to the indicated chart
-cuts out an open subset of $T$.
-
-The word \emph{open} is crucial for representing a stack by a scheme.
-For example, a nontrivial finite group $G$ has a classifying stack $BG$.
-The map $*\to BG$ is an effective epimorphism, expressing local
-triviality of principal $G$-bundles. It is not an open inclusion:
-its pullback along itself is $G\to*$.
-The automorphisms of the trivial bundle also show that $BG$ cannot be
-represented by a derived scheme, whose real points form a set.
-More general notions of atlas lead to orbifolds and other geometric
-stacks, but an arbitrary effective epimorphism is insufficient for
-scheme representability.
-
-To reconstruct a derived scheme, we must glue both its topology and
-its animated structure sheaf. Our second input concerns this sheaf
-construction. In the following lemma, coherent identifications mean
+To glue derived schemes, we must glue both their topology and their
+animated structure sheaves. For the sheaves we use the following
+descent statement. In it, coherent identifications mean
 isomorphisms on double intersections, homotopies between their
 composites on triple intersections, and all higher compatibilities.
 
@@ -314,24 +873,64 @@ It is unique, and maps between such sheaves are likewise determined
 by their coherent restrictions to the cover.
 \end{lemma}
 
-We also take this descent statement as an input. It is the sheaf
-gluing mechanism in the proof of
+It is the sheaf gluing mechanism in the proof of
 \citet[Proposition~2.1.18]{Steffens_Representability_Elliptic_Moduli};
 Remark~2.1.19(c) there describes the structure sheaf by the limit
-formula explained below.
+formula in \eqref{eq:Glued_Animated_Structure_Sheaf}.
 
-\begin{proof}[Heuristic explanation]
+More precisely, write $\mathrm{Shv}_{\mathrm{rings}}(V)$ for the
+$\infty$-category of sheaves of animated $\Cinfty$-rings on $V$.
+The lemma says that restriction induces an equivalence of
+$\infty$-categories
+\[
+ \mathrm{Shv}_{\mathrm{rings}}(Y)\longrightarrow
+ \lim_{[n]\in\Delta}\prod_{i_0,\ldots,i_n}
+ \mathrm{Shv}_{\mathrm{rings}}(V_{i_0}\cap\cdots\cap V_{i_n}).
+\]
+An object of this limit is what we mean by a coherent gluing datum.
+The assertion about maps is the full faithfulness of restriction.
+
+\begin{proof}[Explanation of \Cref{lem:Gluing_Animated_Structure_Sheaves}]
 Write $V_{i_0\cdots i_n}=V_{i_0}\cap\cdots\cap V_{i_n}$.
-For an open subset $W\subseteq Y$, define
+Let $W\subseteq Y$ be open. Restrict the given gluing datum to $W$.
+By the definition of a coherent gluing datum, this gives an object of the
+limit of the cosimplicial $\infty$-category
+\[
+ D_W^n=\prod_{i_0,\ldots,i_n}
+ \mathrm{Shv}_{\mathrm{rings}}(W\cap V_{i_0\cdots i_n}).
+\]
+Write $\mathcal A_W^n$ for its degree-$n$ component. We explain how
+to take sections of this datum coherently. For any animated smooth
+ring $B$, the constant sheaf with value $B$ on each intersection
+defines another object of the same limit, with components
+$\underline B_W^n$. Indeed, these sheaves are pulled back from the
+constant sheaf on $Y$. Taking the Hom anima between the two objects
+degreewise gives a functor
+\[
+ [n]\longmapsto\Hom_{D_W^n}(\underline B_W^n,\mathcal A_W^n).
+\]
+Here we use functoriality of the Hom anima in a category with a
+specified pair of objects. The two objects of the limit supply such
+a pair over the whole diagram $\Delta\to\Cat$. On the
+$(i_0,\ldots,i_n)$-factor, the inclusion of the first vertex
+$[0]\to[n]$ identifies $\mathcal A_W^n$ with the restriction of
+$\mathcal A_{i_0}$. By the adjunction between constant sheaves and
+global sections, the displayed functor is therefore represented in
+the variable $B$, in degree $n$, by the product of rings below.
+Since Yoneda is fully faithful, the diagram of these representable
+functors determines a cosimplicial animated smooth ring. Its limit is
 \begin{equation}\label{eq:Glued_Animated_Structure_Sheaf}
  \mathcal A(W)=
  \lim_{[n]\in\Delta}
  \prod_{i_0,\ldots,i_n}
  \mathcal A_{i_0}(W\cap V_{i_0\cdots i_n}).
 \end{equation}
-The transition identifications supply the maps which change the first
-index, and their coherences make this a cosimplicial diagram.
-All limits are taken in the $\infty$-category of animated smooth rings.
+For example, the two maps to the $(i,j)$-factor must both take values
+in $\mathcal A_i(W\cap V_i\cap V_j)$. A section of $\mathcal A_i$
+can be restricted directly. For a section of $\mathcal A_j$ we first
+restrict to the same open and then use the given identification
+with $\mathcal A_i$ there. On triple overlaps the homotopies in the
+gluing datum compare the two ways of changing the first index.
 Each functor of $W$ occurring on the right is a sheaf on $Y$:
 an open cover of $W$ restricts to an open cover of its intersection
 with $V_{i_0\cdots i_n}$. Limits of sheaves are computed on opens,
@@ -351,53 +950,18 @@ restriction are inverse functors. This proves both uniqueness and
 the assertion about maps, including homotopies between them.
 \end{proof}
 
-Using these two inputs, we can now prove that an open atlas contains
-all the data required for representability.
-
-\begin{theorem}[Open local representability]
-\label[theorem]{thm:Open_Local_Representability}
-A derived smooth stack is represented by a derived $\Cinfty$-scheme
-locally of finite presentation if and only if it has an open atlas
-by affine derived schemes of finite presentation.
-One may equivalently allow derived schemes locally of finite presentation
-as the atlas objects.
-\end{theorem}
-
-This is \citet[Proposition~2.1.48]{Steffens_Representability_Elliptic_Moduli}.
-
-\begin{proof}
-Suppose first that $\mathcal F=h_X$, and choose an affine open cover
-$\{U_i\to X\}$. Each $h_{U_i}\to h_X$ is an open inclusion:
-its pullback along $T\to X$ is the open subscheme $T\times_X U_i$.
-These pullbacks cover $T$. Refining them by affine opens gives local
-lifts of every $T\to X$ to the charts. By
-\Cref{lem:Effective_Epimorphism_Local_Lifting}, the chart family is
-an effective epimorphism and hence an open atlas.
-
-Conversely, let $p_i\colon h_{U_i}\to\mathcal F$ be an affine open
-atlas. An open inclusion is a monomorphism: on each test object its
-homotopy fibres are either empty or a point, since a factorization
-through an open subscheme, when it exists, is unique. In particular,
-the diagonal gives $h_{U_i}\cong h_{U_i}\times_{\mathcal F}h_{U_i}$.
-For every pair of indices, write
-\[
- h_{U_{ij}}=h_{U_i}\times_{\mathcal F}h_{U_j}.
-\]
-By openness, this is represented by an open subscheme of $U_i$,
-and its other projection identifies it with an open subscheme of
-$U_j$. Write $W_{ij}\subseteq|U_i|$ for the first image and
-$\varphi_{ij}\colon W_{ij}\to W_{ji}$ for the resulting homeomorphism.
-
-The diagonal, symmetry, and composition in the \v{C}ech nerve give
-$\varphi_{ii}=\operatorname{id}$,
+\begin{proof}[Sketch of \Cref{lem:Gluing_Derived_Schemes}]
+For $i,j\in I$, the components $U_{ij}\to U_i$ and $U_{ij}\to U_j$ of
+the two face maps are open embeddings. Write $W_{ij}\subseteq|U_i|$ for
+the image of the first and $\varphi_{ij}\colon W_{ij}\to W_{ji}$ for the
+resulting homeomorphism. The degeneracy $U_i\to U_{ii}$ is an open
+embedding whose composite with either face map is the identity, so
+$U_{ii}\to U_i$ is an isomorphism. The degeneracies, the inverses, and
+the composition $U_{ij}\times_{U_j}U_{jk}\simeq U_{ijk}\to U_{ik}$ of the
+groupoid give $\varphi_{ii}=\operatorname{id}$,
 $\varphi_{ji}=\varphi_{ij}^{-1}$, and
 $\varphi_{jk}\varphi_{ij}=\varphi_{ik}$ wherever the composite is
-defined. For the last assertion, a pair of composable overlap points
-comes from
-$U_{ij}\times_{U_j}U_{jk}$, which represents
-$h_{U_i}\times_{\mathcal F}h_{U_j}\times_{\mathcal F}h_{U_k}$;
-the remaining projection gives the corresponding point of $U_{ik}$.
-Passing to underlying topological spaces turns the specified
+defined. Passing to underlying topological spaces turns the specified
 homotopies into equalities.
 
 Define a topological space
@@ -421,160 +985,72 @@ $V_i$ cover $|X|$, and $q_i^{-1}(V_i\cap V_j)=W_{ij}$.
 Transport $\mathcal O_{U_i}$ to $V_i$ along $q_i$.
 The two open embeddings from $U_{ij}$ identify the restrictions
 of $\mathcal O_{U_i}$ and $\mathcal O_{U_j}$ on $V_i\cap V_j$.
-All the required coherences are supplied by the higher terms of
-the original \v{C}ech nerve. Apply
-\Cref{lem:Gluing_Animated_Structure_Sheaves} to obtain
-$\mathcal O_X$ on $|X|$.
-At a point in $V_i$, its stalk is the corresponding stalk of
-$\mathcal O_{U_i}$, so its degree-zero ring is local with the
+To see the compatibility on a triple intersection, pull the three
+chart sheaves back to $U_{ijk}$. Each pullback is the structure sheaf of
+$U_{ijk}$, and the identifications from the double overlaps pull back
+along the face maps to comparisons through this common sheaf. In every
+degree, restriction to the smaller open is functorial in the simplicial
+structure maps. This gives the coherent gluing datum to which we apply
+\Cref{lem:Gluing_Animated_Structure_Sheaves} to obtain $\mathcal O_X$.
+We emphasize that this datum is obtained by applying the structure
+sheaf to the entire simplicial diagram $C_\bullet$ at once. Making this
+precise, by passing to the $\infty$-topoi of sheaves on the
+$|U_{i_0\cdots i_n}|$, is the content of the proof of
+\citet[Proposition~2.1.18]{Steffens_Representability_Elliptic_Moduli}.
+At a point in $V_i$, the stalk of $\mathcal O_X$ is the corresponding
+stalk of $\mathcal O_{U_i}$, so its degree-zero ring is local with the
 same residue map to $\R$. Consequently
-$X=(|X|,\mathcal O_X)$ is a locally animated smooth-ringed space,
-and $(V_i,\mathcal O_X|_{V_i})\cong U_i$.
-Since the $U_i$ are affine of finite presentation, this is a derived
-$\Cinfty$-scheme locally of finite presentation by
-\Cref{def:Derived_Cinfty_Scheme}.
-No global Hausdorff or second-countability condition is imposed on
-a derived scheme; imposing either would require an additional
-hypothesis on this gluing datum.
+$X=(|X|,\mathcal O_X)$ is a locally animated smooth-ringed space with
+$(V_i,\mathcal O_X|_{V_i})\cong U_i$. Since the $U_i$ are derived schemes,
+so is $X$.
 
-It remains to identify its functor of points with $\mathcal F$.
-The open subscheme $U_i\times_X U_j$ has underlying open subset
-$W_{ij}\subseteq|U_i|$ and structure sheaf
-$\mathcal O_{U_i}|_{W_{ij}}$. Hence its two maps to the charts
-identify it with $U_{ij}$. The same argument on iterated intersections
-identifies all higher overlaps, with the compatibilities used in
-constructing $\mathcal O_X$.
-
-Set $\mathcal U=\coprod_i h_{U_i}$, with coproduct in stacks.
-The chart embeddings give a map $q\colon\mathcal U\to h_X$.
-For every test map $T\to X$, the open subschemes $T\times_X U_i$
-cover $T$, so the local lifting criterion shows that $q$ is an
-effective epimorphism. Its \v{C}ech nerve in degree $n$ is
+It remains to identify $C_\bullet$ with the \v{C}ech nerve of the chart
+map $q\colon C_0=\coprod_i U_i\to X$. Here we use that the gluing
+construction above exhibits $X$ as the colimit of $C_\bullet$ in
+derived locally $\Cinfty$-ringed spaces
+\cite[Proposition~2.1.18(2) and Remark~2.1.19]{Steffens_Representability_Elliptic_Moduli}.
+Its colimit cocone gives an augmented simplicial diagram $C^+_\bullet$
+with degree-$(-1)$ term $X$ and augmentation $q$ in degree zero.
+Let $D^+_\bullet$ be the augmented \v{C}ech nerve of $q$. As in
+\Cref{sec:Additional_Cech_Details}, restriction $j^*$ to degrees
+$0,-1$ has right adjoint $\operatorname{Ran}_j$. The unit gives a map
+of augmented diagrams
 \[
- \coprod_{i_0,\ldots,i_n}
- h_{U_{i_0}\times_X\cdots\times_X U_{i_n}}.
+ C^+_\bullet\longrightarrow \operatorname{Ran}_j(j^*C^+_\bullet)
+ \simeq D^+_\bullet
 \]
-Here pullbacks distribute over coproducts of stacks: locally on a
-test object a map into a coproduct chooses a summand, so the two
-sides have the same local families and identifications.
-Also, functors of points preserve the displayed pullbacks by their
-defining universal property. The overlap identifications above
-therefore identify this simplicial stack with the \v{C}ech nerve
-of $p\colon\mathcal U\to\mathcal F$.
-Since both augmentations are effective epimorphisms, realization gives
-\[
- h_X\cong|\check C(q)_\bullet|
- \cong|\check C(p)_\bullet|\cong\mathcal F.
-\]
-This is an isomorphism of stacks, and thus identifies the animae
-of families on every derived test object.
+which is the identity on $q$ under the displayed identification.
 
-Finally, suppose the atlas objects are only locally of finite
-presentation. Choose an affine open cover of each $U_i$.
-The composites of these open inclusions with $p_i$ are open.
-A family in $\mathcal F(T)$ first locally lifts to some $U_i$,
-and then, after pulling back its affine cover, locally lifts to
-one of these affine charts. The local lifting criterion shows that
-the refined family is again an effective epimorphism. The affine
-case just proved applies.
+In degree one this map restricts on the $(i,j)$-summand to
+$U_{ij}\to U_i\times_X U_j$. It lies over $U_i$, where both source
+and target are the open subobject with underlying open $W_{ij}$:
+for the target this follows by pulling back $U_j\to X$ along
+$U_i\to X$. Thus this component is an isomorphism, and so is
+$C_1\to D_1$. For $n\geq 2$, naturality of the Segal maps identifies
+$C_n\to D_n$ with the induced map between the $n$-fold pullbacks
+of $C_1$ over $C_0$ and of $D_1$ over $D_0$. It is an isomorphism
+since the maps in degrees zero and one are isomorphisms. This proves
+$C_\bullet\simeq D_\bullet$.
+
+Finally, functors of points preserve pullbacks, so $h_{D_\bullet}$ is
+the \v{C}ech nerve of $h_q\colon h_{C_0}\to h_X$. For every test map
+$T\to X$ the open subschemes $T\times_XU_i$ cover $T$, so $h_q$ is an
+effective epimorphism by \Cref{lem:Effective_Epimorphism_Local_Lifting}.
+Therefore $h_X\simeq|h_{D_\bullet}|\simeq|h_{C_\bullet}|$.
 \end{proof}
-
-In the bundle-section example, the charts are the zero loci over a
-trivializing cover of $U$. Their overlaps are the zero loci over the
-corresponding intersections. The transition maps of the bundle identify
-the Koszul models, and the theorem recovers the global derived zero locus.
-
-The same argument preserves a local property such as quasi-smoothness.
-If the charts are quasi-smooth, the cotangent amplitude condition
-holds on the resulting scheme.
-
-\section{Relative representability and base change}
-
-Moduli problems often have a parameter stack $S$.
-For example, the metric, the domain manifold, or a coefficient in an
-equation may vary. The correct representability statement is then
-relative to $S$.
-
-\begin{definition}
-\label[definition]{def:Relative_Representability}
-A map $\mathcal F\to S$ is representable by derived $\Cinfty$-schemes
-locally of finite presentation if, for each affine derived test
-$T\to S$, the pullback $\mathcal F\times_S T$ is represented by such
-a scheme. It is relatively quasi-smooth if these representing
-morphisms to $T$ are quasi-smooth.
-\end{definition}
-
-This asserts representability of every pulled-back family.
-It does not assert that the total stack $\mathcal F$ is itself a scheme
-when $S$ has automorphisms.
-
-\begin{corollary}[Locality on the base]
-\label[corollary]{cor:Local_Representability_Relative}
-Representability by derived schemes locally of finite presentation
-can be checked after an effective epimorphic covering family of the base.
-The same holds with the additional requirement of relative
-quasi-smoothness.
-\end{corollary}
-
-\begin{proof}
-Let $\{S_i\to S\}$ be a family whose coproduct is an effective
-epimorphism, and suppose each
-$\mathcal F_i=\mathcal F\times_S S_i\to S_i$ is representable.
-Fix an affine derived test $T\to S$. By
-\Cref{lem:Effective_Epimorphism_Local_Lifting}, there is an open
-cover $\{T_a\to T\}$ and, for each $a$, a lift
-$T_a\to S_{i(a)}$ with a specified identification over $S$.
-Refine the cover so that each $T_a$ is affine of finite presentation.
-The pullback identity
-\[
- \mathcal F\times_S T_a
- \cong\mathcal F_{i(a)}\times_{S_{i(a)}}T_a
-\]
-and the assumed relative representability give a representing
-scheme $X_a$ locally of finite presentation.
-
-Put $\mathcal G=\mathcal F\times_S T$.
-Each $h_{X_a}\to\mathcal G$ is the pullback of the open inclusion
-$T_a\to T$, so is open. Their coproduct is an effective epimorphism:
-for any test map $R\to\mathcal G$, the opens $R\times_T T_a$
-cover $R$ and give local lifts to the $h_{X_a}$.
-\Cref{thm:Open_Local_Representability}, including its non-affine
-atlas formulation, therefore represents $\mathcal G$ by a scheme
-$X$ locally of finite presentation. This works for every $T\to S$
-and proves the required relative representability.
-
-If every $\mathcal F_i\to S_i$ is relatively quasi-smooth, then
-$X_a\to T_a$ is quasi-smooth by its definition on affine tests.
-Moreover $X_a=X\times_T T_a$. Base change for relative cotangent
-complexes identifies $\mathbb L_{X/T}|_{X_a}$ with
-$\mathbb L_{X_a/T_a}$. Perfection and Tor-amplitude in $[0,1]$
-can be checked on this open cover of $X$, so $X\to T$ is
-quasi-smooth. Conversely, representability and relative
-quasi-smoothness are preserved by base change, so the asserted
-conditions are necessary as well.
-\end{proof}
-
-The source formulation is
-\cite[Definition~2.1.42 and Corollary~2.1.49]
-{Steffens_Representability_Elliptic_Moduli}.
-This permits a proof over a smooth stack to be carried out on manifold
-charts of the base, provided the moduli construction is compatible
-with pullback.
-
-\section{Further reading}
-
-The local representability criterion does not make the construction of
-a chart automatic.
-One must identify the entire derived functor on an open neighbourhood,
-including its values on derived tests. An identification of real
-solution sets, or even of their tangent complexes, proves less.
-The later Kuranishi argument is designed to establish precisely
-this functorial identification.
 
 \begin{exercise}
 Let $f\colon U\to\R^r$ and let $\{U_i\}$ cover $U$.
 Use the functor-of-points formula to verify that the corresponding
 zero loci form an effective open atlas of $\mathcal Z_f$.
+\end{exercise}
+
+\begin{exercise}
+Let $\mathcal F=h_\R\sqcup_{h_V}h_\R$ be as in \Cref{ex:Line_Two_Origins}.
+Using that pushouts along monomorphisms of stacks are also pullbacks,
+show that $h_\R\times_{\mathcal F}h_\R\simeq h_V$ for the two different
+maps, and that each map $h_\R\to\mathcal F$ is a monomorphism. Deduce
+with the local lifting criterion that the two maps form an open atlas.
 \end{exercise}
 
 \begin{exercise}
